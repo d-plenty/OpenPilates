@@ -1,0 +1,18 @@
+# OpenPilates — docker compose / Dockge stack
+services:
+  openpilates:
+    image: ghcr.io/d-plenty/openpilates:latest
+    container_name: openpilates
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/data
+    environment:
+      TZ: Australia/Brisbane
+      # Optional: create the first admin automatically instead of using the setup page.
+      # ADMIN_USERNAME: sarah
+      # ADMIN_PASSWORD: change-me-to-something-long
+      # STUDIO_NAME: My studio
+      # Behind a reverse proxy or tunnel with HTTPS, cookies are marked Secure automatically.
+      # Set SECURE_COOKIES: "true" to force it, or TRUST_PROXY: "false" if nothing sits in front.

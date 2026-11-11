@@ -1,0 +1,52 @@
+{
+  "slug": "pelvic-curl",
+  "name": "Pelvic Curl",
+  "apparatus": "mat",
+  "level": "beginner",
+  "position": "supine",
+  "spine": [
+    "articulation"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "spinal-articulation"
+  ],
+  "muscles": {
+    "primary": [
+      "glutes",
+      "hamstrings"
+    ],
+    "secondary": [
+      "abdominals"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "purpose": {
+    "strength": 1,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 3
+  },
+  "multiJoint": true,
+  "intensity": 3,
+  "duration": 90,
+  "reps": "6–8",
+  "summary": "Lying on the back with knees bent, peel the pelvis and spine up from the mat and roll back down.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "note": "Lying on the back later in pregnancy; keep it short or incline."
+    }
+  ],
+  "cues": "",
+  "labels": [
+    "warm-up",
+    "rehab-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

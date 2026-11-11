@@ -1,0 +1,56 @@
+{
+  "slug": "rowing-back",
+  "name": "Rowing — Back Series",
+  "apparatus": "reformer",
+  "level": "intermediate",
+  "position": "seated",
+  "spine": [
+    "articulation",
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "spinal-articulation",
+    "pull"
+  ],
+  "muscles": {
+    "primary": [
+      "deltoids",
+      "upper_back",
+      "abdominals"
+    ],
+    "secondary": [
+      "triceps"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "light"
+    ]
+  },
+  "purpose": {
+    "strength": 1,
+    "stability": 2,
+    "flexibility": 1,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 5,
+  "duration": 240,
+  "reps": "4 each",
+  "summary": "Seated facing the straps, roll back and reach the arms through several rowing patterns.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "low_bone_density",
+      "note": "Rounded spine under load; sit tall instead."
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

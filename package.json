@@ -1,0 +1,17 @@
+{
+  "name": "openpilates",
+  "version": "0.1.0",
+  "description": "Free, self-hosted class planner for mat and reformer Pilates instructors.",
+  "license": "GPL-3.0-or-later",
+  "author": "Declan Plenty (Plenty Technologies) and Sarah Blake",
+  "type": "module",
+  "private": true,
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server/index.js",
+    "dev": "DATA_DIR=./data node --disable-warning=ExperimentalWarning --watch server/index.js",
+    "test": "node --disable-warning=ExperimentalWarning --test test/*.test.js",
+    "check:library": "node tools/check-library.js"
+  },
+  "repository": { "type": "git", "url": "https://github.com/d-plenty/OpenPilates.git" }
+}

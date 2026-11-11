@@ -1,0 +1,61 @@
+{
+  "slug": "short-box-side-over",
+  "name": "Short Box — Side Over",
+  "apparatus": "reformer",
+  "level": "advanced",
+  "position": "seated",
+  "spine": [
+    "side-bend"
+  ],
+  "plane": "frontal",
+  "patterns": [
+    "lateral-flexion"
+  ],
+  "muscles": {
+    "primary": [
+      "obliques"
+    ],
+    "secondary": [
+      "abductors",
+      "spinal_extensors"
+    ]
+  },
+  "equipment": [
+    "short_box"
+  ],
+  "load": {
+    "springs": [
+      "medium",
+      "medium",
+      "medium"
+    ]
+  },
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 1,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 7,
+  "duration": 150,
+  "reps": "4 each side",
+  "summary": "Side-on to the short box with feet under the strap, side bend over the box and lift back up.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "low_bone_density",
+      "note": "Loaded side bending."
+    },
+    {
+      "tag": "balance",
+      "note": "Hold the frame for support."
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

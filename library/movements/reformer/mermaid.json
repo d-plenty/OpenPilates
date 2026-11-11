@@ -1,0 +1,55 @@
+{
+  "slug": "mermaid",
+  "name": "Mermaid",
+  "apparatus": "reformer",
+  "level": "beginner",
+  "position": "seated",
+  "spine": [
+    "side-bend"
+  ],
+  "plane": "frontal",
+  "patterns": [
+    "lateral-flexion"
+  ],
+  "muscles": {
+    "primary": [
+      "obliques",
+      "lats"
+    ],
+    "secondary": [
+      "deltoids"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "xlight"
+    ]
+  },
+  "purpose": {
+    "strength": 0,
+    "stability": 1,
+    "flexibility": 3,
+    "mobility": 2
+  },
+  "multiJoint": true,
+  "intensity": 2,
+  "duration": 180,
+  "reps": "3 each side",
+  "summary": "Seated side-on with a hand on the footbar, push the carriage away into a long side stretch.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "knee",
+      "note": "Folded-leg sitting; sit cross-legged or on a box."
+    }
+  ],
+  "cues": "",
+  "labels": [
+    "cool-down"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

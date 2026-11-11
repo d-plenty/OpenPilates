@@ -1,0 +1,55 @@
+{
+  "slug": "side-lying-leg-press",
+  "name": "Side-lying Leg Press",
+  "apparatus": "reformer",
+  "level": "beginner",
+  "position": "side-lying",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "frontal",
+  "patterns": [
+    "push",
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "glutes",
+      "quadriceps"
+    ],
+    "secondary": [
+      "abductors",
+      "obliques"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium"
+    ]
+  },
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 2
+  },
+  "multiJoint": true,
+  "intensity": 4,
+  "duration": 180,
+  "reps": "10 each side",
+  "summary": "Lying on the side with one foot on the footbar, press out while keeping the hips stacked.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "hip_replacement",
+      "note": "Check hip position against the client's surgeon or physio advice."
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

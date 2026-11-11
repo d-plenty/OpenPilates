@@ -1,0 +1,50 @@
+{
+  "slug": "mermaid-mat",
+  "name": "Mermaid (Mat)",
+  "apparatus": "mat",
+  "level": "beginner",
+  "position": "seated",
+  "spine": [
+    "side-bend"
+  ],
+  "plane": "frontal",
+  "patterns": [
+    "lateral-flexion"
+  ],
+  "muscles": {
+    "primary": [
+      "obliques",
+      "lats"
+    ],
+    "secondary": []
+  },
+  "equipment": [],
+  "load": null,
+  "purpose": {
+    "strength": 0,
+    "stability": 0,
+    "flexibility": 3,
+    "mobility": 2
+  },
+  "multiJoint": false,
+  "intensity": 1,
+  "duration": 60,
+  "reps": "3 each side",
+  "summary": "Seated with legs folded to one side, reach up and over into a side stretch.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "knee",
+      "note": "Sit cross-legged instead."
+    }
+  ],
+  "cues": "",
+  "labels": [
+    "cool-down",
+    "pregnancy-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

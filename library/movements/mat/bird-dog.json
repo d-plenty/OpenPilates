@@ -1,0 +1,58 @@
+{
+  "slug": "bird-dog",
+  "name": "Bird Dog",
+  "apparatus": "mat",
+  "level": "beginner",
+  "position": "quadruped",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "coordination"
+  ],
+  "muscles": {
+    "primary": [
+      "spinal_extensors",
+      "glutes",
+      "abdominals"
+    ],
+    "secondary": [
+      "deltoids"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "purpose": {
+    "strength": 1,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 2
+  },
+  "multiJoint": true,
+  "intensity": 3,
+  "duration": 90,
+  "reps": "6 each side",
+  "summary": "On hands and knees, reach the opposite arm and leg long while the trunk stays level.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "wrist",
+      "note": "Hands down; try fists or forearms."
+    },
+    {
+      "tag": "knee",
+      "note": "Pad the knees."
+    }
+  ],
+  "cues": "",
+  "labels": [
+    "pregnancy-friendly",
+    "rehab-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

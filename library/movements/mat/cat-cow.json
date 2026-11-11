@@ -1,0 +1,51 @@
+{
+  "slug": "cat-cow",
+  "name": "Cat–Cow",
+  "apparatus": "mat",
+  "level": "beginner",
+  "position": "quadruped",
+  "spine": [
+    "flexion",
+    "extension"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "spinal-articulation"
+  ],
+  "muscles": {
+    "primary": [
+      "spinal_extensors",
+      "abdominals"
+    ],
+    "secondary": []
+  },
+  "equipment": [],
+  "load": null,
+  "purpose": {
+    "strength": 0,
+    "stability": 0,
+    "flexibility": 2,
+    "mobility": 3
+  },
+  "multiJoint": true,
+  "intensity": 1,
+  "duration": 60,
+  "reps": "6",
+  "summary": "On hands and knees, alternate rounding and arching the spine with the breath.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "wrist",
+      "note": "Fists or forearms."
+    }
+  ],
+  "cues": "",
+  "labels": [
+    "warm-up",
+    "pregnancy-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

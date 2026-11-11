@@ -1,0 +1,52 @@
+{
+  "slug": "standing-roll-down",
+  "name": "Roll Down (Standing)",
+  "apparatus": "mat",
+  "level": "beginner",
+  "position": "standing",
+  "spine": [
+    "articulation"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "spinal-articulation",
+    "flexion"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "spinal_extensors"
+    ],
+    "secondary": [
+      "hamstrings"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "purpose": {
+    "strength": 0,
+    "stability": 1,
+    "flexibility": 2,
+    "mobility": 3
+  },
+  "multiJoint": true,
+  "intensity": 2,
+  "duration": 60,
+  "reps": "3",
+  "summary": "Standing tall, roll the spine down towards the floor one segment at a time and roll back up.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "low_bone_density",
+      "note": "Forward flexion; keep it small or hinge with a flat back."
+    }
+  ],
+  "cues": "",
+  "labels": [
+    "warm-up"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

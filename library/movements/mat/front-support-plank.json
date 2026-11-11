@@ -1,0 +1,56 @@
+{
+  "slug": "front-support-plank",
+  "name": "Plank (Front Support)",
+  "apparatus": "mat",
+  "level": "intermediate",
+  "position": "plank",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "deltoids",
+      "serratus"
+    ],
+    "secondary": [
+      "glutes",
+      "quadriceps"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 60,
+  "reps": "3 × 20 s",
+  "summary": "Hold a long plank on the hands or forearms.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "wrist",
+      "note": "Forearms down."
+    },
+    {
+      "tag": "pregnancy",
+      "note": "Abdominal load; offer knees down or swap.",
+      "swap": "bird-dog"
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

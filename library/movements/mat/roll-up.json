@@ -1,0 +1,62 @@
+{
+  "slug": "roll-up",
+  "name": "Roll Up",
+  "apparatus": "mat",
+  "level": "intermediate",
+  "position": "supine",
+  "spine": [
+    "flexion",
+    "articulation"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "spinal-articulation",
+    "flexion"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals"
+    ],
+    "secondary": [
+      "hip_flexors",
+      "hamstrings"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 1,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 7,
+  "duration": 90,
+  "reps": "5",
+  "summary": "Roll the whole spine up from lying to a forward reach and back down with control.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "low_bone_density",
+      "note": "Loaded spinal flexion; avoid.",
+      "swap": "pelvic-curl"
+    },
+    {
+      "tag": "pregnancy",
+      "note": "Strong abdominal load later in pregnancy.",
+      "swap": "cat-cow"
+    },
+    {
+      "tag": "flexion_pain",
+      "note": "Avoid full roll-up.",
+      "swap": "pelvic-curl"
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

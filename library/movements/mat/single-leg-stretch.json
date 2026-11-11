@@ -1,0 +1,57 @@
+{
+  "slug": "single-leg-stretch",
+  "name": "Single Leg Stretch",
+  "apparatus": "mat",
+  "level": "intermediate",
+  "position": "supine",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "flexion",
+    "coordination"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals"
+    ],
+    "secondary": [
+      "hip_flexors"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "purpose": {
+    "strength": 1,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 60,
+  "reps": "8 each side",
+  "summary": "Chest curled, switch the legs in and out while the trunk stays still.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "note": "Curling up on the back later in pregnancy."
+    },
+    {
+      "tag": "neck",
+      "note": "Head-down option."
+    },
+    {
+      "tag": "low_bone_density",
+      "note": "Loaded flexion; head down."
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

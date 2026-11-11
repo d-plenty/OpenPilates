@@ -1,0 +1,79 @@
+{
+  "slug": "long-stretch",
+  "name": "Long Stretch",
+  "apparatus": "reformer",
+  "level": "intermediate",
+  "position": "plank",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "push"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "deltoids",
+      "serratus"
+    ],
+    "secondary": [
+      "chest",
+      "glutes",
+      "quadriceps"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "light"
+    ]
+  },
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 7,
+  "duration": 180,
+  "reps": "5–8",
+  "summary": "Plank with hands on the footbar and feet against the shoulder blocks, moving the carriage from the shoulders.",
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Knee plank",
+      "text": "Knees down on the carriage, small range."
+    },
+    {
+      "tag": "L2",
+      "title": "Full plank",
+      "text": "Move the carriage out and in from the shoulders."
+    }
+  ],
+  "cautions": [
+    {
+      "tag": "wrist",
+      "note": "Weight through the hands; offer forearms or swap.",
+      "swap": "elephant"
+    },
+    {
+      "tag": "shoulder",
+      "note": "Keep the range small; skip if painful."
+    },
+    {
+      "tag": "pregnancy",
+      "note": "Plank loads the abdominals later in pregnancy; offer knee plank or swap.",
+      "swap": "elephant"
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

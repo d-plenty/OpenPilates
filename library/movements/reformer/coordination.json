@@ -1,0 +1,63 @@
+{
+  "slug": "coordination",
+  "name": "Coordination",
+  "apparatus": "reformer",
+  "level": "intermediate",
+  "position": "supine",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "flexion",
+    "coordination"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals"
+    ],
+    "secondary": [
+      "triceps",
+      "adductors"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "light"
+    ]
+  },
+  "purpose": {
+    "strength": 1,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 120,
+  "reps": "6",
+  "summary": "From a chest curl, press arms and legs out, open and close the legs, then return in sequence.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "note": "Curling up on the back later in pregnancy; offer head down."
+    },
+    {
+      "tag": "neck",
+      "note": "Head-down option."
+    },
+    {
+      "tag": "low_bone_density",
+      "note": "Loaded flexion; keep head down."
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

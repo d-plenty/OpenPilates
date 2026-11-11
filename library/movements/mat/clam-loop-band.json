@@ -1,0 +1,52 @@
+{
+  "slug": "clam-loop-band",
+  "name": "Clam with Loop Band",
+  "apparatus": "mat",
+  "level": "beginner",
+  "position": "side-lying",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "frontal",
+  "patterns": [
+    "abduction"
+  ],
+  "muscles": {
+    "primary": [
+      "glutes",
+      "abductors"
+    ],
+    "secondary": []
+  },
+  "equipment": [
+    "loop_band"
+  ],
+  "load": null,
+  "purpose": {
+    "strength": 1,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 2
+  },
+  "multiJoint": false,
+  "intensity": 3,
+  "duration": 90,
+  "reps": "12 each side",
+  "summary": "Side-lying with knees bent and a band above the knees, open the top knee without rocking the pelvis.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "hip_replacement",
+      "note": "Check range against surgeon or physio advice."
+    }
+  ],
+  "cues": "",
+  "labels": [
+    "rehab-friendly",
+    "pregnancy-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

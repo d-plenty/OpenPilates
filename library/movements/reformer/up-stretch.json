@@ -1,0 +1,67 @@
+{
+  "slug": "up-stretch",
+  "name": "Up Stretch",
+  "apparatus": "reformer",
+  "level": "advanced",
+  "position": "plank",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "flexion",
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "deltoids",
+      "hamstrings"
+    ],
+    "secondary": [
+      "serratus",
+      "calves"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "light"
+    ]
+  },
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 1,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 8,
+  "duration": 180,
+  "reps": "5",
+  "summary": "From a pike over the footbar, travel into plank and back while keeping the carriage controlled.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "wrist",
+      "note": "Weight through the hands.",
+      "swap": "elephant"
+    },
+    {
+      "tag": "shoulder",
+      "note": "Overhead loading; small range."
+    },
+    {
+      "tag": "pregnancy",
+      "note": "Plank and pike under load.",
+      "swap": "elephant"
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

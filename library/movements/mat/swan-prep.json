@@ -1,0 +1,55 @@
+{
+  "slug": "swan-prep",
+  "name": "Swan Prep (Mat)",
+  "apparatus": "mat",
+  "level": "beginner",
+  "position": "prone",
+  "spine": [
+    "extension"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "extension"
+  ],
+  "muscles": {
+    "primary": [
+      "spinal_extensors",
+      "upper_back"
+    ],
+    "secondary": [
+      "glutes"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "purpose": {
+    "strength": 1,
+    "stability": 1,
+    "flexibility": 1,
+    "mobility": 2
+  },
+  "multiJoint": true,
+  "intensity": 3,
+  "duration": 60,
+  "reps": "5",
+  "summary": "Face down with hands under the shoulders, lift the chest into a small back extension.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "note": "Lying face down.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "extension_pain",
+      "note": "Keep it very small or skip.",
+      "swap": "bird-dog"
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

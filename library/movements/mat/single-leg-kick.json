@@ -1,0 +1,54 @@
+{
+  "slug": "single-leg-kick",
+  "name": "Single Leg Kick",
+  "apparatus": "mat",
+  "level": "beginner",
+  "position": "prone",
+  "spine": [
+    "extension"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "extension"
+  ],
+  "muscles": {
+    "primary": [
+      "hamstrings",
+      "glutes"
+    ],
+    "secondary": [
+      "spinal_extensors"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "purpose": {
+    "strength": 1,
+    "stability": 2,
+    "flexibility": 1,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 4,
+  "duration": 60,
+  "reps": "8 each side",
+  "summary": "Propped on the forearms, kick each heel towards the seat with a double pulse.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "note": "Lying face down.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "knee",
+      "note": "Deep knee bend; keep it smaller."
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

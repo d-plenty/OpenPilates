@@ -1,0 +1,56 @@
+{
+  "slug": "feet-in-straps",
+  "name": "Feet in Straps — Frogs & Circles",
+  "apparatus": "reformer",
+  "level": "beginner",
+  "position": "supine",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "adduction",
+    "hip-dissociation"
+  ],
+  "muscles": {
+    "primary": [
+      "adductors",
+      "hamstrings"
+    ],
+    "secondary": [
+      "abdominals",
+      "glutes"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "light"
+    ]
+  },
+  "purpose": {
+    "strength": 1,
+    "stability": 2,
+    "flexibility": 1,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 4,
+  "duration": 240,
+  "reps": "8 each pattern",
+  "summary": "Feet in the straps for frogs, circles and openings. Works the inner thighs and back of the legs while the pelvis stays still.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "hip_replacement",
+      "note": "Limit hip rotation and range as advised by the client's surgeon or physio."
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

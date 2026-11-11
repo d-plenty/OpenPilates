@@ -1,0 +1,45 @@
+{
+  "slug": "standing-hip-flexor-stretch",
+  "name": "Standing Hip Flexor Stretch",
+  "apparatus": "mat",
+  "level": "beginner",
+  "position": "standing",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "extension"
+  ],
+  "muscles": {
+    "primary": [
+      "hip_flexors",
+      "quadriceps"
+    ],
+    "secondary": []
+  },
+  "equipment": [],
+  "load": null,
+  "purpose": {
+    "strength": 0,
+    "stability": 1,
+    "flexibility": 3,
+    "mobility": 1
+  },
+  "multiJoint": false,
+  "intensity": 1,
+  "duration": 60,
+  "reps": "Hold each side",
+  "summary": "In a split stance, tuck the pelvis and shift forward to stretch the front of the back hip.",
+  "layers": [],
+  "cautions": [],
+  "cues": "",
+  "labels": [
+    "cool-down",
+    "pregnancy-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

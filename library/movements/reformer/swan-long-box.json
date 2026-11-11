@@ -1,0 +1,81 @@
+{
+  "slug": "swan-long-box",
+  "name": "Swan on the Long Box",
+  "apparatus": "reformer",
+  "level": "intermediate",
+  "position": "prone",
+  "spine": [
+    "extension"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "extension",
+    "push"
+  ],
+  "muscles": {
+    "primary": [
+      "spinal_extensors",
+      "glutes",
+      "hamstrings"
+    ],
+    "secondary": [
+      "upper_back",
+      "triceps",
+      "deltoids"
+    ]
+  },
+  "equipment": [
+    "long_box"
+  ],
+  "load": {
+    "springs": [
+      "medium"
+    ]
+  },
+  "purpose": {
+    "strength": 2,
+    "stability": 1,
+    "flexibility": 1,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 240,
+  "reps": "5–6",
+  "summary": "Lying face down on the long box with hands on the footbar, press the carriage away as the chest lifts.",
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Extension prep",
+      "text": "Lift the chest only; the carriage stays still."
+    },
+    {
+      "tag": "L2",
+      "title": "Press the carriage",
+      "text": "Push the footbar away as the chest lifts."
+    }
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "note": "Lying face down on the box.",
+      "swap": "chest-expansion"
+    },
+    {
+      "tag": "extension_pain",
+      "note": "Keep the range small or skip.",
+      "swap": "pulling-straps"
+    },
+    {
+      "tag": "wrist",
+      "note": "Hands on the footbar take weight.",
+      "swap": "pulling-straps"
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

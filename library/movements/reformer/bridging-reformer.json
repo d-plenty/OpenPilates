@@ -1,0 +1,72 @@
+{
+  "slug": "bridging-reformer",
+  "name": "Bridging (Reformer)",
+  "apparatus": "reformer",
+  "level": "beginner",
+  "position": "supine",
+  "spine": [
+    "articulation"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "spinal-articulation",
+    "extension"
+  ],
+  "muscles": {
+    "primary": [
+      "glutes",
+      "hamstrings"
+    ],
+    "secondary": [
+      "abdominals",
+      "adductors"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "medium",
+      "light"
+    ]
+  },
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 2
+  },
+  "multiJoint": true,
+  "intensity": 4,
+  "duration": 120,
+  "reps": "8",
+  "summary": "Roll the pelvis and spine up from the carriage with feet on the footbar, then press the carriage out and in.",
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Pelvic curl",
+      "text": "Articulate up and down without moving the carriage."
+    },
+    {
+      "tag": "L2",
+      "title": "Bridge and press",
+      "text": "Hold the bridge and press the carriage out and in."
+    }
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "note": "Long periods lying on the back later in pregnancy; keep sets short."
+    },
+    {
+      "tag": "low_bone_density",
+      "note": "Keep to a low pelvic curl rather than a high bridge onto the neck."
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

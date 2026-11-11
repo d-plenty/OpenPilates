@@ -1,0 +1,52 @@
+{
+  "slug": "saw",
+  "name": "Saw",
+  "apparatus": "mat",
+  "level": "intermediate",
+  "position": "seated",
+  "spine": [
+    "rotation",
+    "flexion"
+  ],
+  "plane": "transverse",
+  "patterns": [
+    "rotation",
+    "flexion"
+  ],
+  "muscles": {
+    "primary": [
+      "obliques"
+    ],
+    "secondary": [
+      "hamstrings",
+      "spinal_extensors"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "purpose": {
+    "strength": 0,
+    "stability": 1,
+    "flexibility": 3,
+    "mobility": 2
+  },
+  "multiJoint": true,
+  "intensity": 4,
+  "duration": 90,
+  "reps": "3 each side",
+  "summary": "Seated with arms out, twist and reach the hand past the opposite little toe.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "low_bone_density",
+      "note": "Flexion with rotation; keep it upright.",
+      "swap": "spine-twist"
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

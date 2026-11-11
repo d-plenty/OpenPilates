@@ -1,0 +1,53 @@
+{
+  "slug": "childs-pose",
+  "name": "Rest Position (Child's Pose)",
+  "apparatus": "mat",
+  "level": "beginner",
+  "position": "kneeling",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "flexion"
+  ],
+  "muscles": {
+    "primary": [
+      "lats",
+      "spinal_extensors"
+    ],
+    "secondary": []
+  },
+  "equipment": [],
+  "load": null,
+  "purpose": {
+    "strength": 0,
+    "stability": 0,
+    "flexibility": 3,
+    "mobility": 2
+  },
+  "multiJoint": false,
+  "intensity": 1,
+  "duration": 60,
+  "reps": "Hold 5 breaths",
+  "summary": "Sit back towards the heels with the arms long in front and breathe into the back.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "knee",
+      "note": "Deep knee bend; pad behind the knees or skip."
+    },
+    {
+      "tag": "pregnancy",
+      "note": "Widen the knees."
+    }
+  ],
+  "cues": "",
+  "labels": [
+    "cool-down"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

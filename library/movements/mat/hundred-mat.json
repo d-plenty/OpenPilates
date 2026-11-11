@@ -1,0 +1,57 @@
+{
+  "slug": "hundred-mat",
+  "name": "The Hundred (Mat)",
+  "apparatus": "mat",
+  "level": "intermediate",
+  "position": "supine",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "flexion",
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals"
+    ],
+    "secondary": [
+      "hip_flexors"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "purpose": {
+    "strength": 1,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 90,
+  "reps": "100 pumps",
+  "summary": "Head and chest curled, arms pumping beside the body while the legs hold tabletop or extend.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "note": "Curling up on the back later in pregnancy; offer head down or seated."
+    },
+    {
+      "tag": "neck",
+      "note": "Head-down option."
+    },
+    {
+      "tag": "low_bone_density",
+      "note": "Loaded flexion; keep the head down."
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "slug": "short-box-twist",
+  "name": "Short Box — Twist & Reach",
+  "apparatus": "reformer",
+  "level": "intermediate",
+  "position": "seated",
+  "spine": [
+    "rotation"
+  ],
+  "plane": "transverse",
+  "patterns": [
+    "rotation"
+  ],
+  "muscles": {
+    "primary": [
+      "obliques",
+      "abdominals"
+    ],
+    "secondary": [
+      "spinal_extensors"
+    ]
+  },
+  "equipment": [
+    "short_box"
+  ],
+  "load": {
+    "springs": [
+      "medium",
+      "medium",
+      "medium"
+    ]
+  },
+  "purpose": {
+    "strength": 1,
+    "stability": 2,
+    "flexibility": 1,
+    "mobility": 2
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 180,
+  "reps": "4 each side",
+  "summary": "Seated tall on the short box, rotate, then hinge and reach on the diagonal.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "low_bone_density",
+      "note": "Twisting under load; stay upright with a small range."
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "slug": "elephant",
+  "name": "Elephant",
+  "apparatus": "reformer",
+  "level": "beginner",
+  "position": "standing",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "flexion",
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "hamstrings",
+      "abdominals"
+    ],
+    "secondary": [
+      "deltoids",
+      "calves"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "light"
+    ]
+  },
+  "purpose": {
+    "strength": 1,
+    "stability": 2,
+    "flexibility": 2,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 5,
+  "duration": 180,
+  "reps": "8",
+  "summary": "Standing on the carriage with hands on the footbar, move the carriage with the legs while the upper body stays still.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "wrist",
+      "note": "Hands on the footbar take some weight."
+    },
+    {
+      "tag": "low_bone_density",
+      "note": "Rounded spine under load; teach the flat-back version."
+    },
+    {
+      "tag": "flexion_pain",
+      "note": "Use the flat-back version."
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

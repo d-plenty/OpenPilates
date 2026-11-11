@@ -1,0 +1,58 @@
+{
+  "slug": "swimming",
+  "name": "Swimming",
+  "apparatus": "mat",
+  "level": "intermediate",
+  "position": "prone",
+  "spine": [
+    "extension"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "extension",
+    "coordination"
+  ],
+  "muscles": {
+    "primary": [
+      "spinal_extensors",
+      "glutes",
+      "upper_back"
+    ],
+    "secondary": [
+      "hamstrings",
+      "deltoids"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 60,
+  "reps": "20 counts",
+  "summary": "Face down with arms and legs long, lift and flutter opposite arm and leg.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "note": "Lying face down.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "extension_pain",
+      "note": "Keep the lift small.",
+      "swap": "bird-dog"
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

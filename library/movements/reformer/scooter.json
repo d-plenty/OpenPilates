@@ -1,0 +1,59 @@
+{
+  "slug": "scooter",
+  "name": "Scooter",
+  "apparatus": "reformer",
+  "level": "intermediate",
+  "position": "standing",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "extension",
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "glutes",
+      "hamstrings"
+    ],
+    "secondary": [
+      "quadriceps",
+      "abdominals"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium"
+    ]
+  },
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 180,
+  "reps": "10 each side",
+  "summary": "One foot on the platform, the other on the carriage. Push the carriage back from the hip.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "knee",
+      "note": "Bent-knee weight bearing; keep range small."
+    },
+    {
+      "tag": "balance",
+      "note": "Single-leg balance; keep a hand on the footbar."
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

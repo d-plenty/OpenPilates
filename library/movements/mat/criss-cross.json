@@ -1,0 +1,61 @@
+{
+  "slug": "criss-cross",
+  "name": "Criss Cross",
+  "apparatus": "mat",
+  "level": "intermediate",
+  "position": "supine",
+  "spine": [
+    "flexion",
+    "rotation"
+  ],
+  "plane": "transverse",
+  "patterns": [
+    "rotation",
+    "flexion"
+  ],
+  "muscles": {
+    "primary": [
+      "obliques",
+      "abdominals"
+    ],
+    "secondary": [
+      "hip_flexors"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "purpose": {
+    "strength": 1,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 7,
+  "duration": 60,
+  "reps": "8 each side",
+  "summary": "Hands behind the head, rotate the chest towards the opposite knee as the legs switch.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "low_bone_density",
+      "note": "Flexion with rotation; avoid.",
+      "swap": "spine-twist"
+    },
+    {
+      "tag": "pregnancy",
+      "note": "Curling and twisting on the back.",
+      "swap": "spine-twist"
+    },
+    {
+      "tag": "neck",
+      "note": "Support the head; keep it small."
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

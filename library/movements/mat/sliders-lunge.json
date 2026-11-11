@@ -1,0 +1,57 @@
+{
+  "slug": "sliders-lunge",
+  "name": "Slider Reverse Lunge",
+  "apparatus": "mat",
+  "level": "intermediate",
+  "position": "standing",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "extension",
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "glutes",
+      "quadriceps"
+    ],
+    "secondary": [
+      "hamstrings",
+      "adductors"
+    ]
+  },
+  "equipment": [
+    "sliders"
+  ],
+  "load": null,
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 120,
+  "reps": "10 each side",
+  "summary": "One foot on a slider, slide back into a lunge and return.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "knee",
+      "note": "Bent-knee weight bearing; keep range small."
+    },
+    {
+      "tag": "balance",
+      "note": "Hold a wall or bar."
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "slug": "kneeling-arm-series",
+  "name": "Kneeling Arm Series",
+  "apparatus": "reformer",
+  "level": "intermediate",
+  "position": "kneeling",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "pull",
+    "push",
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "deltoids",
+      "triceps",
+      "biceps"
+    ],
+    "secondary": [
+      "abdominals"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "xlight"
+    ]
+  },
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 5,
+  "duration": 240,
+  "reps": "8 each",
+  "summary": "Kneeling tall on the carriage, arm work with the straps: biceps, triceps, hug and salute.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "knee",
+      "note": "Kneeling; pad the knees."
+    },
+    {
+      "tag": "shoulder",
+      "note": "Keep loads light and below pain."
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

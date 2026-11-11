@@ -1,0 +1,52 @@
+{
+  "slug": "spine-stretch-forward",
+  "name": "Spine Stretch Forward",
+  "apparatus": "mat",
+  "level": "beginner",
+  "position": "seated",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "flexion",
+    "spinal-articulation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "spinal_extensors"
+    ],
+    "secondary": [
+      "hamstrings"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "purpose": {
+    "strength": 0,
+    "stability": 1,
+    "flexibility": 3,
+    "mobility": 2
+  },
+  "multiJoint": true,
+  "intensity": 2,
+  "duration": 90,
+  "reps": "4",
+  "summary": "Seated tall with legs apart, curl forward over the legs and stack back up.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "low_bone_density",
+      "note": "Forward flexion; keep it small or hinge."
+    }
+  ],
+  "cues": "",
+  "labels": [
+    "cool-down"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

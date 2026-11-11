@@ -1,0 +1,68 @@
+{
+  "slug": "short-box-round-back",
+  "name": "Short Box — Round Back",
+  "apparatus": "reformer",
+  "level": "intermediate",
+  "position": "seated",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "flexion"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "hip_flexors"
+    ],
+    "secondary": [
+      "spinal_extensors"
+    ]
+  },
+  "equipment": [
+    "short_box"
+  ],
+  "load": {
+    "springs": [
+      "medium",
+      "medium",
+      "medium"
+    ]
+  },
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 180,
+  "reps": "6",
+  "summary": "Seated on the short box with feet under the strap, curve the spine and roll back and up.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "low_bone_density",
+      "note": "Loaded spinal flexion; teach flat back instead.",
+      "swap": "short-box-flat-back"
+    },
+    {
+      "tag": "pregnancy",
+      "note": "Heavy abdominal load later in pregnancy.",
+      "swap": "mermaid"
+    },
+    {
+      "tag": "flexion_pain",
+      "note": "Rounding under load.",
+      "swap": "short-box-flat-back"
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

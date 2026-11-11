@@ -1,0 +1,53 @@
+{
+  "slug": "thread-the-needle",
+  "name": "Thread the Needle",
+  "apparatus": "mat",
+  "level": "beginner",
+  "position": "quadruped",
+  "spine": [
+    "rotation"
+  ],
+  "plane": "transverse",
+  "patterns": [
+    "rotation"
+  ],
+  "muscles": {
+    "primary": [
+      "upper_back",
+      "obliques"
+    ],
+    "secondary": []
+  },
+  "equipment": [],
+  "load": null,
+  "purpose": {
+    "strength": 0,
+    "stability": 1,
+    "flexibility": 3,
+    "mobility": 3
+  },
+  "multiJoint": true,
+  "intensity": 1,
+  "duration": 60,
+  "reps": "4 each side",
+  "summary": "On hands and knees, open one arm to the ceiling then thread it under the body.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "wrist",
+      "note": "Weight through one hand."
+    },
+    {
+      "tag": "shoulder",
+      "note": "Keep the range comfortable."
+    }
+  ],
+  "cues": "",
+  "labels": [
+    "cool-down"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

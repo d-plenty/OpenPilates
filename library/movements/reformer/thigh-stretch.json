@@ -1,0 +1,54 @@
+{
+  "slug": "thigh-stretch",
+  "name": "Thigh Stretch",
+  "apparatus": "reformer",
+  "level": "intermediate",
+  "position": "kneeling",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "extension",
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "quadriceps",
+      "abdominals"
+    ],
+    "secondary": [
+      "hip_flexors"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "light"
+    ]
+  },
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 2,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 5,
+  "duration": 120,
+  "reps": "6",
+  "summary": "Kneeling tall holding the straps, hinge back from the knees in a straight line.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "knee",
+      "note": "Deep knee load; keep the hinge small or skip."
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

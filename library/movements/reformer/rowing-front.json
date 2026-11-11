@@ -1,0 +1,60 @@
+{
+  "slug": "rowing-front",
+  "name": "Rowing — Front Series",
+  "apparatus": "reformer",
+  "level": "intermediate",
+  "position": "seated",
+  "spine": [
+    "flexion",
+    "extension"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "spinal-articulation",
+    "push"
+  ],
+  "muscles": {
+    "primary": [
+      "deltoids",
+      "upper_back"
+    ],
+    "secondary": [
+      "triceps",
+      "abdominals"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "xlight"
+    ]
+  },
+  "purpose": {
+    "strength": 1,
+    "stability": 2,
+    "flexibility": 1,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 5,
+  "duration": 180,
+  "reps": "4 each",
+  "summary": "Seated facing the footbar, press the straps forward and up through a series of arm patterns.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "shoulder",
+      "note": "Overhead arm work; keep below pain."
+    },
+    {
+      "tag": "low_bone_density",
+      "note": "Forward fold under load; keep it small."
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

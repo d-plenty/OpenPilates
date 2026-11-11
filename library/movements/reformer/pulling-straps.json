@@ -1,0 +1,63 @@
+{
+  "slug": "pulling-straps",
+  "name": "Pulling Straps",
+  "apparatus": "reformer",
+  "level": "intermediate",
+  "position": "prone",
+  "spine": [
+    "extension"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "extension",
+    "pull"
+  ],
+  "muscles": {
+    "primary": [
+      "upper_back",
+      "spinal_extensors",
+      "lats"
+    ],
+    "secondary": [
+      "triceps",
+      "glutes"
+    ]
+  },
+  "equipment": [
+    "long_box"
+  ],
+  "load": {
+    "springs": [
+      "light"
+    ]
+  },
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 5,
+  "duration": 180,
+  "reps": "6",
+  "summary": "Face down on the long box, pull the straps back alongside the body as the chest lifts.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "note": "Lying face down on the box.",
+      "swap": "chest-expansion"
+    },
+    {
+      "tag": "shoulder",
+      "note": "Keep the range below any shoulder pain."
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

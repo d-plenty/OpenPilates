@@ -1,0 +1,56 @@
+{
+  "slug": "kneeling-lunge-stretch",
+  "name": "Kneeling Lunge Stretch",
+  "apparatus": "reformer",
+  "level": "beginner",
+  "position": "kneeling",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "extension"
+  ],
+  "muscles": {
+    "primary": [
+      "hip_flexors",
+      "quadriceps"
+    ],
+    "secondary": [
+      "glutes"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "light"
+    ]
+  },
+  "purpose": {
+    "strength": 0,
+    "stability": 1,
+    "flexibility": 3,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 2,
+  "duration": 120,
+  "reps": "3 each side",
+  "summary": "One foot forward on the platform, back knee on the carriage; slide back to open the front of the hip.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "knee",
+      "note": "Back knee on the carriage; pad it or stand.",
+      "swap": "standing-hip-flexor-stretch"
+    }
+  ],
+  "cues": "",
+  "labels": [
+    "cool-down"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "slug": "side-kneeling-arms",
+  "name": "Side Kneeling Arms",
+  "apparatus": "reformer",
+  "level": "intermediate",
+  "position": "kneeling",
+  "spine": [
+    "side-bend"
+  ],
+  "plane": "frontal",
+  "patterns": [
+    "lateral-flexion",
+    "pull"
+  ],
+  "muscles": {
+    "primary": [
+      "obliques",
+      "deltoids"
+    ],
+    "secondary": [
+      "lats"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "xlight"
+    ]
+  },
+  "purpose": {
+    "strength": 1,
+    "stability": 2,
+    "flexibility": 1,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 5,
+  "duration": 180,
+  "reps": "6 each side",
+  "summary": "Kneeling side-on, one hand in a strap; lift the arm and side bend away from the springs.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "knee",
+      "note": "Kneeling; pad the knees."
+    },
+    {
+      "tag": "shoulder",
+      "note": "Overhead pull; small range."
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

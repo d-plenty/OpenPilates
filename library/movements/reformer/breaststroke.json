@@ -1,0 +1,67 @@
+{
+  "slug": "breaststroke",
+  "name": "Breaststroke (Long Box)",
+  "apparatus": "reformer",
+  "level": "advanced",
+  "position": "prone",
+  "spine": [
+    "extension"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "extension",
+    "push"
+  ],
+  "muscles": {
+    "primary": [
+      "spinal_extensors",
+      "upper_back"
+    ],
+    "secondary": [
+      "deltoids",
+      "glutes"
+    ]
+  },
+  "equipment": [
+    "long_box"
+  ],
+  "load": {
+    "springs": [
+      "light"
+    ]
+  },
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 1,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 7,
+  "duration": 150,
+  "reps": "4",
+  "summary": "Face down on the long box, reach the arms forward and circle them back while extending the spine.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "note": "Lying face down on the box.",
+      "swap": "chest-expansion"
+    },
+    {
+      "tag": "shoulder",
+      "note": "Overhead reach; small range."
+    },
+    {
+      "tag": "extension_pain",
+      "note": "Keep the lift small.",
+      "swap": "pulling-straps"
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

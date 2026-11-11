@@ -1,0 +1,65 @@
+{
+  "slug": "side-splits",
+  "name": "Side Splits",
+  "apparatus": "reformer",
+  "level": "intermediate",
+  "position": "standing",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "frontal",
+  "patterns": [
+    "abduction",
+    "adduction"
+  ],
+  "muscles": {
+    "primary": [
+      "adductors",
+      "abductors"
+    ],
+    "secondary": [
+      "glutes",
+      "abdominals"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "light"
+    ]
+  },
+  "purpose": {
+    "strength": 1,
+    "stability": 3,
+    "flexibility": 1,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 180,
+  "reps": "8",
+  "summary": "Standing across the carriage and platform, open and close the legs against the springs.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "note": "Balance on a moving carriage; hold a frame or swap.",
+      "swap": "side-lying-leg-press"
+    },
+    {
+      "tag": "hip_replacement",
+      "note": "Wide stance; follow surgeon or physio advice."
+    },
+    {
+      "tag": "balance",
+      "note": "Standing on a moving carriage.",
+      "swap": "side-lying-leg-press"
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

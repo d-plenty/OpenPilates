@@ -1,0 +1,68 @@
+{
+  "slug": "short-spine",
+  "name": "Short Spine Massage",
+  "apparatus": "reformer",
+  "level": "advanced",
+  "position": "supine",
+  "spine": [
+    "flexion",
+    "articulation"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "spinal-articulation",
+    "flexion"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "hamstrings"
+    ],
+    "secondary": [
+      "glutes",
+      "spinal_extensors"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "medium"
+    ]
+  },
+  "purpose": {
+    "strength": 1,
+    "stability": 2,
+    "flexibility": 2,
+    "mobility": 2
+  },
+  "multiJoint": true,
+  "intensity": 7,
+  "duration": 150,
+  "reps": "4",
+  "summary": "Feet in straps, legs lift overhead and the spine rolls down one bone at a time.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "neck",
+      "note": "Weight passes onto the shoulders; avoid with neck problems.",
+      "swap": "bridging-reformer"
+    },
+    {
+      "tag": "low_bone_density",
+      "note": "Loaded spinal flexion; avoid.",
+      "swap": "bridging-reformer"
+    },
+    {
+      "tag": "pregnancy",
+      "note": "Inverted; avoid.",
+      "swap": "bridging-reformer"
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "slug": "short-box-flat-back",
+  "name": "Short Box — Flat Back",
+  "apparatus": "reformer",
+  "level": "intermediate",
+  "position": "seated",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "spinal_extensors"
+    ],
+    "secondary": [
+      "hip_flexors"
+    ]
+  },
+  "equipment": [
+    "short_box"
+  ],
+  "load": {
+    "springs": [
+      "medium",
+      "medium",
+      "medium"
+    ]
+  },
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 150,
+  "reps": "6",
+  "summary": "Seated on the short box, hinge back with a long, neutral spine and return.",
+  "layers": [],
+  "cautions": [],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

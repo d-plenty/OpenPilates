@@ -1,0 +1,71 @@
+{
+  "slug": "footwork-series",
+  "name": "Footwork Series",
+  "apparatus": "reformer",
+  "level": "beginner",
+  "position": "supine",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "push"
+  ],
+  "muscles": {
+    "primary": [
+      "quadriceps",
+      "glutes",
+      "hamstrings"
+    ],
+    "secondary": [
+      "calves",
+      "abdominals"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "medium",
+      "medium"
+    ]
+  },
+  "purpose": {
+    "strength": 2,
+    "stability": 1,
+    "flexibility": 0,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 3,
+  "duration": 180,
+  "reps": "10 each foot position",
+  "summary": "Leg presses from the footbar through several foot positions. A steady way to start a reformer class and check alignment.",
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Parallel heels and toes",
+      "text": "Press out and return with control."
+    },
+    {
+      "tag": "L2",
+      "title": "Add tendon stretch",
+      "text": "Lower and lift the heels at full extension."
+    }
+  ],
+  "cautions": [
+    {
+      "tag": "knee",
+      "note": "Keep the knees soft at full extension; reduce range if painful."
+    }
+  ],
+  "cues": "",
+  "labels": [
+    "warm-up"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

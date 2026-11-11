@@ -1,0 +1,60 @@
+{
+  "slug": "teaser",
+  "name": "Teaser",
+  "apparatus": "mat",
+  "level": "advanced",
+  "position": "seated",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "flexion",
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "hip_flexors"
+    ],
+    "secondary": [
+      "spinal_extensors"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 8,
+  "duration": 60,
+  "reps": "3",
+  "summary": "Balance on the sit bones in a V shape, rolling up and down through the spine.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "low_bone_density",
+      "note": "Loaded flexion; avoid."
+    },
+    {
+      "tag": "pregnancy",
+      "note": "Strong abdominal load."
+    },
+    {
+      "tag": "flexion_pain",
+      "note": "Avoid."
+    }
+  ],
+  "cues": "",
+  "labels": [
+    "peak"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

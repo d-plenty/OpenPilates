@@ -1,0 +1,58 @@
+{
+  "slug": "side-plank",
+  "name": "Side Plank",
+  "apparatus": "mat",
+  "level": "intermediate",
+  "position": "plank",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "frontal",
+  "patterns": [
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "obliques",
+      "deltoids"
+    ],
+    "secondary": [
+      "abductors",
+      "glutes"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 7,
+  "duration": 60,
+  "reps": "2 × 20 s each side",
+  "summary": "On one hand or forearm, lift the hips into a straight side line and hold or lower and lift.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "wrist",
+      "note": "Use the forearm."
+    },
+    {
+      "tag": "shoulder",
+      "note": "Weight through one shoulder."
+    },
+    {
+      "tag": "pregnancy",
+      "note": "Offer knees-down side plank."
+    }
+  ],
+  "cues": "",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

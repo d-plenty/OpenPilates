@@ -1,0 +1,57 @@
+{
+  "slug": "chest-expansion",
+  "name": "Chest Expansion",
+  "apparatus": "reformer",
+  "level": "beginner",
+  "position": "kneeling",
+  "spine": [
+    "extension"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "extension",
+    "pull"
+  ],
+  "muscles": {
+    "primary": [
+      "upper_back",
+      "triceps"
+    ],
+    "secondary": [
+      "spinal_extensors",
+      "abdominals"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "light"
+    ]
+  },
+  "purpose": {
+    "strength": 1,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 4,
+  "duration": 120,
+  "reps": "6",
+  "summary": "Kneeling tall facing the straps, pull the arms back, turn the head side to side and return.",
+  "layers": [],
+  "cautions": [
+    {
+      "tag": "knee",
+      "note": "Kneeling on the carriage; pad the knees."
+    }
+  ],
+  "cues": "",
+  "labels": [
+    "pregnancy-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}
