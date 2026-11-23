@@ -81,6 +81,9 @@
       "text": "Long spine."
     }
   ],
+  "uses": [
+    "cooldown"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

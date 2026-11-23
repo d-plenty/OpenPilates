@@ -48,7 +48,26 @@
   "reps": "8 each side",
   "summary": "Hands behind the head, rotate the chest towards the opposite knee as the legs switch.",
   "steps": [],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Feet down",
+      "text": "Twist the ribs to each knee with the feet on the mat."
+    },
+    {
+      "tag": "L2",
+      "title": "Legs in tabletop, switching",
+      "text": "One leg reaches as the chest turns to the bent knee."
+    },
+    {
+      "tag": "L3",
+      "title": "Hold each twist",
+      "text": "Two counts on each side before switching."
+    }
+  ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

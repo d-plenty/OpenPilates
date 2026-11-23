@@ -44,7 +44,21 @@
   "reps": "Hold each side",
   "summary": "In a split stance, tuck the pelvis and shift forward to stretch the front of the back hip.",
   "steps": [],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Tuck and shift",
+      "text": "Tail under, weight forward."
+    },
+    {
+      "tag": "L2",
+      "title": "Add the arm",
+      "text": "Same-side arm reaches up and over."
+    }
+  ],
+  "uses": [
+    "cooldown"
+  ],
   "cautions": [],
   "prep": [],
   "cues": "Tail heavy, pubic bone lifting.\nHips face forward.",

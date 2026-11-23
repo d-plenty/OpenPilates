@@ -60,7 +60,26 @@
   "reps": "5",
   "summary": "From a pike over the footbar, travel into plank and back while keeping the carriage controlled.",
   "steps": [],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Pike to plank",
+      "text": "Travel out to plank and lift the hips back up."
+    },
+    {
+      "tag": "L2",
+      "title": "Add the carriage",
+      "text": "In plank, bring the carriage home, then lift the hips."
+    },
+    {
+      "tag": "L3",
+      "title": "Single leg",
+      "text": "One leg lifts behind for the whole repetition."
+    }
+  ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

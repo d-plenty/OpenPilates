@@ -81,6 +81,9 @@
       "text": "Arms out to the sides."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

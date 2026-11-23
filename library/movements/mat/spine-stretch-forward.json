@@ -46,7 +46,26 @@
   "reps": "4",
   "summary": "Seated tall with legs apart, curl forward over the legs and stack back up.",
   "steps": [],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Curl forward and stack up",
+      "text": "Head first, then one bone at a time."
+    },
+    {
+      "tag": "L2",
+      "title": "Hold and breathe",
+      "text": "Stay forward for a breath and reach further on the way out."
+    },
+    {
+      "tag": "L3",
+      "title": "Flat back on the way up",
+      "text": "Lengthen out on the diagonal before sitting tall."
+    }
+  ],
+  "uses": [
+    "cooldown"
+  ],
   "cautions": [
     {
       "tag": "low_bone_density",

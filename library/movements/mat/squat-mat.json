@@ -86,6 +86,9 @@
       "text": "Rise onto the toes at the top."
     }
   ],
+  "uses": [
+    "warmup"
+  ],
   "cautions": [
     {
       "tag": "knee",

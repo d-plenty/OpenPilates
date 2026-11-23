@@ -85,6 +85,9 @@
       "text": "Arms off the carriage, ring or ball between the knees."
     }
   ],
+  "uses": [
+    "warmup"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

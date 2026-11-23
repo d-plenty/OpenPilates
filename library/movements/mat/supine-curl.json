@@ -72,6 +72,9 @@
       "text": "Small ball behind the mid-back or between the knees."
     }
   ],
+  "uses": [
+    "warmup"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

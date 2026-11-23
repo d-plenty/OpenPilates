@@ -50,7 +50,27 @@
     "Breathe out to round the spine, tail under, head heavy.",
     "Breathe in to lengthen through to a gentle arch, chest forward."
   ],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "With the breath",
+      "text": "Out to round, in to arch."
+    },
+    {
+      "tag": "L2",
+      "title": "One section at a time",
+      "text": "Start at the tail and let the wave travel to the head."
+    },
+    {
+      "tag": "L3",
+      "title": "Add a sway",
+      "text": "Circle the ribs round to one side and back."
+    }
+  ],
+  "uses": [
+    "warmup",
+    "cooldown"
+  ],
   "cautions": [
     {
       "tag": "wrist",

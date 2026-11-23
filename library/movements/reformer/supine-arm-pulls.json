@@ -88,6 +88,9 @@
       "text": "Ball or ring between the knees or ankles."
     }
   ],
+  "uses": [
+    "warmup"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

@@ -58,7 +58,24 @@
   "reps": "6",
   "summary": "Kneeling tall holding the straps, hinge back from the knees in a straight line.",
   "steps": [],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Hinge and return",
+      "text": "A straight line from knees to head."
+    },
+    {
+      "tag": "L2",
+      "title": "Hold at the back",
+      "text": "Two counts at the furthest point you can keep the line."
+    },
+    {
+      "tag": "L3",
+      "title": "Add the chest lift",
+      "text": "At the back of the hinge, open the chest to the ceiling, then come up tall."
+    }
+  ],
+  "uses": [],
   "cautions": [
     {
       "tag": "knee",

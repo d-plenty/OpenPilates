@@ -83,6 +83,9 @@
       "text": "Full movement."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

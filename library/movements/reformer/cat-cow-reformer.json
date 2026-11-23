@@ -75,6 +75,10 @@
       "text": "Let the carriage slide back as you arch and in as you round."
     }
   ],
+  "uses": [
+    "warmup",
+    "cooldown"
+  ],
   "cautions": [
     {
       "tag": "wrist",

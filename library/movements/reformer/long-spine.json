@@ -64,7 +64,26 @@
     "Breathe out to roll down one bone at a time, legs still long.",
     "Finish by pressing the long legs down towards the springs and back up."
   ],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Roll up and down",
+      "text": "Legs together all the way."
+    },
+    {
+      "tag": "L2",
+      "title": "Open at the top",
+      "text": "Legs open to the width of the frame, roll down, then close at the bottom."
+    },
+    {
+      "tag": "L3",
+      "title": "Reverse it",
+      "text": "Open at the bottom, close at the top."
+    }
+  ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

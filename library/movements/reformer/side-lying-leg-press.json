@@ -60,7 +60,24 @@
   "reps": "15–20 each side",
   "summary": "Lying on the side with one foot on the footbar, press out while keeping the hips stacked.",
   "steps": [],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Parallel press",
+      "text": "Hips stacked, foot flat on the bar."
+    },
+    {
+      "tag": "L2",
+      "title": "Turn the leg out",
+      "text": "Heel on the bar, knee to the ceiling."
+    },
+    {
+      "tag": "L3",
+      "title": "Pulses in the bend",
+      "text": "Small presses with the knee bent."
+    }
+  ],
+  "uses": [],
   "cautions": [
     {
       "tag": "hip_replacement",

@@ -74,6 +74,10 @@
       "text": "Finish with a side bend the other way."
     }
   ],
+  "uses": [
+    "warmup",
+    "cooldown"
+  ],
   "cautions": [
     {
       "tag": "knee",

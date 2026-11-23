@@ -91,6 +91,9 @@
       "text": "Add a beat in the air on two legs."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

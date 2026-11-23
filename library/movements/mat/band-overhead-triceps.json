@@ -53,7 +53,24 @@
     "Breathe in to bend the elbow, hand lowering behind the head.",
     "Breathe out to straighten the arm to the ceiling."
   ],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Press up and lower",
+      "text": "Elbow stays by the ear."
+    },
+    {
+      "tag": "L2",
+      "title": "Hold at the top",
+      "text": "Two counts with the arm long."
+    },
+    {
+      "tag": "L3",
+      "title": "Pulses in the top half",
+      "text": "Small bends and presses."
+    }
+  ],
+  "uses": [],
   "cautions": [
     {
       "tag": "shoulder",

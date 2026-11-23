@@ -43,7 +43,26 @@
   "reps": "3 each side",
   "summary": "Seated tall, legs together, rotate the upper body while the pelvis stays still.",
   "steps": [],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Twist and return",
+      "text": "One movement each way."
+    },
+    {
+      "tag": "L2",
+      "title": "Double pulse",
+      "text": "Twist, then a little further, then back to centre."
+    },
+    {
+      "tag": "L3",
+      "title": "Arms reaching",
+      "text": "Arms out to the sides, turning with the ribs."
+    }
+  ],
+  "uses": [
+    "cooldown"
+  ],
   "cautions": [],
   "prep": [],
   "cues": "Grow taller as you turn.\nBoth sit bones stay heavy.\nArms move with the ribs, not ahead of them.",

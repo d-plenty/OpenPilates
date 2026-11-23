@@ -105,6 +105,9 @@
       "text": "Toes, turned out, or wide."
     }
   ],
+  "uses": [
+    "warmup"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

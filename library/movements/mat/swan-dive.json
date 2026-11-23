@@ -73,6 +73,9 @@
       "text": "Full dive, arms forward or wide."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

@@ -271,3 +271,91 @@ test('drafts never use retired movements and open footwork with Footwork', () =>
     if (warm.includes('footwork-series')) assert.equal(warm[0], 'footwork-series');
   }
 });
+
+// ---- 0.5: class levels, blocks and drafts built on class types
+import { applyStudioLists, classLevel, LEVEL_PRESETS, usesOf, blockSeconds, layersOf, DEFAULT_CLASS_TYPES } from '../shared/vocab.js';
+import { phasesFor, blankSegments } from '../shared/draft.js';
+
+test('class levels follow the studio: names and what each level is offered', () => {
+  const mv = { level: 'beginner', levelTo: 'intermediate' };
+  applyStudioLists({ levels: LEVEL_PRESETS.two.levels });
+  assert.equal(levelLabel(mv), 'Beginner/Intermediate');
+  assert.deepEqual(levelsOf({ level: 'intermediate', levelTo: 'intermediate' }), ['beg_int', 'int_adv']);
+  assert.equal(classLevel('int_adv').to, 3);
+  // a flow saved under another scheme still resolves
+  assert.equal(classLevel('advanced').label, 'Advanced');
+  applyStudioLists({ levels: [{ id: 'l1', label: 'Foundations', from: 1, to: 1 }, { id: 'l2', label: 'Dynamic', from: 2, to: 3 }] });
+  assert.equal(levelLabel(mv), 'All levels'); // offered to both of this studio's levels
+  applyStudioLists({});
+  assert.equal(levelLabel(mv), 'Beginner–Intermediate');
+});
+
+test('a block takes its own time, plus time for each layer and a finisher, unless a time is typed', () => {
+  const mv = movements['bridging-reformer'];
+  const timing = { perLayer: 45, finisher: 20 };
+  assert.equal(blockSeconds({ slug: mv.slug }, mv, timing), mv.duration);
+  assert.equal(blockSeconds({ slug: mv.slug, layers: [mv.layers[0].tag, { text: 'Single leg' }], finisher: 'Pulses × 10' }, mv, timing), mv.duration + 90 + 20);
+  assert.equal(blockSeconds({ slug: mv.slug, duration: 300, layers: [{ text: 'x' }] }, mv, timing), 300);
+  // layers: a library tag resolves to its title, the teacher's words stay as they are, junk is dropped
+  assert.deepEqual(layersOf(mv, { layers: [mv.layers[0].tag, { text: ' Hold the top ' }, 'ZZ', { text: '' }] }).map((l) => l.title), [mv.layers[0].title, 'Hold the top']);
+});
+
+test('drafts follow the class type: right length, real warm-ups and cool-downs, time in each block', () => {
+  for (const [classType, level, lengthMin] of [['reformer_flow', 'intermediate', 50], ['reformer_flow', 'beginner', 45], ['reformer_foundations', 'beginner', 45], ['reformer_flow', 'advanced', 60], ['mat_flow', 'intermediate', 45], ['mat_flow', 'beginner', 30]]) {
+    for (const seed of [1, 2, 3, 4]) {
+      const f = draftFlow({ movements, classType, level, lengthMin, props, seed });
+      const a = analyze({ flow: f, movements, studio: { props } });
+      const tag = `${classType} ${level} ${lengthMin} seed ${seed}`;
+      assert.ok(Math.abs(a.totalSec / 60 - lengthMin) <= 1.5, `${tag}: runs ${(a.totalSec / 60).toFixed(1)} min`);
+      assert.equal(f.classType, classType);
+      const top = classLevel(level).to;
+      for (const s of f.segments) {
+        assert.ok(s.minutes >= 1, `${tag}: ${s.name} has minutes`);
+        for (const i of s.items) {
+          const mv = movements[i.slug];
+          if (s.role === 'warmup') assert.ok(usesOf(mv).includes('warmup'), `${tag}: ${mv.name} is not a warm-up`);
+          if (s.role === 'cooldown') assert.ok(usesOf(mv).includes('cooldown'), `${tag}: ${mv.name} is not a cool-down`);
+          assert.ok(i.duration >= 60, `${tag}: ${mv.name} gets ${i.duration}s`);
+          assert.ok({ beginner: 1, intermediate: 2, advanced: 3 }[mv.level] <= top, `${tag}: ${mv.name} is above the class level`);
+          assert.ok(!mv.retired, `${tag}: ${mv.name} is retired`);
+        }
+      }
+      // enough room to teach: no more than one block for every two and a half minutes
+      assert.ok(a.count <= lengthMin / 2.5, `${tag}: ${a.count} blocks is too many`);
+    }
+  }
+});
+
+test('a class type gives empty phases with its minutes scaled to the class length', () => {
+  const ct = DEFAULT_CLASS_TYPES.find((c) => c.id === 'reformer_fit');
+  const withBoards = blankSegments(ct, 45, { props: { jump_board: 4 } });
+  const without = blankSegments(ct, 45, { props: {} });
+  assert.ok(withBoards.some((s) => s.name === 'Jump board'));
+  assert.ok(!without.some((s) => s.name === 'Jump board'), 'no jump-board phase without boards');
+  for (const segs of [withBoards, without]) assert.ok(Math.abs(segs.reduce((a, s) => a + s.minutes, 0) - 45) <= 3);
+  assert.equal(Math.round(phasesFor(ct, 60, {}).reduce((a, p) => a + p.sec, 0)), 3600);
+});
+
+import { fillPhase } from '../shared/draft.js';
+test('suggesting blocks for one phase follows the same rules and never repeats what the flow has', () => {
+  const type = DEFAULT_CLASS_TYPES.find((c) => c.id === 'reformer_flow');
+  const f = { title: 'T', apparatus: 'reformer', level: 'intermediate', lengthMin: 50, goal: 'full_body', classType: type.id, segments: blankSegments(type, 50, { props }) };
+  f.segments[1].items.push({ id: 'a', slug: 'footwork-series' });
+  for (const seg of f.segments) {
+    const phase = type.phases.find((p) => p.name === seg.name);
+    const items = fillPhase({ movements, flow: f, seg, phase, props, seed: 3 });
+    assert.ok(items.length >= 1, `${seg.name}: nothing suggested`);
+    for (const i of items) {
+      const mv = movements[i.slug];
+      assert.notEqual(i.slug, 'footwork-series');
+      if (seg.role === 'warmup') assert.ok(usesOf(mv).includes('warmup'), `${mv.name} suggested as a warm-up`);
+      if (seg.role === 'cooldown') assert.ok(usesOf(mv).includes('cooldown'), `${mv.name} suggested as a cool-down`);
+      assert.ok(!phase.sections.length || phase.sections.includes(sectionOf(mv)), `${mv.name} is from the wrong part of the class for ${seg.name}`);
+      assert.equal(mv.apparatus, 'reformer');
+    }
+    seg.items.push(...items);
+  }
+  const slugs = f.segments.flatMap((s) => s.items.map((i) => i.slug));
+  assert.equal(new Set(slugs).size, slugs.length, 'a movement was suggested twice');
+  assert.equal(fillPhase({ movements, flow: f, seg: f.segments[2], phase: type.phases[2], props, count: 1 }).length, 1);
+});

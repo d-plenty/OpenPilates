@@ -113,6 +113,9 @@
       "text": "Carriage stays in; run on the board."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

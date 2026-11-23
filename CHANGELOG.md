@@ -1,5 +1,70 @@
 # Changelog
 
+## 0.5.0
+
+A rework around how classes are really planned: the studio is set up once, a class is built from blocks inside timed phases, and everything in the app can be edited, added, removed and moved between servers.
+
+### Studio: set up once, everything follows
+- Studio is now four tabs (Rooms & springs, Classes, Lists, Library & data) and saves as you go.
+- **Class types**: the classes on your timetable, each with its phases in order, the minutes each phase gets, which parts of the library fill it, and a spring-change limit. Four are built in (Reformer Flow, Reformer Fit, Reformer Foundations, Mat Flow). Edit, duplicate, delete or add your own, or put the built-in ones back.
+- **Class levels**: pick Beginner / Intermediate / Advanced, Beginner-Intermediate / Intermediate-Advanced, five levels, or Open / Advanced, or write your own names. Each level covers a span of difficulty, and that decides what a class at that level is offered. The whole app uses your names.
+- **Class lengths** and the usual length, and **timing**: the seconds allowed for a spring change, a change of position, a box or board, each layer and a finisher.
+- **Lists**: add your own muscle names and rename the parts of a class, alongside props and client cautions. Your own list entries can be renamed.
+- First-run set-up asks which level names you use.
+
+### New flow
+- Starts from a class type. Pick length, level and focus, see how the minutes are shared between phases, then draft it or start with the empty phases.
+- Two more focuses: upper body, and legs and glutes.
+
+### Builder: blocks
+- A flow is phases filled with **blocks**. A block is one movement plus what you build on it.
+- **Plan block** opens the block where it sits, no dialog: version, springs for the class, support and challenge springs for individuals, layers, finisher, reps, a note, and what to offer anyone who needs less or more.
+- **Layers in your own words.** Type a layer and press Enter, or pick from the movement's own layers. Reorder, reword or remove them.
+- **Finishers**: pulses, a hold, or anything you type.
+- **Time that adds up.** A block's time is the movement's own time plus time for each layer and the finisher, until you type a time yourself. Each phase shows its time against the minutes it was given, in amber when short and red when over.
+- **Add a block** at the foot of every phase opens a searchable picker that starts on what suits that phase. Works on a phone, where dragging doesn't.
+- **Suggest blocks** fills an empty phase, or adds one more block to it, by the same rules as a draft and without repeating anything already in the flow.
+- The phase header is one line. Song, "one side then the other", save as a series and delete sit behind the edit button.
+- The library pane is a compact list with filters folded away, and can be limited to the class level.
+- Class type, level, length and room are at the top of the flow; apparatus, balance target and spring limit are under More.
+
+### Drafts rebuilt
+- A draft follows the class type: each phase gets its share of the class and a few blocks, not a long list of two-minute movements.
+- Warm-ups and cool-downs only use movements marked for them. The hardest work is kept for the peak.
+- Blocks get layers from the library when there is time for them, and the last block of a strength phase gets a finisher.
+- Time is shared by what each movement can carry, and the plan is fitted to the class length including spring, position and box changes.
+- Spine balance is steered toward your target while the class is filled.
+- A hard block is drafted with a regression already planned, taken from the movement's own variations, and a movement that needs a lead-in waits until one is in the class.
+- The lead-in check now only speaks up for hard movements.
+- Every movement now has layers to build with (36 had none).
+- Every movement now says where it belongs in a class (warm-up, cool-down, peak). All 169 are marked as a first pass; correct them on the movement's Edit page.
+
+### Edit everything
+- **Series editor**: make a series from scratch, or change any series' name, order, versions and movements. An edited built-in series can be put back.
+- Movement editor: where it belongs in a class, difficulty shown in your level names, a body map that fills in as you tick muscles, layers that reorder, and a save bar that stays in view.
+- Explorer: six ways to browse up front and the rest one press away, one tidy column of categories, calmer cards, and browsing by place in the class and by who has checked it. Cards show "Checked" and "To fix".
+- The movement page packs its cards into columns, lists layers as a numbered build, and labels Remove, Reset and Delete in words.
+- **Packs**: Studio → Library & data exports everything your studio has changed as one file (movements, series, class types, levels, lists, timing, review marks, what you removed, and optionally your flows) and brings a pack in, with a tick list of what to take. Clients are never in a pack.
+
+### Analysis and review
+- The Analysis tab packs its cards into columns, and talks about blocks.
+- The review list shows where each movement belongs in a class and its layers, with an Edit shortcut on every row, so they can be checked in the same pass.
+
+### Run sheet and Play
+- Both show the block as planned: version, numbered layers, finisher, support and challenge springs, offers and your note.
+
+### Under the hood
+- Flows keep `classType`, phase `minutes`, free-text layers and `finisher`. Older flows open unchanged.
+- New: `PUT /api/series/:slug`, `GET /api/pack`, `POST /api/pack/import`.
+- 53 automated tests and a 21-step browser click-through at desktop, tablet and phone widths.
+
+## 0.4.1
+
+- **Back puts you where you were**: filters, the open category, search and scroll position are kept, including with the browser's back and forward buttons and after a reload.
+- The explorer's flow builder is a drawer at the side behind a small tab, not a bar across the bottom.
+- Studio can add, remove and restore **props** and **client cautions**.
+- Movements and series can be **removed from your library and put back** (Movements → Removed). Retired movements can be brought back the same way.
+
 ## 0.4.0
 
 A rework for working instructors: checked names and springs, variations, series, a stripped-back Play mode and navigation that takes you back where you came from.

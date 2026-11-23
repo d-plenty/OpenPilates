@@ -61,7 +61,27 @@
     "Breathe out to thread the free arm under the body, letting the carriage slide back and the shoulder lower.",
     "Breathe in to come back and open the arm to the ceiling."
   ],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Thread under",
+      "text": "Slide through and come back to square."
+    },
+    {
+      "tag": "L2",
+      "title": "Add the open",
+      "text": "Open the arm to the ceiling and follow it with the eyes."
+    },
+    {
+      "tag": "L3",
+      "title": "Hold the twist",
+      "text": "Two breaths threaded under with the carriage still."
+    }
+  ],
+  "uses": [
+    "warmup",
+    "cooldown"
+  ],
   "cautions": [
     {
       "tag": "wrist",

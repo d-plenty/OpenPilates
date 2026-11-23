@@ -55,7 +55,24 @@
     "Kick it forward, then sweep it back, without the trunk moving.",
     "Add lifts, circles and inner-thigh lifts."
   ],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Front and back",
+      "text": "Two small kicks forward, one long reach back."
+    },
+    {
+      "tag": "L2",
+      "title": "Up and down",
+      "text": "Lift the top leg and lower it slowly."
+    },
+    {
+      "tag": "L3",
+      "title": "Circles",
+      "text": "Small circles each way from the hip."
+    }
+  ],
+  "uses": [],
   "cautions": [],
   "prep": [],
   "cues": "The waist stays still while the leg moves.\nHips stacked.\nLeg long, reaching out of the hip.",

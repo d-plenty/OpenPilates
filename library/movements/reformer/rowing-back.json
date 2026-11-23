@@ -60,7 +60,24 @@
   "reps": "4 each",
   "summary": "Seated facing the straps, roll back and reach the arms through several rowing patterns.",
   "steps": [],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Round back",
+      "text": "Roll back with the hands to the chest, open the arms, circle forward."
+    },
+    {
+      "tag": "L2",
+      "title": "Flat back",
+      "text": "Hinge back with the arms at 90 degrees, then reach up and circle round."
+    },
+    {
+      "tag": "L3",
+      "title": "Slow the return",
+      "text": "Four counts to circle the arms forward over the legs."
+    }
+  ],
+  "uses": [],
   "cautions": [
     {
       "tag": "pregnancy",

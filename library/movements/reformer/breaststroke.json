@@ -67,7 +67,26 @@
     "Lift the chest and sweep the arms wide and round to the hips.",
     "Breathe in to lengthen, bend the elbows and return to the start."
   ],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Arms only, chest low",
+      "text": "Reach forward and sweep back; the chest stays on the box."
+    },
+    {
+      "tag": "L2",
+      "title": "Add the chest lift",
+      "text": "The chest rises as the arms sweep back."
+    },
+    {
+      "tag": "L3",
+      "title": "Hold at the top",
+      "text": "One breath lifted with the arms by the hips before reaching forward again."
+    }
+  ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

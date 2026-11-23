@@ -89,6 +89,9 @@
       "text": "More range."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

@@ -88,6 +88,9 @@
       "text": "Long spine, arms circle."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

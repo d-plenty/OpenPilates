@@ -68,6 +68,10 @@
       "text": "Sweep the arm overhead and round."
     }
   ],
+  "uses": [
+    "warmup",
+    "cooldown"
+  ],
   "cautions": [
     {
       "tag": "shoulder",

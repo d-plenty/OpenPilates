@@ -64,7 +64,24 @@
   "reps": "5",
   "summary": "Curled up with knees in, reach arms and legs to the ceiling, open, circle and return.",
   "steps": [],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Arms only, head down",
+      "text": "Legs stay in tabletop while the arms reach, open and circle."
+    },
+    {
+      "tag": "L2",
+      "title": "Add the legs",
+      "text": "Arms and legs reach up, open and circle together."
+    },
+    {
+      "tag": "L3",
+      "title": "Hold the long line",
+      "text": "Pause for a breath with arms and legs long and low before curling back in."
+    }
+  ],
+  "uses": [],
   "cautions": [
     {
       "tag": "pregnancy",

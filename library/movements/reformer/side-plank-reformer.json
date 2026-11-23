@@ -93,6 +93,9 @@
       "text": "Higher support."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

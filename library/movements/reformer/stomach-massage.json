@@ -95,6 +95,9 @@
       "text": "Tall spine; turn and reach one arm back as you press out."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

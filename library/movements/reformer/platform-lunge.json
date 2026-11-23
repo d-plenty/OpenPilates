@@ -96,6 +96,9 @@
       "text": "Lower the back knee towards the carriage like a split squat."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

@@ -83,6 +83,10 @@
       "text": "Turn the ribs to one side at the back."
     }
   ],
+  "uses": [
+    "warmup",
+    "cooldown"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

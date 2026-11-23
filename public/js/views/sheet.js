@@ -2,7 +2,7 @@
 import { h, icon, btn } from '../ui.js';
 import { store } from '../store.js';
 import { analyze, itemDuration, fmtClock } from '/shared/analysis.js';
-import { LEVELS, FORMATS, labelOf, variationOf } from '/shared/vocab.js';
+import { variationOf, classLevel, classTypesOf } from '/shared/vocab.js';
 import { springDots, fmtMin, setOutCard, thumb, posLabel, repsLabel } from './common.js';
 import { itemExtras } from './options.js';
 
@@ -46,7 +46,7 @@ export function sheetView(flow) {
     h('div', { class: 'page-head' },
       h('div', { class: 'grow' }, h('a', { href: `#/flows/${flow.id}`, class: 'small no-print' }, '← Back to the builder'),
         h('h1', null, flow.title),
-        h('p', { class: 'small muted' }, [flow.apparatus === 'mat' ? 'Mat' : flow.apparatus === 'mixed' ? 'Mixed' : 'Reformer', labelOf(LEVELS, flow.level), flow.format && flow.format !== 'open' ? labelOf(FORMATS, flow.format) : '', fmtMin(a.totalSec), `${a.count} movements`, a.hasReformer ? `${a.springChanges} spring change${a.springChanges === 1 ? '' : 's'}` : ''].filter(Boolean).join(' · '))),
+        h('p', { class: 'small muted' }, [flow.apparatus === 'mat' ? 'Mat' : flow.apparatus === 'mixed' ? 'Mixed' : 'Reformer', (classTypesOf(store.studio).find((c) => c.id === flow.classType) || {}).name, classLevel(flow.level).label, fmtMin(a.totalSec), `${a.count} block${a.count === 1 ? '' : 's'}`, a.hasReformer ? `${a.springChanges} spring change${a.springChanges === 1 ? '' : 's'}` : ''].filter(Boolean).join(' · '))),
       h('div', { class: 'btn-row no-print' },
         h('label', { class: 'btn' }, h('input', { type: 'checkbox', checked: showCues, onchange: (e) => { showCues = e.target.checked; draw(); } }), 'Show cues'),
         btn('Print', () => window.print(), { iconName: 'print', kind: 'primary' }),

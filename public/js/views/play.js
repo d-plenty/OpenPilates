@@ -66,7 +66,7 @@ export function playView(flow) {
   const draw = () => {
     if (!steps.length) {
       fill(el, h('div', { class: 'play-top' }, h('button', { class: 'round', onclick: exit, 'aria-label': 'Exit play mode' }, icon('close'))),
-        h('div', { class: 'empty', style: { color: '#A7B5AF' } }, h('h3', { style: { color: '#fff' } }, 'Nothing to play yet'), h('p', null, 'Add movements to this flow first.')));
+        h('div', { class: 'empty', style: { color: '#A7B5AF' } }, h('h3', { style: { color: '#fff' } }, 'Nothing to play yet'), h('p', null, 'Add some blocks to this flow first.')));
       return;
     }
     const st = steps[idx];
@@ -86,7 +86,7 @@ export function playView(flow) {
       h('div', { class: 'play-top' },
         h('button', { class: 'round', onclick: exit, 'aria-label': 'Exit play mode' }, icon('close')),
         h('div', { style: { flex: 1 } },
-          h('div', { class: 'tiny muted' }, `${flow.title} · movement ${idx + 1} of ${steps.length} · ${fmtClock(elapsedBefore)} / ${fmtClock(total)}`),
+          h('div', { class: 'tiny muted' }, `${flow.title} · block ${idx + 1} of ${steps.length} · ${fmtClock(elapsedBefore)} / ${fmtClock(total)}`),
           h('div', { class: 'progress' }, steps.map((s, i) => h('div', { style: { flex: `${s.dur} 1 0`, background: i < idx ? '#2BA391' : i === idx ? '#7FD3C3' : '#2E3B36' } })))),
         h('button', { class: 'round', onclick: () => { sound = !sound; draw(); }, 'aria-label': sound ? 'Turn sound off' : 'Turn sound on', title: sound ? 'Sound on' : 'Sound off', style: { opacity: sound ? 1 : 0.5 } }, icon('music'))),
       h('div', { class: 'play-body' },
@@ -101,7 +101,7 @@ export function playView(flow) {
               st.item.reps || st.mv.reps ? h('span', null, repsLabel(st.item.reps || st.mv.reps)) : null,
               setupBits.length ? h('span', null, setupBits.join(' · ')) : null,
               null)),
-          itemExtras(st.item, st.mv, room, { dark: true }) ? h('div', { class: 'panel' }, h('div', { class: 'tiny muted' }, 'Layers & variations'), itemExtras(st.item, st.mv, room, { dark: true })) : null,
+          itemExtras(st.item, st.mv, room, { dark: true }) ? h('div', { class: 'panel' }, h('div', { class: 'tiny muted' }, 'The plan for this block'), itemExtras(st.item, st.mv, room, { dark: true })) : null,
           st.item.note || st.mv.myNote ? h('div', { class: 'panel' }, h('div', { class: 'tiny muted' }, 'Your notes'), st.item.note ? h('div', null, st.item.note) : null, st.mv.myNote ? h('div', { style: { whiteSpace: 'pre-wrap' } }, st.mv.myNote) : null) : null,
           ...alerts.map(({ c, ca }) => h('div', { class: 'panel alert' }, h('b', null, `${c.name}${c.spot ? ' · ' + c.spot : ''}: ${labelOf(CAUTIONS, ca.tag)}`), h('div', { class: 'small' }, ca.note))),
           h('button', { type: 'button', class: 'play-more', 'aria-expanded': more ? 'true' : 'false', onclick: () => { more = !more; draw(); } }, more ? 'Hide picture, set-up and cues' : 'Picture, set-up and cues'),
@@ -113,12 +113,12 @@ export function playView(flow) {
             h('span', { class: 'muted', style: { width: '44px' } }, i === 0 ? 'Next' : ''),
             h('span', { style: { flex: 1, fontWeight: 600 } }, s.mv.name, variationOf(s.mv, s.item) ? h('span', { class: 'muted', style: { fontWeight: 400 } }, ` · ${s.item.variation}`) : null, i === 0 && nextAlerts.length ? h('span', { style: { color: '#F2A979' } }, ` · check ${[...new Set(nextAlerts.map((x) => x.c.name))].join(', ')}`) : null),
             s.mv.apparatus === 'reformer' ? springDots(loadsOf(s), room) : h('span', { class: 'muted' }, 'Mat'),
-            i === 0 && nextChange ? h('span', { style: { color: '#E8C547', fontWeight: 700, fontSize: '12px', flexBasis: '100%', paddingLeft: '54px' } }, 'SPRING CHANGE NEXT') : null))) : h('div', { class: 'panel' }, 'Last movement.'))),
+            i === 0 && nextChange ? h('span', { style: { color: '#E8C547', fontWeight: 700, fontSize: '12px', flexBasis: '100%', paddingLeft: '54px' } }, 'SPRING CHANGE NEXT') : null))) : h('div', { class: 'panel' }, 'Last block.'))),
       h('div', { class: 'controls' },
-        h('button', { onclick: () => goTo(idx - 1), 'aria-label': 'Previous movement' }, icon('back', 24)),
+        h('button', { onclick: () => goTo(idx - 1), 'aria-label': 'Previous block' }, icon('back', 24)),
         h('button', { class: 'main', onclick: toggle }, icon(running ? 'pause' : 'play', 20), running ? 'Pause' : (idx === 0 && left === st.dur ? 'Start' : 'Resume')),
-        h('button', { onclick: () => goTo(idx + 1), 'aria-label': 'Next movement' }, icon('next', 24))),
-      h('p', { class: 'tiny muted', style: { textAlign: 'center' } }, 'Space to start or pause · arrow keys to move between movements'));
+        h('button', { onclick: () => goTo(idx + 1), 'aria-label': 'Next block' }, icon('next', 24))),
+      h('p', { class: 'tiny muted', style: { textAlign: 'center' } }, 'Space to start or pause · arrow keys to move between blocks'));
     drawClock();
   };
 

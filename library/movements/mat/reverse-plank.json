@@ -73,6 +73,9 @@
       "text": "Lift one straight leg at a time."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

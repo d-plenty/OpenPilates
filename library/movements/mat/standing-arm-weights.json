@@ -51,7 +51,24 @@
   "reps": "8 each",
   "summary": "Standing tall with light weights: curls, presses, chest expansion and arm circles.",
   "steps": [],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Curls and presses",
+      "text": "Biceps curl, then press overhead."
+    },
+    {
+      "tag": "L2",
+      "title": "Chest expansion",
+      "text": "Arms press back behind the hips."
+    },
+    {
+      "tag": "L3",
+      "title": "Arm circles",
+      "text": "Small circles forward and back with the arms out."
+    }
+  ],
+  "uses": [],
   "cautions": [
     {
       "tag": "shoulder",

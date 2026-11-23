@@ -56,7 +56,26 @@
     "Breathe out to lower it with control.",
     "Alternate."
   ],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Hold the reverse plank",
+      "text": "Hips high, legs long."
+    },
+    {
+      "tag": "L2",
+      "title": "Lift one leg",
+      "text": "Kick up and lower with control."
+    },
+    {
+      "tag": "L3",
+      "title": "Flex up, point down",
+      "text": "Change the foot at the top and bottom."
+    }
+  ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

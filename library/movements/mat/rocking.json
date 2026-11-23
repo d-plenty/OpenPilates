@@ -67,6 +67,9 @@
       "text": "Full version."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

@@ -84,6 +84,9 @@
       "text": "From long legs, one leg opens straight to the side while the other bends to a frog; press both back together."
     }
   ],
+  "uses": [
+    "warmup"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

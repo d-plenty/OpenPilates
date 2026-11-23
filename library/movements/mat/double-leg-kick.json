@@ -56,7 +56,24 @@
     "Breathe in to stretch the legs long, reach the clasped hands to the feet and lift the chest.",
     "Lower, turn the other cheek and repeat."
   ],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Kicks only",
+      "text": "Three kicks, head turned and chest down."
+    },
+    {
+      "tag": "L2",
+      "title": "Add the lift",
+      "text": "Legs lengthen, hands reach to the feet and the chest lifts."
+    },
+    {
+      "tag": "L3",
+      "title": "Hold the lift",
+      "text": "One breath up before turning the head the other way."
+    }
+  ],
+  "uses": [],
   "cautions": [
     {
       "tag": "pregnancy",

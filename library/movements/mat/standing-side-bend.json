@@ -63,6 +63,10 @@
       "text": "Narrower base."
     }
   ],
+  "uses": [
+    "warmup",
+    "cooldown"
+  ],
   "cautions": [
     {
       "tag": "low_bone_density",

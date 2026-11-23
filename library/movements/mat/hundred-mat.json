@@ -71,6 +71,9 @@
       "text": "Ball between the knees."
     }
   ],
+  "uses": [
+    "warmup"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

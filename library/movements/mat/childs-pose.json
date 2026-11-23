@@ -65,6 +65,9 @@
       "text": "Walk both hands to one side."
     }
   ],
+  "uses": [
+    "cooldown"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

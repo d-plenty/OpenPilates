@@ -82,6 +82,9 @@
       "text": "Ball or ring between the ankles."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

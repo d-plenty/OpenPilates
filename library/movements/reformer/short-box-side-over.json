@@ -84,6 +84,9 @@
       "text": "Pause at the bottom."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

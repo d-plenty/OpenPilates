@@ -90,6 +90,9 @@
       "text": "Bend and straighten the elbows."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

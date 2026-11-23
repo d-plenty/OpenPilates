@@ -65,7 +65,26 @@
     "Breathe out to roll over until the legs are level with the floor.",
     "Breathe in to roll down bone by bone; lower the legs as the arms lift."
   ],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Arms and legs to vertical",
+      "text": "Press the arms down as the legs lift to 90 degrees, and return."
+    },
+    {
+      "tag": "L2",
+      "title": "Roll over",
+      "text": "Legs travel overhead and the spine rolls back down."
+    },
+    {
+      "tag": "L3",
+      "title": "Lower the legs first",
+      "text": "From overhead, legs reach to the ceiling before the spine rolls down."
+    }
+  ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

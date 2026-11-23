@@ -88,6 +88,9 @@
       "text": "Legs move while the arms work."
     }
   ],
+  "uses": [
+    "warmup"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

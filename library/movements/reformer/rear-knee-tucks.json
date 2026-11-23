@@ -84,6 +84,9 @@
       "text": "Stay in the plank and move the carriage out and in with the arms only."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

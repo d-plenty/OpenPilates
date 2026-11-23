@@ -78,6 +78,9 @@
       "text": "Lower and lift."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

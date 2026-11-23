@@ -64,7 +64,26 @@
     "Breathe out to keep the diamond as the spine rolls down one bone at a time.",
     "Finish with one frog press towards the footbar."
   ],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Legs up and over",
+      "text": "Fold at the hips and roll onto the shoulders; bend the knees and roll down."
+    },
+    {
+      "tag": "L2",
+      "title": "Slow the roll down",
+      "text": "Six counts, heels staying close to the seat."
+    },
+    {
+      "tag": "L3",
+      "title": "Pause at the top",
+      "text": "One breath balanced on the shoulders with the frog legs."
+    }
+  ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

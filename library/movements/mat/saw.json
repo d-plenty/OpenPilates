@@ -48,7 +48,26 @@
   "reps": "3 each side",
   "summary": "Seated with arms out, twist and reach the hand past the opposite little toe.",
   "steps": [],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Twist and return",
+      "text": "Sit tall, rotate, come back."
+    },
+    {
+      "tag": "L2",
+      "title": "Add the reach",
+      "text": "Little finger past the little toe as the back arm lifts."
+    },
+    {
+      "tag": "L3",
+      "title": "Three small reaches",
+      "text": "Go a little further on each breath out."
+    }
+  ],
+  "uses": [
+    "cooldown"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

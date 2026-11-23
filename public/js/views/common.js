@@ -65,21 +65,21 @@ export function peekMovement(mv, room) {
   return modal(mv.name, body, { wide: true, actions: [{ label: 'Close', value: false }] });
 }
 
-export function movementCard(mv, room, { draggable, onAdd, addLabel = 'Add', inFlow, extraTags = [], big, onOpen } = {}) {
+export function movementCard(mv, room, { draggable, onAdd, addLabel = 'Add', inFlow, extraTags = [], big, onOpen, hide } = {}) {
   const open = onOpen ? (e) => { e.preventDefault(); onOpen(mv); } : null;
+  const dirs = (mv.spine || []).filter((s) => s !== 'neutral');
   const card = h('div', { class: ['mv-card', big && 'mv-card-big'], draggable: draggable ? 'true' : null },
     h('a', { class: 'thumb', href: `#/movements/${mv.slug}`, onclick: open, tabindex: '-1', 'aria-hidden': 'true', style: { borderColor: posColor(mv.position) } }, thumb(mv, { width: big ? 132 : 66 })),
     h('div', { class: 'body' },
       h('a', { class: 'name', href: `#/movements/${mv.slug}`, onclick: open, style: { color: 'inherit', textDecoration: 'none' } }, mv.name),
-      big && (mv.aka || []).length ? h('div', { class: 'aka' }, mv.aka.slice(0, 3).join(' · ')) : null,
+      big && (mv.aka || []).length ? h('div', { class: 'aka' }, mv.aka.slice(0, 2).join(' · ')) : null,
       h('div', { class: 'meta' }, mvMeta(mv, room)),
-      h('div', { class: 'tags' },
-        (mv.spine || []).filter((s) => s !== 'neutral').map((s) => h('span', { class: 'tag' }, labelOf(SPINE, s))),
-        h('span', { class: 'tag' }, sectionLabel(mv)),
-        h('span', { class: 'tag' }, levelLabel(mv)),
-        mv.perSide ? h('span', { class: 'tag' }, 'Each side') : null,
-        mv.source !== 'library' ? h('span', { class: 'tag tag-accent' }, mv.source === 'studio' ? 'Studio edit' : 'Custom') : null,
-        extraTags)),
+      // one quiet line of facts instead of a pile of tags; whatever the page is already sorted by is left out
+      h('div', { class: 'facts' }, [hide !== 'section' && sectionLabel(mv), hide !== 'level' && levelLabel(mv), dirs.length && hide !== 'spine' && dirs.map((s) => labelOf(SPINE, s)).join(', '), mv.perSide && 'each side'].filter(Boolean).join(' · ')),
+      mv.source !== 'library' || mv.check || extraTags.length ? h('div', { class: 'tags' },
+        mv.source !== 'library' ? h('span', { class: 'tag tag-accent' }, mv.source === 'studio' ? 'Edited by us' : 'Ours') : null,
+        mv.check ? h('span', { class: ['tag', mv.check.status === 'ok' ? 'tag-ok' : 'tag-warn'], title: mv.check.note || (mv.check.status === 'ok' ? `Checked by ${mv.check.by || 'your studio'}` : 'Flagged to fix') }, mv.check.status === 'ok' ? '✓ Checked' : 'To fix') : null,
+        extraTags) : null),
     onAdd ? h('button', { type: 'button', class: ['btn', 'btn-sm', !addLabel && 'btn-icon', inFlow ? '' : 'btn-primary'], onclick: (e) => { e.stopPropagation(); onAdd(mv); }, 'aria-label': `${addLabel || 'Add'} ${mv.name}`, title: addLabel ? null : `Add ${mv.name}` },
       inFlow ? icon('check', 16) : icon('plus', 16), addLabel ? h('span', null, inFlow ? 'In flow' : addLabel) : null) : null);
   if (draggable) card.addEventListener('dragstart', (e) => { e.dataTransfer.setData('text/x-op-slug', mv.slug); e.dataTransfer.effectAllowed = 'copy'; });
@@ -96,7 +96,7 @@ export function checksList(checks, { limit } = {}) {
 export function statTiles(a) {
   return h('section', { class: 'stats', 'aria-label': 'Flow summary' },
     tile(fmtMin(a.totalSec), 'Total time'),
-    tile(`${a.count}`, 'Movements'),
+    tile(`${a.count}`, a.count === 1 ? 'Block' : 'Blocks'),
     tile(`${a.movingPct}%`, 'Time moving', a.movingPct >= 85 ? 'good' : a.movingPct < 80 ? 'warn' : ''),
     tile(`${a.positionChanges}`, 'Position changes'),
     tile(a.hasReformer ? `${a.springChanges} / ${a.springBudget}` : '—', 'Spring changes / limit', a.hasReformer && a.springChanges > a.springBudget ? 'warn' : a.hasReformer ? 'good' : ''),
@@ -138,7 +138,7 @@ export function intensityCard(a, flow) {
 export function positionsCard(a) {
   return h('div', { class: 'card' },
     h('div', { class: 'card-head' }, h('h2', null, 'Body positions'), h('span', { class: 'tiny muted' }, `${a.positionChanges} change${a.positionChanges === 1 ? '' : 's'}`)),
-    a.timeline.length ? positionStrip(a.timeline) : h('p', { class: 'muted small' }, 'No movements yet.'),
+    a.timeline.length ? positionStrip(a.timeline) : h('p', { class: 'muted small' }, 'No blocks yet.'),
     positionKey(a.positionMinutes),
     h('h3', { style: { margin: '14px 0 6px' } }, 'Time moving vs setting up'),
     h('div', { class: 'split' },
@@ -160,8 +160,8 @@ export function springsCard(a, room, { compact } = {}) {
     h('div', { class: 'card-head' }, h('h2', null, 'Springs'), h('div', { class: 'spacer' }),
       h('span', { class: ['tag', over ? 'tag-warn' : 'tag-accent'] }, `${a.springChanges} change${a.springChanges === 1 ? '' : 's'} · limit ${a.springBudget}`)),
     blocks.length ? h('ol', { class: 'spring-map' }, blocks.map((b, i) => h('li', null,
-      h('div', { class: 'sm-head' }, springDots(b.loads, room), h('span', { class: 'tiny muted' }, i === 0 ? 'Start' : `Change ${i}`), h('span', { class: 'tiny muted' }, `${b.names.length} movement${b.names.length === 1 ? '' : 's'}`)),
-      compact ? null : h('div', { class: 'tiny muted' }, b.names.join(' → '))))) : h('p', { class: 'muted small' }, 'No reformer movements yet.'),
+      h('div', { class: 'sm-head' }, springDots(b.loads, room), h('span', { class: 'tiny muted' }, i === 0 ? 'Start' : `Change ${i}`), h('span', { class: 'tiny muted' }, `${b.names.length} block${b.names.length === 1 ? '' : 's'}`)),
+      compact ? null : h('div', { class: 'tiny muted' }, b.names.join(' → '))))) : h('p', { class: 'muted small' }, 'No reformer blocks yet.'),
     h('p', { class: 'tiny muted', style: { marginTop: '8px' } }, 'A movement stays on the springs already set when its usual or progression setting matches. One of the lightest springs on or off is not counted as a change.'));
 }
 

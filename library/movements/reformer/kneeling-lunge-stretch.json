@@ -73,6 +73,9 @@
       "text": "Hands off the bar, reach up."
     }
   ],
+  "uses": [
+    "cooldown"
+  ],
   "cautions": [
     {
       "tag": "knee",

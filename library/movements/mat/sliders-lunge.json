@@ -50,7 +50,24 @@
   "reps": "10 each side",
   "summary": "One foot on a slider, slide back into a lunge and return.",
   "steps": [],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Slide back and return",
+      "text": "Front knee over the ankle."
+    },
+    {
+      "tag": "L2",
+      "title": "Hold at the bottom",
+      "text": "Two counts in the lunge."
+    },
+    {
+      "tag": "L3",
+      "title": "Add a pulse",
+      "text": "Three small pulses low before sliding in."
+    }
+  ],
+  "uses": [],
   "cautions": [
     {
       "tag": "knee",

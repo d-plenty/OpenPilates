@@ -85,6 +85,10 @@
       "text": "Ball or ring between the ankles."
     }
   ],
+  "uses": [
+    "warmup",
+    "cooldown"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

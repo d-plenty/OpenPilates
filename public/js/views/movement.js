@@ -1,7 +1,7 @@
 import { h, icon, btn, toast, field, select, chips, confirmDialog, debounce, fill } from '../ui.js';
 import { api, store } from '../store.js';
 import { go, render, backLink } from '../app.js';
-import { POSITIONS, SPINE, PATTERNS, PLANES, MUSCLES, EQUIPMENT, LEVELS, CAUTIONS, PURPOSES, LOAD_LEVELS, BRANDS, SECTIONS, CATEGORIES, ROLES, PREGNANCY, HEADREST, STRAPS, SEVERITIES, OPTION_KINDS, springFor, labelOf, sectionOf, categoriesOf, roleOf, levelLabel, variationsOf } from '/shared/vocab.js';
+import { POSITIONS, SPINE, PATTERNS, PLANES, MUSCLES, EQUIPMENT, LEVELS, CAUTIONS, PURPOSES, LOAD_LEVELS, BRANDS, SECTIONS, CATEGORIES, ROLES, PREGNANCY, HEADREST, STRAPS, SEVERITIES, OPTION_KINDS, springFor, labelOf, sectionOf, categoriesOf, roleOf, levelLabel, variationsOf, USES, usesOf, levelsOf, classLevel } from '/shared/vocab.js';
 import { POSES, POSE_IDS, poseOf } from '/shared/poses.js';
 import { figure, figurePair } from '../figure.js';
 import { bodyMap, bodyLegend, springDots, bar } from '../charts.js';
@@ -78,11 +78,14 @@ export async function movementView(slug) {
     btn('Needs fixing', () => setCheck('fix'), { small: true, iconName: 'alert', kind: mv.check?.status === 'fix' ? 'primary' : 'secondary' }),
     mv.check ? btn('Clear', () => { checkNote.value = ''; setCheck(''); }, { small: true, kind: 'ghost' }) : null);
   const back = backLink();
+  const setInLibrary = async (inLibrary) => {
+    try { await api('PUT', `/movements/${slug}/library`, { inLibrary }); await store.loadMovements(true); toast(inLibrary ? 'Back in your library.' : 'Removed from your library. Find it under Movements → Removed.'); render(); } catch (e) { toast(e.message, { kind: 'error' }); }
+  };
 
   return { title: mv.name, node: [
     h('div', { class: 'page-head' },
       h('div', { class: 'grow' },
-        h('a', { href: back.href, class: 'small' }, `← ${back.label}`),
+        h('a', { href: back.href, class: 'small', onclick: back.onclick }, `← ${back.label}`),
         h('h1', null, mv.name),
         (mv.aka || []).length ? h('div', { class: 'aka-line' }, 'Also called: ', mv.aka.join(', ')) : null,
         h('div', { class: 'btn-row', style: { marginTop: '8px' } },
@@ -95,13 +98,14 @@ export async function movementView(slug) {
           pregnancyTag(mv),
           (mv.spine || []).map((s) => h('span', { class: 'tag' }, `Spine: ${labelOf(SPINE, s)}`)),
           h('span', { class: 'tag' }, mv.multiJoint ? 'Multi-joint' : 'Isolated'),
-          mv.source !== 'library' ? h('span', { class: 'tag tag-dark' }, mv.source === 'studio' ? 'Studio edit' : 'Custom') : null)),
+          mv.source !== 'library' ? h('span', { class: 'tag tag-dark' }, mv.source === 'studio' ? 'Edited by us' : 'Ours') : null)),
       h('div', { class: 'btn-row' },
         canEdit ? h('a', { class: 'btn btn-primary', href: `#/movements/${slug}/edit` }, icon('edit'), 'Edit') : null,
         btn('Duplicate as my own', duplicate, { iconName: 'copy' }),
         btn('', exportFile, { iconName: 'download', title: 'Download movement file' }),
-        canEdit && mv.source !== 'library' ? btn('', remove, { iconName: mv.hasLibraryVersion ? 'undo' : 'trash', title: mv.hasLibraryVersion ? 'Reset to library version' : 'Delete' }) : null)),
-    mv.retired ? h('p', { class: 'review-note', style: { marginBottom: '14px' } }, 'Retired: this entry is no longer offered in the library because no reference confirmed it. Flows that already use it still work.') : null,
+        store.isAdmin && !mv.hidden ? btn('Remove from our library', () => setInLibrary(false), { iconName: 'close', kind: 'ghost', title: 'Stops it being offered anywhere. Flows that use it still open, and you can put it back.' }) : null,
+        canEdit && mv.source !== 'library' ? btn(mv.hasLibraryVersion ? 'Reset to library version' : 'Delete', remove, { iconName: mv.hasLibraryVersion ? 'undo' : 'trash', kind: 'ghost', title: mv.hasLibraryVersion ? 'Drop your studio\'s changes to this movement' : 'Delete this movement for good' }) : null)),
+    mv.hidden ? h('p', { class: 'review-note', style: { marginBottom: '14px' } }, mv.retired ? 'Not in your library: no reference confirmed this entry, so it isn\'t offered. ' : 'Removed from your library. ', 'Flows that already use it still work.', store.isAdmin ? [' ', btn('Put it back', () => setInLibrary(true), { small: true })] : null) : null,
     checkBar(),
     h('div', { class: 'card', style: { marginBottom: '16px' } },
       h('div', { class: 'hero-figs' },
@@ -110,7 +114,7 @@ export async function movementView(slug) {
       h('div', { class: 'btn-row', style: { marginTop: '10px' } },
         h('span', { class: 'tiny muted', style: { flex: '1 1 260px' } }, `Diagram: ${POSES[poseOf(mv)].label.toLowerCase()}.`, canEdit ? ' Add your studio\'s own photo if you have one.' : ''),
         canEdit ? photoControls() : null)),
-    h('div', { class: 'auto-grid' },
+    h('div', { class: 'card-cols' },
       h('div', { class: 'card stack' },
         h('h2', null, 'About'),
         mv.summary ? h('p', null, mv.summary) : h('p', { class: 'muted' }, 'No description yet.'),
@@ -148,7 +152,7 @@ export async function movementView(slug) {
           mv.stable ? [h('dt', null, 'Stays still'), h('dd', null, mv.stable)] : null,
           mv.mobile ? [h('dt', null, 'Moves'), h('dd', null, mv.mobile)] : null) : null) : null,
       mv.layers?.length || variationsOf(mv).length || mv.prep?.length || leadsTo.length ? h('div', { class: 'card stack-sm' }, h('h2', null, 'Layers & variations'),
-        mv.layers?.length ? [h('h3', null, 'Layers'), mv.layers.map((l) => h('div', { class: 'layer' }, h('span', { class: 'lt' }, l.tag), h('div', null, h('b', { class: 'small' }, l.title), h('div', { class: 'tiny muted' }, l.text))))] : null,
+        mv.layers?.length ? [h('h3', null, 'Layers'), h('ol', { class: 'layer-list' }, mv.layers.map((l) => h('li', null, h('div', null, h('b', null, l.title), l.text ? h('span', { class: 'muted' }, ` ${l.text}`) : null)))), h('p', { class: 'tiny muted' }, 'Easiest first. In a flow, each is one press away when you plan a block.')] : null,
         variationsOf(mv).length ? [h('h3', { style: { marginTop: '10px' } }, 'Variations'), variationList(mv, room)] : null,
         (mv.prep || []).filter((p) => store.movements[p]).length ? h('p', { class: 'small', style: { marginTop: '8px' } }, h('b', null, 'Build up to it with: '),
           mv.prep.filter((p) => store.movements[p]).map((p, i) => [i ? ', ' : '', h('a', { href: `#/movements/${p}` }, store.movements[p].name)])) : null,
@@ -190,10 +194,10 @@ export async function movementEditView(slug) {
 
   const draw = () => {
     const springsEl = h('div', { class: 'btn-row' }, springDots(mv.load.springs, room()),
-      LOAD_LEVELS.map((l) => { const sp = springFor(room().brand, l, room().springOverrides); return btn(`+ ${sp.name}${sp.approx ? '*' : ''}`, () => { if (mv.load.springs.length < 5) { mv.load.springs.push(l); draw(); } }, { small: true, title: l }); }),
+      LOAD_LEVELS.filter((l) => !springFor(room().brand, l, room().springOverrides).approx).map((l) => { const sp = springFor(room().brand, l, room().springOverrides); return btn(`+ ${sp.name}`, () => { if (mv.load.springs.length < 5) { mv.load.springs.push(l); draw(); } }, { small: true, title: l }); }),
       btn('Clear', () => { mv.load.springs = []; draw(); }, { small: true, kind: 'ghost' }));
     const advanceEl = h('div', { class: 'btn-row' }, mv.load.advance.length ? springDots(mv.load.advance, room()) : h('span', { class: 'tiny muted' }, 'None set'),
-      LOAD_LEVELS.map((l) => { const sp = springFor(room().brand, l, room().springOverrides); return btn(`+ ${sp.name}${sp.approx ? '*' : ''}`, () => { if (mv.load.advance.length < 5) { mv.load.advance.push(l); draw(); } }, { small: true, title: l }); }),
+      LOAD_LEVELS.filter((l) => !springFor(room().brand, l, room().springOverrides).approx).map((l) => { const sp = springFor(room().brand, l, room().springOverrides); return btn(`+ ${sp.name}`, () => { if (mv.load.advance.length < 5) { mv.load.advance.push(l); draw(); } }, { small: true, title: l }); }),
       btn('Clear', () => { mv.load.advance = []; draw(); }, { small: true, kind: 'ghost' }));
     fill(wrap, 
       h('div', { class: 'card stack' }, h('h2', null, 'Basics'),
@@ -201,8 +205,11 @@ export async function movementEditView(slug) {
         field('Also called', h('input', { type: 'text', value: (mv.aka || []).join(', '), placeholder: 'Classical name, nickname…', oninput: (e) => { mv.aka = e.target.value.split(',').map((x) => x.trim()).filter(Boolean); } }), 'Other names, comma separated. Search finds all of them.'),
         h('div', { class: 'grid-3' },
           field('Apparatus', select([{ id: 'reformer', label: 'Reformer' }, { id: 'mat', label: 'Mat' }], mv.apparatus, (v) => { mv.apparatus = v; draw(); })),
-          field('Level, from', select(LEVELS, mv.level, (v) => { mv.level = v; if (LEVELS.findIndex((l) => l.id === mv.levelTo) < LEVELS.findIndex((l) => l.id === v)) mv.levelTo = v; draw(); }), 'Who the basic version suits.'),
-          field('Level, up to', select(LEVELS.filter((l) => l.rank >= LEVELS.find((x) => x.id === mv.level).rank), mv.levelTo, (v) => { mv.levelTo = v; }), 'How far layers and springs can take it.')),
+          field('Difficulty, from', select(LEVELS, mv.level, (v) => { mv.level = v; if (LEVELS.findIndex((l) => l.id === mv.levelTo) < LEVELS.findIndex((l) => l.id === v)) mv.levelTo = v; draw(); }), 'Who the basic version suits.'),
+          field('Difficulty, up to', select(LEVELS.filter((l) => l.rank >= LEVELS.find((x) => x.id === mv.level).rank), mv.levelTo, (v) => { mv.levelTo = v; draw(); }), 'How far layers and springs can take it.')),
+        h('p', { class: 'hint', style: { marginTop: '-6px' } }, `In your studio's levels this shows as "${levelLabel(mv)}" and is offered to: ${levelsOf(mv).map((id) => classLevel(id).label).join(', ') || 'no class level'}.`),
+        field('Where it belongs in a class', chips(USES.map((u) => ({ id: u.id, label: u.label, title: u.hint })), usesOf(mv), (v) => { mv.uses = USES.map((u) => u.id).filter((u) => v.includes(u)); }),
+          'Drafts only put a movement in a warm-up or cool-down if it is marked for one, and keep peak movements for the hardest part of the class. Leave all three off for ordinary working movements.'),
         h('div', { class: 'grid-3' },
           field('Starting position', select(POSITIONS, mv.position, (v) => { mv.position = v; draw(); })),
           field('Part of the class', select(SECTIONS, mv.section, (v) => { mv.section = v; })),
@@ -227,13 +234,16 @@ export async function movementEditView(slug) {
           field('Headrest', select(HEADREST, mv.setup.headrest, (v) => { mv.setup.headrest = v; })),
           field('Straps', select(STRAPS, mv.setup.straps, (v) => { mv.setup.straps = v; })),
           field('Spring note', h('input', { type: 'text', value: mv.load.note || '', oninput: (e) => { mv.load.note = e.target.value; } }))),
-        h('p', { class: 'hint' }, `Shown in ${BRANDS[room().brand]?.label || 'your'} colours. * = closest available spring.`)) : null,
+        h('p', { class: 'hint' }, `Shown in ${BRANDS[room().brand]?.label || 'your'} colours.`)) : null,
       h('div', { class: 'card stack' }, h('h2', null, 'How to do it'),
         field('Set-up and movement, one step per line', linesArea('steps', 5, 'Start position\nBreathe out to…\nBreathe in to…'), 'In your own words. Include the breath.'),
         h('div', { class: 'grid-2' },
           field('What stays still', input('stable', { placeholder: 'e.g. Pelvis and spine' })),
           field('What moves', input('mobile', { placeholder: 'e.g. Hips and knees' }))),
-        field('Build up to it with', chips(store.movementList.filter((m) => m.slug !== mv.slug && m.apparatus === mv.apparatus).map((m) => ({ id: m.slug, label: m.name })), mv.prep, (v) => { mv.prep = v.slice(0, 6); }, { small: true }), 'Easier movements that prepare for this one. The class check looks for one of them earlier in the plan.')),
+        field('Build up to it with', h('div', { class: 'stack-sm' },
+          mv.prep.length ? h('div', { class: 'btn-row' }, mv.prep.map((s) => h('button', { type: 'button', class: 'chip chip-sm on', title: 'Take out', onclick: () => { mv.prep = mv.prep.filter((x) => x !== s); draw(); } }, `${store.movements[s]?.name || s} ×`))) : null,
+          mv.prep.length < 6 ? select([{ id: '', label: 'Add a lead-in movement…' }, ...store.movementList.filter((m) => m.slug !== mv.slug && m.apparatus === mv.apparatus && !mv.prep.includes(m.slug)).map((m) => ({ id: m.slug, label: m.name }))], '', (v) => { if (v) { mv.prep = [...mv.prep, v]; draw(); } }, { 'aria-label': 'Add a lead-in movement', style: { maxWidth: '360px' } }) : null),
+          'Easier movements that prepare for this one. The class check looks for one of them earlier in the plan.')),
       h('div', { class: 'card stack' }, h('h2', null, 'Movement'),
         field('Spine', chips(SPINE, mv.spine, (v) => { mv.spine = v; })),
         field('Plane', chips(PLANES, mv.plane, (v) => { mv.plane = v; draw(); }, { multi: false })),
@@ -241,18 +251,26 @@ export async function movementEditView(slug) {
         field('Movement categories', chips(CATEGORIES, mv.categories, (v) => { mv.categories = v; }, { small: true }), 'Used for the class-balance check. Leave empty to let the app work them out.'),
         h('label', { class: 'small', style: { display: 'flex', gap: '8px', alignItems: 'center' } }, h('input', { type: 'checkbox', checked: mv.multiJoint, onchange: (e) => { mv.multiJoint = e.target.checked; } }), 'Multi-joint (full-body) movement')),
       h('div', { class: 'card stack' }, h('h2', null, 'Muscles'),
-        field('Primary', chips(MUSCLES, mv.muscles.primary, (v) => { mv.muscles.primary = v; mv.muscles.secondary = mv.muscles.secondary.filter((x) => !v.includes(x)); draw(); }, { small: true })),
-        field('Secondary', chips(MUSCLES.filter((m) => !mv.muscles.primary.includes(m.id)), mv.muscles.secondary, (v) => { mv.muscles.secondary = v; }, { small: true }))),
+        h('div', { class: 'muscle-edit' },
+          h('div', { class: 'stack' },
+            field('Primary: what does the work', chips(MUSCLES, mv.muscles.primary, (v) => { mv.muscles.primary = v; mv.muscles.secondary = mv.muscles.secondary.filter((x) => !v.includes(x)); draw(); }, { small: true })),
+            field('Secondary: what helps or holds', chips(MUSCLES.filter((m) => !mv.muscles.primary.includes(m.id)), mv.muscles.secondary, (v) => { mv.muscles.secondary = v; draw(); }, { small: true })),
+            h('p', { class: 'hint' }, 'Missing a muscle name? Add it under Studio → Lists.')),
+          h('div', { class: 'muscle-map', 'aria-hidden': 'true' }, bodyMap(Object.fromEntries([...mv.muscles.primary.map((m) => [m, 3]), ...mv.muscles.secondary.map((m) => [m, 1])]), { size: 120 })))),
       h('div', { class: 'card stack' }, h('h2', null, 'What it does'),
         PURPOSES.map((p) => field(p.label, chips([0, 1, 2, 3].map((n) => ({ id: n, label: ['None', 'Low', 'Medium', 'High'][n] })), mv.purpose[p.id] || 0, (v) => { mv.purpose[p.id] = v; draw(); }, { multi: false, small: true })))),
       h('div', { class: 'card stack' }, h('h2', null, 'Equipment needed'),
         chips(EQUIPMENT, mv.equipment, (v) => { mv.equipment = v; }, { small: true })),
-      h('div', { class: 'card stack' }, h('div', { class: 'card-head', style: { margin: 0 } }, h('h2', null, 'Layers'), h('div', { class: 'spacer' }), btn('Add layer', () => { mv.layers.push({ tag: `L${mv.layers.length + 1}`, title: '', text: '' }); draw(); }, { small: true, iconName: 'plus' })),
-        mv.layers.map((l, i) => h('div', { class: 'grid-3', style: { gridTemplateColumns: '70px minmax(0,1fr) minmax(0,2fr) 40px' } },
-          h('input', { type: 'text', value: l.tag, 'aria-label': 'Layer tag', oninput: (e) => { l.tag = e.target.value; } }),
-          h('input', { type: 'text', value: l.title, placeholder: 'Title', 'aria-label': 'Layer title', oninput: (e) => { l.title = e.target.value; } }),
-          h('input', { type: 'text', value: l.text, placeholder: 'What changes', 'aria-label': 'Layer description', oninput: (e) => { l.text = e.target.value; } }),
-          btn('', () => { mv.layers.splice(i, 1); draw(); }, { iconName: 'close', small: true, kind: 'ghost', title: 'Remove layer' })))),
+      h('div', { class: 'card stack' }, h('div', { class: 'card-head', style: { margin: 0 } }, h('h2', null, 'Layers'), h('div', { class: 'spacer' }), btn('Add layer', () => { let n = mv.layers.length + 1; while (mv.layers.some((x) => x.tag === `L${n}`)) n++; mv.layers.push({ tag: `L${n}`, title: '', text: '' }); draw(); }, { small: true, iconName: 'plus' })),
+        h('p', { class: 'hint' }, 'What can be built on top of the basic movement, easiest first. In a flow these are offered one press away when you plan a block.'),
+        mv.layers.map((l, i) => h('div', { class: 'layer-edit' },
+          h('span', { class: 'be-n' }, String(i + 1)),
+          h('input', { type: 'text', value: l.title, placeholder: 'The layer, e.g. Add arm circles', 'aria-label': 'Layer title', oninput: (e) => { l.title = e.target.value; } }),
+          h('input', { type: 'text', value: l.text, placeholder: 'What changes or what to watch (optional)', 'aria-label': 'Layer description', oninput: (e) => { l.text = e.target.value; } }),
+          h('span', { class: 'tools' },
+            btn('', () => { if (i > 0) { [mv.layers[i - 1], mv.layers[i]] = [mv.layers[i], mv.layers[i - 1]]; draw(); } }, { iconName: 'up', small: true, kind: 'ghost', title: 'Earlier' }),
+            btn('', () => { if (i < mv.layers.length - 1) { [mv.layers[i + 1], mv.layers[i]] = [mv.layers[i], mv.layers[i + 1]]; draw(); } }, { iconName: 'down', small: true, kind: 'ghost', title: 'Later' }),
+            btn('', () => { mv.layers.splice(i, 1); draw(); }, { iconName: 'close', small: true, kind: 'ghost', title: 'Remove layer' }))))),
       h('div', { class: 'card stack' }, h('div', { class: 'card-head', style: { margin: 0 } }, h('h2', null, 'Variations'), h('div', { class: 'spacer' }), btn('Add variation', () => { mv.variations.push({ name: '', kind: 'variation' }); draw(); }, { small: true, iconName: 'plus' })),
         h('p', { class: 'hint' }, 'Other versions of this movement. A regression is simpler, a progression is harder, and a variation is just different (single arm, another foot position).'),
         mv.variations.map((v, i) => h('div', { class: 'var-edit' },
@@ -278,8 +296,7 @@ export async function movementEditView(slug) {
           field('Review status', select([{ id: 'draft', label: 'Draft' }, { id: 'reviewed', label: 'Reviewed' }], mv.review?.status || 'draft', (v) => { mv.review = { ...(mv.review || {}), status: v }; })),
           field('Reviewed by', h('input', { type: 'text', value: mv.review?.by || '', oninput: (e) => { mv.review = { ...(mv.review || {}), by: e.target.value }; } })),
           field('Date', h('input', { type: 'text', value: mv.review?.date || '', placeholder: 'YYYY-MM-DD', oninput: (e) => { mv.review = { ...(mv.review || {}), date: e.target.value }; } }))) : null),
-      err,
-      h('div', { class: 'btn-row' }, btn(existing ? 'Save movement' : 'Create movement', save, { kind: 'primary', iconName: 'check' }), h('a', { class: 'btn btn-ghost', href: existing ? `#/movements/${slug}` : '#/explore' }, 'Cancel')));
+      h('div', { class: 'save-bar' }, err, h('div', { class: 'btn-row' }, btn(existing ? 'Save movement' : 'Create movement', save, { kind: 'primary', iconName: 'check' }), h('a', { class: 'btn btn-ghost', href: existing ? `#/movements/${slug}` : '#/explore' }, 'Cancel'))));
   };
 
   const save = async () => {

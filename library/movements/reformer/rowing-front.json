@@ -62,7 +62,24 @@
   "reps": "4 each",
   "summary": "Seated facing the footbar, press the straps forward and up through a series of arm patterns.",
   "steps": [],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "From the chest",
+      "text": "Sitting tall, press forward, lower, lift and circle."
+    },
+    {
+      "tag": "L2",
+      "title": "From the hips",
+      "text": "Round over the legs, slide the hands forward, roll up and circle."
+    },
+    {
+      "tag": "L3",
+      "title": "Add shaving or hug a tree",
+      "text": "Stay seated tall and run straight into the next arm pattern."
+    }
+  ],
+  "uses": [],
   "cautions": [
     {
       "tag": "pregnancy",

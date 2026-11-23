@@ -1,5 +1,5 @@
 import { h, icon, toast, fill } from './ui.js';
-import { api, store } from './store.js';
+import { api, store, keepViews } from './store.js';
 import { setupView, loginView } from './views/auth.js';
 import { flowsView, newFlowView } from './views/flows.js';
 import { flowView } from './views/flow.js';
@@ -7,7 +7,7 @@ import { exploreView } from './views/explore.js';
 import { movementView, movementEditView } from './views/movement.js';
 import { studioView, clientsView, teamView, accountView } from './views/studio.js';
 import { guideView } from './views/guide.js';
-import { reviewView } from './views/review.js';
+import { reviewView, removedView } from './views/review.js';
 
 const root = document.getElementById('app');
 let cleanup = null;
@@ -25,20 +25,32 @@ const routes = [
   [/^\/team$/, () => teamView()],
   [/^\/account$/, () => accountView()],
   [/^\/guide$/, () => guideView()],
-  [/^\/review$/, () => reviewView()]
+  [/^\/review$/, () => reviewView()],
+  [/^\/removed$/, () => removedView()]
 ];
 
 // Where you came from, so "back" returns you there instead of to a fixed page.
 //  - origin: the last page that wasn't a movement page (a flow, the explorer, the review list…)
 //  - playFrom: the page Play mode was started from
-export const nav = { origin: '/explore', playFrom: null, last: null };
+export const nav = { origin: '/explore', playFrom: null, last: null, stack: [], returning: false, pushedFrom: null };
+let scrolls = {};
+try { scrolls = JSON.parse(sessionStorage.getItem('op.scroll') || '{}'); } catch { scrolls = {}; }
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+const firstLoadIsReturn = (() => { try { const t = performance.getEntriesByType('navigation')[0]?.type; return t === 'reload' || t === 'back_forward'; } catch { return false; } })();
 export function backLink(fallbackLabel = 'Movements') {
   const o = nav.origin || '/explore';
-  const label = /^\/flows\/[\w-]+/.test(o) ? 'Back to the flow' : o === '/' ? 'Flows' : o.startsWith('/review') ? 'Back to the review list' : o.startsWith('/clients') ? 'Clients' : o.startsWith('/guide') ? 'Guide' : o.startsWith('/studio') ? 'Studio' : fallbackLabel;
-  return { href: '#' + o, label };
+  const label = /^\/flows\/[\w-]+/.test(o) ? 'Back to the flow' : o === '/' ? 'Flows' : o.startsWith('/review') ? 'Back to the review list' : o.startsWith('/removed') ? 'Back to removed movements' : o.startsWith('/clients') ? 'Clients' : o.startsWith('/guide') ? 'Guide' : o.startsWith('/studio') ? 'Studio' : fallbackLabel;
+  // When the page you came from is the one right behind you in the browser's history, go back
+  // to it properly, so the browser's own Back and Forward stay in step with the app.
+  const onclick = (e) => { if (nav.pushedFrom === o && !e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) { e.preventDefault(); history.back(); } };
+  return { href: '#' + o, label, onclick };
 }
 function track(full, path) {
-  if (nav.last === full) return;
+  if (nav.last === full) { nav.returning = false; return; }
+  const st = nav.stack;
+  if (nav.last === null) { nav.returning = firstLoadIsReturn; nav.pushedFrom = null; st.push(full); }
+  else if (st.length > 1 && st[st.length - 2] === full) { st.pop(); nav.returning = true; nav.pushedFrom = null; } // back to the page before
+  else { nav.returning = false; nav.pushedFrom = st[st.length - 1] || null; st.push(full); if (st.length > 60) st.shift(); }
   const isPlay = /^\/flows\/[\w-]+\/play$/.test(path);
   if (isPlay) { if (!nav.playFrom) nav.playFrom = nav.last && !/\/play$/.test(nav.last) ? nav.last : null; } else nav.playFrom = null;
   if (!path.startsWith('/movements/') && !isPlay) nav.origin = full;
@@ -79,6 +91,9 @@ function shell(active, content) {
 
 export async function render() {
   document.querySelectorAll('.modal-overlay').forEach((x) => x.remove());
+  // Remember how far down the page we were, and what its filters were, before leaving it.
+  if (nav.last) { scrolls[nav.last] = Math.round(window.scrollY); try { sessionStorage.setItem('op.scroll', JSON.stringify(scrolls)); } catch { /* ignore */ } }
+  keepViews();
   if (cleanup) { try { cleanup(); } catch { /* ignore */ } cleanup = null; }
   const { path, query } = currentPath();
   try {
@@ -114,9 +129,13 @@ export async function render() {
 function mount(nodes, onCleanup) {
   fill(root, nodes);
   cleanup = onCleanup || null;
-  window.scrollTo(0, 0);
+  // Coming back to a page returns you to where you were on it; a new page starts at the top.
+  const y = nav.returning && nav.last ? scrolls[nav.last] || 0 : 0;
+  window.scrollTo(0, y);
+  if (y) requestAnimationFrame(() => window.scrollTo(0, y));
 }
 
 window.addEventListener('hashchange', render);
+window.addEventListener('pagehide', () => { if (nav.last) { scrolls[nav.last] = Math.round(window.scrollY); try { sessionStorage.setItem('op.scroll', JSON.stringify(scrolls)); } catch { /* ignore */ } } keepViews(); });
 window.addEventListener('op:signed-out', () => { if (store.state) store.state.user = null; store.reset(); toast('Your session ended. Please sign in again.'); render(); });
 render();

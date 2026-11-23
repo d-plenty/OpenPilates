@@ -81,6 +81,9 @@
       "text": "Supporting knee lifts a little."
     }
   ],
+  "uses": [
+    "warmup"
+  ],
   "cautions": [
     {
       "tag": "wrist",

@@ -86,6 +86,9 @@
       "text": "Quicker out, controlled in."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

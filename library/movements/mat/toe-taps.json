@@ -67,6 +67,9 @@
       "text": "Adds upper abdominals."
     }
   ],
+  "uses": [
+    "warmup"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

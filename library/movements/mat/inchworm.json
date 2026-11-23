@@ -73,6 +73,9 @@
       "text": "Lift the hips before walking back."
     }
   ],
+  "uses": [
+    "warmup"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

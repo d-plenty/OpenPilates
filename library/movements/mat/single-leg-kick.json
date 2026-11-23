@@ -46,7 +46,24 @@
   "reps": "8 each side",
   "summary": "Propped on the forearms, kick each heel towards the seat with a double pulse.",
   "steps": [],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Single kicks",
+      "text": "One kick each side, slow."
+    },
+    {
+      "tag": "L2",
+      "title": "Double pulse",
+      "text": "Two quick kicks to the seat, then switch."
+    },
+    {
+      "tag": "L3",
+      "title": "Flex then point",
+      "text": "Flex the foot on the first kick, point on the second."
+    }
+  ],
+  "uses": [],
   "cautions": [
     {
       "tag": "pregnancy",

@@ -92,6 +92,9 @@
       "text": "The free leg cycles."
     }
   ],
+  "uses": [
+    "warmup"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

@@ -90,6 +90,7 @@
       "text": "Add a half roll-back with each curl."
     }
   ],
+  "uses": [],
   "cautions": [
     {
       "tag": "knee",

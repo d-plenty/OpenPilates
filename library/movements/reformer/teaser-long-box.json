@@ -91,6 +91,9 @@
       "text": "Stay in the V for small flies or circles."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

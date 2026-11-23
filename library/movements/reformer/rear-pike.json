@@ -83,6 +83,9 @@
       "text": "Hardest."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

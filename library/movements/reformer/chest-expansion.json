@@ -59,7 +59,24 @@
   "reps": "8–10",
   "summary": "Kneeling tall facing the straps, pull the arms back, turn the head side to side and return.",
   "steps": [],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Press back and hold",
+      "text": "Arms to just behind the hips; ribs stay closed."
+    },
+    {
+      "tag": "L2",
+      "title": "Add the head turns",
+      "text": "Look one way, the other, then centre before the arms return."
+    },
+    {
+      "tag": "L3",
+      "title": "Pulses behind the hips",
+      "text": "Small presses back with the chest open."
+    }
+  ],
+  "uses": [],
   "cautions": [
     {
       "tag": "knee",

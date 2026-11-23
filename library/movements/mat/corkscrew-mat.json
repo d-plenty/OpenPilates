@@ -71,6 +71,9 @@
       "text": "Roll the hips up at the top of each circle."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

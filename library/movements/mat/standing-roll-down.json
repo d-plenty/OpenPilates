@@ -74,6 +74,10 @@
       "text": "See Inchworm."
     }
   ],
+  "uses": [
+    "warmup",
+    "cooldown"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

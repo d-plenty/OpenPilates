@@ -268,7 +268,35 @@ export function springLabel(brandId, loads, overrides) {
 }
 
 export const byId = (list) => Object.fromEntries(list.map((x) => [x.id, x]));
-export const labelOf = (list, id) => (list.find((x) => x.id === id) || { label: id }).label;
+// An id the lists no longer hold (a prop the studio removed) still reads as words, not as an id.
+const pretty = (id) => { const s = String(id ?? '').replace(/^[pcm]_/, '').replace(/[_-]+/g, ' ').trim(); return s ? s[0].toUpperCase() + s.slice(1) : ''; };
+export const labelOf = (list, id) => (list.find((x) => x.id === id) || { label: pretty(id) }).label;
+
+// ---- studio lists. Props and client cautions start from the built-in lists; a studio can add
+// its own and remove the ones it doesn't use. The exported arrays are updated in place so every
+// screen and check sees the studio's version.
+export const BUILTIN = { equipment: EQUIPMENT.map((x) => ({ ...x })), cautions: CAUTIONS.map((x) => ({ ...x })), muscles: MUSCLES.map((x) => ({ ...x })), sections: SECTIONS.map((x) => ({ ...x })) };
+export function studioList(builtin, custom, removed) {
+  const gone = new Set(removed || []);
+  const seen = new Set();
+  const out = [];
+  for (const x of [...builtin, ...(custom || []).map((c) => ({ ...c, id: c.id, label: c.label, custom: true }))]) {
+    if (!x.id || gone.has(x.id) || seen.has(x.id)) continue;
+    seen.add(x.id); out.push(x);
+  }
+  return out;
+}
+export function applyStudioLists(studio) {
+  const s = studio || {};
+  EQUIPMENT.splice(0, EQUIPMENT.length, ...studioList(BUILTIN.equipment, s.customProps, s.removedProps));
+  CAUTIONS.splice(0, CAUTIONS.length, ...studioList(BUILTIN.cautions, s.customCautions, s.removedCautions));
+  MUSCLES.splice(0, MUSCLES.length, ...studioList(BUILTIN.muscles, s.customMuscles, s.removedMuscles));
+  // Parts of the class keep their ids (the balance check groups by them); a studio can rename them.
+  SECTIONS.splice(0, SECTIONS.length, ...BUILTIN.sections.map((x) => ({ ...x, label: (s.sectionLabels && s.sectionLabels[x.id]) || x.label })));
+  const lv = Array.isArray(s.levels) && s.levels.length ? s.levels : LEVEL_PRESETS.three.levels;
+  CLASS_LEVELS.splice(0, CLASS_LEVELS.length, ...lv.map((x) => ({ ...x })));
+  Object.assign(TIMING, DEFAULT_TIMING, s.timing || {});
+}
 
 const SECTION_IDS = new Set(SECTIONS.map((x) => x.id));
 
@@ -354,22 +382,60 @@ export function sameSetting(a, b) {
   return rest.length === 1 && rest[0] === 'xlight';
 }
 
-// ---- levels. A movement suits a range of levels: `level` is where it starts, `levelTo` where it tops out.
+// ---- levels. Underneath, a movement suits a range on three steps of difficulty: `level` is
+// where it starts, `levelTo` where it tops out. What a studio calls its class levels is its own
+// business: three levels, two overlapping ones, or its own names. Each class level covers a
+// span of the three steps, and every screen shows the studio's names.
+export const LEVEL_PRESETS = {
+  three: { label: 'Beginner, Intermediate, Advanced', levels: [
+    { id: 'beginner', label: 'Beginner', from: 1, to: 1 }, { id: 'intermediate', label: 'Intermediate', from: 2, to: 2 }, { id: 'advanced', label: 'Advanced', from: 3, to: 3 }] },
+  two: { label: 'Beginner/Intermediate and Intermediate/Advanced', levels: [
+    { id: 'beg_int', label: 'Beginner/Intermediate', from: 1, to: 2 }, { id: 'int_adv', label: 'Intermediate/Advanced', from: 2, to: 3 }] },
+  five: { label: 'All five: Beginner, Beginner/Intermediate, Intermediate, Intermediate/Advanced, Advanced', levels: [
+    { id: 'beginner', label: 'Beginner', from: 1, to: 1 }, { id: 'beg_int', label: 'Beginner/Intermediate', from: 1, to: 2 }, { id: 'intermediate', label: 'Intermediate', from: 2, to: 2 },
+    { id: 'int_adv', label: 'Intermediate/Advanced', from: 2, to: 3 }, { id: 'advanced', label: 'Advanced', from: 3, to: 3 }] },
+  open: { label: 'Open level and Advanced', levels: [
+    { id: 'open', label: 'Open level', from: 1, to: 2 }, { id: 'advanced', label: 'Advanced', from: 3, to: 3 }] }
+};
+// The studio's class levels. Updated in place by applyStudioLists.
+export const CLASS_LEVELS = LEVEL_PRESETS.three.levels.map((x) => ({ ...x }));
+// A class level by id. A level the studio no longer has (an old flow) still resolves.
+export function classLevel(id) {
+  const hit = CLASS_LEVELS.find((l) => l.id === id);
+  if (hit) return hit;
+  for (const p of Object.values(LEVEL_PRESETS)) { const old = p.levels.find((l) => l.id === id); if (old) return old; }
+  return CLASS_LEVELS[Math.min(CLASS_LEVELS.length - 1, Math.floor(CLASS_LEVELS.length / 2))];
+}
+// The class level a studio would start a new flow on: its middle one.
+export const defaultClassLevel = () => CLASS_LEVELS[Math.floor((CLASS_LEVELS.length - 1) / 2)].id;
+// What a single step of difficulty is called: the studio's name if it has a level for exactly that step.
+export const rankLabel = (rank) => (CLASS_LEVELS.find((l) => l.from === rank && l.to === rank) || LEVELS.find((l) => l.rank === rank) || { label: '' }).label;
 const LEVEL_RANK = Object.fromEntries(LEVELS.map((l) => [l.id, l.rank]));
 export function levelRange(mv) {
   const from = LEVEL_RANK[mv && mv.level] || 1;
   const to = Math.max(from, LEVEL_RANK[mv && mv.levelTo] || from);
   return [from, to];
 }
+// The studio's class levels a movement belongs in: any whose span overlaps the movement's range.
 export function levelsOf(mv) {
   const [from, to] = levelRange(mv);
-  return LEVELS.filter((l) => l.rank >= from && l.rank <= to).map((l) => l.id);
+  return CLASS_LEVELS.filter((l) => l.from <= to && l.to >= from).map((l) => l.id);
 }
+// The movement's level in the studio's words. If one class level holds the whole range, that
+// is its name ("Beginner/Intermediate"); otherwise the levels it spans, or "All levels".
 export function levelLabel(mv) {
   const [from, to] = levelRange(mv);
-  const name = (r) => LEVELS.find((l) => l.rank === r).label;
-  if (from === 1 && to === 3) return 'All levels';
-  return from === to ? name(from) : `${name(from)}–${name(to)}`;
+  const all = CLASS_LEVELS.length > 1 && CLASS_LEVELS.every((l) => l.from <= to && l.to >= from);
+  const holding = CLASS_LEVELS.filter((l) => l.from <= from && l.to >= to);
+  if (holding.length) {
+    const span = Math.min(...holding.map((l) => l.to - l.from));
+    const tight = holding.filter((l) => l.to - l.from === span);
+    if (tight.length === 1 || !all) return tight.map((l) => l.label).join(' · ');
+  }
+  if (all) return 'All levels';
+  const over = CLASS_LEVELS.filter((l) => l.from <= to && l.to >= from);
+  if (!over.length) return LEVELS.filter((l) => l.rank >= from && l.rank <= to).map((l) => l.label).join('–');
+  return over.length === 1 ? over[0].label : `${over[0].label}–${over[over.length - 1].label}`;
 }
 // ---- variations. A variation is another version of a movement: a regression (simpler),
 // a progression (harder), or just a different version (one arm instead of two).
@@ -412,3 +478,83 @@ export function fitSprings(loads, room) {
 // Rough total load of a setting, for ordering lightest to heaviest.
 const LOAD_WEIGHT = { xlight: 1, light: 2, medium: 4, heavy: 6, xheavy: 7 };
 export const loadWeight = (loads) => (loads || []).reduce((n, l) => n + (LOAD_WEIGHT[l] || 0), 0);
+
+// ---- class types. A class type is the shape of a class the studio teaches: its length, level,
+// spring-change limit and the phases it runs through, with minutes and what belongs in each.
+// New flows start from one; drafts fill its phases. Studios edit these freely.
+export const DEFAULT_CLASS_TYPES = [
+  { id: 'reformer_flow', name: 'Reformer Flow', apparatus: 'reformer', lengthMin: 50, springBudget: 4, note: 'Blocks run into each other with very few spring changes.', phases: [
+    { name: 'Warm-up', role: 'warmup', minutes: 5, sections: ['stretch', 'pelvic', 'core'] },
+    { name: 'Footwork', role: 'warmup', minutes: 6, sections: ['lower'], positions: ['supine'] },
+    { name: 'Hips & hamstrings', role: 'build', minutes: 6, sections: ['pelvic'], positions: ['supine'] },
+    { name: 'Abs & arms in straps', role: 'build', minutes: 5, sections: ['core'], positions: ['supine'] },
+    { name: 'Standing & kneeling legs', role: 'build', minutes: 8, sections: ['lower'], positions: ['standing', 'kneeling', 'quadruped'] },
+    { name: 'Arms & back', role: 'build', minutes: 9, sections: ['chest_arms', 'back_shoulders', 'single_arm'] },
+    { name: 'Core', role: 'peak', minutes: 9, sections: ['core'] },
+    { name: 'Cool-down', role: 'cooldown', minutes: 7, sections: ['stretch', 'pelvic'] }] },
+  { id: 'reformer_fit', name: 'Reformer Fit', apparatus: 'reformer', lengthMin: 45, springBudget: 4, note: 'Faster, with a jump-board block if the studio has boards.', phases: [
+    { name: 'Footwork', role: 'warmup', minutes: 5, sections: ['lower'], positions: ['supine'] },
+    { name: 'Jump board', role: 'build', minutes: 7, sections: ['cardio'] },
+    { name: 'Standing legs', role: 'build', minutes: 8, sections: ['lower'], positions: ['standing', 'kneeling', 'quadruped'] },
+    { name: 'Arms & back', role: 'build', minutes: 8, sections: ['chest_arms', 'back_shoulders', 'single_arm'] },
+    { name: 'Core', role: 'peak', minutes: 9, sections: ['core'] },
+    { name: 'Hips', role: 'build', minutes: 4, sections: ['pelvic'] },
+    { name: 'Cool-down', role: 'cooldown', minutes: 4, sections: ['stretch'] }] },
+  { id: 'reformer_foundations', name: 'Reformer Foundations', apparatus: 'reformer', lengthMin: 45, springBudget: 4, note: 'A first-timer class: fewer blocks, more time in each.', phases: [
+    { name: 'Warm-up', role: 'warmup', minutes: 6, sections: ['stretch', 'pelvic', 'core'] },
+    { name: 'Footwork', role: 'warmup', minutes: 8, sections: ['lower'], positions: ['supine'] },
+    { name: 'Hips & hamstrings', role: 'build', minutes: 8, sections: ['pelvic'], positions: ['supine'] },
+    { name: 'Arms', role: 'build', minutes: 8, sections: ['chest_arms', 'back_shoulders'] },
+    { name: 'Core', role: 'peak', minutes: 8, sections: ['core'] },
+    { name: 'Cool-down', role: 'cooldown', minutes: 7, sections: ['stretch', 'pelvic'] }] },
+  { id: 'mat_flow', name: 'Mat Flow', apparatus: 'mat', lengthMin: 45, springBudget: 6, note: 'Mat class from the floor up.', phases: [
+    { name: 'Mobilise', role: 'warmup', minutes: 6, sections: ['stretch', 'pelvic', 'core'] },
+    { name: 'Core on the back', role: 'build', minutes: 9, sections: ['core'], positions: ['supine', 'seated'] },
+    { name: 'Hips & side body', role: 'build', minutes: 8, sections: ['pelvic', 'lower'] },
+    { name: 'Planks & peak', role: 'peak', minutes: 7, sections: ['core'], positions: ['plank', 'quadruped', 'seated', 'standing'] },
+    { name: 'Back body', role: 'build', minutes: 6, sections: ['back_shoulders'] },
+    { name: 'Standing & arms', role: 'build', minutes: 4, sections: ['chest_arms', 'lower', 'pelvic'], positions: ['standing', 'kneeling'] },
+    { name: 'Wind down', role: 'cooldown', minutes: 5, sections: ['stretch'] }] }
+];
+export const classTypesOf = (studio) => (studio && Array.isArray(studio.classTypes) && studio.classTypes.length ? studio.classTypes : DEFAULT_CLASS_TYPES);
+export const DEFAULT_LENGTHS = [30, 45, 50, 55, 60];
+// Seconds the plan allows for the things that are not movement, and for building a block up.
+export const DEFAULT_TIMING = { springChange: 15, positionChange: 20, boxChange: 45, perLayer: 45, finisher: 20 };
+// The studio's current timing; applyStudioLists keeps it up to date so block times agree everywhere.
+export const TIMING = { ...DEFAULT_TIMING };
+export const timingOf = (studio) => ({ ...TIMING, ...((studio && studio.timing) || {}) });
+
+// ---- where a movement belongs in a class. Teachers set this; when a movement says nothing, a careful guess is used.
+export const USES = [
+  { id: 'warmup', label: 'Warm-up', hint: 'Simple, low load, gets the body moving. Offered when a warm-up is drafted.' },
+  { id: 'cooldown', label: 'Cool-down', hint: 'Stretch or release to finish on. Offered when a cool-down is drafted.' },
+  { id: 'peak', label: 'Peak', hint: 'The hardest work of the class. Drafts save it for the peak block.' }
+];
+export function usesOf(mv) {
+  if (!mv) return [];
+  if (Array.isArray(mv.uses)) return mv.uses;
+  const labels = mv.labels || [];
+  const out = [];
+  if (labels.includes('warm-up')) out.push('warmup');
+  if (labels.includes('cool-down')) out.push('cooldown');
+  if ((mv.intensity || 0) >= 7) out.push('peak');
+  return out;
+}
+
+// ---- a block: one movement in a flow, with the layers built on top and a finisher.
+// A layer is either one of the movement's own layers (stored by its tag) or the teacher's own words.
+export function layersOf(mv, item) {
+  return ((item && item.layers) || []).map((l) => {
+    if (typeof l === 'string') { const lib = ((mv && mv.layers) || []).find((x) => x.tag === l); return lib ? { tag: l, title: lib.title, text: lib.text } : null; }
+    const text = String((l && l.text) || '').trim();
+    return text ? { text, title: text } : null;
+  }).filter(Boolean);
+}
+// Time for a block. A time the teacher typed wins; otherwise the movement's own time plus time for each layer and the finisher.
+export function blockSeconds(item, mv, timing = TIMING) {
+  const d = Number(item && item.duration);
+  if (d > 0) return d;
+  const base = (mv && mv.duration) || 120;
+  return base + layersOf(mv, item).length * (timing.perLayer || 0) + (item && item.finisher ? (timing.finisher || 0) : 0);
+}
+export const FINISHERS = ['Pulses × 10', 'Hold for 10', 'Small range × 8', 'Slow lower, 4 counts', 'Hold, then pulse × 8', 'Last 4 as slow as you can'];

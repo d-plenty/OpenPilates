@@ -3,20 +3,18 @@
 // body-position changes, time moving vs setting up, and muscle balance. On top of that it checks
 // the things a reformer class is usually planned around: how often the springs change, whether
 // every part of the body gets a turn, and whether stabilising work is balanced with movement.
-import { MUSCLES, SPINE_DIRECTIONS, DEFAULT_TARGETS, PURPOSES, LEVELS, CAUTIONS, SECTION_GROUPS, CATEGORIES, EQUIPMENT, labelOf, byId, sectionOf, sectionGroupOf, categoriesOf, roleOf, sameSetting, variationOf, itemName, kindOf } from './vocab.js';
+import { MUSCLES, SPINE_DIRECTIONS, DEFAULT_TARGETS, PURPOSES, LEVELS, CAUTIONS, SECTION_GROUPS, CATEGORIES, EQUIPMENT, labelOf, byId, sectionOf, sectionGroupOf, categoriesOf, roleOf, sameSetting, variationOf, itemName, kindOf, classLevel, timingOf, blockSeconds } from './vocab.js';
 
 const MUSCLE = byId(MUSCLES);
 const LEVEL_RANK = Object.fromEntries(LEVELS.map((l) => [l.id, l.rank]));
 
 // Seconds lost to each kind of change between movements (rough studio averages).
-export const TRANSITION_COST = { spring: 15, position: 20, box: 45, apparatus: 60 };
+export const DEFAULT_TRANSITION_COST = { spring: 15, position: 20, box: 45, apparatus: 60 };
 
 const BOXES = ['long_box', 'short_box', 'jump_board', 'platform_extender'];
 
-export function itemDuration(item, mv) {
-  const d = Number(item && item.duration);
-  if (d > 0) return d;
-  return (mv && mv.duration) || 120;
+export function itemDuration(item, mv, timing) {
+  return blockSeconds(item, mv, timing);
 }
 
 const keyOf = (loads) => [...(loads || [])].sort().join('+');
@@ -53,7 +51,10 @@ export function analyze({ flow, movements, studio = {}, clients = [] }) {
   const targets = { ...DEFAULT_TARGETS, ...(studio.targets || {}) };
   const target = targets[targetKey] || targets.general || DEFAULT_TARGETS.general;
   const owned = studio.props || {};
-  const flowLevel = LEVEL_RANK[flow.level] || 3;
+  const flowLevel = classLevel(flow.level).to;
+  // seconds allowed for changes come from the studio's timing settings
+  const tm = timingOf(studio);
+  const TRANSITION_COST = { spring: tm.springChange, position: tm.positionChange, box: tm.boxChange, apparatus: 60 };
 
   const rows = flatten(flow);
   let t = 0;
@@ -97,7 +98,7 @@ export function analyze({ flow, movements, studio = {}, clients = [] }) {
     for (const pass of passes) for (const item of seg.items || []) {
       const mv = mvOf(item.slug);
       if (!mv) { if (pass === 1) unknown.push(item.slug); continue; }
-      const dur = itemDuration(item, mv);
+      const dur = itemDuration(item, mv, tm);
 
       // transitions from the previous movement
       if (prev) {
@@ -225,11 +226,11 @@ export function analyze({ flow, movements, studio = {}, clients = [] }) {
   const add = (level, id, title, body) => checks.push({ level, id, title, body });
   const segRoles = new Set((flow.segments || []).filter((s) => (s.items || []).length).map((s) => s.role));
   if (count === 0) {
-    add('info', 'empty', 'Add some movements', 'Drag movements into a segment to see the analysis.');
+    add('info', 'empty', 'Add some blocks', 'Add a block to a phase to see the analysis.');
   } else {
-    if (!segRoles.has("warmup")) add('warn', 'warmup', 'No warm-up', 'Mark a segment as Warm-up and start with lower-effort movements.');
+    if (!segRoles.has("warmup")) add('warn', 'warmup', 'No warm-up', 'Mark a phase as Warm-up and start with lower-effort movements.');
     else add('ok', 'warmup', 'Warm-up in place', `${fmtMin(segSec(segInfo, 'warmup'))} to start.`);
-    if (!segRoles.has("cooldown")) add('warn', 'cooldown', 'No cool-down', 'Finish with a stretch segment marked Cool-down.');
+    if (!segRoles.has("cooldown")) add('warn', 'cooldown', 'No cool-down', 'Finish with a stretch phase marked Cool-down.');
     else add('ok', 'cooldown', 'Cool-down in place', `${fmtMin(segSec(segInfo, 'cooldown'))} to finish.`);
 
     const missingDirs = SPINE_DIRECTIONS.filter((d) => spine[d] === 0);
@@ -279,7 +280,7 @@ export function analyze({ flow, movements, studio = {}, clients = [] }) {
       const noLeadIn = [];
       for (const s of sequence) {
         const prep = (s.mv.prep || []).filter((p) => movements[p]);
-        if (s.pass === 1 && prep.length && !prep.some((p) => seen.has(p)) && !noLeadIn.some((n) => n.slug === s.mv.slug)) noLeadIn.push({ slug: s.mv.slug, name: s.mv.name, try: prep.slice(0, 2).map((p) => movements[p].name) });
+        if (s.pass === 1 && prep.length && ((s.mv.intensity || 3) >= 7 || s.mv.level === 'advanced') && !prep.some((p) => seen.has(p)) && !noLeadIn.some((n) => n.slug === s.mv.slug)) noLeadIn.push({ slug: s.mv.slug, name: s.mv.name, try: prep.slice(0, 2).map((p) => movements[p].name) });
         seen.add(s.mv.slug);
       }
       if (noLeadIn.length) add('info', 'lead-in', `No lead-in for ${noLeadIn.length === 1 ? noLeadIn[0].name : noLeadIn.length + ' harder movements'}`, noLeadIn.map((n) => `${n.name}: build up with ${n.try.join(' or ')}`).join('. ') + '.');

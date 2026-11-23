@@ -64,7 +64,24 @@
     "Breathe out to press the hands up along the line of the spine.",
     "Breathe in to bend, hands skimming the back of the head."
   ],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Press up and return",
+      "text": "Elbows stay wide as the arms straighten on the diagonal."
+    },
+    {
+      "tag": "L2",
+      "title": "Hold at the top",
+      "text": "Two counts with the arms long before bending."
+    },
+    {
+      "tag": "L3",
+      "title": "Small pulses at the top",
+      "text": "Elbows soften and straighten a few centimetres."
+    }
+  ],
+  "uses": [],
   "cautions": [
     {
       "tag": "shoulder",

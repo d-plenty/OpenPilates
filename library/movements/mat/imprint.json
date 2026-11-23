@@ -68,6 +68,9 @@
       "text": "Float one leg to tabletop without the pelvis moving."
     }
   ],
+  "uses": [
+    "warmup"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

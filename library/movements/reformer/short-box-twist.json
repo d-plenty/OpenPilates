@@ -59,7 +59,24 @@
   "reps": "4 each side",
   "summary": "Seated tall on the short box, rotate, then hinge and reach on the diagonal.",
   "steps": [],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Twist only",
+      "text": "Sit tall and rotate each way."
+    },
+    {
+      "tag": "L2",
+      "title": "Twist and lean",
+      "text": "Hold the rotation and hinge back on the diagonal."
+    },
+    {
+      "tag": "L3",
+      "title": "Add the reach",
+      "text": "Top arm reaches long over the head in the lean."
+    }
+  ],
+  "uses": [],
   "cautions": [
     {
       "tag": "pregnancy",

@@ -66,6 +66,9 @@
       "text": "Both hands overhead on a ball."
     }
   ],
+  "uses": [
+    "cooldown"
+  ],
   "cautions": [
     {
       "tag": "knee",

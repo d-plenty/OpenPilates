@@ -64,6 +64,9 @@
       "text": "Hold the top and move the legs."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

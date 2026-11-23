@@ -50,7 +50,24 @@
   "reps": "8",
   "summary": "Bridge with a magic circle between the knees, squeezing at the top.",
   "steps": [],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Bridge and squeeze",
+      "text": "Squeeze the ring at the top."
+    },
+    {
+      "tag": "L2",
+      "title": "Hold and pulse",
+      "text": "Stay up and pulse the ring."
+    },
+    {
+      "tag": "L3",
+      "title": "Roll down holding the squeeze",
+      "text": "Keep the ring pressed all the way to the mat."
+    }
+  ],
+  "uses": [],
   "cautions": [
     {
       "tag": "pregnancy",

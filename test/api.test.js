@@ -215,3 +215,145 @@ test('a teacher can mark a movement checked or flagged, and export the list', as
   await call('admin', 'PUT', '/movements/offering/check', { status: '' });
   assert.equal((await call('admin', 'GET', '/movements')).data.find((m) => m.slug === 'offering').check, undefined);
 });
+
+test('a studio can add its own props and cautions, remove built-in ones, and use them', async () => {
+  const st = (await call('admin', 'GET', '/studio')).data;
+  const saved = await call('admin', 'PUT', '/studio', { ...st, customProps: [{ label: 'Pilates arc' }, { label: 'Pilates arc' }, { label: '' }], removedProps: ['foam_roller', 'not-a-prop'],
+    customCautions: [{ label: 'Vertigo' }], removedCautions: ['balance'], props: { ...st.props, p_pilates_arc: 3 } });
+  assert.equal(saved.status, 200);
+  assert.deepEqual(saved.data.customProps.map((p) => p.id), ['p_pilates_arc', 'p_pilates_arc_2']);
+  assert.deepEqual(saved.data.removedProps, ['foam_roller']);
+  assert.equal(saved.data.props.p_pilates_arc, 3);
+  assert.equal(saved.data.props.foam_roller, undefined);
+  assert.deepEqual(saved.data.customCautions, [{ id: 'c_vertigo', label: 'Vertigo' }]);
+  // a movement can need the new prop and carry the new caution; a client can be tagged with it
+  const mv = await call('admin', 'POST', '/movements', { name: 'Arc Stretch', position: 'supine', apparatus: 'mat', muscles: { primary: ['abdominals'] }, equipment: ['p_pilates_arc', 'foam_roller', 'made_up'], cautions: [{ tag: 'c_vertigo', severity: 'avoid', note: 'Head below the hips' }, { tag: 'made_up' }] });
+  assert.deepEqual(mv.data.equipment, ['p_pilates_arc', 'foam_roller']); // a removed built-in is still valid data
+  assert.deepEqual(mv.data.cautions.map((c) => c.tag), ['c_vertigo']);
+  const cl = await call('admin', 'POST', '/clients', { name: 'Dizzy D', tags: ['c_vertigo', 'nope'] });
+  assert.deepEqual(cl.data.tags, ['c_vertigo']);
+  await call('admin', 'DELETE', `/clients/${cl.data.id}`);
+  await call('admin', 'DELETE', `/movements/${mv.data.slug}`);
+  const back = await call('admin', 'PUT', '/studio', { ...saved.data, customProps: [], removedProps: [], customCautions: [], removedCautions: [] });
+  assert.equal(back.data.props.foam_roller, 0);
+  assert.equal((await call('admin', 'POST', '/clients', { name: 'X', tags: ['c_vertigo'] })).data.tags.length, 0);
+});
+
+test('a studio can take a movement or series out of its library and put it back; retired ones can be brought back', async () => {
+  const get = async (slug) => (await call('admin', 'GET', '/movements')).data.find((m) => m.slug === slug);
+  assert.equal((await get('elephant')).hidden, undefined);
+  assert.equal((await call('admin', 'PUT', '/movements/elephant/library', { inLibrary: false })).data.hidden, true);
+  assert.equal((await get('elephant')).hidden, true);
+  await call('admin', 'PUT', '/movements/elephant/library', { inLibrary: true });
+  assert.equal((await get('elephant')).hidden, undefined);
+  const retired = (await call('admin', 'GET', '/movements')).data.find((m) => m.retired);
+  assert.equal(retired.hidden, true);
+  await call('admin', 'PUT', `/movements/${retired.slug}/library`, { inLibrary: true });
+  const now = await get(retired.slug);
+  assert.equal(now.hidden, undefined);
+  assert.equal(now.retired, true);
+  await call('admin', 'PUT', `/movements/${retired.slug}/library`, { inLibrary: false });
+  assert.equal((await get(retired.slug)).hidden, true);
+  await call('admin', 'PUT', '/series/footwork-series/library', { inLibrary: false });
+  assert.equal((await call('admin', 'GET', '/series')).data.find((s) => s.slug === 'footwork-series').hidden, true);
+  await call('admin', 'PUT', '/series/footwork-series/library', { inLibrary: true });
+  assert.equal((await call('admin', 'GET', '/series')).data.find((s) => s.slug === 'footwork-series').hidden, undefined);
+  assert.equal((await call('admin', 'PUT', '/movements/nope/library', { inLibrary: false })).status, 404);
+});
+
+// ---- 0.5: studio set-up, blocks, packs
+test('studio settings: class levels, class types, lengths, timing, own muscles and names for the parts of a class', async () => {
+  const s = (await call('admin', 'GET', '/studio')).data;
+  assert.equal(s.levels.length, 3);
+  assert.ok(s.classTypes.length >= 4 && s.lengths.includes(50) && s.timing.perLayer > 0);
+  const next = { ...s,
+    levels: [{ label: 'Foundations', from: 1, to: 1 }, { label: 'Open', from: 1, to: 3 }, { label: '' }],
+    lengths: [45, 60, 5, 'x', 60], defaultLength: 60,
+    timing: { ...s.timing, perLayer: 30, springChange: 9999 },
+    customMuscles: [{ label: 'Pelvic floor' }], sectionLabels: { core: 'Abs', nope: 'x' },
+    classTypes: [...s.classTypes, { name: 'Express', apparatus: 'reformer', lengthMin: 30, springBudget: 2, phases: [{ name: 'Go', role: 'nonsense', minutes: 30, sections: ['core', 'zzz'] }] }] };
+  const out = (await call('admin', 'PUT', '/studio', next)).data;
+  assert.deepEqual(out.levels.map((l) => l.label), ['Foundations', 'Open']);
+  assert.ok(out.levels.every((l) => /^[a-z0-9_]+$/.test(l.id)));
+  assert.deepEqual(out.lengths, [45, 60]);
+  assert.equal(out.defaultLength, 60);
+  assert.equal(out.timing.perLayer, 30);
+  assert.equal(out.timing.springChange, 300);
+  assert.equal(out.customMuscles[0].id, 'm_pelvic_floor');
+  assert.deepEqual(out.sectionLabels, { core: 'Abs' });
+  const express = out.classTypes.find((c) => c.name === 'Express');
+  assert.equal(express.phases[0].role, 'build');
+  assert.deepEqual(express.phases[0].sections, ['core']);
+  // the studio's own muscle can now be ticked on a movement, and a flow can sit on the studio's own level
+  const mv = (await call('admin', 'POST', '/movements', { name: 'Pelvic floor lifts', apparatus: 'mat', position: 'supine', muscles: { primary: ['m_pelvic_floor', 'made_up'] }, uses: ['warmup', 'nonsense'] })).data;
+  assert.deepEqual(mv.muscles.primary, ['m_pelvic_floor']);
+  assert.deepEqual(mv.uses, ['warmup']);
+  const f = (await call('admin', 'POST', '/flows', { title: 'Levels', level: out.levels[0].id, classType: express.id, segments: [] })).data;
+  assert.equal(f.level, out.levels[0].id);
+  assert.equal(f.classType, express.id);
+  await call('admin', 'PUT', '/studio', s);
+});
+
+test('blocks keep free-text layers, a finisher and the phase minutes', async () => {
+  const f = (await call('admin', 'POST', '/flows', { title: 'Blocks', segments: [{ name: 'Legs', role: 'build', minutes: 7.4, items: [
+    { slug: 'footwork-series', layers: ['L1', { text: '  Add a pulse  ' }, { text: '' }, { nope: 1 }, 'L1'], finisher: 'Hold for 10', duration: 240 }] }] })).data;
+  const it = f.segments[0].items[0];
+  assert.deepEqual(it.layers, ['L1', { text: 'Add a pulse' }]);
+  assert.equal(it.finisher, 'Hold for 10');
+  assert.equal(f.segments[0].minutes, 7);
+});
+
+test('a pack carries the studio\'s changes to another set-up, and never clients', async () => {
+  await call('admin', 'POST', '/clients', { name: 'Private Person', notes: 'secret note', tags: ['knee'] });
+  const c = (await call('admin', 'GET', '/clients')).data.find((x) => x.name === 'Private Person');
+  await call('admin', 'POST', '/flows', { title: 'Pack flow', booked: [{ clientId: c.id, spot: '3' }], segments: [{ name: 'A', items: [{ slug: 'footwork-series' }] }] });
+  await call('admin', 'PUT', '/movements/bridging-reformer', { ...(await call('admin', 'GET', '/movements/bridging-reformer')).data, name: 'Bridge (ours)' });
+  await call('admin', 'PUT', '/movements/footwork-series/check', { status: 'ok', note: 'Sarah checked' });
+  assert.equal((await call('alex', 'GET', '/pack')).status, 403);
+  const res = await fetch(base + '/api/pack', { headers: { Cookie: jar.admin } });
+  const text = await res.text();
+  assert.ok(!text.includes('Private Person') && !text.includes('secret note') && !text.includes('"booked"'));
+  const pack = JSON.parse(text);
+  assert.equal(pack.openpilates, 'pack');
+  assert.ok(pack.movements.some((m) => m.slug === 'bridging-reformer' && m.name === 'Bridge (ours)'));
+  assert.ok(pack.reviews.some((r) => r.slug === 'footwork-series' && r.status === 'ok'));
+  assert.ok(pack.flows.some((f) => f.title === 'Pack flow'));
+  assert.ok(pack.studio.classTypes.length && pack.studio.levels.length);
+  const none = await (await fetch(base + '/api/pack?flows=0', { headers: { Cookie: jar.admin } })).json();
+  assert.equal(none.flows, undefined);
+
+  // undo the changes here, then bring the pack back in
+  await call('admin', 'DELETE', '/movements/bridging-reformer');
+  await call('admin', 'PUT', '/movements/footwork-series/check', { status: '', note: '' });
+  assert.equal((await call('admin', 'GET', '/movements/bridging-reformer')).data.name, 'Bridging');
+  assert.equal((await call('admin', 'POST', '/pack/import', { openpilates: 'flow' })).status, 400);
+  pack.studio.levels = [{ id: 'all', label: 'Everyone', from: 1, to: 3 }];
+  pack.movements.push({ name: 'Brand new from the pack', apparatus: 'mat', position: 'seated', muscles: { primary: ['abdominals'] } }, { nonsense: true });
+  const done = (await call('admin', 'POST', '/pack/import', { ...pack, take: { flows: true } })).data;
+  assert.ok(done.movements >= 2 && done.reviews >= 1 && done.flows >= 1 && done.settings === 1 && done.skipped >= 1, JSON.stringify(done));
+  const back = (await call('admin', 'GET', '/movements/bridging-reformer')).data;
+  assert.equal(back.name, 'Bridge (ours)');
+  assert.equal(back.source, 'studio');
+  assert.equal((await call('admin', 'GET', '/movements/brand-new-from-the-pack')).data.source, 'custom');
+  assert.equal((await call('admin', 'GET', '/movements/footwork-series')).data.check.status, 'ok');
+  assert.deepEqual((await call('admin', 'GET', '/studio')).data.levels.map((l) => l.label), ['Everyone']);
+  await call('admin', 'DELETE', '/movements/bridging-reformer');
+  const st = (await call('admin', 'GET', '/studio')).data;
+  await call('admin', 'PUT', '/studio', { ...st, levels: [] });
+});
+
+test('a series can be edited; editing a library series makes it the studio\'s', async () => {
+  const all = (await call('admin', 'GET', '/series')).data;
+  const lib = all.find((s) => s.source === 'library');
+  assert.equal((await call('alex', 'PUT', `/series/${lib.slug}`, { ...lib, name: 'Nope' })).status, 403);
+  const out = (await call('admin', 'PUT', `/series/${lib.slug}`, { ...lib, name: `${lib.name} (ours)`, items: lib.items.slice(0, 2) })).data;
+  assert.equal(out.source, 'studio');
+  assert.equal(out.items.length, 2);
+  assert.equal(out.slug, lib.slug);
+  // deleting an edited library series puts the shipped one back
+  assert.equal((await call('admin', 'DELETE', `/series/${lib.slug}`)).data.restored, true);
+  const again = (await call('admin', 'GET', '/series')).data.find((s) => s.slug === lib.slug);
+  assert.equal(again.source, 'library');
+  assert.equal(again.name, lib.name);
+  assert.equal(again.items.length, lib.items.length);
+});

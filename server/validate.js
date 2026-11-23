@@ -1,9 +1,14 @@
 import { POSE_IDS } from '../shared/poses.js';
-import { kindOf } from '../shared/vocab.js';
+import { kindOf, BUILTIN, LEVEL_PRESETS, DEFAULT_CLASS_TYPES, DEFAULT_LENGTHS, DEFAULT_TIMING } from '../shared/vocab.js';
 import { POSITIONS, SPINE, MUSCLES, EQUIPMENT, LEVELS, CAUTIONS, PATTERNS, PLANES, LOAD_LEVELS, SEGMENT_ROLES, BRANDS, DEFAULT_TARGETS, SECTIONS, CATEGORIES, ROLES, PREGNANCY, HEADREST, STRAPS, FORMATS } from '../shared/vocab.js';
 
 const ids = (list) => new Set(list.map((x) => x.id));
-const POS = ids(POSITIONS), SP = ids(SPINE), MU = ids(MUSCLES), EQ = ids(EQUIPMENT), LV = ids(LEVELS), CA = ids(CAUTIONS),
+// Props and cautions can be added and removed by the studio, so these two are looked up each time.
+// A built-in the studio has removed is still valid data: movements that mention it keep it.
+const EQ = { has: (x) => EQUIPMENT.some((e) => e.id === x) || BUILTIN.equipment.some((e) => e.id === x) };
+const CA = { has: (x) => CAUTIONS.some((e) => e.id === x) || BUILTIN.cautions.some((e) => e.id === x) };
+const MU = { has: (x) => MUSCLES.some((e) => e.id === x) || BUILTIN.muscles.some((e) => e.id === x) };
+const POS = ids(POSITIONS), SP = ids(SPINE), LV = ids(LEVELS),
   PA = ids(PATTERNS), PL = ids(PLANES), RO = ids(SEGMENT_ROLES), LOADS = new Set(LOAD_LEVELS),
   SEC = ids(SECTIONS), CAT = ids(CATEGORIES), ROLE = ids(ROLES), PREG = ids(PREGNANCY), HEAD = ids(HEADREST), STR = ids(STRAPS), FMT = ids(FORMATS);
 const lines = (v, max, len) => (Array.isArray(v) ? v : String(v ?? '').split('\n')).map((x) => str(x, len)).filter(Boolean).slice(0, max);
@@ -91,6 +96,7 @@ export function cleanMovement(input, { slug } = {}) {
     cautions: (Array.isArray(m.cautions) ? m.cautions : []).slice(0, 16).filter((c) => CA.has(c.tag)).map((c) => ({ tag: c.tag, severity: c.severity === 'modify' ? 'modify' : 'avoid', note: str(c.note, 300), ...(c.swap ? { swap: slugify(c.swap) } : {}) })),
     cues: str(m.cues, 2000),
     labels: (Array.isArray(m.labels) ? m.labels : []).map((x) => slugify(x)).filter(Boolean).slice(0, 12),
+    ...(Array.isArray(m.uses) ? { uses: ['warmup', 'cooldown', 'peak'].filter((u) => m.uses.includes(u)) } : {}),
     ...(m.retired ? { retired: true } : {}),
     ...(Array.isArray(m.sources) && m.sources.length ? { sources: m.sources.map((x) => str(x, 30)).filter(Boolean).slice(0, 20) } : {}),
     review: m.review && typeof m.review === 'object' ? { status: str(m.review.status, 20) || 'draft', note: str(m.review.note, 300), by: str(m.review.by, 80), date: str(m.review.date, 20) } : { status: 'draft', note: '' }
@@ -98,7 +104,17 @@ export function cleanMovement(input, { slug } = {}) {
 }
 
 // Layers the class will be taught through, in order (tags from the movement's own layers).
-const itemLayers = (i) => [...new Set([...(Array.isArray(i.layers) ? i.layers : []), ...(i.layer ? [i.layer] : [])].map((x) => str(x, 4)).filter(Boolean))].slice(0, 12);
+// A layer is a tag from the movement's own layers, or the teacher's own words ({ text }).
+const itemLayers = (i) => {
+  const seen = new Set();
+  return [...(Array.isArray(i.layers) ? i.layers : []), ...(i.layer ? [i.layer] : [])].map((x) => {
+    if (x && typeof x === 'object') { const text = str(x.text, 200); return text ? { text } : null; }
+    const tag = str(x, 4);
+    if (!tag || seen.has(tag)) return null;
+    seen.add(tag);
+    return tag;
+  }).filter(Boolean).slice(0, 12);
+};
 // Variations offered to individuals: a regression, a progression or another version, with springs, an add-on movement, or just a note.
 const itemOptions = (i) => (Array.isArray(i.options) ? i.options : []).slice(0, 8).map((o) => ({
   id: str(o.id, 40) || Math.random().toString(36).slice(2),
@@ -118,6 +134,7 @@ export function cleanFlow(input) {
     role: RO.has(s.role) ? s.role : 'build',
     bpm: s.bpm === '' || s.bpm == null ? null : num(s.bpm, 30, 220, null),
     ...(s.bothSides ? { bothSides: true } : {}),
+    ...(Number(s.minutes) > 0 ? { minutes: Math.round(num(s.minutes, 1, 120, 5)) } : {}),
     song: str(s.song, 160),
     notes: str(s.notes, 1000),
     items: (Array.isArray(s.items) ? s.items : []).slice(0, 60).map((i) => ({
@@ -128,6 +145,7 @@ export function cleanFlow(input) {
       ...(str(i.variation, 120) ? { variation: str(i.variation, 120) } : {}),
       ...(itemLayers(i).length ? { layers: itemLayers(i) } : {}),
       ...(itemOptions(i).length ? { options: itemOptions(i) } : {}),
+      ...(str(i.finisher, 160) ? { finisher: str(i.finisher, 160) } : {}),
       ...(i.note ? { note: str(i.note, 500) } : {}),
       ...(i.load && Array.isArray(i.load.springs) ? { load: { springs: i.load.springs.filter((x) => LOADS.has(x)).slice(0, 5) } } : {})
     })).filter((i) => i.slug)
@@ -135,7 +153,9 @@ export function cleanFlow(input) {
   return {
     title,
     apparatus: ['reformer', 'mat', 'mixed'].includes(f.apparatus) ? f.apparatus : 'reformer',
-    level: LV.has(f.level) ? f.level : 'intermediate',
+    // the studio's own class level id; any well-formed id is kept so a renamed scheme never breaks a flow
+    level: /^[a-z0-9_-]{1,40}$/.test(String(f.level || '')) ? f.level : 'intermediate',
+    ...(/^[a-z0-9_-]{1,40}$/.test(String(f.classType || '')) ? { classType: f.classType } : {}),
     lengthMin: Math.round(num(f.lengthMin, 10, 180, 50)),
     goal: str(f.goal, 40),
     format: FMT.has(f.format) ? f.format : 'open',
@@ -197,8 +217,63 @@ export function cleanStudio(input) {
       brand, count: Math.trunc(num(r.count, 0, 100, 0)), springs, springOverrides: overrides
     };
   });
+  // The studio's own props and cautions, and the built-in ones it has removed.
+  const own = (list, prefix, taken) => {
+    const out = [];
+    for (const x of (Array.isArray(list) ? list : []).slice(0, 60)) {
+      const label = str(x && x.label, 40);
+      if (!label) continue;
+      let id = /^[pcm]_[a-z0-9_]{1,40}$/.test(String(x.id || '')) ? x.id : prefix + (slugify(label).replace(/-/g, '_') || 'item');
+      for (let i = 2; taken.has(id); i++) id = `${prefix}${slugify(label).replace(/-/g, '_')}_${i}`;
+      taken.add(id); out.push({ id, label });
+    }
+    return out;
+  };
+  const customProps = own(s.customProps, 'p_', new Set(BUILTIN.equipment.map((e) => e.id)));
+  const customCautions = own(s.customCautions, 'c_', new Set(BUILTIN.cautions.map((e) => e.id)));
+  const removedProps = (Array.isArray(s.removedProps) ? s.removedProps : []).filter((x) => BUILTIN.equipment.some((e) => e.id === x));
+  const removedCautions = (Array.isArray(s.removedCautions) ? s.removedCautions : []).filter((x) => BUILTIN.cautions.some((e) => e.id === x));
+  const customMuscles = own(s.customMuscles, 'm_', new Set(BUILTIN.muscles.map((e) => e.id))).map((m, i) => ({ ...m, side: (s.customMuscles.filter((x) => str(x && x.label, 40))[i] || {}).side === 'B' ? 'B' : 'F' }));
+  const removedMuscles = (Array.isArray(s.removedMuscles) ? s.removedMuscles : []).filter((x) => BUILTIN.muscles.some((e) => e.id === x));
+  const sectionLabels = {};
+  for (const x of BUILTIN.sections) { const l = str(s.sectionLabels && s.sectionLabels[x.id], 40); if (l && l !== x.label) sectionLabels[x.id] = l; }
+  // class levels: each has a name and the span of difficulty it covers (1 easiest to 3 hardest)
+  const seenLv = new Set();
+  let levels = (Array.isArray(s.levels) ? s.levels : []).slice(0, 8).map((l) => {
+    const label = str(l && l.label, 40);
+    if (!label) return null;
+    let id = /^[a-z0-9_]{1,40}$/.test(String(l.id || '')) ? l.id : slugify(label).replace(/-/g, '_') || 'level';
+    for (let i = 2; seenLv.has(id); i++) id = `${id.replace(/_\d+$/, '')}_${i}`;
+    seenLv.add(id);
+    const from = Math.round(num(l.from, 1, 3, 1)); const to = Math.max(from, Math.round(num(l.to, 1, 3, from)));
+    return { id, label, from, to };
+  }).filter(Boolean);
+  if (!levels.length) levels = LEVEL_PRESETS.three.levels.map((x) => ({ ...x }));
+  const lengths = [...new Set((Array.isArray(s.lengths) ? s.lengths : DEFAULT_LENGTHS).map((n) => Math.round(Number(n))).filter((n) => n >= 10 && n <= 180))].sort((a, b) => a - b).slice(0, 12);
+  if (!lengths.length) lengths.push(...DEFAULT_LENGTHS);
+  const defaultLength = lengths.includes(Math.round(Number(s.defaultLength))) ? Math.round(Number(s.defaultLength)) : (lengths.includes(50) ? 50 : lengths[Math.floor(lengths.length / 2)]);
+  const timing = {};
+  for (const [k, d] of Object.entries(DEFAULT_TIMING)) timing[k] = Math.round(num(s.timing && s.timing[k], 0, 300, d));
+  const seenCt = new Set();
+  let classTypes = (Array.isArray(s.classTypes) ? s.classTypes : DEFAULT_CLASS_TYPES).slice(0, 30).map((c) => {
+    const name = str(c && c.name, 60);
+    if (!name) return null;
+    let id = /^[a-z0-9_]{1,40}$/.test(String(c.id || '')) ? c.id : slugify(name).replace(/-/g, '_') || 'class';
+    for (let i = 2; seenCt.has(id); i++) id = `${id.replace(/_\d+$/, '')}_${i}`;
+    seenCt.add(id);
+    const phases = (Array.isArray(c.phases) ? c.phases : []).slice(0, 16).map((p) => ({
+      name: str(p && p.name, 60) || 'Phase',
+      role: RO.has(p.role) ? p.role : 'build',
+      minutes: Math.round(num(p.minutes, 1, 60, 5)),
+      sections: pick(p.sections, SEC, 8),
+      ...(pick(p.positions, POS, 9).length ? { positions: pick(p.positions, POS, 9) } : {})
+    }));
+    return { id, name, apparatus: c.apparatus === 'mat' ? 'mat' : 'reformer', lengthMin: Math.round(num(c.lengthMin, 10, 180, 50)), springBudget: Math.round(num(c.springBudget, 0, 20, 3)),
+      ...(levels.some((l) => l.id === c.level) ? { level: c.level } : {}), note: str(c.note, 200), phases };
+  }).filter(Boolean);
+  if (!classTypes.length) classTypes = structuredClone(DEFAULT_CLASS_TYPES);
   const props = {};
-  for (const e of EQUIPMENT) props[e.id] = Math.trunc(num(s.props?.[e.id], 0, 200, 0));
+  for (const e of [...BUILTIN.equipment.filter((x) => !removedProps.includes(x.id)), ...customProps]) props[e.id] = Math.trunc(num(s.props?.[e.id], 0, 200, 0));
   const targets = {};
   for (const [k, t] of Object.entries(s.targets || {}).slice(0, 12)) {
     const key = slugify(k) || 'custom';
@@ -208,13 +283,27 @@ export function cleanStudio(input) {
     name: str(s.name, 80) || 'My studio',
     rooms: rooms.length ? rooms : defaultStudio().rooms,
     props,
+    customProps, removedProps, customCautions, removedCautions,
+    customMuscles, removedMuscles, sectionLabels,
+    levels, classTypes, lengths, defaultLength, timing,
     targets: Object.keys(targets).length ? targets : structuredClone(DEFAULT_TARGETS)
   };
 }
 
-export function defaultStudio(name = 'My studio', brand = 'balanced_body') {
-  const b = BRANDS[brand] ? brand : 'balanced_body';
+// Settings added in later versions get their defaults here, so a studio set up on an older version keeps working.
+export function fillStudio(s) {
   return {
+    customProps: [], removedProps: [], customCautions: [], removedCautions: [], customMuscles: [], removedMuscles: [], sectionLabels: {},
+    levels: LEVEL_PRESETS.three.levels.map((x) => ({ ...x })), classTypes: structuredClone(DEFAULT_CLASS_TYPES),
+    lengths: [...DEFAULT_LENGTHS], defaultLength: 50, timing: { ...DEFAULT_TIMING },
+    ...(s || {})
+  };
+}
+
+export function defaultStudio(name = 'My studio', brand = 'balanced_body', levelScheme = 'three') {
+  const b = BRANDS[brand] ? brand : 'balanced_body';
+  return fillStudio({
+    levels: (LEVEL_PRESETS[levelScheme] || LEVEL_PRESETS.three).levels.map((x) => ({ ...x })),
     name,
     rooms: [
       { id: 'room1', name: 'Reformer room', apparatus: 'reformer', brand: b, count: 8, springs: { ...BRANDS[b].standard }, springOverrides: {} },
@@ -222,5 +311,5 @@ export function defaultStudio(name = 'My studio', brand = 'balanced_body') {
     ],
     props: { long_box: 4, short_box: 4, jump_board: 0, platform_extender: 0, magic_circle: 6, loop_band: 10, resistance_band: 6, small_ball: 6, hand_weights: 8, ankle_weights: 0, sliders: 0, foam_roller: 4 },
     targets: structuredClone(DEFAULT_TARGETS)
-  };
+  });
 }

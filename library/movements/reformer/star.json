@@ -86,6 +86,9 @@
       "text": "Top leg and arm lifted."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

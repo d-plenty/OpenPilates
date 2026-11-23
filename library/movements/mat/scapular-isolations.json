@@ -68,6 +68,9 @@
       "text": "Against body weight."
     }
   ],
+  "uses": [
+    "warmup"
+  ],
   "cautions": [
     {
       "tag": "shoulder",

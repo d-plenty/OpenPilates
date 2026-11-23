@@ -71,7 +71,26 @@
     "Breathe in to roll the spine down towards the springs with the carriage at home.",
     "Breathe out to press the carriage out with the hips low, then lift the hips and bring the carriage home. Reverse."
   ],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Bridge and press",
+      "text": "Hips stay level as the carriage goes out and in."
+    },
+    {
+      "tag": "L2",
+      "title": "Roll down, out, up and in",
+      "text": "One full circle with the spine."
+    },
+    {
+      "tag": "L3",
+      "title": "Reverse the circle",
+      "text": "Out, roll down, in, roll up."
+    }
+  ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

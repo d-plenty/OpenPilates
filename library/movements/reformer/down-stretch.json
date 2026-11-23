@@ -69,7 +69,24 @@
     "Breathe in to push the carriage back, keeping the arc.",
     "Breathe out to bring it home, chest lifting up and through the arms."
   ],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Hold the shape",
+      "text": "Hips forward, chest open, carriage still."
+    },
+    {
+      "tag": "L2",
+      "title": "Press out and in",
+      "text": "The back bend holds as the carriage moves a short way."
+    },
+    {
+      "tag": "L3",
+      "title": "Lift higher on the return",
+      "text": "Chest and eyes lift a little more each time the carriage comes home."
+    }
+  ],
+  "uses": [],
   "cautions": [
     {
       "tag": "pregnancy",

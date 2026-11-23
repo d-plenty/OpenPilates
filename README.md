@@ -4,7 +4,7 @@
 
 OpenPilates lets you build a class from a library of movements and shows you what the class actually does: which muscles it works, how the spine moves, how much time goes on spring and position changes, and whether it builds to a peak and winds down. It also checks every movement against the clients booked in. It runs on your own server with Docker. There's no subscription, and client details stay with you.
 
-> Version 0.4 — early release. The starter movement library is a draft and needs review by a qualified Pilates instructor before you teach from it (see [Movement library](#movement-library)).
+> Version 0.5 — early release. The starter movement library is a draft and needs review by a qualified Pilates instructor before you teach from it (see [Movement library](#movement-library)).
 
 ---
 
@@ -12,31 +12,34 @@ OpenPilates lets you build a class from a library of movements and shows you wha
 
 OpenPilates is a free class planner for mat and reformer instructors.
 
-- **Build flows from segments.** Search the library by any name a movement goes by, or browse by part of the class, muscle, body position, spine movement, equipment or spring setting, then drag movements into segments such as warm-up, build, peak and cool-down. Drop in a whole **series** (Footwork, Short Box, Long Stretch, kneeling arms) in one go, or save a segment as a series of your own. Tick **Repeat other side** on a block of one-sided work and the timing doubles for you. You can note a song or playlist on each segment.
+- **Start from the class you're teaching.** Pick a class type (Reformer Flow, Mat Flow, or one your studio set up), a length and a level. You get its phases, such as warm-up, footwork, standing legs, core and cool-down, each with the minutes it usually takes.
+- **Build in blocks.** A block is one movement and what you build on it: the version the class does, the springs (with support and challenge springs for individuals), layers in your own words, a finisher, and what you'll offer anyone who needs less or more. You plan it right where it sits in the flow. Add blocks from a searchable picker, from the library beside the flow, or drop in a whole **series** (Footwork, Short Box, Long Stretch, kneeling arms).
+- **Time that adds up.** A block's time is the movement plus time for each layer and the finisher, and spring, position and box changes are counted too. Each phase shows its time against the minutes it was given, so you can see where a class runs long before you teach it.
 - **See what your class does as you build it.**
   - muscles worked, front and back
   - flexion, extension, rotation and side bend against a target
   - body-position and spring changes, and time spent setting up
   - an effort curve that should build to a peak and then wind down
-  - **a spring map**: which setting each stretch of the class runs on, where every change falls, and whether you're inside your limit (Flow and Fit classes aim for three or fewer)
+  - **a spring map**: which setting each stretch of the class runs on, where every change falls, and whether you're inside the limit set for that class type
   - **class balance**: time on lower body, upper body, core and stretch; how much is holding still against load versus moving; and which movement categories (trunk flexion, extension, side bend, rotation, hip work, hands-and-knees, standing) the class hasn't touched yet
-- **Layers & variations.** On any movement in a flow you choose the version the class does (standard, single arm, a foot position), pin the springs, pick the layers you'll build, and add variations to offer individuals: a regression (simpler), a progression (harder) or another version, each with its own springs if it needs them, or a movement added inside the movement. They show in the builder, on the run sheet and in Play mode, and the checks tell you when a hard movement has no regression planned.
 - **A picture for every movement.** Each movement has a drawn diagram of the start and finish position, with a face and feet so you can tell whether the body is on its back, front or side. Your studio can add its own photo to any movement.
-- **Levels as ranges.** A movement can be Beginner–Intermediate or Intermediate–Advanced, because springs and layers change how hard it is. All-levels movements are marked that way.
+- **Your level names.** A movement has a difficulty range, because springs and layers change how hard it is. Your studio's class levels (Beginner / Intermediate / Advanced, Beginner-Intermediate / Intermediate-Advanced, or your own names) each cover part of that range.
 - **Get checks before you teach.** The app flags a class that opens with something hard, a tough movement with no lead-in earlier in the plan, a long run of hard holds with no relief, a missing cool-down or no back extension. It also checks every movement against who's booked in. Each caution is either **adjust** (teach it with the noted change, like keeping time on the back short in pregnancy) or **avoid** (with a suggested swap). Pregnancy is split into the first 12 weeks and after.
-- **Short on time?** Pick a goal, class style, length and level, and OpenPilates drafts a class for you to edit. Reformer drafts open with footwork, work through the body in blocks, keep movements that share a spring setting together and save the hardest core work for late in the class.
+- **Short on time?** "Draft it for me" follows the class type: each phase gets its share of the class and a few blocks with room to build, warm-ups and cool-downs only use movements marked for them, the hardest work is kept for the peak, movements that share a spring setting sit together, and the plan is fitted to the class length. Then you change whatever you like.
 - **Teach from Play mode** on your phone or tablet. Every flow in your list has a play button, so a class you've already built is one tap from starting. It shows only what you need mid-class: the movement and version, springs, reps, a countdown, your layers and variations, your own notes, client alerts and what's next, with a warning before a spring change. The picture, set-up and cues are one tap away.
-- **Print a run sheet.** One page per class: what to set out before people arrive, then each segment with springs, changes, reps and the options you planned.
-- **Tidy springs.** One button reorders movements inside each segment so shared spring settings sit together. Warm-up and cool-down are left alone, and you can undo it.
+- **Print a run sheet.** One page per class: what to set out before people arrive, then each phase with springs, changes, layers, finishers, reps and what you planned to offer.
+- **Tidy springs.** One button reorders blocks inside each phase so shared spring settings sit together. Warm-up and cool-down are left alone, and you can undo it.
 - **Review the library.** A review list lets a teacher work down every movement and mark it right or flag what's wrong. Flags can be fixed in the editor or downloaded and sent upstream.
-- **Guide.** One page on the words the app uses (movement, variation, layer, series) and what each check looks at.
+- **Make it yours.** Edit any movement or series, build your own from scratch, take out what you never teach and put it back later. Add your own props, client cautions and muscle names.
+- **Guide.** One page on setting up, the words the app uses (movement, block, phase, layer, series) and what each check looks at.
 - **Your springs only.** Tell the app which reformers you have and how many of each spring is on them. Every setting is then shown in those springs and nothing else: Balanced Body, Merrithew/Stott, Peak, BASI, Align-Pilates, Flexia, classical or your own names and colours.
 
 ## For studio owners
 
 OpenPilates is a free, open-source class planner you run yourself. There's no subscription, and no cloud company holds your clients' details.
 
-- **Set it up once.** Add your rooms, reformer brand and springs, your props, and what a balanced class means to you. Every instructor's plans then fit your equipment and match your machines.
+- **Set it up once.** Rooms, reformer brand and springs, props, your class types with their phases and minutes, your level names, class lengths, timing and what a balanced class means to you. Everything else follows, for every instructor.
+- **Packs.** Export everything your studio has changed (movements, series, class types, levels, lists, review marks) as one file. Bring it in on another server, or send it back to the project so your corrections reach the next version. Clients are never in a pack.
 - **One login per instructor.** Each instructor has their own login, flows and private notes. Everyone shares the studio's movement library and client notes, so a new instructor sees the same cautions and swaps as your senior team.
 - **Client details stay put.** Client health notes stay on your server and are never included when flows are shared or exported.
 - **Your data is yours.** Back everything up and take it with you. It runs on a NAS, an old laptop or anything that runs Docker.

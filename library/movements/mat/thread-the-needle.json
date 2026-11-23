@@ -50,7 +50,26 @@
     "Breathe out to thread that arm under the body, shoulder and ear lowering towards the mat.",
     "Breathe in to unwind."
   ],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Open to the ceiling",
+      "text": "Follow the hand with the eyes."
+    },
+    {
+      "tag": "L2",
+      "title": "Thread under",
+      "text": "Shoulder and ear come to the mat."
+    },
+    {
+      "tag": "L3",
+      "title": "Hold the twist",
+      "text": "Two breaths threaded, pressing the mat away with the other hand."
+    }
+  ],
+  "uses": [
+    "cooldown"
+  ],
   "cautions": [
     {
       "tag": "wrist",

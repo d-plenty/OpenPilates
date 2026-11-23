@@ -89,6 +89,9 @@
       "text": "Turn the hips as you lower into the plank."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

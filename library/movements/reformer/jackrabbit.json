@@ -88,6 +88,9 @@
       "text": "From the plank, lift the hips before bending in."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "wrist",

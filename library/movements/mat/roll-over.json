@@ -73,6 +73,9 @@
       "text": "Open on the way over, close on the way down."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

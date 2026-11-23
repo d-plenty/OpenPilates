@@ -85,6 +85,9 @@
       "text": "Back over the box."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

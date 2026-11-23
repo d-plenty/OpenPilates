@@ -53,7 +53,26 @@
     "Breathe in to roll back to the shoulder blades and clap three times.",
     "Breathe out to roll up and balance."
   ],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Balance and clap",
+      "text": "Hold the tuck and clap the feet three times."
+    },
+    {
+      "tag": "L2",
+      "title": "Roll back and up",
+      "text": "Roll to the shoulder blades and back to balance."
+    },
+    {
+      "tag": "L3",
+      "title": "Clap at both ends",
+      "text": "Three claps at the back and three at the front."
+    }
+  ],
+  "uses": [
+    "cooldown"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

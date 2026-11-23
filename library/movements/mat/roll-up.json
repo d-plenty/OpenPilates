@@ -74,6 +74,9 @@
       "text": "Hold a ball or pole."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

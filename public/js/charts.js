@@ -99,7 +99,7 @@ export function positionStrip(timeline, { height = 36, labels = true } = {}) {
   const colors = Object.fromEntries(POSITIONS.map((p) => [p.id, p]));
   return h('div', { class: 'pos-strip', style: { height: height + 'px' }, role: 'img', 'aria-label': 'Body positions in order: ' + timeline.map((p) => colors[p.position]?.label).join(', ') },
     timeline.map((p) => h('div', { style: { flex: `${p.sec} 1 0`, background: colors[p.position]?.color || '#999' }, title: `${colors[p.position]?.label} · ${fmtClock(p.sec)}` },
-      labels && p.sec >= 120 ? colors[p.position]?.label : '')));
+      labels && p.sec / (timeline.reduce((x, q) => x + q.sec, 0) || 1) >= 0.012 * (colors[p.position]?.label || '').length + 0.02 ? colors[p.position]?.label : '')));
 }
 
 export function positionKey(positionMinutes) {

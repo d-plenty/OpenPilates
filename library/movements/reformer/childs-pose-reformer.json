@@ -71,6 +71,9 @@
       "text": "Walk both hands to one end of the bar."
     }
   ],
+  "uses": [
+    "cooldown"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

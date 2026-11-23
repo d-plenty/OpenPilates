@@ -88,6 +88,9 @@
       "text": "Ball, ring or pole."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

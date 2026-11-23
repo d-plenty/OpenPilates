@@ -72,6 +72,9 @@
       "text": "Rise at the top of each squat."
     }
   ],
+  "uses": [
+    "warmup"
+  ],
   "cautions": [
     {
       "tag": "balance",

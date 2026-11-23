@@ -66,7 +66,21 @@
     "Bend the knees and beat the heels together a few times.",
     "Breathe out to stretch the legs and press back up."
   ],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Lower and lift",
+      "text": "Chest down as the legs sweep up, then press up; no beats."
+    },
+    {
+      "tag": "L2",
+      "title": "Add the heel beats",
+      "text": "Beat the heels at the top of the back bend."
+    }
+  ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

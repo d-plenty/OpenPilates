@@ -6,7 +6,8 @@ import { randomBytes } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { openDb, loadLibrary, loadSeries, libraryVersionOf, getSetting, setSetting } from './db.js';
 import { hashPassword, verifyPassword, passwordProblem, createSession, userForToken, parseCookies, loginBlocked, noteFailure, clearFailures } from './auth.js';
-import { cleanMovement, cleanFlow, cleanClient, cleanStudio, cleanSeries, defaultStudio, Invalid, slugify } from './validate.js';
+import { applyStudioLists } from '../shared/vocab.js';
+import { cleanMovement, cleanFlow, cleanClient, cleanStudio, cleanSeries, defaultStudio, fillStudio, Invalid, slugify } from './validate.js';
 
 const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const PKG = JSON.parse(readFileSync(join(ROOT, 'package.json'), 'utf8'));
@@ -25,7 +26,8 @@ export function createApp(opts = {}) {
   const cfg = { ...config, ...opts };
   const db = openDb(cfg.dataDir);
   const loaded = loadLibrary(db, cfg.libraryDir);
-  loadSeries(db, cfg.seriesDir || join(cfg.libraryDir, '..', 'series'));
+  const seriesDir = cfg.seriesDir || join(cfg.libraryDir, '..', 'series');
+  loadSeries(db, seriesDir);
   if (!cfg.quiet) console.log(`OpenPilates ${VERSION}: ${loaded} library movements loaded, data in ${cfg.dataDir}`);
 
   // Optional first admin from environment (handy for scripted installs).
@@ -38,7 +40,18 @@ export function createApp(opts = {}) {
     }
   }
 
-  const studio = () => getSetting(db, 'studio', defaultStudio());
+  const studio = () => fillStudio(getSetting(db, 'studio', defaultStudio()));
+  applyStudioLists(studio());
+  // What this studio has taken out of its library (hide), and retired movements it wants back (show).
+  const visibility = () => ({ hide: [], show: [], hideSeries: [], ...getSetting(db, 'visibility', {}) });
+  const setInLibrary = (key, undoKey, slug, inLibrary, wasOff) => {
+    const v = visibility();
+    const drop = (k) => { v[k] = v[k].filter((x) => x !== slug); };
+    drop(key); if (undoKey) drop(undoKey);
+    if (!inLibrary) v[key].push(slug);
+    else if (undoKey && wasOff) v[undoKey].push(slug);
+    setSetting(db, 'visibility', v);
+  };
 
   // ---------- helpers
   const send = (res, status, body, headers = {}) => {
@@ -50,7 +63,7 @@ export function createApp(opts = {}) {
   const readBody = (req) => new Promise((ok, bad) => {
     let size = 0;
     const chunks = [];
-    req.on('data', (c) => { size += c.length; if (size > 5e6) { bad(new Invalid('Request too large.')); req.destroy(); } else chunks.push(c); });
+    req.on('data', (c) => { size += c.length; if (size > 12e6) { bad(new Invalid('Request too large.')); req.destroy(); } else chunks.push(c); });
     req.on('end', () => {
       if (!chunks.length) return ok({});
       try { ok(JSON.parse(Buffer.concat(chunks).toString('utf8'))); } catch { bad(new Invalid('Request body must be JSON.')); }
@@ -70,16 +83,20 @@ export function createApp(opts = {}) {
     const c = cache ? cache[slug] : db.prepare('SELECT status, note, by_name, updated_at FROM movement_reviews WHERE slug = ?').get(slug);
     return c ? { check: { status: c.status, note: c.note, by: c.by_name, at: c.updated_at } } : {};
   };
-  const movementRow = (r, notes, media, checks) => {
+  const movementRow = (r, notes, media, checks, vis) => {
     const d = JSON.parse(r.data);
-    return { ...d, ...photoOf(r.slug, media), ...checkOf(r.slug, checks), source: r.source, ownerId: r.owner_id, updatedAt: r.updated_at, myNote: notes ? notes[r.slug] || '' : undefined };
+    const v = vis || visibility();
+    // hidden: not offered anywhere, but flows that use it still open
+    const hidden = v.hide.includes(r.slug) || (!!d.retired && !v.show.includes(r.slug));
+    return { ...d, ...(hidden ? { hidden: true } : {}), ...photoOf(r.slug, media), ...checkOf(r.slug, checks), source: r.source, ownerId: r.owner_id, updatedAt: r.updated_at, myNote: notes ? notes[r.slug] || '' : undefined };
   };
   const allMovements = (userId) => {
     const media = Object.fromEntries(db.prepare('SELECT slug, file, credit FROM movement_media').all().map((m) => [m.slug, m]));
     const notes = {};
     if (userId) for (const n of db.prepare('SELECT slug, text FROM movement_notes WHERE user_id = ?').all(userId)) notes[n.slug] = n.text;
     const checks = Object.fromEntries(db.prepare('SELECT * FROM movement_reviews').all().map((c) => [c.slug, c]));
-    return db.prepare('SELECT * FROM movements ORDER BY apparatus, slug').all().map((r) => movementRow(r, notes, media, checks));
+    const vis = visibility();
+    return db.prepare('SELECT * FROM movements ORDER BY apparatus, slug').all().map((r) => movementRow(r, notes, media, checks, vis));
   };
   const flowOut = (r, user) => {
     const owner = r.owner_id ? db.prepare('SELECT display_name FROM users WHERE id = ?').get(r.owner_id) : null;
@@ -112,7 +129,7 @@ export function createApp(opts = {}) {
     if (!/^[a-z0-9._-]{2,40}$/.test(username)) return fail(res, 400, 'Usernames use 2–40 letters, numbers, dots, dashes or underscores.');
     const p = passwordProblem(b.password); if (p) return fail(res, 400, p);
     const info = db.prepare('INSERT INTO users (username, display_name, role, pass_hash) VALUES (?, ?, ?, ?)').run(username, String(b.displayName || username).slice(0, 80), 'admin', hashPassword(b.password));
-    setSetting(db, 'studio', defaultStudio(String(b.studioName || 'My studio').slice(0, 80), b.brand));
+    setSetting(db, 'studio', defaultStudio(String(b.studioName || 'My studio').slice(0, 80), b.brand, b.levelScheme));
     const s = createSession(db, Number(info.lastInsertRowid));
     send(res, 201, { ok: true }, { 'Set-Cookie': sessionCookie(req, s.token, s.maxAge) });
   }, { auth: 'none' });
@@ -183,6 +200,7 @@ export function createApp(opts = {}) {
   route('PUT', '/api/studio', async (req, res) => {
     const s = cleanStudio(await readBody(req));
     setSetting(db, 'studio', s);
+    applyStudioLists(s);
     send(res, 200, s);
   }, { auth: 'admin' });
 
@@ -281,7 +299,22 @@ export function createApp(opts = {}) {
   });
 
   // ---- series: ready-built runs of movements
-  const seriesOut = (r) => ({ ...JSON.parse(r.data), source: r.source, ownerId: r.owner_id });
+  const seriesOut = (r) => ({ ...JSON.parse(r.data), source: r.source, ownerId: r.owner_id, ...(visibility().hideSeries.includes(r.slug) ? { hidden: true } : {}) });
+  // Take a movement or series out of this studio's library, or put it back. Nothing is deleted.
+  route('PUT', '/api/movements/:slug/library', async (req, res, { params }) => {
+    const r = db.prepare('SELECT * FROM movements WHERE slug = ?').get(params.slug);
+    if (!r) return fail(res, 404, 'No such movement.');
+    const b = await readBody(req);
+    setInLibrary('hide', 'show', params.slug, !!b.inLibrary, !!JSON.parse(r.data).retired);
+    send(res, 200, movementRow(r));
+  }, { auth: 'admin' });
+  route('PUT', '/api/series/:slug/library', async (req, res, { params }) => {
+    const r = db.prepare('SELECT * FROM series WHERE slug = ?').get(params.slug);
+    if (!r) return fail(res, 404, 'No such series.');
+    const b = await readBody(req);
+    setInLibrary('hideSeries', null, params.slug, !!b.inLibrary, false);
+    send(res, 200, seriesOut(r));
+  }, { auth: 'admin' });
   route('GET', '/api/series', (req, res) => send(res, 200, db.prepare('SELECT * FROM series ORDER BY apparatus DESC, slug').all().map(seriesOut)));
   route('POST', '/api/series', async (req, res, { user }) => {
     const s = cleanSeries(await readBody(req));
@@ -291,11 +324,25 @@ export function createApp(opts = {}) {
     db.prepare("INSERT INTO series (slug, apparatus, data, source, owner_id) VALUES (?, ?, ?, 'custom', ?)").run(slug, s.apparatus, JSON.stringify(s), user.id);
     send(res, 201, seriesOut(db.prepare('SELECT * FROM series WHERE slug = ?').get(slug)));
   });
+  route('PUT', '/api/series/:slug', async (req, res, { user, params }) => {
+    const r = db.prepare('SELECT * FROM series WHERE slug = ?').get(params.slug);
+    if (!r) return fail(res, 404, 'No such series.');
+    if (!(r.source === 'custom' && r.owner_id === user.id) && user.role !== 'admin') return fail(res, 403, 'Only an admin can change a library series.');
+    const s = { ...cleanSeries(await readBody(req)), slug: params.slug };
+    db.prepare("UPDATE series SET data = ?, apparatus = ?, source = ?, owner_id = COALESCE(owner_id, ?), updated_at = datetime('now') WHERE slug = ?").run(JSON.stringify(s), s.apparatus, r.source === 'library' ? 'studio' : r.source, user.id, params.slug);
+    send(res, 200, seriesOut(db.prepare('SELECT * FROM series WHERE slug = ?').get(params.slug)));
+  });
   route('DELETE', '/api/series/:slug', (req, res, { user, params }) => {
     const r = db.prepare('SELECT * FROM series WHERE slug = ?').get(params.slug);
     if (!r) return fail(res, 404, 'No such series.');
-    if (r.source === 'library') return fail(res, 400, "Library series can't be deleted.");
+    if (r.source === 'library') return fail(res, 400, "Library series can't be deleted. Remove it from your library instead.");
     if (r.owner_id !== user.id && user.role !== 'admin') return fail(res, 403, 'You can only delete your own series.');
+    if (r.source === 'studio') {
+      // an edited library series goes back to how it shipped
+      db.prepare("UPDATE series SET source = 'library', owner_id = NULL WHERE slug = ?").run(params.slug);
+      loadSeries(db, seriesDir);
+      return send(res, 200, { ok: true, restored: true });
+    }
     db.prepare('DELETE FROM series WHERE slug = ?').run(params.slug);
     send(res, 200, { ok: true });
   });
@@ -414,6 +461,77 @@ export function createApp(opts = {}) {
       reviews: db.prepare('SELECT * FROM movement_reviews').all()
     };
     send(res, 200, JSON.stringify(backup, null, 2), { 'Content-Type': 'application/json', 'Content-Disposition': `attachment; filename="openpilates-backup-${new Date().toISOString().slice(0, 10)}.json"` });
+  }, { auth: 'admin' });
+
+  // ---- pack: everything this studio has changed, in one file. It moves a studio's work to another
+  // server and is what gets sent back to improve the next version. Client details are never part of it.
+  const PACK_STUDIO = ['levels', 'classTypes', 'lengths', 'defaultLength', 'timing', 'targets', 'customProps', 'removedProps', 'customCautions', 'removedCautions', 'customMuscles', 'removedMuscles', 'sectionLabels', 'props'];
+  route('GET', '/api/pack', (req, res, { url }) => {
+    const s = studio();
+    const pack = {
+      openpilates: 'pack', version: 1, appVersion: VERSION, exportedAt: new Date().toISOString(), studioName: s.name,
+      studio: { ...Object.fromEntries(PACK_STUDIO.map((k) => [k, s[k]])), rooms: s.rooms },
+      movements: db.prepare("SELECT * FROM movements WHERE source != 'library'").all().map((r) => ({ ...JSON.parse(r.data), source: r.source })),
+      series: db.prepare("SELECT * FROM series WHERE source != 'library'").all().map((r) => ({ ...JSON.parse(r.data), source: r.source })),
+      reviews: db.prepare('SELECT * FROM movement_reviews ORDER BY slug').all().map((c) => ({ slug: c.slug, status: c.status, note: c.note, by: c.by_name, at: c.updated_at })),
+      visibility: visibility(),
+      ...(url.searchParams.get('flows') === '0' ? {} : { flows: db.prepare('SELECT * FROM flows ORDER BY updated_at').all().map((r) => stripClients(JSON.parse(r.data))) })
+    };
+    send(res, 200, JSON.stringify(pack, null, 2), { 'Content-Type': 'application/json', 'Content-Disposition': `attachment; filename="${slugify(s.name) || 'studio'}-${new Date().toISOString().slice(0, 10)}.openpilates-pack.json"` });
+  }, { auth: 'admin' });
+  route('POST', '/api/pack/import', async (req, res, { user }) => {
+    const b = await readBody(req);
+    if (b.openpilates !== 'pack') return fail(res, 400, "That isn't an OpenPilates pack file.");
+    const take = { studio: true, rooms: false, movements: true, series: true, reviews: true, flows: false, ...(b.take || {}) };
+    const done = { settings: 0, movements: 0, series: 0, reviews: 0, flows: 0, skipped: 0 };
+    if (take.studio && b.studio && typeof b.studio === 'object') {
+      const cur = studio();
+      const next = cleanStudio({ ...cur, ...Object.fromEntries(PACK_STUDIO.filter((k) => b.studio[k] !== undefined).map((k) => [k, b.studio[k]])), ...(take.rooms && Array.isArray(b.studio.rooms) ? { rooms: b.studio.rooms } : {}) });
+      setSetting(db, 'studio', next);
+      applyStudioLists(next);
+      done.settings = 1;
+      if (b.visibility && typeof b.visibility === 'object') {
+        const list = (x) => (Array.isArray(x) ? x.map((v) => slugify(v)).filter(Boolean).slice(0, 2000) : []);
+        setSetting(db, 'visibility', { hide: list(b.visibility.hide), show: list(b.visibility.show), hideSeries: list(b.visibility.hideSeries) });
+      }
+    }
+    if (take.movements) for (const m of Array.isArray(b.movements) ? b.movements.slice(0, 2000) : []) {
+      try {
+        const mv = cleanMovement(m, { slug: slugify(m.slug || m.name) });
+        if (!mv.slug) { done.skipped++; continue; }
+        const lib = libraryVersionOf(cfg.libraryDir, mv.slug);
+        db.prepare("INSERT INTO movements (slug, apparatus, data, source, owner_id) VALUES (?, ?, ?, ?, ?) ON CONFLICT(slug) DO UPDATE SET apparatus = excluded.apparatus, data = excluded.data, source = excluded.source, updated_at = datetime('now')")
+          .run(mv.slug, mv.apparatus, JSON.stringify(mv), lib ? 'studio' : 'custom', user.id);
+        done.movements++;
+      } catch { done.skipped++; }
+    }
+    if (take.series) for (const x of Array.isArray(b.series) ? b.series.slice(0, 500) : []) {
+      try {
+        const s = cleanSeries(x);
+        s.slug = slugify(x.slug || s.slug || s.name);
+        if (!s.slug) { done.skipped++; continue; }
+        const was = db.prepare('SELECT source FROM series WHERE slug = ?').get(s.slug);
+        db.prepare("INSERT INTO series (slug, apparatus, data, source, owner_id) VALUES (?, ?, ?, ?, ?) ON CONFLICT(slug) DO UPDATE SET apparatus = excluded.apparatus, data = excluded.data, source = excluded.source, updated_at = datetime('now')")
+          .run(s.slug, s.apparatus, JSON.stringify(s), was && was.source !== 'custom' ? 'studio' : 'custom', user.id);
+        done.series++;
+      } catch { done.skipped++; }
+    }
+    if (take.reviews) for (const c of Array.isArray(b.reviews) ? b.reviews.slice(0, 5000) : []) {
+      const slug = slugify(c && c.slug);
+      if (!slug || !db.prepare('SELECT 1 FROM movements WHERE slug = ?').get(slug)) { done.skipped++; continue; }
+      db.prepare("INSERT INTO movement_reviews (slug, status, note, by_name) VALUES (?, ?, ?, ?) ON CONFLICT(slug) DO UPDATE SET status = excluded.status, note = excluded.note, by_name = excluded.by_name, updated_at = datetime('now')")
+        .run(slug, c.status === 'ok' ? 'ok' : 'fix', String(c.note || '').slice(0, 1000), String(c.by || '').slice(0, 80));
+      done.reviews++;
+    }
+    if (take.flows) for (const f of Array.isArray(b.flows) ? b.flows.slice(0, 500) : []) {
+      try {
+        const flow = cleanFlow({ ...f, booked: [] });
+        const id = newFlowId();
+        db.prepare('INSERT INTO flows (id, owner_id, title, data) VALUES (?, ?, ?, ?)').run(id, user.id, flow.title, JSON.stringify(flow));
+        done.flows++;
+      } catch { done.skipped++; }
+    }
+    send(res, 200, done);
   }, { auth: 'admin' });
 
   // ---------- static files

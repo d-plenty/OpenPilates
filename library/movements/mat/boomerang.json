@@ -74,6 +74,9 @@
       "text": "Join them."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

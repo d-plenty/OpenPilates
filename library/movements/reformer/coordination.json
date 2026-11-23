@@ -62,7 +62,24 @@
   "reps": "6",
   "summary": "From a chest curl, press arms and legs out, open and close the legs, then return in sequence.",
   "steps": [],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Arms only",
+      "text": "Hold the curl and tabletop; press the arms down and bend them back."
+    },
+    {
+      "tag": "L2",
+      "title": "Arms and legs out together",
+      "text": "Legs reach to a line the back can hold."
+    },
+    {
+      "tag": "L3",
+      "title": "Add the open and close",
+      "text": "Legs open and close once before the knees fold in."
+    }
+  ],
+  "uses": [],
   "cautions": [
     {
       "tag": "pregnancy",

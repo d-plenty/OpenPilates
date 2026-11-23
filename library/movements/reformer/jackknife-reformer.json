@@ -81,6 +81,9 @@
       "text": "Lift the hips to a long line."
     }
   ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

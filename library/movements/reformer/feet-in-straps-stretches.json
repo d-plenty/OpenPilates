@@ -90,6 +90,9 @@
       "text": "Glutes."
     }
   ],
+  "uses": [
+    "cooldown"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

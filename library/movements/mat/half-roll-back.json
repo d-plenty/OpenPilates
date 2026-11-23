@@ -74,6 +74,9 @@
       "text": "Ball between the knees or behind the lower back."
     }
   ],
+  "uses": [
+    "warmup"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

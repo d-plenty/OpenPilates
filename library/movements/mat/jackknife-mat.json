@@ -56,7 +56,26 @@
     "Breathe out to send the legs straight up, hips over shoulders.",
     "Breathe in to roll down bone by bone, legs staying over the face as long as possible."
   ],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Roll over and lower",
+      "text": "Legs parallel to the floor, then roll down."
+    },
+    {
+      "tag": "L2",
+      "title": "Lift to vertical",
+      "text": "Legs shoot up over the shoulders."
+    },
+    {
+      "tag": "L3",
+      "title": "Slow roll down",
+      "text": "Legs stay vertical as long as they can while the spine comes down."
+    }
+  ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",

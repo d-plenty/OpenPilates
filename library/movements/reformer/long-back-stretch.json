@@ -63,7 +63,26 @@
     "Breathe in to bend the elbows and lower, then press the carriage out.",
     "Breathe out to straighten the arms and bring the carriage home. Reverse the circle."
   ],
-  "layers": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Small dip, carriage still",
+      "text": "Bend and straighten the elbows without travelling."
+    },
+    {
+      "tag": "L2",
+      "title": "Add the travel",
+      "text": "Lower, send the carriage out, lift and return."
+    },
+    {
+      "tag": "L3",
+      "title": "Reverse the circle",
+      "text": "Out first, then lower and come home."
+    }
+  ],
+  "uses": [
+    "peak"
+  ],
   "cautions": [
     {
       "tag": "pregnancy",
