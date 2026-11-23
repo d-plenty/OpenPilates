@@ -1,6 +1,6 @@
 {
   "slug": "double-leg-lower-lift",
-  "name": "Double Leg Lower & Lift",
+  "name": "Double Straight Leg Stretch",
   "apparatus": "mat",
   "section": "core",
   "level": "intermediate",
@@ -76,11 +76,6 @@
       "text": "Classical."
     }
   ],
-  "modifications": [
-    "Head down.",
-    "Bend the knees.",
-    "One leg at a time."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -127,5 +122,27 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Double leg lower and lift",
+    "Lower lift"
+  ],
+  "variations": [
+    {
+      "name": "Head down",
+      "kind": "regression"
+    },
+    {
+      "name": "Bend the knees",
+      "kind": "regression"
+    },
+    {
+      "name": "One leg at a time",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "matlists"
+  ]
 }

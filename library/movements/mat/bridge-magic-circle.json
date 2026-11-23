@@ -51,10 +51,6 @@
   "summary": "Bridge with a magic circle between the knees, squeezing at the top.",
   "steps": [],
   "layers": [],
-  "modifications": [
-    "Use a small ball instead of the ring.",
-    "Lower bridge."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -68,5 +64,19 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Use a small ball instead of the ring",
+      "kind": "regression"
+    },
+    {
+      "name": "Lower bridge",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "saran"
+  ]
 }

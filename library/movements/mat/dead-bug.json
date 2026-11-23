@@ -75,10 +75,6 @@
       "text": "Press a ball between the still knee and hand."
     }
   ],
-  "modifications": [
-    "Keep the knee bent as the leg lowers.",
-    "Smaller range."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -106,5 +102,21 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Dying bug"
+  ],
+  "variations": [
+    {
+      "name": "Keep the knee bent as the leg lowers",
+      "kind": "regression"
+    },
+    {
+      "name": "Smaller range",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "matlists"
+  ]
 }

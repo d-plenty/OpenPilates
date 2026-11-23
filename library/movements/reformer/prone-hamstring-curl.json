@@ -73,23 +73,14 @@
     },
     {
       "tag": "L2",
-      "title": "Single leg",
-      "text": "One strap at a time."
-    },
-    {
-      "tag": "L3",
       "title": "Hover the thighs",
       "text": "Lift the thighs slightly before curling."
     },
     {
-      "tag": "L4",
+      "tag": "L3",
       "title": "Tempo",
       "text": "Three counts to straighten."
     }
-  ],
-  "modifications": [
-    "Lighter spring.",
-    "Smaller range for cramping hamstrings."
   ],
   "cautions": [
     {
@@ -121,5 +112,28 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Hamstring curls",
+    "Prone hamstring curl"
+  ],
+  "variations": [
+    {
+      "name": "Single leg",
+      "kind": "progression",
+      "note": "One strap at a time."
+    },
+    {
+      "name": "Lighter spring",
+      "kind": "regression"
+    },
+    {
+      "name": "Smaller range for cramping hamstrings",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "opc",
+    "manual"
+  ]
 }

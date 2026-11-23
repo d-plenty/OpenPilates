@@ -74,10 +74,6 @@
       "text": "Tightest ball."
     }
   ],
-  "modifications": [
-    "Practise the balance without rolling.",
-    "Thicker mat for bony spines."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -117,5 +113,22 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Rolling back"
+  ],
+  "variations": [
+    {
+      "name": "Practise the balance without rolling",
+      "kind": "regression"
+    },
+    {
+      "name": "Thicker mat for bony spines",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "manual"
+  ]
 }

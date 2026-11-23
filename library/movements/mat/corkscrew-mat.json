@@ -1,6 +1,6 @@
 {
   "slug": "corkscrew-mat",
-  "name": "Corkscrew (Mat)",
+  "name": "Corkscrew",
   "apparatus": "mat",
   "section": "core",
   "level": "intermediate",
@@ -71,10 +71,6 @@
       "text": "Roll the hips up at the top of each circle."
     }
   ],
-  "modifications": [
-    "Bend the knees.",
-    "Hands under the pelvis."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -121,5 +117,23 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Cork-screw"
+  ],
+  "variations": [
+    {
+      "name": "Bend the knees",
+      "kind": "regression"
+    },
+    {
+      "name": "Hands under the pelvis",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "manual"
+  ]
 }

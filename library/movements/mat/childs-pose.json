@@ -65,10 +65,6 @@
       "text": "Walk both hands to one side."
     }
   ],
-  "modifications": [
-    "Knees wide to make room for the belly or hips.",
-    "Cushion between heels and hips, or under the forehead."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -90,5 +86,22 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Shell stretch",
+    "Child's pose"
+  ],
+  "variations": [
+    {
+      "name": "Knees wide to make room for the belly or hips",
+      "kind": "regression"
+    },
+    {
+      "name": "Cushion between heels and hips, or under the forehead",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "manual"
+  ]
 }

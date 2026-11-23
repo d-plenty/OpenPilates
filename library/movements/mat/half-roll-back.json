@@ -74,10 +74,6 @@
       "text": "Ball between the knees or behind the lower back."
     }
   ],
-  "modifications": [
-    "Smaller range.",
-    "Hold the thighs."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -106,5 +102,23 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Roll back",
+    "Half curl back"
+  ],
+  "variations": [
+    {
+      "name": "Smaller range",
+      "kind": "regression"
+    },
+    {
+      "name": "Hold the thighs",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "onform",
+    "manual"
+  ]
 }

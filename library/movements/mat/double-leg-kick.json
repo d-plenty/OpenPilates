@@ -57,10 +57,6 @@
     "Lower, turn the other cheek and repeat."
   ],
   "layers": [],
-  "modifications": [
-    "Hands by the hips, not clasped.",
-    "Smaller chest lift."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -106,5 +102,21 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Double kick"
+  ],
+  "variations": [
+    {
+      "name": "Hands by the hips, not clasped",
+      "kind": "regression"
+    },
+    {
+      "name": "Smaller chest lift",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology"
+  ]
 }

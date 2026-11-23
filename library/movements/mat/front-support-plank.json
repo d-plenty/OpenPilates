@@ -1,6 +1,6 @@
 {
   "slug": "front-support-plank",
-  "name": "Plank (Front Support)",
+  "name": "Plank",
   "apparatus": "mat",
   "section": "core",
   "level": "beginner",
@@ -70,10 +70,6 @@
       "text": "Different load."
     }
   ],
-  "modifications": [
-    "Knees down.",
-    "Forearms for sore wrists."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -93,5 +89,24 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Front support",
+    "Hover"
+  ],
+  "variations": [
+    {
+      "name": "Knees down",
+      "kind": "regression"
+    },
+    {
+      "name": "Forearms for sore wrists",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "onform",
+    "matlists",
+    "alo"
+  ]
 }

@@ -1,6 +1,6 @@
 {
   "slug": "long-spine",
-  "name": "Long Spine",
+  "name": "Long Spine Massage",
   "apparatus": "reformer",
   "section": "pelvic",
   "level": "advanced",
@@ -30,10 +30,8 @@
   "load": {
     "springs": [
       "medium",
-      "medium",
-      "xlight"
-    ],
-    "lighterIsHarder": true
+      "medium"
+    ]
   },
   "setup": {
     "headrest": "down",
@@ -67,9 +65,6 @@
     "Finish by pressing the long legs down towards the springs and back up."
   ],
   "layers": [],
-  "modifications": [
-    "Use Short Spine or a bridge instead."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -117,5 +112,24 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Long spine",
+    "Long spine stretch"
+  ],
+  "variations": [
+    {
+      "name": "Use Short Spine or a bridge instead",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "saran",
+    "complete",
+    "onform",
+    "manual"
+  ]
 }

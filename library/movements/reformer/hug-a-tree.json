@@ -85,10 +85,6 @@
       "text": "Easiest on the knees."
     }
   ],
-  "modifications": [
-    "Long loops for less tension.",
-    "Sit on the long box."
-  ],
   "cautions": [
     {
       "tag": "knee",
@@ -109,5 +105,33 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Hug",
+    "Rowing 6",
+    "Chest fly"
+  ],
+  "variations": [
+    {
+      "name": "Single arm",
+      "kind": "variation",
+      "springs": [
+        "xlight"
+      ]
+    },
+    {
+      "name": "Long loops for less tension",
+      "kind": "regression"
+    },
+    {
+      "name": "Sit on the long box",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "manual"
+  ]
 }

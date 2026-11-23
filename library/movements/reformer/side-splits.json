@@ -28,10 +28,10 @@
   "equipment": [],
   "load": {
     "springs": [
-      "light"
+      "medium"
     ],
     "advance": [
-      "xlight"
+      "light"
     ],
     "lighterIsHarder": true,
     "note": "Heavier works the outer hips on the way out; lighter makes the inner thighs work to close."
@@ -98,10 +98,6 @@
       "text": "Hand weights, ring or ball."
     }
   ],
-  "modifications": [
-    "Keep the range small.",
-    "Use Side Squats with the carriage locked instead."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -147,5 +143,35 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Standing side splits",
+    "Standing adductor",
+    "Standing series"
+  ],
+  "variations": [
+    {
+      "name": "Lighter spring",
+      "kind": "progression",
+      "springs": [
+        "light"
+      ],
+      "note": "Light spring: the inner thighs have to pull the carriage home and stop it flying out."
+    },
+    {
+      "name": "Keep the range small",
+      "kind": "regression"
+    },
+    {
+      "name": "Use Side Squats with the carriage locked instead",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "onform",
+    "manual"
+  ]
 }

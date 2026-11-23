@@ -32,8 +32,7 @@
       "light"
     ],
     "advance": [
-      "light",
-      "xlight"
+      "medium"
     ]
   },
   "setup": {
@@ -87,10 +86,6 @@
       "text": "Hardest base."
     }
   ],
-  "modifications": [
-    "Sit on the long box, or sit cross-legged, for sore knees.",
-    "Hold the long loops for less resistance."
-  ],
   "cautions": [
     {
       "tag": "knee",
@@ -106,5 +101,22 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Scapular retraction",
+    "Kneeling mid-back"
+  ],
+  "variations": [
+    {
+      "name": "Sit on the long box, or sit cross-legged, for sore knees",
+      "kind": "regression"
+    },
+    {
+      "name": "Hold the long loops for less resistance",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "manual"
+  ]
 }

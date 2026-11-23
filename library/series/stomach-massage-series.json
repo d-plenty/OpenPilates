@@ -1,0 +1,25 @@
+{
+  "slug": "stomach-massage-series",
+  "name": "Stomach Massage Series",
+  "apparatus": "reformer",
+  "aka": [],
+  "summary": "Four versions, each a little harder.",
+  "items": [
+    {
+      "slug": "stomach-massage",
+      "variation": "Round back"
+    },
+    {
+      "slug": "stomach-massage",
+      "variation": "Hands back"
+    },
+    {
+      "slug": "stomach-massage",
+      "variation": "Reach up"
+    },
+    {
+      "slug": "stomach-massage",
+      "variation": "Twist"
+    }
+  ]
+}

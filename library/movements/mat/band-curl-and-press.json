@@ -77,10 +77,6 @@
       "text": "Stay in the middle."
     }
   ],
-  "modifications": [
-    "Less tension, or no band.",
-    "Smaller range."
-  ],
   "cautions": [
     {
       "tag": "shoulder",
@@ -94,5 +90,21 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Less tension, or no band",
+      "kind": "regression"
+    },
+    {
+      "name": "Smaller range",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards"
+  ]
 }

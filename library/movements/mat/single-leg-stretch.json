@@ -71,10 +71,6 @@
       "text": "See Criss Cross."
     }
   ],
-  "modifications": [
-    "Head down.",
-    "Legs higher."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -101,5 +97,21 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Head down",
+      "kind": "regression"
+    },
+    {
+      "name": "Legs higher",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "matlists",
+    "manual"
+  ]
 }

@@ -1,6 +1,6 @@
 {
   "slug": "standing-lunge",
-  "name": "Standing Lunge",
+  "name": "Lunge, Foot on the Floor",
   "apparatus": "reformer",
   "section": "lower",
   "level": "beginner",
@@ -29,13 +29,13 @@
   "equipment": [],
   "load": {
     "springs": [
-      "medium"
+      "light"
     ],
     "advance": [
-      "medium",
       "xlight"
     ],
-    "note": "Blue or yellow turns it into a balance-and-control version: the carriage is harder to hold steady."
+    "note": "Blue or yellow turns it into a balance-and-control version: the carriage is harder to hold steady.",
+    "lighterIsHarder": true
   },
   "setup": {
     "headrest": "any",
@@ -95,11 +95,6 @@
       "text": "Standing foot on a box or platform for more depth."
     }
   ],
-  "modifications": [
-    "Lean the body slightly forward as the back leg goes out to ease the lower back.",
-    "Smaller range for knees.",
-    "Pregnancy and post-natal: use a lighter spring and keep the range small."
-  ],
   "cautions": [
     {
       "tag": "knee",
@@ -123,5 +118,36 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Glute lunge",
+    "Floor lunge",
+    "Standing lunge",
+    "Lunges",
+    "Eve's lunge"
+  ],
+  "variations": [
+    {
+      "name": "Curtsy lunge",
+      "kind": "variation",
+      "note": "Floor foot steps across behind the line of the carriage."
+    },
+    {
+      "name": "Lean the body slightly forward as the back leg goes out to ease the lower back",
+      "kind": "regression"
+    },
+    {
+      "name": "Smaller range for knees",
+      "kind": "regression"
+    },
+    {
+      "name": "Pregnancy and post-natal: use a lighter spring and keep the range small",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "saran",
+    "onform",
+    "manual"
+  ]
 }

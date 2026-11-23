@@ -33,6 +33,10 @@
   "load": {
     "springs": [
       "medium",
+      "light"
+    ],
+    "advance": [
+      "medium",
       "medium"
     ]
   },
@@ -68,9 +72,6 @@
     "Breathe out to press the carriage out with the hips low, then lift the hips and bring the carriage home. Reverse."
   ],
   "layers": [],
-  "modifications": [
-    "Bridge with the carriage press instead."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -125,5 +126,19 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Semi circle"
+  ],
+  "variations": [
+    {
+      "name": "Bridge with the carriage press instead",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards"
+  ]
 }

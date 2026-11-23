@@ -1,6 +1,6 @@
 {
   "slug": "rowing-front",
-  "name": "Rowing — Front Series",
+  "name": "Rowing Front",
   "apparatus": "reformer",
   "section": "chest_arms",
   "level": "intermediate",
@@ -19,17 +19,21 @@
   "muscles": {
     "primary": [
       "deltoids",
-      "upper_back"
+      "triceps"
     ],
     "secondary": [
-      "triceps",
+      "chest",
+      "serratus",
       "abdominals"
     ]
   },
   "equipment": [],
   "load": {
     "springs": [
-      "xlight"
+      "light"
+    ],
+    "advance": [
+      "medium"
     ]
   },
   "setup": {
@@ -59,7 +63,6 @@
   "summary": "Seated facing the footbar, press the straps forward and up through a series of arm patterns.",
   "steps": [],
   "layers": [],
-  "modifications": [],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -83,5 +86,28 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Rowing 3 and 4",
+    "From the chest",
+    "From the hips",
+    "Front rowing"
+  ],
+  "variations": [
+    {
+      "name": "Sitting tall (From the Chest)",
+      "kind": "variation"
+    },
+    {
+      "name": "Bending down (From the Hips)",
+      "kind": "variation"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "onform",
+    "manual"
+  ]
 }

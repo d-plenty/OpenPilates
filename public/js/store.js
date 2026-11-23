@@ -25,6 +25,7 @@ export const store = {
   movementList: null,
   studio: null,
   clients: null,
+  series: null,
 
   async loadState() { this.state = await api('GET', '/state'); return this.state; },
   get user() { return this.state && this.state.user; },
@@ -33,9 +34,15 @@ export const store = {
   async loadMovements(force) {
     if (this.movements && !force) return this.movements;
     const list = await api('GET', '/movements');
-    this.movementList = list.sort((a, b) => a.name.localeCompare(b.name));
+    // Retired movements stay resolvable (old flows still open) but are not offered anywhere.
+    this.movementList = list.filter((m) => !m.retired).sort((a, b) => a.name.localeCompare(b.name));
     this.movements = Object.fromEntries(list.map((m) => [m.slug, m]));
     return this.movements;
+  },
+  async loadSeries(force) {
+    if (this.series && !force) return this.series;
+    this.series = await api('GET', '/series');
+    return this.series;
   },
   async loadStudio(force) {
     if (this.studio && !force) return this.studio;
@@ -47,7 +54,7 @@ export const store = {
     this.clients = await api('GET', '/clients');
     return this.clients;
   },
-  reset() { this.movements = this.movementList = this.studio = this.clients = null; },
+  reset() { this.movements = this.movementList = this.studio = this.clients = this.series = null; },
 
   // The room a flow uses decides which spring colours are shown.
   roomFor(flow) {

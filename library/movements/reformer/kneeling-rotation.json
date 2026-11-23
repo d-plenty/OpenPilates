@@ -92,10 +92,6 @@
       "text": "Front foot on the carriage."
     }
   ],
-  "modifications": [
-    "Long loop for less tension.",
-    "Sit on the long box."
-  ],
   "cautions": [
     {
       "tag": "knee",
@@ -121,5 +117,24 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Kneeling twist",
+    "Twist facing the side"
+  ],
+  "variations": [
+    {
+      "name": "Long loop for less tension",
+      "kind": "regression"
+    },
+    {
+      "name": "Sit on the long box",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards"
+  ]
 }

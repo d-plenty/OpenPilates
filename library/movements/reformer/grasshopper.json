@@ -67,9 +67,6 @@
     "Breathe out to stretch the legs and press back up."
   ],
   "layers": [],
-  "modifications": [
-    "Swan on the long box instead."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -116,5 +113,15 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Swan on the long box instead",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "opc"
+  ]
 }

@@ -29,10 +29,14 @@
   "equipment": [],
   "load": {
     "springs": [
-      "medium"
+      "medium",
+      "light"
     ],
     "lighterIsHarder": true,
-    "note": "Lighter makes the standing leg and trunk work harder."
+    "note": "Lighter makes the standing leg and trunk work harder.",
+    "advance": [
+      "medium"
+    ]
   },
   "setup": {
     "headrest": "any",
@@ -81,10 +85,6 @@
       "text": "Hardest balance."
     }
   ],
-  "modifications": [
-    "Go back to Elephant on two feet.",
-    "Take spring off only once the movement is steady."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -131,5 +131,27 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Single-leg elephant",
+    "Elephant with one leg lifted"
+  ],
+  "variations": [
+    {
+      "name": "Go back to Elephant on two feet",
+      "kind": "regression"
+    },
+    {
+      "name": "Take spring off only once the movement is steady",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "saran",
+    "contrology",
+    "manual"
+  ]
 }

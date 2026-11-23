@@ -30,7 +30,7 @@
   "load": {
     "springs": [
       "medium",
-      "xlight"
+      "light"
     ],
     "advance": [
       "medium"
@@ -85,10 +85,6 @@
       "text": "Arms float out to the sides."
     }
   ],
-  "modifications": [
-    "Keep hands on the footbar, or hold a pole beside the carriage.",
-    "Front foot on the floor."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -136,5 +132,24 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Splits facing the footbar"
+  ],
+  "variations": [
+    {
+      "name": "Keep hands on the footbar, or hold a pole beside the carriage",
+      "kind": "regression"
+    },
+    {
+      "name": "Front foot on the floor",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "manual"
+  ]
 }

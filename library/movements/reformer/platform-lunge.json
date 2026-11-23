@@ -1,6 +1,6 @@
 {
   "slug": "platform-lunge",
-  "name": "Lunge on the Reformer",
+  "name": "Lunge on the Carriage",
   "apparatus": "reformer",
   "section": "lower",
   "level": "intermediate",
@@ -30,13 +30,13 @@
   "equipment": [],
   "load": {
     "springs": [
-      "medium"
+      "light"
     ],
     "advance": [
-      "medium",
       "xlight"
     ],
-    "note": "A single blue makes the return a real hamstring and balance challenge."
+    "note": "A single blue makes the return a real hamstring and balance challenge.",
+    "lighterIsHarder": true
   },
   "setup": {
     "headrest": "any",
@@ -96,11 +96,6 @@
       "text": "Lower the back knee towards the carriage like a split squat."
     }
   ],
-  "modifications": [
-    "Go back to the lunge with one foot on the floor.",
-    "Keep hands on the bar.",
-    "Smaller range."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -139,5 +134,27 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Standing lunge on the reformer",
+    "Split-stance lunge"
+  ],
+  "variations": [
+    {
+      "name": "Go back to the lunge with one foot on the floor",
+      "kind": "regression"
+    },
+    {
+      "name": "Keep hands on the bar",
+      "kind": "regression"
+    },
+    {
+      "name": "Smaller range",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "saran",
+    "onform"
+  ]
 }

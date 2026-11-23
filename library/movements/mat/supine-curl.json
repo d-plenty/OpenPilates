@@ -72,10 +72,6 @@
       "text": "Small ball behind the mid-back or between the knees."
     }
   ],
-  "modifications": [
-    "One hand behind the head, alternating.",
-    "Small ball or towel behind the shoulder blades."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -109,5 +105,25 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Chest lift",
+    "Ab curl",
+    "Curl up"
+  ],
+  "variations": [
+    {
+      "name": "One hand behind the head, alternating",
+      "kind": "regression"
+    },
+    {
+      "name": "Small ball or towel behind the shoulder blades",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "saran",
+    "onform",
+    "manual"
+  ]
 }

@@ -1,4 +1,5 @@
 import { POSE_IDS } from '../shared/poses.js';
+import { kindOf } from '../shared/vocab.js';
 import { POSITIONS, SPINE, MUSCLES, EQUIPMENT, LEVELS, CAUTIONS, PATTERNS, PLANES, LOAD_LEVELS, SEGMENT_ROLES, BRANDS, DEFAULT_TARGETS, SECTIONS, CATEGORIES, ROLES, PREGNANCY, HEADREST, STRAPS, FORMATS } from '../shared/vocab.js';
 
 const ids = (list) => new Set(list.map((x) => x.id));
@@ -21,6 +22,21 @@ export function slugify(s) {
   return String(s || '').toLowerCase().normalize('NFKD').replace(/[^\w\s-]/g, '').trim().replace(/[\s_]+/g, '-').replace(/-+/g, '-').slice(0, 60);
 }
 
+// Variations: other versions of the movement. Older files had a plain list of "modifications"; those become regressions.
+const KINDS = new Set(['regression', 'progression', 'variation']);
+function variations(m) {
+  const out = [];
+  const add = (v) => {
+    const name = str(v.name, 120);
+    if (!name || out.some((x) => x.name.toLowerCase() === name.toLowerCase())) return;
+    const springs = loads(v.springs);
+    out.push({ name, kind: KINDS.has(v.kind) ? v.kind : kindOf(v.kind), ...(springs.length ? { springs } : {}), ...(str(v.note, 300) ? { note: str(v.note, 300) } : {}) });
+  };
+  for (const v of Array.isArray(m.variations) ? m.variations : []) if (v && typeof v === 'object') add(v);
+  for (const t of lines(m.modifications, 10, 300)) add({ name: t.slice(0, 120), kind: 'regression' });
+  return out.slice(0, 20);
+}
+
 export function cleanMovement(input, { slug } = {}) {
   const m = input || {};
   const name = str(m.name, 100);
@@ -36,6 +52,7 @@ export function cleanMovement(input, { slug } = {}) {
   return {
     slug: slug || slugify(m.slug || name),
     name,
+    aka: (Array.isArray(m.aka) ? m.aka : String(m.aka || '').split(/[,\n]/)).map((x) => str(x, 60)).filter(Boolean).slice(0, 10),
     apparatus,
     ...(SEC.has(m.section) ? { section: m.section } : {}),
     level: LV.has(m.level) ? m.level : 'beginner',
@@ -68,22 +85,24 @@ export function cleanMovement(input, { slug } = {}) {
     reps: str(m.reps, 60),
     summary: str(m.summary, 600),
     steps: lines(m.steps, 10, 300),
-    modifications: lines(m.modifications, 10, 300),
+    variations: variations(m),
     prep: (Array.isArray(m.prep) ? m.prep : []).map((x) => slugify(x)).filter(Boolean).slice(0, 6),
     layers: (Array.isArray(m.layers) ? m.layers : []).slice(0, 12).map((l) => ({ tag: str(l.tag, 4) || 'L1', title: str(l.title, 80), text: str(l.text, 300) })).filter((l) => l.title),
     cautions: (Array.isArray(m.cautions) ? m.cautions : []).slice(0, 16).filter((c) => CA.has(c.tag)).map((c) => ({ tag: c.tag, severity: c.severity === 'modify' ? 'modify' : 'avoid', note: str(c.note, 300), ...(c.swap ? { swap: slugify(c.swap) } : {}) })),
     cues: str(m.cues, 2000),
     labels: (Array.isArray(m.labels) ? m.labels : []).map((x) => slugify(x)).filter(Boolean).slice(0, 12),
+    ...(m.retired ? { retired: true } : {}),
+    ...(Array.isArray(m.sources) && m.sources.length ? { sources: m.sources.map((x) => str(x, 30)).filter(Boolean).slice(0, 20) } : {}),
     review: m.review && typeof m.review === 'object' ? { status: str(m.review.status, 20) || 'draft', note: str(m.review.note, 300), by: str(m.review.by, 80), date: str(m.review.date, 20) } : { status: 'draft', note: '' }
   };
 }
 
 // Layers the class will be taught through, in order (tags from the movement's own layers).
 const itemLayers = (i) => [...new Set([...(Array.isArray(i.layers) ? i.layers : []), ...(i.layer ? [i.layer] : [])].map((x) => str(x, 4)).filter(Boolean))].slice(0, 12);
-// Options offered to individuals: an easier or harder version, with springs, an add-on movement, or just a note.
+// Variations offered to individuals: a regression, a progression or another version, with springs, an add-on movement, or just a note.
 const itemOptions = (i) => (Array.isArray(i.options) ? i.options : []).slice(0, 8).map((o) => ({
   id: str(o.id, 40) || Math.random().toString(36).slice(2),
-  kind: o.kind === 'easier' ? 'easier' : 'harder',
+  kind: kindOf(o.kind),
   title: str(o.title, 120),
   ...(Array.isArray(o.springs) ? { springs: o.springs.filter((x) => LOADS.has(x)).slice(0, 5) } : {}),
   ...(o.slug ? { slug: slugify(o.slug) } : {}),
@@ -106,6 +125,7 @@ export function cleanFlow(input) {
       slug: slugify(i.slug),
       ...(i.duration ? { duration: Math.round(num(i.duration, 10, 1800, 120)) } : {}),
       ...(i.reps ? { reps: str(i.reps, 60) } : {}),
+      ...(str(i.variation, 120) ? { variation: str(i.variation, 120) } : {}),
       ...(itemLayers(i).length ? { layers: itemLayers(i) } : {}),
       ...(itemOptions(i).length ? { options: itemOptions(i) } : {}),
       ...(i.note ? { note: str(i.note, 500) } : {}),
@@ -128,6 +148,27 @@ export function cleanFlow(input) {
     labels: (Array.isArray(f.labels) ? f.labels : []).map((x) => str(x, 30)).filter(Boolean).slice(0, 12),
     booked: (Array.isArray(f.booked) ? f.booked : []).slice(0, 40).map((b) => ({ clientId: Math.trunc(Number(b.clientId)) || 0, spot: str(b.spot, 20) })).filter((b) => b.clientId > 0),
     segments
+  };
+}
+
+export function cleanSeries(input, { slug } = {}) {
+  const s = input || {};
+  const name = str(s.name, 100);
+  if (!name) throw new Invalid('Give the series a name.');
+  const items = (Array.isArray(s.items) ? s.items : []).slice(0, 30).map((i) => ({
+    slug: slugify(i.slug),
+    ...(str(i.variation, 120) ? { variation: str(i.variation, 120) } : {}),
+    ...(i.duration ? { duration: Math.round(num(i.duration, 10, 1800, 120)) } : {}),
+    ...(i.reps ? { reps: str(i.reps, 60) } : {})
+  })).filter((i) => i.slug);
+  if (!items.length) throw new Invalid('A series needs at least one movement.');
+  return {
+    slug: slug || slugify(s.slug || name),
+    name,
+    apparatus: s.apparatus === 'mat' ? 'mat' : 'reformer',
+    aka: (Array.isArray(s.aka) ? s.aka : []).map((x) => str(x, 60)).filter(Boolean).slice(0, 10),
+    summary: str(s.summary, 300),
+    items
   };
 }
 

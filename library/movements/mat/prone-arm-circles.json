@@ -1,6 +1,6 @@
 {
   "slug": "prone-arm-circles",
-  "name": "Breaststroke (Mat)",
+  "name": "Breaststroke",
   "apparatus": "mat",
   "section": "back_shoulders",
   "level": "beginner",
@@ -76,10 +76,6 @@
       "text": "Hover both legs."
     }
   ],
-  "modifications": [
-    "Smaller lift.",
-    "Folded towel under the forehead between strokes."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -105,5 +101,24 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Prone arm circles",
+    "Breaststroke prep"
+  ],
+  "variations": [
+    {
+      "name": "Smaller lift",
+      "kind": "regression"
+    },
+    {
+      "name": "Folded towel under the forehead between strokes",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "manual"
+  ]
 }

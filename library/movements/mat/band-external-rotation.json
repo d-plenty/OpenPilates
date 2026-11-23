@@ -5,7 +5,7 @@
   "section": "back_shoulders",
   "level": "beginner",
   "levelTo": "beginner",
-  "pose": "mat-stand",
+  "pose": "mat-kneel-up",
   "position": "kneeling",
   "spine": [
     "neutral"
@@ -74,10 +74,6 @@
       "text": "Kneeling up, a lunge, or standing on one leg."
     }
   ],
-  "modifications": [
-    "Slack in the band for less resistance.",
-    "No band."
-  ],
   "cautions": [
     {
       "tag": "shoulder",
@@ -94,5 +90,19 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Slack in the band for less resistance",
+      "kind": "regression"
+    },
+    {
+      "name": "No band",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "manual"
+  ]
 }

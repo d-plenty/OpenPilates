@@ -70,9 +70,6 @@
       "text": "More load."
     }
   ],
-  "modifications": [
-    "Smaller roll back."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -101,5 +98,16 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Smaller roll back",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "onform",
+    "manual"
+  ]
 }

@@ -69,18 +69,9 @@
     },
     {
       "tag": "L4",
-      "title": "Single leg",
-      "text": "One leg long."
-    },
-    {
-      "tag": "L5",
       "title": "Prop",
       "text": "Ball or ring between the knees."
     }
-  ],
-  "modifications": [
-    "Lift with a long spine instead of rolling.",
-    "Lower bridge."
   ],
   "cautions": [
     {
@@ -99,5 +90,33 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Bridge",
+    "Hip roll",
+    "Pelvic lift"
+  ],
+  "variations": [
+    {
+      "name": "Single leg",
+      "kind": "progression",
+      "note": "One leg long."
+    },
+    {
+      "name": "Lift with a long spine instead of rolling",
+      "kind": "regression"
+    },
+    {
+      "name": "Lower bridge",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "saran",
+    "onform",
+    "matlists",
+    "manual"
+  ]
 }

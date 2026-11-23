@@ -2,10 +2,10 @@
   "slug": "long-back-stretch",
   "name": "Long Back Stretch",
   "apparatus": "reformer",
-  "section": "back_shoulders",
+  "section": "chest_arms",
   "level": "advanced",
   "levelTo": "advanced",
-  "pose": "plank-bar",
+  "pose": "reverse-plank-bar",
   "position": "plank",
   "spine": [
     "neutral"
@@ -64,10 +64,6 @@
     "Breathe out to straighten the arms and bring the carriage home. Reverse the circle."
   ],
   "layers": [],
-  "modifications": [
-    "Smaller dip.",
-    "Triceps work in straps instead."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -101,7 +97,7 @@
     }
   ],
   "prep": [
-    "footbar-press-up",
+    "long-stretch",
     "long-stretch"
   ],
   "cues": "Chest stays open; shoulders don't roll forward.\nElbows point straight back.\nLegs stay long and strong.",
@@ -109,5 +105,24 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Smaller dip",
+      "kind": "regression"
+    },
+    {
+      "name": "Triceps work in straps instead",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "saran",
+    "complete",
+    "onform"
+  ]
 }

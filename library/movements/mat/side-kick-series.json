@@ -1,6 +1,6 @@
 {
   "slug": "side-kick-series",
-  "name": "Side Kick Series",
+  "name": "Side Kicks",
   "apparatus": "mat",
   "section": "pelvic",
   "level": "beginner",
@@ -55,37 +55,7 @@
     "Kick it forward, then sweep it back, without the trunk moving.",
     "Add lifts, circles and inner-thigh lifts."
   ],
-  "layers": [
-    {
-      "tag": "L1",
-      "title": "Front and back",
-      "text": "Kicks."
-    },
-    {
-      "tag": "L2",
-      "title": "Up and down",
-      "text": "Lifts."
-    },
-    {
-      "tag": "L3",
-      "title": "Circles",
-      "text": "Both ways."
-    },
-    {
-      "tag": "L4",
-      "title": "Inner-thigh lifts",
-      "text": "Top leg crossed over, bottom leg lifts."
-    },
-    {
-      "tag": "L5",
-      "title": "Propped on the elbow",
-      "text": "More waist work."
-    }
-  ],
-  "modifications": [
-    "Bend the bottom knee for balance.",
-    "Top hand on the mat in front."
-  ],
+  "layers": [],
   "cautions": [],
   "prep": [],
   "cues": "The waist stays still while the leg moves.\nHips stacked.\nLeg long, reaching out of the hip.",
@@ -95,5 +65,50 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Side kick series",
+    "Side-lying leg series"
+  ],
+  "variations": [
+    {
+      "name": "Front and back",
+      "kind": "variation",
+      "note": "Kicks."
+    },
+    {
+      "name": "Up and down",
+      "kind": "variation",
+      "note": "Lifts."
+    },
+    {
+      "name": "Circles",
+      "kind": "variation",
+      "note": "Both ways."
+    },
+    {
+      "name": "Inner-thigh lifts",
+      "kind": "variation",
+      "note": "Top leg crossed over, bottom leg lifts."
+    },
+    {
+      "name": "Propped on the elbow",
+      "kind": "variation",
+      "note": "More waist work."
+    },
+    {
+      "name": "Bend the bottom knee for balance",
+      "kind": "regression"
+    },
+    {
+      "name": "Top hand on the mat in front",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "pa",
+    "matlists",
+    "manual"
+  ]
 }

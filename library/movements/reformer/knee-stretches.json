@@ -1,8 +1,8 @@
 {
   "slug": "knee-stretches",
-  "name": "Knee Stretches — Round & Flat",
+  "name": "Knee Stretches",
   "apparatus": "reformer",
-  "section": "lower",
+  "section": "core",
   "level": "beginner",
   "levelTo": "advanced",
   "pose": "knee-stretch",
@@ -18,22 +18,24 @@
   "muscles": {
     "primary": [
       "abdominals",
-      "hip_flexors"
+      "quadriceps"
     ],
     "secondary": [
+      "hip_flexors",
+      "glutes",
       "deltoids",
-      "glutes"
+      "serratus"
     ]
   },
   "equipment": [],
   "load": {
     "springs": [
-      "medium"
+      "medium",
+      "light"
     ],
     "advance": [
       "medium",
-      "medium",
-      "xlight"
+      "medium"
     ],
     "note": "One red makes it a core exercise; two or more shifts the work to the thighs and gets the heart rate up."
   },
@@ -70,33 +72,19 @@
   "layers": [
     {
       "tag": "L1",
-      "title": "Round back",
-      "text": "Tail tucked, spine curved."
-    },
-    {
-      "tag": "L2",
-      "title": "Flat back",
-      "text": "Long spine."
-    },
-    {
-      "tag": "L3",
       "title": "Knees hovering",
       "text": "Knees off the carriage throughout."
     },
     {
-      "tag": "L4",
+      "tag": "L2",
       "title": "Bicycle",
       "text": "One leg at a time."
     },
     {
-      "tag": "L5",
+      "tag": "L3",
       "title": "Speed",
       "text": "Quicker out, controlled in."
     }
-  ],
-  "modifications": [
-    "Knees resting on the carriage for sore backs or wrists.",
-    "Less spring spares the legs but asks more of the core."
   ],
   "cautions": [
     {
@@ -127,5 +115,42 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Knee stretch series",
+    "Bear"
+  ],
+  "variations": [
+    {
+      "name": "Round back",
+      "kind": "variation"
+    },
+    {
+      "name": "Flat back (arched)",
+      "kind": "variation"
+    },
+    {
+      "name": "Knees off (Bear)",
+      "kind": "progression",
+      "note": "Knees hover a few centimetres off the carriage."
+    },
+    {
+      "name": "Knees resting on the carriage for sore backs or wrists",
+      "kind": "regression"
+    },
+    {
+      "name": "Less spring spares the legs but asks more of the core",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "saran",
+    "complete",
+    "contrology",
+    "matlists",
+    "alo"
+  ]
 }

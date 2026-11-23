@@ -31,11 +31,11 @@
   ],
   "load": {
     "springs": [
-      "light"
+      "medium"
     ],
     "advance": [
-      "light",
-      "xlight"
+      "medium",
+      "light"
     ]
   },
   "setup": {
@@ -100,11 +100,6 @@
       "text": "Stay up and add small leg beats."
     }
   ],
-  "modifications": [
-    "Stay level (no lift) for a tender lower back.",
-    "Bend the knees and cross the ankles.",
-    "Slide the hands down to the loops for less resistance."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -130,5 +125,51 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Pull straps",
+    "Plow"
+  ],
+  "variations": [
+    {
+      "name": "Lighter spring",
+      "kind": "regression",
+      "springs": [
+        "light"
+      ]
+    },
+    {
+      "name": "T pull (arms out to the sides)",
+      "kind": "variation",
+      "springs": [
+        "light"
+      ],
+      "note": "Palms down, arms sweep from a T to the hips."
+    },
+    {
+      "name": "Single arm",
+      "kind": "variation",
+      "springs": [
+        "light"
+      ]
+    },
+    {
+      "name": "Stay level (no lift) for a tender lower back",
+      "kind": "regression"
+    },
+    {
+      "name": "Bend the knees and cross the ankles",
+      "kind": "regression"
+    },
+    {
+      "name": "Slide the hands down to the loops for less resistance",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "manual"
+  ]
 }

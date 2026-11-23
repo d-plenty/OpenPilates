@@ -1,6 +1,6 @@
 {
   "slug": "swan-prep",
-  "name": "Swan Prep (Mat)",
+  "name": "Swan Prep",
   "apparatus": "mat",
   "section": "back_shoulders",
   "level": "beginner",
@@ -67,10 +67,6 @@
       "text": "Straighter arms."
     }
   ],
-  "modifications": [
-    "Smaller lift.",
-    "Forearms on the mat."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -91,5 +87,25 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Baby swan",
+    "Neck roll"
+  ],
+  "variations": [
+    {
+      "name": "Smaller lift",
+      "kind": "regression"
+    },
+    {
+      "name": "Forearms on the mat",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "manual"
+  ]
 }

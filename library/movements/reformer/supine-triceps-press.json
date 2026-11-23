@@ -1,6 +1,6 @@
 {
   "slug": "supine-triceps-press",
-  "name": "Supine Arms in Straps — Triceps Press",
+  "name": "Supine Arms: Triceps Press",
   "apparatus": "reformer",
   "section": "core",
   "level": "beginner",
@@ -28,13 +28,11 @@
   "equipment": [],
   "load": {
     "springs": [
-      "medium",
-      "light"
+      "medium"
     ],
     "advance": [
       "medium",
-      "light",
-      "xlight"
+      "light"
     ]
   },
   "setup": {
@@ -88,9 +86,6 @@
       "text": "Single or double leg reach, scissors."
     }
   ],
-  "modifications": [
-    "Long loops for less resistance."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -109,5 +104,27 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Supine arm series",
+    "Triceps press"
+  ],
+  "variations": [
+    {
+      "name": "Single arm",
+      "kind": "variation",
+      "springs": [
+        "light"
+      ]
+    },
+    {
+      "name": "Long loops for less resistance",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "bbcards",
+    "complete",
+    "manual"
+  ]
 }

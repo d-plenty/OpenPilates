@@ -4,7 +4,7 @@
 
 OpenPilates lets you build a class from a library of movements and shows you what the class actually does: which muscles it works, how the spine moves, how much time goes on spring and position changes, and whether it builds to a peak and winds down. It also checks every movement against the clients booked in. It runs on your own server with Docker. There's no subscription, and client details stay with you.
 
-> Version 0.3 — early release. The starter movement library is a draft and needs review by a qualified Pilates instructor before you teach from it (see [Movement library](#movement-library)).
+> Version 0.4 — early release. The starter movement library is a draft and needs review by a qualified Pilates instructor before you teach from it (see [Movement library](#movement-library)).
 
 ---
 
@@ -12,7 +12,7 @@ OpenPilates lets you build a class from a library of movements and shows you wha
 
 OpenPilates is a free class planner for mat and reformer instructors.
 
-- **Build flows from segments.** Search the library by part of the class (legs, hips, arms, back, core, stretch), muscle, body position, spine movement, equipment or spring load, then drag movements into segments such as warm-up, build, peak and cool-down. Tick **Repeat other side** on a block of one-sided work and the timing doubles for you. You can add a song and BPM to each segment.
+- **Build flows from segments.** Search the library by any name a movement goes by, or browse by part of the class, muscle, body position, spine movement, equipment or spring setting, then drag movements into segments such as warm-up, build, peak and cool-down. Drop in a whole **series** (Footwork, Short Box, Long Stretch, kneeling arms) in one go, or save a segment as a series of your own. Tick **Repeat other side** on a block of one-sided work and the timing doubles for you. You can note a song or playlist on each segment.
 - **See what your class does as you build it.**
   - muscles worked, front and back
   - flexion, extension, rotation and side bend against a target
@@ -20,16 +20,17 @@ OpenPilates is a free class planner for mat and reformer instructors.
   - an effort curve that should build to a peak and then wind down
   - **a spring map**: which setting each stretch of the class runs on, where every change falls, and whether you're inside your limit (Flow and Fit classes aim for three or fewer)
   - **class balance**: time on lower body, upper body, core and stretch; how much is holding still against load versus moving; and which movement categories (trunk flexion, extension, side bend, rotation, hip work, hands-and-knees, standing) the class hasn't touched yet
-- **Plan the options, not only the movement.** On any movement in a flow you can pin the springs you want, pick the layers you'll teach, and add options for the room: harder springs, easier springs, a movement added inside the movement, or your own note. They show in the builder, on the run sheet and in Play mode, and the checks tell you when a hard movement has no easier option planned.
-- **A picture for every movement.** Each movement has a simple drawn diagram of the start and finish position. Your studio can add its own photo to any movement.
+- **Layers & variations.** On any movement in a flow you choose the version the class does (standard, single arm, a foot position), pin the springs, pick the layers you'll build, and add variations to offer individuals: a regression (simpler), a progression (harder) or another version, each with its own springs if it needs them, or a movement added inside the movement. They show in the builder, on the run sheet and in Play mode, and the checks tell you when a hard movement has no regression planned.
+- **A picture for every movement.** Each movement has a drawn diagram of the start and finish position, with a face and feet so you can tell whether the body is on its back, front or side. Your studio can add its own photo to any movement.
 - **Levels as ranges.** A movement can be Beginner–Intermediate or Intermediate–Advanced, because springs and layers change how hard it is. All-levels movements are marked that way.
 - **Get checks before you teach.** The app flags a class that opens with something hard, a tough movement with no lead-in earlier in the plan, a long run of hard holds with no relief, a missing cool-down or no back extension. It also checks every movement against who's booked in. Each caution is either **adjust** (teach it with the noted change, like keeping time on the back short in pregnancy) or **avoid** (with a suggested swap). Pregnancy is split into the first 12 weeks and after.
 - **Short on time?** Pick a goal, class style, length and level, and OpenPilates drafts a class for you to edit. Reformer drafts open with footwork, work through the body in blocks, keep movements that share a spring setting together and save the hardest core work for late in the class.
-- **Teach from Play mode** on your phone or tablet. Every flow in your list has a play button, so a class you've already built is one tap from starting. It shows the current movement, the springs to be on, the picture, set-up steps, cues, your layers and options, a countdown and what's next, and warns you before a spring change.
+- **Teach from Play mode** on your phone or tablet. Every flow in your list has a play button, so a class you've already built is one tap from starting. It shows only what you need mid-class: the movement and version, springs, reps, a countdown, your layers and variations, your own notes, client alerts and what's next, with a warning before a spring change. The picture, set-up and cues are one tap away.
 - **Print a run sheet.** One page per class: what to set out before people arrive, then each segment with springs, changes, reps and the options you planned.
 - **Tidy springs.** One button reorders movements inside each segment so shared spring settings sit together. Warm-up and cool-down are left alone, and you can undo it.
-- **New to it?** The **Guide** page explains the reformer, springs, levels, layers and what each check means in plain language.
-- **Springs in your studio's colours.** Movements store a load (light, medium, heavy) and show it in your machine's colours: Balanced Body, Merrithew/Stott, Peak, BASI, Align-Pilates, Flexia or classical.
+- **Review the library.** A review list lets a teacher work down every movement and mark it right or flag what's wrong. Flags can be fixed in the editor or downloaded and sent upstream.
+- **Guide.** One page on the words the app uses (movement, variation, layer, series) and what each check looks at.
+- **Your springs only.** Tell the app which reformers you have and how many of each spring is on them. Every setting is then shown in those springs and nothing else: Balanced Body, Merrithew/Stott, Peak, BASI, Align-Pilates, Flexia, classical or your own names and colours.
 
 ## For studio owners
 
@@ -94,9 +95,11 @@ Put OpenPilates behind your usual reverse proxy (Caddy, Nginx Proxy Manager, Tra
 
 ## Movement library
 
-The library is one JSON file per movement in [`library/movements/`](library/movements). Each file covers the part of the class it belongs to, the level range, which diagram to draw, starting position, spine movement, muscles, the usual spring setting and the one to advance to, headrest and straps, step-by-step set-up with the breath, teaching cues, layers, easier options, what stays still and what moves, a pregnancy note, lead-in movements, and cautions marked *adjust* or *avoid* with suggested swaps.
+The library is one JSON file per movement in [`library/movements/`](library/movements). Each file covers the name most teachers use and the other names it goes by, the part of the class it belongs to, the level range, which diagram to draw, starting position, spine movement, muscles, the usual spring setting and the one to advance to, headrest and straps, step-by-step set-up with the breath, teaching cues, layers, variations (regressions, progressions and other versions, with their own springs where needed), what stays still and what moves, a pregnancy note, lead-in movements, and cautions marked *adjust* or *avoid* with suggested swaps.
 
-**All 182 starter movements (110 reformer, 72 mat) are drafts.** We wrote them for OpenPilates in our own words, and they still need checking by a qualified instructor. Each file has a `review` field. When an instructor has checked a movement, set `status` to `reviewed` with their name and the date.
+**All 169 starter movements (100 reformer, 69 mat) and 18 series are drafts.** We wrote them for OpenPilates in our own words. For 0.4 every one was cross-checked against several published references for its name, other names and spring range, and the majority view won where they disagreed; movements no reference confirmed were retired. [`library/SOURCES.md`](library/SOURCES.md) lists the references, and each file's `sources` field says which ones name that movement. Set-up, cues, muscles, levels and timings still need checking by a qualified instructor: use **Review the library** in the app.
+
+Series live in [`library/series/`](library/series): a name and an ordered list of movements, each optionally with a variation.
 
 You can contribute in two ways:
 - Fix or add a movement file and open a pull request. Run `npm run check:library` first to check the file.
@@ -110,7 +113,7 @@ Please write descriptions and cues yourself. Don't copy them from books, courses
 
 - **Spine movement** is the share of class time spent in flexion, extension, rotation and side bending. It's compared with a target you can edit per class type. The default is 50 / 25 / 12 / 13%. These measures come from [Kaleen Canevari's writing on class design](https://kaleenc.substack.com/p/what-makes-a-great-pilates-class-part-1).
 - **Setting-up time** is estimated at 15 s per spring change, 20 s per position change and 45 s to put on or take off a box or jump board.
-- **Spring colours** come from the manufacturers' published charts. Conversions between brands are approximate, so you can rename and recolour springs per room in **Studio**.
+- **Springs** are stored as loads and shown in the springs each room really has, using the manufacturers' published charts. A setting that needs a spring you don't have is shown with the closest one and a `*`. Rename, recolour and count springs per room in **Studio**.
 - **Client checks** match a client's caution tags (such as pregnancy, knee or low bone density) against the cautions on each movement. The app suggests swaps but doesn't decide; the instructor always does.
 
 OpenPilates is a planning tool for qualified instructors. It is not medical advice.

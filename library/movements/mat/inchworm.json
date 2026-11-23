@@ -73,10 +73,6 @@
       "text": "Lift the hips before walking back."
     }
   ],
-  "modifications": [
-    "Bend the knees generously.",
-    "Walk out to hands and knees instead of a plank."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -116,5 +112,19 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Bend the knees generously",
+      "kind": "regression"
+    },
+    {
+      "name": "Walk out to hands and knees instead of a plank",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "manual"
+  ]
 }

@@ -1,6 +1,6 @@
 {
   "slug": "jumping",
-  "name": "Jump Board — Jumping",
+  "name": "Jumping",
   "apparatus": "reformer",
   "section": "cardio",
   "level": "beginner",
@@ -89,38 +89,29 @@
     },
     {
       "tag": "L5",
-      "title": "Single leg",
-      "text": "One leg in tabletop."
-    },
-    {
-      "tag": "L6",
       "title": "Scissors and splits",
       "text": "Change the legs in the air."
     },
     {
-      "tag": "L7",
+      "tag": "L6",
       "title": "Knee tucks",
       "text": "Pull the knees in mid-air."
     },
     {
-      "tag": "L8",
+      "tag": "L7",
       "title": "Ski",
       "text": "Land side to side."
     },
     {
-      "tag": "L9",
+      "tag": "L8",
       "title": "Heel beats",
       "text": "Beat the heels in the air."
     },
     {
-      "tag": "L10",
+      "tag": "L9",
       "title": "Running",
       "text": "Carriage stays in; run on the board."
     }
-  ],
-  "modifications": [
-    "Press and heel raises without leaving the board.",
-    "Add a spring to slow the jumps down."
   ],
   "cautions": [
     {
@@ -156,5 +147,27 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Jump board",
+    "Jumps"
+  ],
+  "variations": [
+    {
+      "name": "Single leg",
+      "kind": "progression",
+      "note": "One leg in tabletop."
+    },
+    {
+      "name": "Press and heel raises without leaving the board",
+      "kind": "regression"
+    },
+    {
+      "name": "Add a spring to slow the jumps down",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "manual"
+  ]
 }

@@ -78,10 +78,6 @@
       "text": "Lower and lift."
     }
   ],
-  "modifications": [
-    "Bottom knee down.",
-    "Top foot on the floor in front."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -105,5 +101,25 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Side support"
+  ],
+  "variations": [
+    {
+      "name": "Bottom knee down",
+      "kind": "regression"
+    },
+    {
+      "name": "Top foot on the floor in front",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "onform",
+    "matlists",
+    "alo",
+    "manual"
+  ]
 }

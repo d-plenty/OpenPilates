@@ -77,10 +77,6 @@
       "text": "Straighten and bend the knees while lifted."
     }
   ],
-  "modifications": [
-    "Knees stay down.",
-    "Smaller range."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -105,5 +101,19 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Knees stay down",
+      "kind": "regression"
+    },
+    {
+      "name": "Smaller range",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "manual"
+  ]
 }

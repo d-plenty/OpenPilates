@@ -1,0 +1,31 @@
+{
+  "slug": "long-box-series",
+  "name": "Long Box Series",
+  "apparatus": "reformer",
+  "aka": [],
+  "summary": "Prone and supine work on the long box.",
+  "items": [
+    {
+      "slug": "swan-long-box"
+    },
+    {
+      "slug": "pulling-straps"
+    },
+    {
+      "slug": "pulling-straps",
+      "variation": "T pull (arms out to the sides)"
+    },
+    {
+      "slug": "backstroke"
+    },
+    {
+      "slug": "teaser-long-box"
+    },
+    {
+      "slug": "breaststroke"
+    },
+    {
+      "slug": "horseback"
+    }
+  ]
+}

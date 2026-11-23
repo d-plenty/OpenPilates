@@ -1,6 +1,6 @@
 {
   "slug": "kneeling-lunge-stretch",
-  "name": "Kneeling Lunge Stretch",
+  "name": "Hip Flexor Stretch",
   "apparatus": "reformer",
   "section": "stretch",
   "level": "beginner",
@@ -73,10 +73,6 @@
       "text": "Hands off the bar, reach up."
     }
   ],
-  "modifications": [
-    "Pad under the back knee.",
-    "Keep hands on the footbar."
-  ],
   "cautions": [
     {
       "tag": "knee",
@@ -93,5 +89,26 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Lunge stretch",
+    "Standing hip stretch",
+    "Eve's lunge",
+    "Kneeling lunge stretch"
+  ],
+  "variations": [
+    {
+      "name": "Pad under the back knee",
+      "kind": "regression"
+    },
+    {
+      "name": "Keep hands on the footbar",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "bbcards",
+    "saran",
+    "onform"
+  ]
 }

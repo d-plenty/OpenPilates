@@ -1,6 +1,6 @@
 {
   "slug": "prances",
-  "name": "Prances",
+  "name": "Running",
   "apparatus": "reformer",
   "section": "lower",
   "level": "beginner",
@@ -29,8 +29,7 @@
     "springs": [
       "medium",
       "medium",
-      "medium",
-      "xlight"
+      "medium"
     ],
     "advance": [
       "medium",
@@ -78,9 +77,6 @@
       "text": "Two changes per breath, still controlled."
     }
   ],
-  "modifications": [
-    "Take a spring off if needed."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -96,5 +92,22 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Prances",
+    "Running in place",
+    "Walking",
+    "Pedalling"
+  ],
+  "variations": [
+    {
+      "name": "Take a spring off if needed",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "manual"
+  ]
 }

@@ -1,10 +1,10 @@
 import { h, icon, fill } from '../ui.js';
 import { store } from '../store.js';
-import { go } from '../app.js';
+import { go, nav } from '../app.js';
 import { itemDuration, fmtClock, analyze } from '/shared/analysis.js';
-import { CAUTIONS, labelOf } from '/shared/vocab.js';
+import { CAUTIONS, labelOf, variationOf } from '/shared/vocab.js';
 import { donut, springDots } from '../charts.js';
-import { posLabel, thumb } from './common.js';
+import { posLabel, thumb, repsLabel } from './common.js';
 import { itemExtras } from './options.js';
 
 export function playView(flow) {
@@ -22,6 +22,7 @@ export function playView(flow) {
   let left = steps[0]?.dur || 0;
   let running = false;
   let sound = true;
+  let more = false; // set-up and cues stay folded away unless asked for
   let last = performance.now();
   let audio = null;
   let wake = null;
@@ -59,7 +60,7 @@ export function playView(flow) {
   const drawClock = () => {
     if (!clockEl || !steps.length) return;
     const st = steps[idx];
-    fill(clockEl, donut(1 - left / st.dur, { label: st.seg.name, big: fmtClock(left), sub: st.seg.bpm ? `${st.seg.bpm} BPM` : (st.item.reps || st.mv.reps || '') }));
+    fill(clockEl, donut(1 - left / st.dur, { label: st.seg.name, big: fmtClock(left), sub: repsLabel(st.item.reps || st.mv.reps || '') }));
   };
 
   const draw = () => {
@@ -93,25 +94,26 @@ export function playView(flow) {
         h('div', { class: 'stack' },
           h('div', null,
             h('div', { class: 'now' }, 'NOW', st.seg.role === 'peak' ? ' · PEAK' : '', st.seg.bothSides ? (st.pass === 2 ? ' · SECOND SIDE' : ' · FIRST SIDE') : '', st.plan && st.plan.changed ? ' · SPRINGS CHANGED' : ''),
-            h('h1', null, st.mv.name),
+            h('h1', null, st.mv.name, variationOf(st.mv, st.item) ? h('span', { class: 'play-var' }, st.item.variation) : null),
             h('div', { class: 'muted', style: { marginTop: '6px', display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' } },
               st.mv.apparatus === 'reformer' ? springDots(loadsOf(st), room) : h('span', null, 'Mat'),
               h('span', null, posLabel(st.mv.position)),
-              st.item.reps || st.mv.reps ? h('span', null, st.item.reps || st.mv.reps) : null,
+              st.item.reps || st.mv.reps ? h('span', null, repsLabel(st.item.reps || st.mv.reps)) : null,
               setupBits.length ? h('span', null, setupBits.join(' · ')) : null,
               null)),
-          h('div', { class: 'play-fig' }, thumb(st.mv, { width: 230 })),
-          itemExtras(st.item, st.mv, room, { dark: true }) ? h('div', { class: 'panel' }, h('div', { class: 'tiny muted' }, 'Layers and options'), itemExtras(st.item, st.mv, room, { dark: true })) : null,
-          st.item.note ? h('div', { class: 'panel' }, h('div', { class: 'tiny muted' }, 'Your note'), h('div', null, st.item.note)) : null,
+          itemExtras(st.item, st.mv, room, { dark: true }) ? h('div', { class: 'panel' }, h('div', { class: 'tiny muted' }, 'Layers & variations'), itemExtras(st.item, st.mv, room, { dark: true })) : null,
+          st.item.note || st.mv.myNote ? h('div', { class: 'panel' }, h('div', { class: 'tiny muted' }, 'Your notes'), st.item.note ? h('div', null, st.item.note) : null, st.mv.myNote ? h('div', { style: { whiteSpace: 'pre-wrap' } }, st.mv.myNote) : null) : null,
           ...alerts.map(({ c, ca }) => h('div', { class: 'panel alert' }, h('b', null, `${c.name}${c.spot ? ' · ' + c.spot : ''}: ${labelOf(CAUTIONS, ca.tag)}`), h('div', { class: 'small' }, ca.note))),
-          st.mv.steps?.length ? h('div', { class: 'panel' }, h('div', { class: 'tiny muted' }, 'Set-up'), h('ol', { class: 'small' }, st.mv.steps.map((s) => h('li', null, s)))) : null,
-          st.mv.cues ? h('div', { class: 'panel' }, h('div', { class: 'tiny muted' }, 'Cues'), h('ul', { class: 'small' }, st.mv.cues.split('\n').filter(Boolean).map((c) => h('li', null, c)))) : null,
-          st.mv.modifications?.length ? h('div', { class: 'panel' }, h('div', { class: 'tiny muted' }, 'If someone needs less'), h('ul', { class: 'small' }, st.mv.modifications.map((c) => h('li', null, c)))) : null,
+          h('button', { type: 'button', class: 'play-more', 'aria-expanded': more ? 'true' : 'false', onclick: () => { more = !more; draw(); } }, more ? 'Hide picture, set-up and cues' : 'Picture, set-up and cues'),
+          more ? h('div', { class: 'panel' },
+            h('div', { class: 'play-fig' }, thumb(st.mv, { width: 230 })),
+            st.mv.steps?.length ? [h('div', { class: 'tiny muted', style: { marginTop: '8px' } }, 'Set-up'), h('ol', { class: 'small' }, st.mv.steps.map((s) => h('li', null, s)))] : null,
+            st.mv.cues ? [h('div', { class: 'tiny muted' }, 'Cues'), h('ul', { class: 'small' }, st.mv.cues.split('\n').filter(Boolean).map((c) => h('li', null, c)))] : null) : null,
           next.length ? h('div', { class: 'upnext' }, next.map((s, i) => h('div', null,
             h('span', { class: 'muted', style: { width: '44px' } }, i === 0 ? 'Next' : ''),
-            h('span', { style: { flex: 1, fontWeight: 600 } }, s.mv.name, i === 0 && nextAlerts.length ? h('span', { style: { color: '#F2A979' } }, ` · check ${[...new Set(nextAlerts.map((x) => x.c.name))].join(', ')}`) : null),
+            h('span', { style: { flex: 1, fontWeight: 600 } }, s.mv.name, variationOf(s.mv, s.item) ? h('span', { class: 'muted', style: { fontWeight: 400 } }, ` · ${s.item.variation}`) : null, i === 0 && nextAlerts.length ? h('span', { style: { color: '#F2A979' } }, ` · check ${[...new Set(nextAlerts.map((x) => x.c.name))].join(', ')}`) : null),
             s.mv.apparatus === 'reformer' ? springDots(loadsOf(s), room) : h('span', { class: 'muted' }, 'Mat'),
-            i === 0 && nextChange ? h('span', { style: { color: '#E8C547', fontWeight: 700, fontSize: '12px', flexBasis: '100%', paddingLeft: '54px' } }, 'SPRING CHANGE NEXT') : null))) : h('div', { class: 'panel' }, 'Last movement — nearly done!'))),
+            i === 0 && nextChange ? h('span', { style: { color: '#E8C547', fontWeight: 700, fontSize: '12px', flexBasis: '100%', paddingLeft: '54px' } }, 'SPRING CHANGE NEXT') : null))) : h('div', { class: 'panel' }, 'Last movement.'))),
       h('div', { class: 'controls' },
         h('button', { onclick: () => goTo(idx - 1), 'aria-label': 'Previous movement' }, icon('back', 24)),
         h('button', { class: 'main', onclick: toggle }, icon(running ? 'pause' : 'play', 20), running ? 'Pause' : (idx === 0 && left === st.dur ? 'Start' : 'Resume')),
@@ -127,7 +129,8 @@ export function playView(flow) {
     else if (e.key === 'Escape') exit();
   };
   document.addEventListener('keydown', onKey);
-  function exit() { go(`/flows/${flow.id}`); }
+  // Back to wherever Play was started from: the flows list, the builder or the run sheet.
+  function exit() { go(nav.playFrom || `/flows/${flow.id}`); }
   const cleanup = () => { clearInterval(timer); document.removeEventListener('keydown', onKey); try { wake && wake.release(); } catch { /* ignore */ } };
   draw();
   return { fullscreen: true, node: el, cleanup };

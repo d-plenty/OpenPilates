@@ -5,7 +5,7 @@
   "section": "back_shoulders",
   "level": "beginner",
   "levelTo": "intermediate",
-  "pose": "kneel-up-face-straps",
+  "pose": "kneel-up-pull-back",
   "position": "kneeling",
   "spine": [
     "extension"
@@ -17,11 +17,12 @@
   ],
   "muscles": {
     "primary": [
-      "upper_back",
-      "triceps"
+      "lats",
+      "upper_back"
     ],
     "secondary": [
-      "spinal_extensors",
+      "triceps",
+      "deltoids",
       "abdominals"
     ]
   },
@@ -31,8 +32,7 @@
       "light"
     ],
     "advance": [
-      "light",
-      "xlight"
+      "medium"
     ]
   },
   "setup": {
@@ -60,10 +60,6 @@
   "summary": "Kneeling tall facing the straps, pull the arms back, turn the head side to side and return.",
   "steps": [],
   "layers": [],
-  "modifications": [
-    "Sit on the long box for sore knees.",
-    "Long loops for less resistance."
-  ],
   "cautions": [
     {
       "tag": "knee",
@@ -79,5 +75,26 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Straight-arm pull back",
+    "Kneeling arms facing back"
+  ],
+  "variations": [
+    {
+      "name": "Sit on the long box for sore knees",
+      "kind": "regression"
+    },
+    {
+      "name": "Long loops for less resistance",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "saran",
+    "manual"
+  ]
 }

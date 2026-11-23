@@ -1,11 +1,11 @@
 {
   "slug": "back-extension-long-box",
-  "name": "Back Extension on the Long Box",
+  "name": "Prone Back Extension on the Long Box",
   "apparatus": "reformer",
   "section": "back_shoulders",
   "level": "beginner",
   "levelTo": "intermediate",
-  "pose": "prone-long-box",
+  "pose": "prone-long-box-lift",
   "position": "prone",
   "spine": [
     "extension"
@@ -88,10 +88,6 @@
       "text": "Add alternate leg lifts."
     }
   ],
-  "modifications": [
-    "Bend the knees and cross the ankles if the lower back is tender.",
-    "Stay level instead of lifting."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -118,5 +114,25 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Back extension",
+    "Swan prep on the box"
+  ],
+  "variations": [
+    {
+      "name": "Bend the knees and cross the ankles if the lower back is tender",
+      "kind": "regression"
+    },
+    {
+      "name": "Stay level instead of lifting",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "manual"
+  ]
 }

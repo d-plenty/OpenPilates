@@ -75,10 +75,6 @@
       "text": "Reach forward or hold hand weights."
     }
   ],
-  "modifications": [
-    "Fingertips on a wall or chair.",
-    "Smaller tip."
-  ],
   "cautions": [
     {
       "tag": "balance",
@@ -103,5 +99,18 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Fingertips on a wall or chair",
+      "kind": "regression"
+    },
+    {
+      "name": "Smaller tip",
+      "kind": "regression"
+    }
+  ],
+  "sources": [],
+  "retired": true
 }

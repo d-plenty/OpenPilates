@@ -1,6 +1,6 @@
 {
   "slug": "supine-arm-pulls",
-  "name": "Supine Arms in Straps — Pull Down",
+  "name": "Supine Arms: Pull Down",
   "apparatus": "reformer",
   "section": "core",
   "level": "beginner",
@@ -29,13 +29,11 @@
   "equipment": [],
   "load": {
     "springs": [
-      "medium",
-      "light"
+      "medium"
     ],
     "advance": [
       "medium",
-      "light",
-      "xlight"
+      "light"
     ]
   },
   "setup": {
@@ -90,10 +88,6 @@
       "text": "Ball or ring between the knees or ankles."
     }
   ],
-  "modifications": [
-    "Long loops for less resistance.",
-    "Feet down on the footbar if the back arches."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -117,5 +111,33 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Supine arm series",
+    "Arm pulls",
+    "Lat pull",
+    "Arms down"
+  ],
+  "variations": [
+    {
+      "name": "Single arm",
+      "kind": "variation",
+      "springs": [
+        "light"
+      ]
+    },
+    {
+      "name": "Long loops for less resistance",
+      "kind": "regression"
+    },
+    {
+      "name": "Feet down on the footbar if the back arches",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "bbcards",
+    "complete",
+    "manual"
+  ]
 }

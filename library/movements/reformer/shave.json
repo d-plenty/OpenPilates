@@ -65,10 +65,6 @@
     "Breathe in to bend, hands skimming the back of the head."
   ],
   "layers": [],
-  "modifications": [
-    "Hands start at the forehead (see Salute).",
-    "Long loops for less tension."
-  ],
   "cautions": [
     {
       "tag": "shoulder",
@@ -96,5 +92,25 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Shaving",
+    "Shave",
+    "Rowing 5"
+  ],
+  "variations": [
+    {
+      "name": "Hands start at the forehead (see Salute)",
+      "kind": "regression"
+    },
+    {
+      "name": "Long loops for less tension",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards"
+  ]
 }

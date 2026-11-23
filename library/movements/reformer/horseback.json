@@ -2,7 +2,7 @@
   "slug": "horseback",
   "name": "Horseback",
   "apparatus": "reformer",
-  "section": "back_shoulders",
+  "section": "core",
   "level": "intermediate",
   "levelTo": "advanced",
   "pose": "sit-box-face-bar",
@@ -88,9 +88,6 @@
       "text": "Long spine, arms circle."
     }
   ],
-  "modifications": [
-    "Keep the seat down."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -137,5 +134,16 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Keep the seat down",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc"
+  ]
 }

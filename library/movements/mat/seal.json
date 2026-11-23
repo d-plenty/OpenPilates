@@ -54,10 +54,6 @@
     "Breathe out to roll up and balance."
   ],
   "layers": [],
-  "modifications": [
-    "Skip the claps.",
-    "Rolling Like a Ball instead."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -105,5 +101,19 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Skip the claps",
+      "kind": "regression"
+    },
+    {
+      "name": "Rolling Like a Ball instead",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology"
+  ]
 }

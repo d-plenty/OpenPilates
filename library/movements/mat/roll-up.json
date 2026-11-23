@@ -74,10 +74,6 @@
       "text": "Hold a ball or pole."
     }
   ],
-  "modifications": [
-    "Bend the knees.",
-    "Hold behind the thighs through the sticking point."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -107,5 +103,20 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Bend the knees",
+      "kind": "regression"
+    },
+    {
+      "name": "Hold behind the thighs through the sticking point",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "manual"
+  ]
 }

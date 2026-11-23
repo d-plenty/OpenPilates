@@ -1,6 +1,6 @@
 {
   "slug": "hundred-reformer",
-  "name": "The Hundred (Reformer)",
+  "name": "The Hundred",
   "apparatus": "reformer",
   "section": "core",
   "level": "beginner",
@@ -32,8 +32,7 @@
     ],
     "advance": [
       "medium",
-      "light",
-      "xlight"
+      "medium"
     ]
   },
   "setup": {
@@ -73,15 +72,10 @@
       "text": "Curl the head and chest up."
     },
     {
-      "tag": "+",
+      "tag": "L3",
       "title": "Legs extended",
       "text": "Extend the legs to a height that keeps the back still."
     }
-  ],
-  "modifications": [
-    "Head down.",
-    "Legs in tabletop.",
-    "Long loops for less resistance."
   ],
   "cautions": [
     {
@@ -116,5 +110,31 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Hundred",
+    "Hundreds"
+  ],
+  "variations": [
+    {
+      "name": "Head down",
+      "kind": "regression"
+    },
+    {
+      "name": "Legs in tabletop",
+      "kind": "regression"
+    },
+    {
+      "name": "Long loops for less resistance",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "contrology",
+    "alo",
+    "manual"
+  ]
 }

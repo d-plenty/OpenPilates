@@ -57,6 +57,22 @@ const MIGRATIONS = [
      file TEXT NOT NULL,
      credit TEXT NOT NULL DEFAULT '',
      updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+   );`,
+  // 3: series (ready-built runs of movements) and the studio's review of each library movement.
+  `CREATE TABLE series (
+     slug TEXT PRIMARY KEY,
+     apparatus TEXT NOT NULL,
+     data TEXT NOT NULL,
+     source TEXT NOT NULL DEFAULT 'library',
+     owner_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
+     updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+   );
+   CREATE TABLE movement_reviews (
+     slug TEXT PRIMARY KEY,
+     status TEXT NOT NULL,
+     note TEXT NOT NULL DEFAULT '',
+     by_name TEXT NOT NULL DEFAULT '',
+     updated_at TEXT NOT NULL DEFAULT (datetime('now'))
    );`
 ];
 
@@ -113,6 +129,26 @@ export function loadLibrary(db, libraryDir) {
     }
   }
   return loaded;
+}
+
+// Bundled series. Refreshed on every start; a studio's own series are never touched.
+export function loadSeries(db, seriesDir) {
+  if (!existsSync(seriesDir)) return 0;
+  const upsert = db.prepare(`INSERT INTO series (slug, apparatus, data, source, updated_at) VALUES (?, ?, ?, 'library', datetime('now'))
+    ON CONFLICT(slug) DO UPDATE SET apparatus = excluded.apparatus, data = excluded.data, updated_at = excluded.updated_at WHERE series.source = 'library'`);
+  const seen = [];
+  for (const e of readdirSync(seriesDir)) {
+    if (!e.endsWith('.json')) continue;
+    try {
+      const s = JSON.parse(readFileSync(join(seriesDir, e), 'utf8'));
+      if (!s.slug || !s.name || !Array.isArray(s.items)) continue;
+      upsert.run(s.slug, s.apparatus === 'mat' ? 'mat' : 'reformer', JSON.stringify(s));
+      seen.push(s.slug);
+    } catch (err) { console.warn(`Skipping series file ${e}: ${err.message}`); }
+  }
+  // A library series dropped from the image goes too.
+  for (const r of db.prepare("SELECT slug FROM series WHERE source = 'library'").all()) if (!seen.includes(r.slug)) db.prepare('DELETE FROM series WHERE slug = ?').run(r.slug);
+  return seen.length;
 }
 
 export function libraryVersionOf(libraryDir, slug) {

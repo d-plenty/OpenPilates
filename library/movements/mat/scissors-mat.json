@@ -1,6 +1,6 @@
 {
   "slug": "scissors-mat",
-  "name": "Scissors (Single Straight Leg Stretch)",
+  "name": "Single Straight Leg Stretch",
   "apparatus": "mat",
   "section": "core",
   "level": "intermediate",
@@ -76,10 +76,6 @@
       "text": "No help."
     }
   ],
-  "modifications": [
-    "Head down.",
-    "Bend the knees a little."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -114,5 +110,23 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Scissors"
+  ],
+  "variations": [
+    {
+      "name": "Head down",
+      "kind": "regression"
+    },
+    {
+      "name": "Bend the knees a little",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "matlists",
+    "manual"
+  ]
 }

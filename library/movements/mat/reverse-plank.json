@@ -73,11 +73,6 @@
       "text": "Lift one straight leg at a time."
     }
   ],
-  "modifications": [
-    "Tabletop with knees bent.",
-    "Down on the forearms.",
-    "Turn the fingers out for tight wrists."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -112,5 +107,26 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Tabletop with knees bent",
+      "kind": "regression"
+    },
+    {
+      "name": "Down on the forearms",
+      "kind": "regression"
+    },
+    {
+      "name": "Turn the fingers out for tight wrists",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "onform",
+    "matlists",
+    "alo",
+    "manual"
+  ]
 }

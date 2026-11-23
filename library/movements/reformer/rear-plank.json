@@ -85,10 +85,6 @@
       "text": "Hardest."
     }
   ],
-  "modifications": [
-    "Forearms on the carriage.",
-    "Knees down."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -118,5 +114,34 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Reverse plank position",
+    "Plank with hands on the carriage"
+  ],
+  "variations": [
+    {
+      "name": "Knee tucks",
+      "kind": "progression",
+      "note": "Knees pull in under the hips and press back."
+    },
+    {
+      "name": "Pike",
+      "kind": "progression",
+      "note": "Hips lift as the carriage comes in."
+    },
+    {
+      "name": "Forearms on the carriage",
+      "kind": "regression"
+    },
+    {
+      "name": "Knees down",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "onform",
+    "matlists",
+    "alo"
+  ]
 }

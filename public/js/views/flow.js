@@ -3,8 +3,8 @@ import { api, store } from '../store.js';
 import { go } from '../app.js';
 import { analyze, itemDuration, fmtClock, avoids } from '/shared/analysis.js';
 import { newId, tidySprings } from '/shared/draft.js';
-import { POSITIONS, SPINE, MUSCLES, LEVELS, SEGMENT_ROLES, CAUTIONS, SECTIONS, FORMATS, labelOf, sectionOf } from '/shared/vocab.js';
-import { movementCard, checksList, statTiles, radarCard, bodyCard, intensityCard, positionsCard, focusCard, muscleListCard, clientsCard, springsCard, balanceCard, setOutCard, thumb, posLabel, muscleLabel, springDots, fmtMin } from './common.js';
+import { POSITIONS, SPINE, MUSCLES, LEVELS, SEGMENT_ROLES, CAUTIONS, SECTIONS, FORMATS, labelOf, sectionOf, namesOf, variationOf } from '/shared/vocab.js';
+import { movementCard, checksList, statTiles, radarCard, bodyCard, intensityCard, positionsCard, focusCard, muscleListCard, clientsCard, springsCard, balanceCard, setOutCard, thumb, posLabel, muscleLabel, springDots, fmtMin, peekMovement, repsLabel } from './common.js';
 import { playView } from './play.js';
 import { sheetView } from './sheet.js';
 import { itemExtras, editItemDialog } from './options.js';
@@ -88,34 +88,77 @@ export async function flowView(id, tab) {
     meta.canEdit ? btn('', async () => { if (await confirmDialog('Delete this flow?', `"${flow.title}" will be deleted for everyone.`)) { await api('DELETE', `/flows/${meta.id}`); toast('Flow deleted.'); go('/'); } }, { iconName: 'trash', title: 'Delete flow' }) : null);
 
   // ---------- library pane
-  const lib = { q: '', section: '', position: '', spine: '', muscle: '', ownedOnly: true, safe: true };
+  const lib = { q: '', section: '', position: '', spine: '', muscle: '', ownedOnly: true, safe: true, show: 'movements' };
+  const peek = (mv) => peekMovement(mv, room());
   const libList = h('div', { class: 'lib-list' });
   const drawLibrary = () => {
     const tags = bookedTags();
     const owned = store.studio.props || {};
+    if (lib.show === 'series') return drawSeries();
     const list = store.movementList.filter((mv) =>
       (flow.apparatus === 'mixed' || mv.apparatus === flow.apparatus) &&
-      (!lib.q || (mv.name + ' ' + mv.muscles.primary.join(' ') + ' ' + (mv.labels || []).join(' ')).toLowerCase().includes(lib.q)) &&
+      (!lib.q || (namesOf(mv).join(' ') + ' ' + mv.muscles.primary.join(' ') + ' ' + (mv.labels || []).join(' ')).toLowerCase().includes(lib.q)) &&
       (!lib.section || sectionOf(mv) === lib.section) &&
       (!lib.position || mv.position === lib.position) &&
       (!lib.spine || (mv.spine || []).includes(lib.spine)) &&
       (!lib.muscle || mv.muscles.primary.includes(lib.muscle) || mv.muscles.secondary.includes(lib.muscle)) &&
       (!lib.ownedOnly || (mv.equipment || []).every((e) => Number(owned[e]) > 0)) &&
       (!lib.safe || !avoids(mv, tags)));
-    fill(libList, ...(list.length ? list.map((mv) => movementCard(mv, room(), { draggable: meta.canEdit, onAdd: meta.canEdit ? addMovement : null, addLabel: '' })) : [h('p', { class: 'muted small' }, 'No movements match.')]));
+    fill(libList, ...(list.length ? list.map((mv) => movementCard(mv, room(), { draggable: meta.canEdit, onAdd: meta.canEdit ? addMovement : null, addLabel: '', onOpen: peek })) : [h('p', { class: 'muted small' }, 'No movements match.')]));
   };
+  // A series is a ready-built run of movements. Adding one drops every movement in, in order, ready to edit.
+  const drawSeries = () => {
+    const list = (store.series || []).filter((s) => (flow.apparatus === 'mixed' || s.apparatus === flow.apparatus) &&
+      (!lib.q || [s.name, ...(s.aka || []), ...s.items.map((i) => store.movements[i.slug]?.name || '')].join(' ').toLowerCase().includes(lib.q)));
+    fill(libList, ...(list.length ? list.map((s) => h('div', { class: 'series-card' },
+      h('div', { class: 'series-head' },
+        h('div', { style: { minWidth: 0, flex: 1 } }, h('div', { class: 'name' }, s.name), h('div', { class: 'meta' }, `${s.apparatus === 'mat' ? 'Mat' : 'Reformer'} · ${s.items.length} movements${s.source !== 'library' ? ' · saved by your studio' : ''}`)),
+        meta.canEdit ? h('button', { type: 'button', class: 'btn btn-sm btn-primary btn-icon', 'aria-label': `Add ${s.name}`, title: `Add all ${s.items.length} to the highlighted segment`, onclick: () => addSeries(s) }, icon('plus', 16)) : null,
+        s.source !== 'library' && (store.isAdmin || s.ownerId === store.user.id) ? btn('', async () => { if (await confirmDialog('Delete this series?', `"${s.name}" will be removed from the library. Flows that used it keep their movements.`)) { await api('DELETE', `/series/${s.slug}`); await store.loadSeries(true); drawLibrary(); } }, { iconName: 'trash', small: true, kind: 'ghost', title: 'Delete series' }) : null),
+      s.summary ? h('div', { class: 'tiny muted' }, s.summary) : null,
+      h('ol', { class: 'series-items' }, s.items.map((i) => h('li', null, store.movements[i.slug]?.name || i.slug, i.variation ? h('span', { class: 'muted' }, ` · ${i.variation}`) : null))))) : [h('p', { class: 'muted small' }, 'No series match.')]));
+  };
+  function addSeries(s) {
+    const items = s.items.filter((i) => store.movements[i.slug]);
+    if (!items.length) return;
+    change(() => {
+      let seg = flow.segments.find((x) => x.id === activeSeg) || flow.segments[flow.segments.length - 1];
+      if (!seg) { seg = { id: newId('s'), name: s.name, role: 'build', items: [] }; flow.segments.push(seg); }
+      for (const i of items) seg.items.push({ id: newId(), slug: i.slug, ...(i.variation ? { variation: i.variation } : {}), ...(i.duration ? { duration: i.duration } : {}), ...(i.reps ? { reps: i.reps } : {}) });
+      activeSeg = seg.id;
+    });
+    toast(`Added ${s.name}: ${items.length} movements.`, { action: { label: 'Undo', run: undo } });
+  }
+  const saveAsSeries = async (seg) => {
+    const nameInput = h('input', { type: 'text', value: seg.name, 'aria-label': 'Series name' });
+    const ok = await modal('Save as a series', h('div', { class: 'stack-sm' }, field('Name', nameInput), h('p', { class: 'hint' }, `Saves these ${seg.items.length} movements, in this order, so anyone in the studio can drop them into a flow in one go.`)), { actions: [{ label: 'Cancel', value: false }, { label: 'Save series', value: true, kind: 'primary' }] });
+    if (!ok) return;
+    try {
+      const first = store.movements[seg.items[0].slug];
+      await api('POST', '/series', { name: nameInput.value, apparatus: first && first.apparatus === 'mat' ? 'mat' : 'reformer', items: seg.items.map((i) => ({ slug: i.slug, variation: i.variation, duration: i.duration, reps: i.reps })) });
+      await store.loadSeries(true);
+      toast('Series saved. Find it under Series in the library.');
+      if (lib.show === 'series') drawLibrary();
+    } catch (e) { toast(e.message, { kind: 'error' }); }
+  };
+
   const libraryPane = () => h('aside', { class: 'col-side card', 'aria-label': 'Movement library' },
-    h('div', { class: 'card-head' }, h('h2', null, 'Movements'), h('span', { class: 'tiny muted' }, `${store.movementList.length} in library`), h('div', { class: 'spacer' }), h('a', { class: 'small', href: '#/movements/new' }, '+ New')),
-    h('input', { type: 'search', placeholder: 'Search name, muscle, label', 'aria-label': 'Search movements', oninput: (e) => { lib.q = e.target.value.toLowerCase(); drawLibrary(); } }),
+    h('div', { class: 'card-head' },
+      h('div', { class: 'seg', role: 'group', 'aria-label': 'Library' }, [['movements', `Movements`], ['series', 'Series']].map(([id, l]) =>
+        h('button', { type: 'button', class: lib.show === id ? 'on' : null, 'aria-pressed': lib.show === id ? 'true' : 'false', onclick: (e) => { lib.show = id; [...e.currentTarget.parentElement.children].forEach((b) => { b.classList.toggle('on', b === e.currentTarget); b.setAttribute('aria-pressed', b === e.currentTarget ? 'true' : 'false'); }); filtersEl.hidden = id === 'series'; drawLibrary(); } }, l))),
+      h('div', { class: 'spacer' }), h('a', { class: 'small', href: '#/movements/new' }, '+ New')),
+    h('input', { type: 'search', placeholder: 'Search any name, muscle or label', 'aria-label': 'Search movements', oninput: (e) => { lib.q = e.target.value.toLowerCase(); drawLibrary(); } }),
+    filtersEl,
+    meta.canEdit ? h('p', { class: 'tiny muted', style: { margin: '8px 0' } }, 'Drag into a segment, or press + to add to the highlighted segment.') : null,
+    libList);
+  const filtersEl = h('div', null,
     h('div', { class: 'grid-2', style: { margin: '8px 0' } },
       select([{ id: '', label: 'Any part of the class' }, ...SECTIONS], '', (v) => { lib.section = v; drawLibrary(); }, { 'aria-label': 'Part of the class', style: { gridColumn: '1 / -1' } }),
       select([{ id: '', label: 'Any position' }, ...POSITIONS], '', (v) => { lib.position = v; drawLibrary(); }, { 'aria-label': 'Position' }),
       select([{ id: '', label: 'Any spine' }, ...SPINE], '', (v) => { lib.spine = v; drawLibrary(); }, { 'aria-label': 'Spine movement' }),
       select([{ id: '', label: 'Any muscle' }, ...MUSCLES], '', (v) => { lib.muscle = v; drawLibrary(); }, { 'aria-label': 'Muscle', style: { gridColumn: '1 / -1' } })),
     h('label', { class: 'small', style: { display: 'flex', gap: '8px', alignItems: 'center', minHeight: '30px' } }, h('input', { type: 'checkbox', checked: lib.ownedOnly, onchange: (e) => { lib.ownedOnly = e.target.checked; drawLibrary(); } }), 'Only equipment we have'),
-    h('label', { class: 'small', style: { display: 'flex', gap: '8px', alignItems: 'center', minHeight: '30px', marginBottom: '8px' } }, h('input', { type: 'checkbox', checked: lib.safe, onchange: (e) => { lib.safe = e.target.checked; drawLibrary(); } }), 'Safe for everyone booked'),
-    meta.canEdit ? h('p', { class: 'tiny muted', style: { marginBottom: '8px' } }, 'Drag into a segment, or press Add to put it in the highlighted segment.') : null,
-    libList);
+    h('label', { class: 'small', style: { display: 'flex', gap: '8px', alignItems: 'center', minHeight: '30px' } }, h('input', { type: 'checkbox', checked: lib.safe, onchange: (e) => { lib.safe = e.target.checked; drawLibrary(); } }), 'Safe for everyone booked'));
 
   // ---------- segments
   const segWrap = h('section', { class: 'stack', 'aria-label': 'Segments' });
@@ -126,7 +169,7 @@ export async function flowView(id, tab) {
   function addMovement(mv, segId = activeSeg, beforeId = null) {
     change(() => {
       let seg = flow.segments.find((s) => s.id === segId) || flow.segments[flow.segments.length - 1];
-      if (!seg) { seg = { id: newId('s'), name: 'Main', role: 'build', bpm: null, items: [] }; flow.segments.push(seg); }
+      if (!seg) { seg = { id: newId('s'), name: 'Main', role: 'build', items: [] }; flow.segments.push(seg); }
       const item = { id: newId(), slug: mv.slug };
       const at = beforeId ? seg.items.findIndex((x) => x.id === beforeId) : -1;
       if (at >= 0) seg.items.splice(at, 0, item); else seg.items.push(item);
@@ -176,12 +219,13 @@ export async function flowView(id, tab) {
       meta.canEdit ? h('span', { 'aria-hidden': 'true' }, icon('grip')) : h('span'),
       h('div', { class: 'item-main' }, mv ? h('span', { class: 'item-thumb', 'aria-hidden': 'true' }, thumb(mv, { width: 54 })) : null, h('div', { style: { minWidth: 0, flex: 1 } },
         h('div', { style: { display: 'flex', gap: '6px', alignItems: 'center', flexWrap: 'wrap' } },
-          mv ? h('a', { class: 'name', href: `#/movements/${mv.slug}`, style: { color: 'inherit', textDecoration: 'none' } }, mv.name) : h('span', { class: 'name' }, `Missing: ${item.slug}`),
+          mv ? h('a', { class: 'name', href: `#/movements/${mv.slug}`, title: 'Quick look', onclick: (e) => { e.preventDefault(); peek(mv); }, style: { color: 'inherit', textDecoration: 'none' } }, mv.name) : h('span', { class: 'name' }, `Missing: ${item.slug}`),
+          mv && variationOf(mv, item) ? h('span', { class: 'tag tag-accent', title: variationOf(mv, item).note || 'The version the class does' }, item.variation) : null,
           flags.length ? h('span', { class: 'tag tag-warn', title: flags.map((f) => f.note).join(' ') }, icon('alert', 11), flags.map((f) => labelOf(CAUTIONS, f.tag)).join(', ')) : null,
           adjust.length ? h('span', { class: 'tag', title: adjust.map((f) => `${labelOf(CAUTIONS, f.tag)}: ${f.note}`).join(' ') }, 'Adjust') : null,
-          planned && planned.advanced ? h('span', { class: 'tag', title: 'Taught on its "to advance" springs so the class doesn\'t stop for a change' }, 'On advance springs') : null,
+          planned && planned.advanced ? h('span', { class: 'tag', title: 'Taught on its progression springs so the class doesn\'t stop for a change' }, 'On progression springs') : null,
           item.note ? h('span', { class: 'tag', title: item.note }, 'Note') : null),
-        mv ? h('div', { class: 'sub' }, labelOf(SECTIONS, sectionOf(mv)), ' · ', mv.muscles.primary.slice(0, 3).map(muscleLabel).join(' · '), item.reps || mv.reps ? ` · ${item.reps || mv.reps}` : '') : null,
+        mv ? h('div', { class: 'sub' }, mv.muscles.primary.slice(0, 3).map(muscleLabel).join(', '), item.reps || mv.reps ? h('span', { class: 'sub-reps' }, ` · ${repsLabel(item.reps || mv.reps)}`) : null) : null,
         itemExtras(item, mv, room()))),
       h('span', { class: 'pos' }, mv ? posLabel(mv.position) : ''),
       mv && mv.apparatus === 'reformer' ? springDots(planned ? planned.loads : (item.load?.springs || mv.load?.springs || []), room()) : h('span', { class: 'tiny muted' }, mv ? 'Mat' : ''),
@@ -191,7 +235,7 @@ export async function flowView(id, tab) {
         meta.canEdit ? h('div', { class: 'tools' },
           btn('', () => nudge(item.id, -1), { iconName: 'up', small: true, kind: 'ghost', title: 'Move up' }),
           btn('', () => nudge(item.id, 1), { iconName: 'down', small: true, kind: 'ghost', title: 'Move down' }),
-          btn('', () => editItem(item, mv), { iconName: 'layers', small: true, kind: 'ghost', title: 'Options: layers, springs, add-ons and notes' }),
+          btn('', () => editItem(item, mv), { iconName: 'layers', small: true, kind: 'ghost', title: 'Layers & variations: version, springs, layers and notes' }),
           btn('', () => { change(() => { seg.items = seg.items.filter((x) => x.id !== item.id); }); toast('Removed.', { action: { label: 'Undo', run: undo } }); }, { iconName: 'close', small: true, kind: 'ghost', title: 'Remove' })) : null));
     if (meta.canEdit) {
       li.addEventListener('dragstart', (e) => { dragItemId = item.id; e.dataTransfer.setData('text/x-op-item', item.id); e.dataTransfer.effectAllowed = 'move'; li.classList.add('dragging'); });
@@ -215,9 +259,9 @@ export async function flowView(id, tab) {
         h('span', { class: 'tiny muted' }, fmtMin(a)),
         h('label', { class: 'both-sides', title: 'Teach the whole block on one side, then repeat it on the other. Doubles the block time.' }, h('input', { type: 'checkbox', checked: !!seg.bothSides, disabled: !meta.canEdit, onchange: (e) => change(() => { seg.bothSides = e.target.checked || undefined; }) }), 'Repeat other side'),
         h('span', { style: { display: 'inline-flex', alignItems: 'center', gap: '6px' } }, icon('music', 16),
-          h('input', { class: 'song', type: 'text', placeholder: 'Song (optional)', value: seg.song || '', 'aria-label': 'Song', disabled: !meta.canEdit, oninput: (e) => change(() => { seg.song = e.target.value; }, { redraw: false }) }),
-          h('input', { class: 'bpm', type: 'number', min: 30, max: 220, placeholder: 'BPM', value: seg.bpm ?? '', 'aria-label': 'Beats per minute', disabled: !meta.canEdit, onchange: (e) => change(() => { seg.bpm = e.target.value ? Number(e.target.value) : null; }, { redraw: false }) })),
+          h('input', { class: 'song', type: 'text', placeholder: 'Song or playlist (optional)', value: seg.song || '', 'aria-label': 'Song', disabled: !meta.canEdit, oninput: (e) => change(() => { seg.song = e.target.value; }, { redraw: false }) })),
         meta.canEdit ? h('div', { class: 'tools', style: { display: 'flex' } },
+          seg.items.length > 1 ? btn('', () => saveAsSeries(seg), { iconName: 'copy', small: true, kind: 'ghost', title: 'Save these movements as a series' }) : null,
           btn('', () => change(() => { if (si > 0) [flow.segments[si - 1], flow.segments[si]] = [flow.segments[si], flow.segments[si - 1]]; }), { iconName: 'up', small: true, kind: 'ghost', title: 'Move segment up' }),
           btn('', () => change(() => { if (si < flow.segments.length - 1) [flow.segments[si + 1], flow.segments[si]] = [flow.segments[si], flow.segments[si + 1]]; }), { iconName: 'down', small: true, kind: 'ghost', title: 'Move segment down' }),
           btn('', async () => { if (!seg.items.length || await confirmDialog('Delete segment?', `"${seg.name}" and its ${seg.items.length} movements will be removed.`)) change(() => { flow.segments = flow.segments.filter((s) => s.id !== seg.id); }); }, { iconName: 'trash', small: true, kind: 'ghost', title: 'Delete segment' })) : null),
@@ -237,7 +281,7 @@ export async function flowView(id, tab) {
     plan = new Map(analysis().springPlan.filter((p) => p.pass === 1).map((p) => [p.itemId, p]));
     fill(segWrap, 
       ...flow.segments.map(segmentCard),
-      meta.canEdit ? h('button', { type: 'button', class: 'add-seg', onclick: () => change(() => { const s = { id: newId('s'), name: 'New segment', role: 'build', bpm: null, song: '', items: [] }; flow.segments.push(s); activeSeg = s.id; }) }, '+ Add a segment') : null,
+      meta.canEdit ? h('button', { type: 'button', class: 'add-seg', onclick: () => change(() => { const s = { id: newId('s'), name: 'New segment', role: 'build', song: '', items: [] }; flow.segments.push(s); activeSeg = s.id; }) }, '+ Add a segment') : null,
       bookedCard());
   };
 
@@ -267,7 +311,7 @@ export async function flowView(id, tab) {
     const r = await editItemDialog(item, mv, room());
     if (!r) return;
     change(() => {
-      for (const k of ['reps', 'note', 'load', 'layers', 'options']) { if (r[k] === undefined) delete item[k]; else item[k] = r[k]; }
+      for (const k of ['reps', 'note', 'variation', 'load', 'layers', 'options']) { if (r[k] === undefined) delete item[k]; else item[k] = r[k]; }
       delete item.layer;
     });
   };
@@ -292,7 +336,7 @@ export async function flowView(id, tab) {
   const analysisBody = () => {
     const a = analysis();
     const swap = (issue) => change(() => {
-      for (const seg of flow.segments) for (const it of seg.items) if (it.id === issue.itemId) { it.slug = issue.swap.slug; delete it.load; delete it.layer; delete it.layers; delete it.options; }
+      for (const seg of flow.segments) for (const it of seg.items) if (it.id === issue.itemId) { it.slug = issue.swap.slug; delete it.load; delete it.layer; delete it.layers; delete it.options; delete it.variation; }
     });
     return h('div', { class: 'stack' },
       statTiles(a),

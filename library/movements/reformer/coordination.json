@@ -20,20 +20,20 @@
       "abdominals"
     ],
     "secondary": [
-      "triceps",
-      "adductors"
+      "hip_flexors",
+      "lats",
+      "adductors",
+      "triceps"
     ]
   },
   "equipment": [],
   "load": {
     "springs": [
-      "medium",
-      "light"
+      "medium"
     ],
     "advance": [
       "medium",
-      "light",
-      "xlight"
+      "light"
     ]
   },
   "setup": {
@@ -63,10 +63,6 @@
   "summary": "From a chest curl, press arms and legs out, open and close the legs, then return in sequence.",
   "steps": [],
   "layers": [],
-  "modifications": [
-    "Head down.",
-    "Leave out the open–close."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -99,5 +95,29 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Hundred coordination",
+    "Supine abdominal series"
+  ],
+  "variations": [
+    {
+      "name": "Head down",
+      "kind": "regression"
+    },
+    {
+      "name": "Leave out the open–close",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "saran",
+    "complete",
+    "contrology",
+    "alo",
+    "manual"
+  ]
 }

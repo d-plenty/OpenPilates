@@ -2,7 +2,7 @@
 import { s } from './ui.js';
 import { POSES, RIG, CANVAS, solve, poseOf } from '/shared/poses.js';
 
-const C = { body: '#23433A', far: '#7FA296', ghost: '#0F6E62', frame: '#C3CEC9', pad: '#9DB0A9', wood: '#D9C39A', strap: '#B4651F', mat: '#BFD5CE', floor: '#DDE3E0' };
+const C = { body: '#23433A', far: '#7FA296', ghost: '#0F6E62', frame: '#C3CEC9', pad: '#9DB0A9', wood: '#D9C39A', strap: '#B4651F', skin: '#F0D9C6', mat: '#BFD5CE', floor: '#DDE3E0' };
 const P = (pt) => `${pt[0].toFixed(1)},${pt[1].toFixed(1)}`;
 const line = (a, b, w, color, extra = {}) => s('line', { x1: a[0].toFixed(1), y1: a[1].toFixed(1), x2: b[0].toFixed(1), y2: b[1].toFixed(1), stroke: color, 'stroke-width': w, 'stroke-linecap': 'round', ...extra });
 
@@ -32,15 +32,53 @@ function matFloor() {
   return [s('rect', { x: 34, y: RIG.matY, width: 172, height: 4, rx: 2, fill: C.mat })];
 }
 
+// Unit vector for a direction given as two points, and helpers to turn it.
+const dir = (a, b) => { const dx = b[0] - a[0]; const dy = b[1] - a[1]; const d = Math.hypot(dx, dy) || 1; return [dx / d, dy / d]; };
+// A quarter turn clockwise on screen (y runs down), scaled by s: up becomes right for s = 1.
+const turn = (v, s) => [-v[1] * s, v[0] * s];
+const add = (p, v, k) => [p[0] + v[0] * k, p[1] + v[1] * k];
+
+// The figure is drawn so you can tell which way it faces: a nose and a hair bun on the head,
+// feet that point the way the toes point, and hands. Seen from the front (side-lying, side-on
+// standing and kneeling) the head has two eyes instead and the trunk is drawn wider.
 function body(j, color, far, opacity) {
   const g = [];
+  const spine = dir(j.sh, j.head); // neck direction
+  const front = turn(spine, j.faces); // where the face and chest point
+  const foot = (leg, col, w) => {
+    if (!leg) return;
+    const shin = dir(leg.knee, leg.foot);
+    // Shin lying flat with the knee lower than the hip is kneeling: the foot points back along the shin.
+    const kneeling = Math.abs(shin[1]) < 0.3 && leg.knee[1] - j.hip[1] > 4;
+    const toe = j.cam || kneeling ? shin : turn(shin, -j.faces);
+    g.push(line(leg.foot, add(leg.foot, toe, j.cam ? 4 : 6.5), w, col));
+  };
   const limb = (a, b, c, w1, w2, col) => { if (!a) return; g.push(line(a, b, w1, col), line(b, c, w2, col)); };
-  if (j.leg2) limb(j.hip, j.leg2.knee, j.leg2.foot, 8.4, 6.8, far);
-  if (j.arm2) limb(j.sh, j.arm2.elbow, j.arm2.hand, 5.8, 5, far);
-  g.push(s('path', { d: `M ${P(j.hip)} Q ${P(j.mid)} ${P(j.sh)}`, fill: 'none', stroke: color, 'stroke-width': 11.5, 'stroke-linecap': 'round' }));
-  g.push(s('circle', { cx: j.head[0].toFixed(1), cy: j.head[1].toFixed(1), r: 7.2, fill: color }));
-  if (j.leg) limb(j.hip, j.leg.knee, j.leg.foot, 9, 7.2, color);
-  if (j.arm) limb(j.sh, j.arm.elbow, j.arm.hand, 6.2, 5.4, color);
+  if (j.leg2) { limb(j.hip, j.leg2.knee, j.leg2.foot, 8.4, 6.8, far); foot(j.leg2, far, 4.6); }
+  if (j.arm2) { limb(j.sh, j.arm2.elbow, j.arm2.hand, 5.8, 5, far); g.push(s('circle', { cx: j.arm2.hand[0].toFixed(1), cy: j.arm2.hand[1].toFixed(1), r: 2.9, fill: far })); }
+  g.push(s('path', { d: `M ${P(j.hip)} Q ${P(j.mid)} ${P(j.sh)}`, fill: 'none', stroke: color, 'stroke-width': j.cam ? 15 : 12, 'stroke-linecap': 'round' }));
+  // head: dark hair at the back, a light face at the front, so the facing direction reads at any size
+  const hc = j.head;
+  const dot = (pt, r, fill) => g.push(s('circle', { cx: pt[0].toFixed(1), cy: pt[1].toFixed(1), r, fill }));
+  if (j.cam) {
+    dot(add(hc, spine, 6.6), 3.6, color);
+    dot(hc, 7.6, color);
+    if (!opacity) {
+      dot(add(hc, spine, -0.8), 5.4, C.skin);
+      const across = turn(spine, 1);
+      for (const k of [-2.3, 2.3]) dot(add(add(hc, across, k), spine, 0.2), 1.05, color);
+    }
+  } else {
+    dot(add(add(hc, front, -6.4), spine, 2.4), 3.8, color);
+    dot(hc, 7.4, color);
+    dot(add(add(hc, front, 7.6), spine, -0.8), 2.2, opacity ? color : C.skin);
+    if (!opacity) {
+      dot(add(add(hc, front, 2.9), spine, -0.6), 4.9, C.skin);
+      dot(add(add(hc, front, 4.4), spine, 0.9), 0.95, color);
+    }
+  }
+  if (j.leg) { limb(j.hip, j.leg.knee, j.leg.foot, 9, 7.2, color); foot(j.leg, color, 5); }
+  if (j.arm) { limb(j.sh, j.arm.elbow, j.arm.hand, 6.2, 5.4, color); g.push(s('circle', { cx: j.arm.hand[0].toFixed(1), cy: j.arm.hand[1].toFixed(1), r: 3.1, fill: color })); }
   return s('g', opacity ? { opacity } : {}, ...g);
 }
 
@@ -72,14 +110,14 @@ export function figure(mvOrPose, { width = 240, ghost = true, title } = {}) {
   const id = typeof mvOrPose === 'string' ? mvOrPose : poseOf(mvOrPose);
   const pose = POSES[id] || POSES['mat-stand'];
   const a = solve(pose, 'a');
-  const b = pose.b && ghost ? solve(pose, 'b') : null;
+  const b = pose.b && ghost && width >= 100 ? solve(pose, 'b') : null;
   const label = title || (typeof mvOrPose === 'object' && mvOrPose ? `${mvOrPose.name}: ${pose.label}` : pose.label);
   const [vy, vh] = crop(pose, a, b);
   return s('svg', { viewBox: `0 ${vy} ${CANVAS.w} ${vh}`, width, height: Math.round((width * vh) / CANVAS.w), role: 'img', 'aria-label': label, class: 'figure' },
     s('title', {}, label),
     line([14, RIG.floor], [226, RIG.floor], 1.5, C.floor),
     ...(pose.ctx === 'reformer' ? reformer(pose, a.car) : matFloor()),
-    b ? body(b, C.ghost, C.ghost, 0.26) : null,
+    b ? body(b, C.ghost, C.ghost, 0.3) : null,
     ...straps(pose, a),
     body(a, C.body, C.far));
 }

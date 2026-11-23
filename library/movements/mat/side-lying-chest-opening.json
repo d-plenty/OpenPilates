@@ -68,10 +68,6 @@
       "text": "Sweep the arm overhead and round."
     }
   ],
-  "modifications": [
-    "Cushion under the head.",
-    "Smaller range for sore shoulders."
-  ],
   "cautions": [
     {
       "tag": "shoulder",
@@ -95,5 +91,19 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Cushion under the head",
+      "kind": "regression"
+    },
+    {
+      "name": "Smaller range for sore shoulders",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology"
+  ]
 }

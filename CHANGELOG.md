@@ -1,5 +1,58 @@
 # Changelog
 
+## 0.4.0
+
+A rework for working instructors: checked names and springs, variations, series, a stripped-back Play mode and navigation that takes you back where you came from.
+
+### Movement library
+- Every movement was cross-checked against several published references for its name, other names and spring range. Where they disagreed the majority won, including over the training manuals the first drafts leaned on. `library/SOURCES.md` lists the references and each movement records which ones name it.
+- 15 movements that no reference confirmed, or that duplicated another entry, are retired. They are no longer offered, but flows that already use them still open. The library is now 100 reformer and 69 mat movements.
+- **Names.** Each movement leads with the name most teachers use and lists what else it is called (classical name, nickname). Search finds all of them: "prances" finds Running, "pelvic lift" finds Bridging. Suffixes like "(Reformer)" are gone.
+- **Springs corrected** on 59 reformer movements, among them Bridging, Mermaid, Pulling Straps, Knee Stretches, Elephant, Long Stretch, the supine arm and abdominal work, the kneeling arm work, Scooter, Lunge, Side Splits and Snake.
+- **Muscles and sections corrected** on 13 reformer movements: Offering, Serve a Tray, Chest Expansion, Elephant, Knee Stretches, Tendon Stretch, Down Stretch, Backstroke, Coordination, Draw a Sword, Rowing Front, Horseback and Long Back Stretch. The rest were read through and left as they were, so muscles are the part of each entry most in need of a teacher's eye. Knee Stretches no longer turns up in a standing-legs block.
+- **Variations** replace the old "easier options" list. A variation is a regression (simpler), a progression (harder) or another version, and can carry its own springs. Arm work has single-arm variations on a lighter spring; Footwork has its foot positions and single leg.
+- **Series**: 18 ready-built runs, including Footwork, Feet in Straps, Supine Arms, Kneeling Arms (facing front, back and side), Rowing, Long Box, Short Box, Long Stretch, Stomach Massage and Knee Stretch on the reformer, and the Series of Five on the mat. "Footwork Series" as a single movement is now Footwork plus a series.
+- New: Jackknife on the reformer and Jackrabbit.
+- All entries are still drafts for a teacher to review.
+
+### Springs
+- Every spring setting is shown only in the springs your reformers have, as set in Studio. The table of every other brand is gone from the movement page.
+- A setting that needs a spring you don't have shows the closest one with a `*`.
+- The explorer's "By springs" lists real settings on your machine ("1 Blue", "2 Red", "1 Blue + 1 Red"), lightest first.
+
+### Builder
+- The item dialog is now **Layers & variations**: teach as (which version the class does), springs, layers to build, and variations to offer individuals, with regression, progression and variation kinds.
+- The library pane has a **Series** tab. Adding a series drops all its movements in, ready to edit. Any segment can be saved as a series for the studio.
+- Clicking a movement in the builder opens a quick look without leaving the flow.
+- Rows read plainly: muscles, then "20–30 reps".
+- BPM is gone. A segment can still note a song or playlist.
+- Drafts open the footwork block with Footwork, never use retired movements and pick a candidate that stays inside the spring limit.
+- Tidy springs can no longer leave a flow with more changes than it started with.
+
+### Play mode
+- Shows what an instructor needs mid-class and nothing else: movement and version, springs, reps, countdown, layers and variations, your own notes, client alerts and what's next.
+- Picture, set-up and cues are folded away behind one button.
+- Exit returns to wherever Play was started from.
+
+### Navigation
+- "Back" from a movement returns to the flow, explorer or review list you came from.
+- Dialogs close when you move to another page.
+
+### Pictures
+- The figure now has a face, hair, hands and feet, so you can tell at a glance whether the body is on its back, on its front, on its side or which way it is kneeling.
+- Eight new poses, so Overhead, Jackknife, Corkscrew, Chest Expansion, Long Back Stretch, Tendon Stretch and the strap-free long box work no longer borrow the wrong picture.
+- Small thumbnails show the start position only.
+
+### Review
+- **Review the library** lists every movement with "Looks right" and "Needs fixing", a note, filters and search. The same bar is on each movement page.
+- Flags can be downloaded as a file to send to whoever maintains the library.
+
+### Guide
+- Rewritten for instructors: what the app means by movement, variation, layer and series, how springs follow your studio, and what each check looks at.
+
+### Upgrading
+Nothing to do. Flows from earlier versions open as they are: easier and harder options become regressions and progressions, and movements keep working under their new names. Movements your studio has edited keep your version; reset one to pick up the new library entry.
+
 ## 0.3.0
 
 A rework of the builder and the library, plus a click-through test of every screen.

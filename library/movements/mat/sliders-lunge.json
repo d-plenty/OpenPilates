@@ -51,10 +51,6 @@
   "summary": "One foot on a slider, slide back into a lunge and return.",
   "steps": [],
   "layers": [],
-  "modifications": [
-    "Hold a wall or chair.",
-    "Smaller range."
-  ],
   "cautions": [
     {
       "tag": "knee",
@@ -73,5 +69,20 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Hold a wall or chair",
+      "kind": "regression"
+    },
+    {
+      "name": "Smaller range",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "saran",
+    "onform"
+  ]
 }

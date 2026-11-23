@@ -1,6 +1,6 @@
 {
   "slug": "childs-pose-reformer",
-  "name": "Rest Position on the Carriage",
+  "name": "Rest Position (Child's Pose)",
   "apparatus": "reformer",
   "section": "stretch",
   "level": "beginner",
@@ -71,10 +71,6 @@
       "text": "Walk both hands to one end of the bar."
     }
   ],
-  "modifications": [
-    "Knees wide to make room for the belly or hips.",
-    "Cushion between heels and hips for sore knees."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -96,5 +92,22 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Shell stretch",
+    "Child's pose"
+  ],
+  "variations": [
+    {
+      "name": "Knees wide to make room for the belly or hips",
+      "kind": "regression"
+    },
+    {
+      "name": "Cushion between heels and hips for sore knees",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "manual"
+  ]
 }

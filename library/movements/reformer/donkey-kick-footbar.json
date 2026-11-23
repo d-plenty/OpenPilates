@@ -1,6 +1,6 @@
 {
   "slug": "donkey-kick-footbar",
-  "name": "Kneeling Kickback on the Footbar",
+  "name": "Donkey Kicks at the Footbar",
   "apparatus": "reformer",
   "section": "lower",
   "level": "beginner",
@@ -89,11 +89,6 @@
       "text": "Lift the opposite arm."
     }
   ],
-  "modifications": [
-    "Forearms on the carriage for sore wrists.",
-    "Lighter spring.",
-    "Pad under the knee."
-  ],
   "cautions": [
     {
       "tag": "wrist",
@@ -119,5 +114,28 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Kneeling kickback",
+    "Quadruped leg press",
+    "Kneeling single-leg press"
+  ],
+  "variations": [
+    {
+      "name": "Forearms on the carriage for sore wrists",
+      "kind": "regression"
+    },
+    {
+      "name": "Lighter spring",
+      "kind": "regression"
+    },
+    {
+      "name": "Pad under the knee",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "bbcards",
+    "matlists"
+  ]
 }

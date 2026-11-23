@@ -2,7 +2,7 @@
   "slug": "elephant",
   "name": "Elephant",
   "apparatus": "reformer",
-  "section": "lower",
+  "section": "core",
   "level": "beginner",
   "levelTo": "intermediate",
   "pose": "pike-bar",
@@ -17,20 +17,26 @@
   ],
   "muscles": {
     "primary": [
-      "hamstrings",
-      "abdominals"
+      "abdominals",
+      "hip_flexors"
     ],
     "secondary": [
+      "hamstrings",
+      "calves",
       "deltoids",
-      "calves"
+      "serratus"
     ]
   },
   "equipment": [],
   "load": {
     "springs": [
-      "medium"
+      "medium",
+      "light"
     ],
-    "lighterIsHarder": true
+    "lighterIsHarder": true,
+    "advance": [
+      "medium"
+    ]
   },
   "setup": {
     "headrest": "any",
@@ -73,16 +79,7 @@
       "tag": "L2",
       "title": "Flat back",
       "text": "Long spine."
-    },
-    {
-      "tag": "L3",
-      "title": "Single leg",
-      "text": "See Arabesque."
     }
-  ],
-  "modifications": [
-    "Bend the knees or lift the heels for tight hamstrings or calves.",
-    "Take spring off only once it is steady."
   ],
   "cautions": [
     {
@@ -119,5 +116,43 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Elephant stretch"
+  ],
+  "variations": [
+    {
+      "name": "Round back",
+      "kind": "variation"
+    },
+    {
+      "name": "Flat back",
+      "kind": "variation"
+    },
+    {
+      "name": "One leg lifted (Arabesque)",
+      "kind": "progression"
+    },
+    {
+      "name": "Single leg",
+      "kind": "progression",
+      "note": "See Arabesque."
+    },
+    {
+      "name": "Bend the knees or lift the heels for tight hamstrings or calves",
+      "kind": "regression"
+    },
+    {
+      "name": "Take spring off only once it is steady",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "saran",
+    "contrology",
+    "manual"
+  ]
 }

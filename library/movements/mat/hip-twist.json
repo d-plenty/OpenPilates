@@ -73,11 +73,6 @@
       "text": "Full version."
     }
   ],
-  "modifications": [
-    "Forearms down.",
-    "Bend the knees.",
-    "One leg at a time."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -129,5 +124,26 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Forearms down",
+      "kind": "regression"
+    },
+    {
+      "name": "Bend the knees",
+      "kind": "regression"
+    },
+    {
+      "name": "One leg at a time",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "manual"
+  ]
 }

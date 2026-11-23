@@ -86,9 +86,6 @@
       "text": "Top leg and arm lifted."
     }
   ],
-  "modifications": [
-    "Side plank facing the straps on the forearm."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -133,5 +130,16 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Side plank facing the straps on the forearm",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "opc",
+    "manual"
+  ]
 }

@@ -74,10 +74,6 @@
       "text": "Join them."
     }
   ],
-  "modifications": [
-    "Bend the knees in the V.",
-    "Leave out the arm clasp."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -127,5 +123,20 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Bend the knees in the V",
+      "kind": "regression"
+    },
+    {
+      "name": "Leave out the arm clasp",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "manual"
+  ]
 }

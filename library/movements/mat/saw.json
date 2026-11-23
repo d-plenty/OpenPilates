@@ -49,10 +49,6 @@
   "summary": "Seated with arms out, twist and reach the hand past the opposite little toe.",
   "steps": [],
   "layers": [],
-  "modifications": [
-    "Sit on a block.",
-    "Bend the knees."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -75,5 +71,19 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Sit on a block",
+      "kind": "regression"
+    },
+    {
+      "name": "Bend the knees",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology"
+  ]
 }

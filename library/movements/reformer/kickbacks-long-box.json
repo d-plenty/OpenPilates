@@ -1,6 +1,6 @@
 {
   "slug": "kickbacks-long-box",
-  "name": "Kneeling Kickbacks on the Box",
+  "name": "Four-point Kickbacks, Foot in Strap",
   "apparatus": "reformer",
   "section": "lower",
   "level": "beginner",
@@ -31,10 +31,11 @@
   ],
   "load": {
     "springs": [
-      "xlight"
+      "light"
     ],
     "advance": [
-      "light"
+      "light",
+      "xlight"
     ]
   },
   "setup": {
@@ -89,10 +90,6 @@
       "text": "Lift the opposite arm forward."
     }
   ],
-  "modifications": [
-    "Lighter spring, or no strap at all.",
-    "Forearms on the box for sore wrists."
-  ],
   "cautions": [
     {
       "tag": "wrist",
@@ -116,5 +113,34 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Kneeling kickbacks on the box",
+    "Donkey kicks with strap",
+    "4 point foot in strap",
+    "Quadruped hip extension"
+  ],
+  "variations": [
+    {
+      "name": "On the carriage, no box",
+      "kind": "variation"
+    },
+    {
+      "name": "Straight-leg sweep to the side",
+      "kind": "variation"
+    },
+    {
+      "name": "Lighter spring, or no strap at all",
+      "kind": "regression"
+    },
+    {
+      "name": "Forearms on the box for sore wrists",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "bbcards",
+    "onform",
+    "matlists"
+  ]
 }

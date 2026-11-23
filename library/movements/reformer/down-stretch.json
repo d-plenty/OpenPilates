@@ -2,7 +2,7 @@
   "slug": "down-stretch",
   "name": "Down Stretch",
   "apparatus": "reformer",
-  "section": "stretch",
+  "section": "back_shoulders",
   "level": "intermediate",
   "levelTo": "intermediate",
   "pose": "down-stretch",
@@ -18,13 +18,13 @@
   "muscles": {
     "primary": [
       "spinal_extensors",
-      "hip_flexors",
-      "lats"
+      "serratus"
     ],
     "secondary": [
+      "deltoids",
       "abdominals",
       "glutes",
-      "serratus"
+      "hip_flexors"
     ]
   },
   "equipment": [],
@@ -34,6 +34,7 @@
       "light"
     ],
     "advance": [
+      "medium",
       "medium"
     ],
     "lighterIsHarder": true
@@ -69,10 +70,6 @@
     "Breathe out to bring it home, chest lifting up and through the arms."
   ],
   "layers": [],
-  "modifications": [
-    "Stay closer to upright.",
-    "Thigh Stretch instead."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -111,5 +108,23 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Stay closer to upright",
+      "kind": "regression"
+    },
+    {
+      "name": "Thigh Stretch instead",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "saran",
+    "manual"
+  ]
 }

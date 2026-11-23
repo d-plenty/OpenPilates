@@ -1,6 +1,6 @@
 {
   "slug": "side-bend-triceps",
-  "name": "Triceps Press in a Side Bend",
+  "name": "Side Arms: Triceps Press",
   "apparatus": "reformer",
   "section": "single_arm",
   "level": "intermediate",
@@ -88,10 +88,6 @@
       "text": "Add lifts or pulses with the long leg."
     }
   ],
-  "modifications": [
-    "Sit back on the heels.",
-    "Long loop for less resistance."
-  ],
   "cautions": [
     {
       "tag": "knee",
@@ -118,12 +114,29 @@
   ],
   "prep": [
     "mermaid",
-    "side-kneeling-arms"
+    "draw-a-sword"
   ],
   "cues": "Upper arm doesn't move.\nHips press forward — no folding at the hip.\nLift up out of the supporting shoulder.\nChest stays open to the side wall.",
   "labels": [],
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Triceps press in a side bend"
+  ],
+  "variations": [
+    {
+      "name": "Sit back on the heels",
+      "kind": "regression"
+    },
+    {
+      "name": "Long loop for less resistance",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "bbcards"
+  ]
 }

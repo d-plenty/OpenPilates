@@ -91,9 +91,6 @@
       "text": "Turn at the back of the movement."
     }
   ],
-  "modifications": [
-    "Smaller range for sensitive backs."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -126,5 +123,23 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Round back",
+    "Roll back on the short box"
+  ],
+  "variations": [
+    {
+      "name": "Smaller range for sensitive backs",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "contrology",
+    "onform",
+    "manual"
+  ]
 }

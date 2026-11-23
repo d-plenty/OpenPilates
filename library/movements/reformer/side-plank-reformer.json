@@ -1,6 +1,6 @@
 {
   "slug": "side-plank-reformer",
-  "name": "Side Plank on the Reformer",
+  "name": "Side Plank",
   "apparatus": "reformer",
   "section": "core",
   "level": "advanced",
@@ -93,10 +93,6 @@
       "text": "Higher support."
     }
   ],
-  "modifications": [
-    "Top hand on the carriage for support.",
-    "A front-facing plank instead."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -136,5 +132,25 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Side plank on the reformer"
+  ],
+  "variations": [
+    {
+      "name": "Top hand on the carriage for support",
+      "kind": "regression"
+    },
+    {
+      "name": "A front-facing plank instead",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "onform",
+    "matlists",
+    "alo",
+    "manual"
+  ]
 }

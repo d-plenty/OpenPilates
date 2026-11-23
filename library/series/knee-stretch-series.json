@@ -1,0 +1,21 @@
+{
+  "slug": "knee-stretch-series",
+  "name": "Knee Stretch Series",
+  "apparatus": "reformer",
+  "aka": [],
+  "summary": "Round, flat, then knees off.",
+  "items": [
+    {
+      "slug": "knee-stretches",
+      "variation": "Round back"
+    },
+    {
+      "slug": "knee-stretches",
+      "variation": "Flat back (arched)"
+    },
+    {
+      "slug": "knee-stretches",
+      "variation": "Knees off (Bear)"
+    }
+  ]
+}

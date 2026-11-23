@@ -99,9 +99,6 @@
       "text": "Knees under the hips for the easiest version."
     }
   ],
-  "modifications": [
-    "Less spring is easier on the shoulders but harder on the core — pick what the person needs."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -128,5 +125,17 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Less spring is easier on the shoulders but harder on the core — pick what the person needs",
+      "kind": "regression"
+    }
+  ],
+  "retired": true,
+  "sources": [
+    "pilatesology",
+    "opc"
+  ]
 }

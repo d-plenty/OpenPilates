@@ -1,0 +1,24 @@
+{
+  "slug": "long-stretch-series",
+  "name": "Long Stretch Series",
+  "apparatus": "reformer",
+  "aka": [],
+  "summary": "Plank-based work at the footbar.",
+  "items": [
+    {
+      "slug": "long-stretch"
+    },
+    {
+      "slug": "down-stretch"
+    },
+    {
+      "slug": "up-stretch"
+    },
+    {
+      "slug": "elephant"
+    },
+    {
+      "slug": "long-back-stretch"
+    }
+  ]
+}

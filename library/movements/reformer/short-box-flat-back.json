@@ -85,10 +85,6 @@
       "text": "Turn at the back of the movement."
     }
   ],
-  "modifications": [
-    "Smaller lean.",
-    "Hands across the chest."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -112,5 +108,27 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Flat back",
+    "Tall back",
+    "Hinge"
+  ],
+  "variations": [
+    {
+      "name": "Smaller lean",
+      "kind": "regression"
+    },
+    {
+      "name": "Hands across the chest",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "contrology",
+    "manual"
+  ]
 }

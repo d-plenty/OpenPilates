@@ -61,9 +61,6 @@
   "summary": "From a pike over the footbar, travel into plank and back while keeping the carriage controlled.",
   "steps": [],
   "layers": [],
-  "modifications": [
-    "Elephant or Long Stretch instead."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -98,5 +95,22 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Inverted V",
+    "Pike on the footbar"
+  ],
+  "variations": [
+    {
+      "name": "Elephant or Long Stretch instead",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "alo",
+    "manual"
+  ]
 }

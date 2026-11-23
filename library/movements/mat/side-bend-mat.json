@@ -77,10 +77,6 @@
       "text": "Carry on into Side Twist."
     }
   ],
-  "modifications": [
-    "Bottom knee down.",
-    "Forearm down."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -121,5 +117,26 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Side plank lift"
+  ],
+  "variations": [
+    {
+      "name": "Bottom knee down",
+      "kind": "regression"
+    },
+    {
+      "name": "Forearm down",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "bbcards",
+    "onform",
+    "matlists",
+    "alo",
+    "manual"
+  ]
 }

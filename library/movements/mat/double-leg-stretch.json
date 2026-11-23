@@ -67,10 +67,6 @@
       "text": "Basic."
     }
   ],
-  "modifications": [
-    "Head down.",
-    "Legs to the ceiling."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -98,5 +94,21 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Head down",
+      "kind": "regression"
+    },
+    {
+      "name": "Legs to the ceiling",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "matlists",
+    "manual"
+  ]
 }

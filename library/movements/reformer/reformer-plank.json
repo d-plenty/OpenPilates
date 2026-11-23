@@ -1,6 +1,6 @@
 {
   "slug": "reformer-plank",
-  "name": "Plank (Hands on the Platform)",
+  "name": "Plank",
   "apparatus": "reformer",
   "section": "core",
   "level": "intermediate",
@@ -29,11 +29,10 @@
   "equipment": [],
   "load": {
     "springs": [
-      "light",
-      "xlight"
+      "light"
     ],
     "advance": [
-      "light"
+      "xlight"
     ],
     "lighterIsHarder": true
   },
@@ -83,19 +82,9 @@
     },
     {
       "tag": "L4",
-      "title": "Single leg",
-      "text": "Lift one foot."
-    },
-    {
-      "tag": "L5",
       "title": "Hands on the box",
       "text": "Change the angle."
     }
-  ],
-  "modifications": [
-    "Forearms down to spare the wrists and shoulders.",
-    "Knees on the carriage.",
-    "A heavier spring makes the carriage steadier."
   ],
   "cautions": [
     {
@@ -126,5 +115,33 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Plank on the reformer",
+    "Hover"
+  ],
+  "variations": [
+    {
+      "name": "Single leg",
+      "kind": "progression",
+      "note": "Lift one foot."
+    },
+    {
+      "name": "Forearms down to spare the wrists and shoulders",
+      "kind": "regression"
+    },
+    {
+      "name": "Knees on the carriage",
+      "kind": "regression"
+    },
+    {
+      "name": "A heavier spring makes the carriage steadier",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "onform",
+    "matlists",
+    "alo"
+  ]
 }

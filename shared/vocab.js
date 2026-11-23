@@ -335,6 +335,8 @@ export function springOptions(mv, item) {
   if (!mv || mv.apparatus !== 'reformer') return [];
   const key = (l) => [...(l || [])].sort().join('+');
   if (item && item.load && Array.isArray(item.load.springs)) return [key(item.load.springs)];
+  const v = variationOf(mv, item);
+  if (v && v.springs && v.springs.length) return [key(v.springs)];
   const out = [key(mv.load?.springs)];
   if (mv.load?.advance && mv.load.advance.length) out.push(key(mv.load.advance));
   return [...new Set(out)];
@@ -369,7 +371,44 @@ export function levelLabel(mv) {
   if (from === 1 && to === 3) return 'All levels';
   return from === to ? name(from) : `${name(from)}–${name(to)}`;
 }
+// ---- variations. A variation is another version of a movement: a regression (simpler),
+// a progression (harder), or just a different version (one arm instead of two).
 export const OPTION_KINDS = [
-  { id: 'easier', label: 'Easier', mark: '▼' },
-  { id: 'harder', label: 'Harder', mark: '▲' }
+  { id: 'regression', label: 'Regression', mark: '▼', hint: 'Simpler or more supported' },
+  { id: 'progression', label: 'Progression', mark: '▲', hint: 'Harder' },
+  { id: 'variation', label: 'Variation', mark: '◆', hint: 'A different version, such as single arm' }
 ];
+export const kindOf = (k) => (k === 'easier' || k === 'regression' ? 'regression' : k === 'variation' ? 'variation' : 'progression');
+export const variationsOf = (mv) => (mv && Array.isArray(mv.variations) ? mv.variations : []);
+// The version of the movement a flow item is taught as (by name), if one was picked.
+export function variationOf(mv, item) {
+  if (!item || !item.variation) return null;
+  return variationsOf(mv).find((v) => v.name === item.variation) || null;
+}
+export const itemName = (mv, item) => (mv ? mv.name + (item && item.variation ? ` · ${item.variation}` : '') : '');
+// Every name a movement goes by, for search.
+export const namesOf = (mv) => [mv.name, ...(mv.aka || [])];
+
+// ---- the studio's own springs. A room lists how many of each spring its reformers have.
+// A setting is re-written in springs that room really has: a missing spring becomes the nearest one.
+export function fitSprings(loads, room) {
+  const have = room && room.springs ? room.springs : null;
+  const list = [...(loads || [])];
+  if (!have || !Object.keys(have).length) return { loads: list, approx: false, short: false };
+  const present = LOAD_LEVELS.filter((l) => Number(have[l]) > 0);
+  if (!present.length) return { loads: list, approx: false, short: false };
+  let approx = false;
+  const out = list.map((l) => {
+    if (Number(have[l]) > 0) return l;
+    approx = true;
+    const i = LOAD_LEVELS.indexOf(l);
+    return present.slice().sort((a, b) => Math.abs(LOAD_LEVELS.indexOf(a) - i) - Math.abs(LOAD_LEVELS.indexOf(b) - i) || LOAD_LEVELS.indexOf(a) - LOAD_LEVELS.indexOf(b))[0];
+  });
+  const counts = {};
+  for (const l of out) counts[l] = (counts[l] || 0) + 1;
+  const short = Object.entries(counts).some(([l, n]) => n > Number(have[l] || 0));
+  return { loads: out, approx, short };
+}
+// Rough total load of a setting, for ordering lightest to heaviest.
+const LOAD_WEIGHT = { xlight: 1, light: 2, medium: 4, heavy: 6, xheavy: 7 };
+export const loadWeight = (loads) => (loads || []).reduce((n, l) => n + (LOAD_WEIGHT[l] || 0), 0);

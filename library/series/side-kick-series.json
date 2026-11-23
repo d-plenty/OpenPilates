@@ -1,0 +1,36 @@
+{
+  "slug": "side-kick-series",
+  "name": "Side Kick Series",
+  "apparatus": "mat",
+  "aka": [
+    "Side-lying leg series"
+  ],
+  "summary": "Side-lying leg work. Repeat on the other side.",
+  "items": [
+    {
+      "slug": "side-kick-series",
+      "variation": "Front and back",
+      "duration": 60
+    },
+    {
+      "slug": "side-kick-series",
+      "variation": "Up and down",
+      "duration": 60
+    },
+    {
+      "slug": "side-kick-series",
+      "variation": "Circles",
+      "duration": 60
+    },
+    {
+      "slug": "side-kick-series",
+      "variation": "Inner-thigh lifts",
+      "duration": 60
+    },
+    {
+      "slug": "side-kick-series",
+      "variation": "Propped on the elbow",
+      "duration": 60
+    }
+  ]
+}

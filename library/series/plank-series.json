@@ -1,0 +1,18 @@
+{
+  "slug": "plank-series",
+  "name": "Plank Series",
+  "apparatus": "reformer",
+  "aka": [],
+  "summary": "Plank, knee tucks and pike on a light spring.",
+  "items": [
+    {
+      "slug": "reformer-plank"
+    },
+    {
+      "slug": "plank-knee-tucks"
+    },
+    {
+      "slug": "reformer-pike"
+    }
+  ]
+}

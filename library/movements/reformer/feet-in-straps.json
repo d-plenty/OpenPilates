@@ -1,6 +1,6 @@
 {
   "slug": "feet-in-straps",
-  "name": "Feet in Straps — Lowers & Circles",
+  "name": "Leg Lowers & Circles in Straps",
   "apparatus": "reformer",
   "section": "pelvic",
   "level": "beginner",
@@ -29,13 +29,7 @@
   "load": {
     "springs": [
       "medium",
-      "medium",
-      "xlight"
-    ],
-    "advance": [
-      "medium",
-      "medium",
-      "light"
+      "medium"
     ]
   },
   "setup": {
@@ -87,18 +81,9 @@
     },
     {
       "tag": "L4",
-      "title": "Single leg",
-      "text": "One strap at a time."
-    },
-    {
-      "tag": "L5",
       "title": "Prop",
       "text": "Ball or ring between the ankles."
     }
-  ],
-  "modifications": [
-    "Lighter spring if the pelvis rocks.",
-    "Smaller range."
   ],
   "cautions": [
     {
@@ -128,5 +113,49 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Feet in straps",
+    "Leg circles",
+    "Lower and lift",
+    "Legs in straps"
+  ],
+  "variations": [
+    {
+      "name": "Lower and lift only",
+      "kind": "regression"
+    },
+    {
+      "name": "Lighter springs",
+      "kind": "progression",
+      "springs": [
+        "medium",
+        "light"
+      ],
+      "note": "Less support, so the pelvis has to work harder to stay still."
+    },
+    {
+      "name": "Single leg",
+      "kind": "progression",
+      "note": "One strap at a time."
+    },
+    {
+      "name": "Lighter spring if the pelvis rocks",
+      "kind": "regression"
+    },
+    {
+      "name": "Smaller range",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "saran",
+    "complete",
+    "onform",
+    "matlists",
+    "manual"
+  ]
 }

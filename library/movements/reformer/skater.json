@@ -88,10 +88,6 @@
       "text": "Hold at the widest point or slow the return."
     }
   ],
-  "modifications": [
-    "Less spring or less range.",
-    "Carriage foot closer to the middle of the carriage for less resistance."
-  ],
   "cautions": [
     {
       "tag": "knee",
@@ -124,5 +120,23 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Skating",
+    "Speed skater"
+  ],
+  "variations": [
+    {
+      "name": "Less spring or less range",
+      "kind": "regression"
+    },
+    {
+      "name": "Carriage foot closer to the middle of the carriage for less resistance",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "bbcards",
+    "manual"
+  ]
 }

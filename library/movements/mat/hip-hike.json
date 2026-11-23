@@ -74,10 +74,6 @@
       "text": "Reach or lift the arms."
     }
   ],
-  "modifications": [
-    "Smaller range.",
-    "Hold on."
-  ],
   "cautions": [
     {
       "tag": "balance",
@@ -104,5 +100,18 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Smaller range",
+      "kind": "regression"
+    },
+    {
+      "name": "Hold on",
+      "kind": "regression"
+    }
+  ],
+  "sources": [],
+  "retired": true
 }

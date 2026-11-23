@@ -45,9 +45,6 @@
   "summary": "In a split stance, tuck the pelvis and shift forward to stretch the front of the back hip.",
   "steps": [],
   "layers": [],
-  "modifications": [
-    "Hold a wall or chair."
-  ],
   "cautions": [],
   "prep": [],
   "cues": "Tail heavy, pubic bone lifting.\nHips face forward.",
@@ -58,5 +55,15 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Hold a wall or chair",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "bbcards"
+  ]
 }

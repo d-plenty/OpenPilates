@@ -34,10 +34,10 @@
   "equipment": [],
   "load": {
     "springs": [
-      "light"
+      "medium"
     ],
     "advance": [
-      "xlight"
+      "light"
     ],
     "lighterIsHarder": true
   },
@@ -87,16 +87,7 @@
       "tag": "L3",
       "title": "Add a twist",
       "text": "Turn the hips as you lower into the plank."
-    },
-    {
-      "tag": "L4",
-      "title": "Single leg",
-      "text": "Inside foot hovers."
     }
-  ],
-  "modifications": [
-    "Start with the box across the carriage to shorten the lever.",
-    "Stay with side plank or Long Stretch."
   ],
   "cautions": [
     {
@@ -154,5 +145,33 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Snake and twist"
+  ],
+  "variations": [
+    {
+      "name": "Twist",
+      "kind": "progression",
+      "note": "Rotate the chest to the footbar at the top."
+    },
+    {
+      "name": "Single leg",
+      "kind": "progression",
+      "note": "Inside foot hovers."
+    },
+    {
+      "name": "Start with the box across the carriage to shorten the lever",
+      "kind": "regression"
+    },
+    {
+      "name": "Stay with side plank or Long Stretch",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards"
+  ]
 }

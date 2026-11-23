@@ -1,6 +1,6 @@
 {
   "slug": "straight-leg-lowers-straps",
-  "name": "Straight-leg Lowers with Arms in Straps",
+  "name": "Double Leg Lowers with Straps",
   "apparatus": "reformer",
   "section": "core",
   "level": "intermediate",
@@ -29,13 +29,11 @@
   "equipment": [],
   "load": {
     "springs": [
-      "medium",
-      "light"
+      "medium"
     ],
     "advance": [
       "medium",
-      "light",
-      "xlight"
+      "light"
     ]
   },
   "setup": {
@@ -75,23 +73,14 @@
     },
     {
       "tag": "L2",
-      "title": "Single-leg lowers",
-      "text": "Alternate."
-    },
-    {
-      "tag": "L3",
       "title": "With a curl",
       "text": "Add the abdominal curl."
     },
     {
-      "tag": "L4",
+      "tag": "L3",
       "title": "Prop",
       "text": "Ball or ring between the ankles."
     }
-  ],
-  "modifications": [
-    "Smaller range, or bend the knees.",
-    "Long loops for less resistance."
   ],
   "cautions": [
     {
@@ -131,5 +120,29 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Straight-leg lowers",
+    "Supine abdominal series"
+  ],
+  "variations": [
+    {
+      "name": "Single leg",
+      "kind": "progression",
+      "note": "Alternate."
+    },
+    {
+      "name": "Smaller range, or bend the knees",
+      "kind": "regression"
+    },
+    {
+      "name": "Long loops for less resistance",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "bbcards",
+    "complete",
+    "onform"
+  ]
 }

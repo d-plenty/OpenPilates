@@ -1,0 +1,20 @@
+{
+  "slug": "feet-in-straps-series",
+  "name": "Feet in Straps Series",
+  "apparatus": "reformer",
+  "aka": [
+    "Legs in straps"
+  ],
+  "summary": "Frog, lowers and circles, then stretch, all on one spring setting.",
+  "items": [
+    {
+      "slug": "frog-press"
+    },
+    {
+      "slug": "feet-in-straps"
+    },
+    {
+      "slug": "feet-in-straps-stretches"
+    }
+  ]
+}

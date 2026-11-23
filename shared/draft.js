@@ -3,6 +3,7 @@
 // start with simple big-range leg work, save the hardest core work for late in the class, and
 // keep movements that share a spring setting next to each other. Instructors edit everything afterwards.
 import { LEVELS, FORMATS, sectionOf, roleOf, sameSetting, levelRange } from './vocab.js';
+import { analyze } from './analysis.js';
 
 const RANK = Object.fromEntries(LEVELS.map((l) => [l.id, l.rank]));
 
@@ -16,35 +17,35 @@ export const GOALS = [
 ];
 
 const REFORMER_FLOW = [
-  { name: 'Warm-up: Footwork', role: 'warmup', share: 0.12, sections: ['lower'], positions: ['supine'], intensity: [1, 4], prefer: 'warm-up', bpm: 95 },
-  { name: 'Hips & Hamstrings', role: 'build', share: 0.14, sections: ['pelvic'], positions: ['supine'], intensity: [2, 7], bpm: 100 },
-  { name: 'Standing Legs', role: 'build', share: 0.15, sections: ['lower'], positions: ['standing', 'kneeling', 'quadruped'], intensity: [3, 8], bpm: 108 },
-  { name: 'Side-lying Hips', role: 'build', share: 0.09, sections: ['pelvic', 'lower'], positions: ['side-lying'], intensity: [2, 7], bpm: 104 },
-  { name: 'Arms & Chest', role: 'build', share: 0.11, sections: ['chest_arms', 'single_arm'], intensity: [2, 7], bpm: 104 },
-  { name: 'Back & Shoulders', role: 'build', share: 0.11, sections: ['back_shoulders'], intensity: [2, 8], spine: 'extension', bpm: 104 },
-  { name: 'Core', role: 'peak', share: 0.18, sections: ['core'], intensity: [4, 10], bpm: 112 },
-  { name: 'Stretch', role: 'cooldown', share: 0.1, sections: ['stretch'], intensity: [1, 4], prefer: 'cool-down', bpm: 80 }
+  { name: 'Warm-up: Footwork', role: 'warmup', share: 0.12, sections: ['lower'], positions: ['supine'], intensity: [1, 4], prefer: 'warm-up' },
+  { name: 'Hips & Hamstrings', role: 'build', share: 0.14, sections: ['pelvic'], positions: ['supine'], intensity: [2, 7] },
+  { name: 'Standing Legs', role: 'build', share: 0.15, sections: ['lower'], positions: ['standing', 'kneeling', 'quadruped'], intensity: [3, 8] },
+  { name: 'Side-lying Hips', role: 'build', share: 0.09, sections: ['pelvic', 'lower'], positions: ['side-lying'], intensity: [2, 7] },
+  { name: 'Arms & Chest', role: 'build', share: 0.11, sections: ['chest_arms', 'single_arm'], intensity: [2, 7] },
+  { name: 'Back & Shoulders', role: 'build', share: 0.11, sections: ['back_shoulders'], intensity: [2, 8], spine: 'extension' },
+  { name: 'Core', role: 'peak', share: 0.18, sections: ['core'], intensity: [4, 10] },
+  { name: 'Stretch', role: 'cooldown', share: 0.1, sections: ['stretch'], intensity: [1, 4], prefer: 'cool-down' }
 ];
 
 const REFORMER_FIT = [
-  { name: 'Warm-up: Footwork', role: 'warmup', share: 0.11, sections: ['lower'], positions: ['supine'], intensity: [1, 4], prefer: 'warm-up', bpm: 100 },
-  { name: 'Jump Board', role: 'build', share: 0.14, sections: ['cardio'], intensity: [4, 10], bpm: 128 },
-  { name: 'Standing Legs', role: 'build', share: 0.15, sections: ['lower'], positions: ['standing', 'kneeling', 'quadruped'], intensity: [4, 9], bpm: 116 },
-  { name: 'Hips', role: 'build', share: 0.1, sections: ['pelvic'], positions: ['side-lying'], intensity: [2, 7], bpm: 104 },
-  { name: 'Arms & Chest', role: 'build', share: 0.12, sections: ['chest_arms', 'single_arm'], intensity: [3, 8], bpm: 112 },
-  { name: 'Back & Shoulders', role: 'build', share: 0.11, sections: ['back_shoulders'], intensity: [3, 8], spine: 'extension', bpm: 112 },
-  { name: 'Core', role: 'peak', share: 0.17, sections: ['core'], intensity: [5, 10], bpm: 120 },
-  { name: 'Stretch', role: 'cooldown', share: 0.1, sections: ['stretch'], intensity: [1, 4], prefer: 'cool-down', bpm: 80 }
+  { name: 'Warm-up: Footwork', role: 'warmup', share: 0.11, sections: ['lower'], positions: ['supine'], intensity: [1, 4], prefer: 'warm-up' },
+  { name: 'Jump Board', role: 'build', share: 0.14, sections: ['cardio'], intensity: [4, 10] },
+  { name: 'Standing Legs', role: 'build', share: 0.15, sections: ['lower'], positions: ['standing', 'kneeling', 'quadruped'], intensity: [4, 9] },
+  { name: 'Hips', role: 'build', share: 0.1, sections: ['pelvic'], positions: ['side-lying'], intensity: [2, 7] },
+  { name: 'Arms & Chest', role: 'build', share: 0.12, sections: ['chest_arms', 'single_arm'], intensity: [3, 8] },
+  { name: 'Back & Shoulders', role: 'build', share: 0.11, sections: ['back_shoulders'], intensity: [3, 8], spine: 'extension' },
+  { name: 'Core', role: 'peak', share: 0.17, sections: ['core'], intensity: [5, 10] },
+  { name: 'Stretch', role: 'cooldown', share: 0.1, sections: ['stretch'], intensity: [1, 4], prefer: 'cool-down' }
 ];
 
 const MAT_TEMPLATE = [
-  { name: 'Mobilise', role: 'warmup', share: 0.14, sections: ['stretch', 'pelvic', 'core'], intensity: [1, 3], prefer: 'warm-up', bpm: 90 },
-  { name: 'Core on the Back', role: 'build', share: 0.18, sections: ['core'], positions: ['supine', 'seated'], intensity: [2, 8], bpm: 100 },
-  { name: 'Hips & Side Body', role: 'build', share: 0.15, sections: ['pelvic', 'lower'], intensity: [2, 7], bpm: 104 },
-  { name: 'Planks & Peak', role: 'peak', share: 0.16, sections: ['core'], positions: ['plank', 'quadruped', 'seated', 'standing'], intensity: [4, 10], bpm: 112 },
-  { name: 'Back Body', role: 'build', share: 0.13, sections: ['back_shoulders'], intensity: [2, 8], spine: 'extension', bpm: 100 },
-  { name: 'Arms & Standing', role: 'build', share: 0.1, sections: ['chest_arms', 'lower', 'pelvic'], positions: ['standing', 'kneeling'], intensity: [2, 7], bpm: 100 },
-  { name: 'Wind Down', role: 'cooldown', share: 0.14, sections: ['stretch'], intensity: [1, 3], prefer: 'cool-down', bpm: 80 }
+  { name: 'Mobilise', role: 'warmup', share: 0.14, sections: ['stretch', 'pelvic', 'core'], intensity: [1, 3], prefer: 'warm-up' },
+  { name: 'Core on the Back', role: 'build', share: 0.18, sections: ['core'], positions: ['supine', 'seated'], intensity: [2, 8] },
+  { name: 'Hips & Side Body', role: 'build', share: 0.15, sections: ['pelvic', 'lower'], intensity: [2, 7] },
+  { name: 'Planks & Peak', role: 'peak', share: 0.16, sections: ['core'], positions: ['plank', 'quadruped', 'seated', 'standing'], intensity: [4, 10] },
+  { name: 'Back Body', role: 'build', share: 0.13, sections: ['back_shoulders'], intensity: [2, 8], spine: 'extension' },
+  { name: 'Arms & Standing', role: 'build', share: 0.1, sections: ['chest_arms', 'lower', 'pelvic'], positions: ['standing', 'kneeling'], intensity: [2, 7] },
+  { name: 'Wind Down', role: 'cooldown', share: 0.14, sections: ['stretch'], intensity: [1, 3], prefer: 'cool-down' }
 ];
 
 export const TEMPLATES = { reformer: REFORMER_FLOW, reformer_fit: REFORMER_FIT, mat: MAT_TEMPLATE };
@@ -66,7 +67,7 @@ const optionKeys = (mv) => (mv && mv.load ? [keyOf(mv.load.springs), ...(mv.load
 const split = (k) => (k ? k.split('+') : []);
 const shares = (mv, keys) => optionKeys(mv).some((k) => keys.some((c) => sameSetting(split(k), split(c))));
 
-export function draftFlow({ movements, goal = 'full_body', apparatus = 'reformer', format = 'flow', lengthMin = 50, level = 'intermediate', props = {}, clientTags = [], seed = Date.now() }) {
+function draftOnce({ movements, goal = 'full_body', apparatus = 'reformer', format = 'flow', lengthMin = 50, level = 'intermediate', props = {}, clientTags = [], seed = Date.now() }) {
   const g = GOALS.find((x) => x.id === goal) || GOALS[0];
   const rand = rng(seed);
   const fmt = FORMATS.find((f) => f.id === format) || FORMATS[0];
@@ -77,6 +78,7 @@ export function draftFlow({ movements, goal = 'full_body', apparatus = 'reformer
   const maxLevel = goal === 'rehab' ? 1 : goal === 'prenatal' ? Math.max(2, RANK[level] || 2) : (RANK[level] || 2);
   const used = new Set();
   const pool = Object.values(movements).filter((mv) => {
+    if (mv.retired) return false;
     if (apparatus !== 'mixed' && mv.apparatus !== apparatus) return false;
     if ((RANK[mv.level] || 1) > maxLevel) return false;
     if ((mv.equipment || []).some((e) => !(Number(props[e]) > 0))) return false;
@@ -117,14 +119,16 @@ export function draftFlow({ movements, goal = 'full_body', apparatus = 'reformer
     // whatever is already on the machine. Warm-ups and cool-downs simply go easiest first.
     let ordered;
     if (tpl.role === 'cooldown' || tpl.role === 'warmup') {
-      ordered = [...items].sort((a, b) => (movements[a.slug].intensity || 0) - (movements[b.slug].intensity || 0));
+      // Easiest first, except that Footwork itself always opens a footwork block.
+      const first = (s) => (s === 'footwork-series' && tpl.role === 'warmup' ? -1 : 0);
+      ordered = [...items].sort((a, b) => first(a.slug) - first(b.slug) || (movements[a.slug].intensity || 0) - (movements[b.slug].intensity || 0));
     } else {
       const r = orderBySprings(items, movements, incoming);
       ordered = r.ordered;
       lastKeys = r.keys;
     }
     items.length = 0; items.push(...ordered);
-    return { id: newId('s'), name: tpl.name, role: tpl.role, bpm: tpl.bpm, song: '', items, _tpl: tpl, _budget: budget };
+    return { id: newId('s'), name: tpl.name, role: tpl.role, song: '', items, _tpl: tpl, _budget: budget };
   }).filter((s) => s.items.length);
 
   // If a block found nothing to offer, share its time among the others.
@@ -240,7 +244,9 @@ export function tidySprings(flow, movements) {
     keys = r.keys;
     return { ...seg, items: r.ordered };
   });
-  return segments;
+  // Never hand back an order that changes springs more often than the one we were given.
+  const count = (segs) => analyze({ flow: { ...flow, segments: segs }, movements }).springChanges;
+  return count(segments) <= count(flow.segments || []) ? segments : flow.segments;
 }
 
 function score(mv, tpl, g, classRank) {
@@ -262,4 +268,19 @@ function score(mv, tpl, g, classRank) {
   if (tpl.role === 'cooldown') s += (mv.purpose?.flexibility || 0);
   if (tpl.role === 'warmup' && roleOf(mv) !== 'stability') s += 0.5;
   return s;
+}
+
+// A draft that respects the spring limit. Several candidates are built from the same request
+// and the first one inside the limit wins; failing that, the one with the fewest changes.
+export function draftFlow(opts) {
+  const seed = opts.seed === undefined ? Date.now() : opts.seed;
+  let best = null;
+  for (let k = 0; k < 8; k++) {
+    const flow = draftOnce({ ...opts, seed: seed + k * 7919 });
+    if (opts.apparatus === 'mat') return flow;
+    const changes = analyze({ flow, movements: opts.movements, studio: { props: opts.props || {} } }).springChanges;
+    if (!best || changes < best.changes) best = { flow, changes };
+    if (changes <= (flow.springBudget ?? 3)) break;
+  }
+  return best.flow;
 }

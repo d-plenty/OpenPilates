@@ -1,6 +1,6 @@
 {
   "slug": "side-lying-inner-thigh",
-  "name": "Side-lying Inner Thigh in Strap",
+  "name": "Side-lying Inner Thigh with Strap",
   "apparatus": "reformer",
   "section": "pelvic",
   "level": "beginner",
@@ -79,10 +79,6 @@
       "text": "Pause with the legs together."
     }
   ],
-  "modifications": [
-    "Lighter spring.",
-    "Smaller range."
-  ],
   "cautions": [
     {
       "tag": "groin",
@@ -108,5 +104,23 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Side-lying adduction",
+    "Side-lying leg work"
+  ],
+  "variations": [
+    {
+      "name": "Lighter spring",
+      "kind": "regression"
+    },
+    {
+      "name": "Smaller range",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "manual"
+  ]
 }

@@ -17,11 +17,12 @@
   ],
   "muscles": {
     "primary": [
-      "biceps",
-      "deltoids"
+      "deltoids",
+      "triceps"
     ],
     "secondary": [
       "chest",
+      "biceps",
       "abdominals"
     ]
   },
@@ -33,8 +34,7 @@
       "light"
     ],
     "advance": [
-      "light",
-      "xlight"
+      "medium"
     ]
   },
   "setup": {
@@ -88,9 +88,6 @@
       "text": "On the carriage without the box."
     }
   ],
-  "modifications": [
-    "Long loops for less tension."
-  ],
   "cautions": [
     {
       "tag": "shoulder",
@@ -106,5 +103,19 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Serve the platter",
+    "Serving"
+  ],
+  "variations": [
+    {
+      "name": "Long loops for less tension",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "bbcards",
+    "manual"
+  ]
 }

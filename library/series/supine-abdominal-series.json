@@ -1,0 +1,20 @@
+{
+  "slug": "supine-abdominal-series",
+  "name": "Supine Abdominal Series",
+  "apparatus": "reformer",
+  "aka": [
+    "Abs in straps"
+  ],
+  "summary": "Curl, Hundred and Coordination without changing springs.",
+  "items": [
+    {
+      "slug": "ab-curl-in-straps"
+    },
+    {
+      "slug": "hundred-reformer"
+    },
+    {
+      "slug": "coordination"
+    }
+  ]
+}

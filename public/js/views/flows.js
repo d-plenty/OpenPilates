@@ -106,7 +106,7 @@ export async function newFlowView() {
       if (!flow.segments.length) { toast('Not enough movements match. Try another goal or level.', { kind: 'error' }); return; }
     } else {
       flow = { title: 'New flow', apparatus: st.apparatus, level: st.level, lengthMin: st.lengthMin, goal: st.goal, target: 'general', format: st.apparatus === 'reformer' ? st.format : 'open', springBudget: (FORMATS.find((f) => f.id === st.format) || FORMATS[2]).springBudget,
-        segments: [{ id: newId('s'), name: 'Warm-up', role: 'warmup', bpm: 90, items: [] }, { id: newId('s'), name: 'Main', role: 'build', bpm: 104, items: [] }, { id: newId('s'), name: 'Cool-down', role: 'cooldown', bpm: 80, items: [] }] };
+        segments: [{ id: newId('s'), name: 'Warm-up', role: 'warmup', items: [] }, { id: newId('s'), name: 'Main', role: 'build', items: [] }, { id: newId('s'), name: 'Cool-down', role: 'cooldown', items: [] }] };
     }
     flow.room = st.room;
     flow.booked = st.booked.map((id) => ({ clientId: id, spot: '' }));

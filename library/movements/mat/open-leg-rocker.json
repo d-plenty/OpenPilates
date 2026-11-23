@@ -72,10 +72,6 @@
       "text": "Classical."
     }
   ],
-  "modifications": [
-    "Hold behind the calves or thighs.",
-    "Keep the knees soft."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -117,5 +113,22 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Rocker with open legs"
+  ],
+  "variations": [
+    {
+      "name": "Hold behind the calves or thighs",
+      "kind": "regression"
+    },
+    {
+      "name": "Keep the knees soft",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "manual"
+  ]
 }

@@ -73,11 +73,6 @@
       "text": "Open on the way over, close on the way down."
     }
   ],
-  "modifications": [
-    "Bend the knees.",
-    "Small cushion under the hips to start.",
-    "Stay with Pelvic Curl."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -120,5 +115,24 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Bend the knees",
+      "kind": "regression"
+    },
+    {
+      "name": "Small cushion under the hips to start",
+      "kind": "regression"
+    },
+    {
+      "name": "Stay with Pelvic Curl",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "manual"
+  ]
 }

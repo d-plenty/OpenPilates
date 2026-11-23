@@ -47,10 +47,6 @@
   "summary": "Seated tall with legs apart, curl forward over the legs and stack back up.",
   "steps": [],
   "layers": [],
-  "modifications": [
-    "Sit on a block.",
-    "Bend the knees."
-  ],
   "cautions": [
     {
       "tag": "low_bone_density",
@@ -66,5 +62,22 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Spine stretch"
+  ],
+  "variations": [
+    {
+      "name": "Sit on a block",
+      "kind": "regression"
+    },
+    {
+      "name": "Bend the knees",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "manual"
+  ]
 }

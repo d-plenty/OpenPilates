@@ -1,6 +1,6 @@
 {
   "slug": "kneeling-knee-pulls",
-  "name": "Kneeling Knee Pulls on the Rails",
+  "name": "Reverse Abdominals",
   "apparatus": "reformer",
   "section": "core",
   "level": "intermediate",
@@ -29,11 +29,10 @@
   "equipment": [],
   "load": {
     "springs": [
-      "medium"
+      "light"
     ],
     "advance": [
-      "medium",
-      "xlight"
+      "medium"
     ]
   },
   "setup": {
@@ -92,16 +91,7 @@
       "tag": "L5",
       "title": "Both hands to one side",
       "text": "More waist."
-    },
-    {
-      "tag": "L6",
-      "title": "Single leg",
-      "text": "One knee hovers."
     }
-  ],
-  "modifications": [
-    "Hands closer in.",
-    "Lighter spring."
   ],
   "cautions": [
     {
@@ -132,5 +122,30 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Kneeling abs facing back",
+    "Reverse knee tucks",
+    "Knee pulls"
+  ],
+  "variations": [
+    {
+      "name": "Single leg",
+      "kind": "progression",
+      "note": "One knee hovers."
+    },
+    {
+      "name": "Hands closer in",
+      "kind": "regression"
+    },
+    {
+      "name": "Lighter spring",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "bbcards",
+    "saran",
+    "onform"
+  ]
 }

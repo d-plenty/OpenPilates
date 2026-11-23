@@ -1,0 +1,17 @@
+{
+  "slug": "lunge-and-scooter",
+  "name": "Lunge & Scooter",
+  "apparatus": "reformer",
+  "aka": [
+    "Standing leg series"
+  ],
+  "summary": "One foot on the floor. Repeat on the other side.",
+  "items": [
+    {
+      "slug": "standing-lunge"
+    },
+    {
+      "slug": "scooter"
+    }
+  ]
+}

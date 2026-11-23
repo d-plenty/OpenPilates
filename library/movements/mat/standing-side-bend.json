@@ -54,23 +54,14 @@
   "layers": [
     {
       "tag": "L1",
-      "title": "One arm",
-      "text": "Basic."
-    },
-    {
-      "tag": "L2",
       "title": "Both arms overhead",
       "text": "Hold a ball or band."
     },
     {
-      "tag": "L3",
+      "tag": "L2",
       "title": "Feet together",
       "text": "Narrower base."
     }
-  ],
-  "modifications": [
-    "Smaller range.",
-    "Hand on the hip."
   ],
   "cautions": [
     {
@@ -95,5 +86,24 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Single arm",
+      "kind": "progression"
+    },
+    {
+      "name": "Smaller range",
+      "kind": "regression"
+    },
+    {
+      "name": "Hand on the hip",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "bbcards"
+  ]
 }

@@ -1,6 +1,6 @@
 {
   "slug": "kneeling-biceps-curl",
-  "name": "Kneeling Biceps Curl",
+  "name": "Biceps Curl",
   "apparatus": "reformer",
   "section": "chest_arms",
   "level": "beginner",
@@ -31,8 +31,7 @@
       "light"
     ],
     "advance": [
-      "light",
-      "xlight"
+      "medium"
     ]
   },
   "setup": {
@@ -91,10 +90,6 @@
       "text": "Add a half roll-back with each curl."
     }
   ],
-  "modifications": [
-    "Long loops for less resistance.",
-    "Sit on the long box for sore knees."
-  ],
   "cautions": [
     {
       "tag": "knee",
@@ -110,5 +105,32 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Bicep curls",
+    "Kneeling biceps curl",
+    "Kneeling arms facing back"
+  ],
+  "variations": [
+    {
+      "name": "Single arm",
+      "kind": "variation",
+      "springs": [
+        "xlight"
+      ]
+    },
+    {
+      "name": "Long loops for less resistance",
+      "kind": "regression"
+    },
+    {
+      "name": "Sit on the long box for sore knees",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "bbcards",
+    "saran",
+    "manual"
+  ]
 }

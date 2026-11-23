@@ -1,0 +1,27 @@
+{
+  "slug": "series-of-five",
+  "name": "Abdominal Series of Five",
+  "apparatus": "mat",
+  "aka": [
+    "Series of five",
+    "Stomach series"
+  ],
+  "summary": "The five classical abdominal exercises back to back.",
+  "items": [
+    {
+      "slug": "single-leg-stretch"
+    },
+    {
+      "slug": "double-leg-stretch"
+    },
+    {
+      "slug": "scissors-mat"
+    },
+    {
+      "slug": "double-leg-lower-lift"
+    },
+    {
+      "slug": "criss-cross"
+    }
+  ]
+}

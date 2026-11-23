@@ -3,7 +3,7 @@
 // body-position changes, time moving vs setting up, and muscle balance. On top of that it checks
 // the things a reformer class is usually planned around: how often the springs change, whether
 // every part of the body gets a turn, and whether stabilising work is balanced with movement.
-import { MUSCLES, SPINE_DIRECTIONS, DEFAULT_TARGETS, PURPOSES, LEVELS, CAUTIONS, SECTION_GROUPS, CATEGORIES, EQUIPMENT, labelOf, byId, sectionOf, sectionGroupOf, categoriesOf, roleOf, sameSetting } from './vocab.js';
+import { MUSCLES, SPINE_DIRECTIONS, DEFAULT_TARGETS, PURPOSES, LEVELS, CAUTIONS, SECTION_GROUPS, CATEGORIES, EQUIPMENT, labelOf, byId, sectionOf, sectionGroupOf, categoriesOf, roleOf, sameSetting, variationOf, itemName, kindOf } from './vocab.js';
 
 const MUSCLE = byId(MUSCLES);
 const LEVEL_RANK = Object.fromEntries(LEVELS.map((l) => [l.id, l.rank]));
@@ -27,6 +27,8 @@ const weightOf = (loads) => (loads || []).reduce((a, l) => a + (LOAD_WEIGHT[l] |
 // otherwise the usual setting and the "to advance" setting.
 function loadOptions(item, mv) {
   if (item.load && Array.isArray(item.load.springs)) return [item.load.springs];
+  const v = variationOf(mv, item);
+  if (v && v.springs && v.springs.length) return [v.springs];
   const out = [(mv.load && mv.load.springs) || []];
   if (mv.load && mv.load.advance && mv.load.advance.length && keyOf(mv.load.advance) !== keyOf(out[0])) out.push(mv.load.advance);
   return out;
@@ -115,11 +117,11 @@ export function analyze({ flow, movements, studio = {}, clients = [] }) {
         const stay = currentLoad && (flexible ? currentLoad : options.find((o) => keyOf(o) === keyOf(currentLoad)) || (options.some((o) => sameSetting(o, currentLoad)) ? currentLoad : null));
         let changed = false;
         if (!stay) {
-          if (currentLoad) { springChanges++; t += TRANSITION_COST.spring; changed = true; springStops.push({ before: mv.name, loads: options[0] }); }
+          if (currentLoad) { springChanges++; t += TRANSITION_COST.spring; changed = true; springStops.push({ before: itemName(mv, item), loads: options[0] }); }
           currentLoad = options[0];
         }
         if (!firstLoad) firstLoad = currentLoad;
-        springPlan.push({ itemId: item.id, pass, slug: mv.slug, name: mv.name, loads: currentLoad, changed, advanced: !!stay && !flexible && options.length > 1 && keyOf(options[1]) === keyOf(currentLoad) });
+        springPlan.push({ itemId: item.id, pass, slug: mv.slug, name: itemName(mv, item), loads: currentLoad, changed, advanced: !!stay && !flexible && options.length > 1 && keyOf(options[1]) === keyOf(currentLoad) });
       }
 
       const last = timeline[timeline.length - 1];
@@ -176,7 +178,7 @@ export function analyze({ flow, movements, studio = {}, clients = [] }) {
           for (const m of add.muscles.primary || []) { muscleCount[m] = (muscleCount[m] || 0) + 1; muscleScore[m] = (muscleScore[m] || 0) + dur * 0.3; }
           for (const c of categoriesOf(add)) if (c in categoryCount) categoryCount[c]++;
         }
-        if (((mv.intensity || 3) >= 7 || mv.level === 'advanced') && !opts.some((o) => o.kind === 'easier')) noEasier.push(mv.name);
+        if (((mv.intensity || 3) >= 7 || mv.level === 'advanced') && !opts.some((o) => kindOf(o.kind) === 'regression')) noEasier.push(mv.name);
       }
       if ((LEVEL_RANK[mv.level] || 1) > flowLevel) aboveLevel.push(mv.name);
 
@@ -263,7 +265,7 @@ export function analyze({ flow, movements, studio = {}, clients = [] }) {
       else if (count >= 8) add('ok', 'categories', 'Every movement category covered', 'Trunk, hips, upper body, hands-and-knees and standing work are all here.');
 
       if (boxChanges > 3) add('info', 'box', `The box or board goes on and off ${boxChanges} times`, 'Put the movements that share a box or jump board next to each other.');
-      if (noEasier.length && (clients.length || noEasier.length >= 2)) add('info', 'options', `No easier option planned for ${noEasier.length === 1 ? noEasier[0] : noEasier.length + ' harder movements'}`, `${noEasier.length > 1 ? [...new Set(noEasier)].join(', ') + '. ' : ''}Open the movement in the builder and add an easier option so nobody is left out.`);
+      if (noEasier.length && (clients.length || noEasier.length >= 2)) add('info', 'options', `No regression planned for ${noEasier.length === 1 ? noEasier[0] : noEasier.length + ' harder movements'}`, `${noEasier.length > 1 ? [...new Set(noEasier)].join(', ') + '. ' : ''}Open the movement in the builder and add a regression so nobody is left out.`);
       if (positionsUsed.size < 3) add('info', 'positions', 'Not much change of position', 'Vary the orientation: lying on the back, side or front, kneeling, standing, facing the front or back.');
     }
     if (sequence.length >= 4) {

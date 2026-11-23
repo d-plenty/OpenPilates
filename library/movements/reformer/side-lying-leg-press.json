@@ -61,9 +61,6 @@
   "summary": "Lying on the side with one foot on the footbar, press out while keeping the hips stacked.",
   "steps": [],
   "layers": [],
-  "modifications": [
-    "Lighter spring if the pelvis moves."
-  ],
   "cautions": [
     {
       "tag": "hip_replacement",
@@ -79,5 +76,27 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Side-lying footwork",
+    "Side leg press",
+    "Side kick"
+  ],
+  "variations": [
+    {
+      "name": "Lighter spring if the pelvis moves",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "saran",
+    "complete",
+    "contrology",
+    "pa",
+    "matlists",
+    "manual"
+  ]
 }

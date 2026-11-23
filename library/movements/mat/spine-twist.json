@@ -44,10 +44,6 @@
   "summary": "Seated tall, legs together, rotate the upper body while the pelvis stays still.",
   "steps": [],
   "layers": [],
-  "modifications": [
-    "Sit on a block or cross-legged.",
-    "Hands on the shoulders."
-  ],
   "cautions": [],
   "prep": [],
   "cues": "Grow taller as you turn.\nBoth sit bones stay heavy.\nArms move with the ribs, not ahead of them.",
@@ -57,5 +53,22 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Sit on a block or cross-legged",
+      "kind": "regression"
+    },
+    {
+      "name": "Hands on the shoulders",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "manual"
+  ]
 }

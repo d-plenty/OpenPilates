@@ -26,11 +26,10 @@
   "equipment": [],
   "load": {
     "springs": [
-      "light"
+      "xlight"
     ],
     "advance": [
-      "light",
-      "xlight"
+      "light"
     ],
     "note": "Yellow alone is plenty for most people to start."
   },
@@ -85,11 +84,6 @@
       "text": "Harder base."
     }
   ],
-  "modifications": [
-    "Smaller range.",
-    "Long loop for less resistance.",
-    "Sit on the long box for sore knees."
-  ],
   "cautions": [
     {
       "tag": "knee",
@@ -111,5 +105,29 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Side arms: external rotation",
+    "Rotator cuff"
+  ],
+  "variations": [
+    {
+      "name": "Smaller range",
+      "kind": "regression"
+    },
+    {
+      "name": "Long loop for less resistance",
+      "kind": "regression"
+    },
+    {
+      "name": "Sit on the long box for sore knees",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "bbcards",
+    "onform",
+    "manual"
+  ]
 }

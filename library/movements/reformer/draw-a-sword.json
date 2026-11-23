@@ -19,10 +19,10 @@
   "muscles": {
     "primary": [
       "deltoids",
-      "triceps"
+      "upper_back"
     ],
     "secondary": [
-      "upper_back",
+      "triceps",
       "obliques"
     ]
   },
@@ -81,10 +81,6 @@
       "text": "Let the chest follow the hand."
     }
   ],
-  "modifications": [
-    "Long loop for less resistance.",
-    "Sit on the long box for sore knees."
-  ],
   "cautions": [
     {
       "tag": "knee",
@@ -104,5 +100,25 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Draw the sword",
+    "Side arms: diagonal pull"
+  ],
+  "variations": [
+    {
+      "name": "Long loop for less resistance",
+      "kind": "regression"
+    },
+    {
+      "name": "Sit on the long box for sore knees",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "bbcards",
+    "onform",
+    "manual"
+  ]
 }

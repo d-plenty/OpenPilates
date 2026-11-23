@@ -1,6 +1,6 @@
 {
   "slug": "feet-in-straps-stretches",
-  "name": "Feet in Straps — Hip Stretches",
+  "name": "Hip Stretches in Straps",
   "apparatus": "reformer",
   "section": "stretch",
   "level": "beginner",
@@ -28,7 +28,7 @@
   "load": {
     "springs": [
       "medium",
-      "light"
+      "medium"
     ]
   },
   "setup": {
@@ -90,9 +90,6 @@
       "text": "Glutes."
     }
   ],
-  "modifications": [
-    "Bend the knees a little for tight hamstrings."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -124,5 +121,23 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Feet in straps stretches",
+    "Legs in straps"
+  ],
+  "variations": [
+    {
+      "name": "Bend the knees a little for tight hamstrings",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "bbcards",
+    "saran",
+    "complete",
+    "onform",
+    "manual"
+  ]
 }

@@ -75,23 +75,14 @@
     },
     {
       "tag": "L2",
-      "title": "Single leg",
-      "text": "One foot lifted."
-    },
-    {
-      "tag": "L3",
       "title": "Mountain climbers",
       "text": "Alternate knees."
     },
     {
-      "tag": "L4",
+      "tag": "L3",
       "title": "Push from the shoulders",
       "text": "Stay in the plank and move the carriage out and in with the arms only."
     }
-  ],
-  "modifications": [
-    "Forearms on the carriage.",
-    "Knees on the platform."
   ],
   "cautions": [
     {
@@ -119,5 +110,23 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Single leg",
+      "kind": "progression",
+      "note": "One foot lifted."
+    },
+    {
+      "name": "Forearms on the carriage",
+      "kind": "regression"
+    },
+    {
+      "name": "Knees on the platform",
+      "kind": "regression"
+    }
+  ],
+  "retired": true,
+  "sources": []
 }

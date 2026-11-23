@@ -33,8 +33,7 @@
       "light"
     ],
     "advance": [
-      "light",
-      "xlight"
+      "medium"
     ]
   },
   "setup": {
@@ -81,15 +80,7 @@
       "tag": "L3",
       "title": "Elbows forward",
       "text": "Point the elbows ahead for a straight triceps press."
-    },
-    {
-      "tag": "L4",
-      "title": "Single arm",
-      "text": "One at a time."
     }
-  ],
-  "modifications": [
-    "Long loops for less tension."
   ],
   "cautions": [
     {
@@ -112,5 +103,28 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Overhead triceps press"
+  ],
+  "variations": [
+    {
+      "name": "Single arm",
+      "kind": "variation",
+      "springs": [
+        "xlight"
+      ],
+      "note": "One at a time."
+    },
+    {
+      "name": "Long loops for less tension",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "manual"
+  ]
 }

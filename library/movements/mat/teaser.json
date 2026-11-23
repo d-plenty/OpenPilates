@@ -50,28 +50,19 @@
   "layers": [
     {
       "tag": "L1",
-      "title": "One leg",
-      "text": "One foot stays down."
-    },
-    {
-      "tag": "L2",
       "title": "Bent knees",
       "text": "Tabletop legs."
     },
     {
-      "tag": "L3",
+      "tag": "L2",
       "title": "Full teaser",
       "text": "Legs long."
     },
     {
-      "tag": "L4",
+      "tag": "L3",
       "title": "Lower and lift the legs",
       "text": "Hold the top and move the legs."
     }
-  ],
-  "modifications": [
-    "Hands behind the thighs.",
-    "One foot down."
   ],
   "cautions": [
     {
@@ -109,5 +100,28 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Single leg",
+      "kind": "progression",
+      "note": "One foot stays down."
+    },
+    {
+      "name": "Hands behind the thighs",
+      "kind": "regression"
+    },
+    {
+      "name": "One foot down",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "pa",
+    "manual"
+  ]
 }

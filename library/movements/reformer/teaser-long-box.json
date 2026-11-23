@@ -33,9 +33,12 @@
   ],
   "load": {
     "springs": [
-      "light"
+      "medium"
     ],
-    "lighterIsHarder": true
+    "lighterIsHarder": true,
+    "advance": [
+      "light"
+    ]
   },
   "setup": {
     "headrest": "any",
@@ -88,10 +91,6 @@
       "text": "Stay in the V for small flies or circles."
     }
   ],
-  "modifications": [
-    "Start sitting in the boat and practise the balance.",
-    "No straps."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -142,5 +141,25 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Teaser"
+  ],
+  "variations": [
+    {
+      "name": "Start sitting in the boat and practise the balance",
+      "kind": "regression"
+    },
+    {
+      "name": "No straps",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "pa",
+    "manual"
+  ]
 }

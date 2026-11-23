@@ -79,18 +79,9 @@
     },
     {
       "tag": "L3",
-      "title": "Single leg",
-      "text": "One leg lifted."
-    },
-    {
-      "tag": "L4",
       "title": "Feet on the footbar",
       "text": "Hardest."
     }
-  ],
-  "modifications": [
-    "Forearms on the carriage.",
-    "Knee tucks instead."
   ],
   "cautions": [
     {
@@ -139,5 +130,25 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Single leg",
+      "kind": "progression",
+      "note": "One leg lifted."
+    },
+    {
+      "name": "Forearms on the carriage",
+      "kind": "regression"
+    },
+    {
+      "name": "Knee tucks instead",
+      "kind": "regression"
+    }
+  ],
+  "retired": true,
+  "sources": [
+    "alo"
+  ]
 }

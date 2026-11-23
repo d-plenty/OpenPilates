@@ -7,6 +7,7 @@ import { exploreView } from './views/explore.js';
 import { movementView, movementEditView } from './views/movement.js';
 import { studioView, clientsView, teamView, accountView } from './views/studio.js';
 import { guideView } from './views/guide.js';
+import { reviewView } from './views/review.js';
 
 const root = document.getElementById('app');
 let cleanup = null;
@@ -23,8 +24,26 @@ const routes = [
   [/^\/clients$/, () => clientsView()],
   [/^\/team$/, () => teamView()],
   [/^\/account$/, () => accountView()],
-  [/^\/guide$/, () => guideView()]
+  [/^\/guide$/, () => guideView()],
+  [/^\/review$/, () => reviewView()]
 ];
+
+// Where you came from, so "back" returns you there instead of to a fixed page.
+//  - origin: the last page that wasn't a movement page (a flow, the explorer, the review list…)
+//  - playFrom: the page Play mode was started from
+export const nav = { origin: '/explore', playFrom: null, last: null };
+export function backLink(fallbackLabel = 'Movements') {
+  const o = nav.origin || '/explore';
+  const label = /^\/flows\/[\w-]+/.test(o) ? 'Back to the flow' : o === '/' ? 'Flows' : o.startsWith('/review') ? 'Back to the review list' : o.startsWith('/clients') ? 'Clients' : o.startsWith('/guide') ? 'Guide' : o.startsWith('/studio') ? 'Studio' : fallbackLabel;
+  return { href: '#' + o, label };
+}
+function track(full, path) {
+  if (nav.last === full) return;
+  const isPlay = /^\/flows\/[\w-]+\/play$/.test(path);
+  if (isPlay) { if (!nav.playFrom) nav.playFrom = nav.last && !/\/play$/.test(nav.last) ? nav.last : null; } else nav.playFrom = null;
+  if (!path.startsWith('/movements/') && !isPlay) nav.origin = full;
+  nav.last = full;
+}
 
 // Going to the page you are already on re-draws it (the browser fires no event for that).
 export function go(path) { if (location.hash === '#' + path) render(); else location.hash = '#' + path; }
@@ -59,6 +78,7 @@ function shell(active, content) {
 }
 
 export async function render() {
+  document.querySelectorAll('.modal-overlay').forEach((x) => x.remove());
   if (cleanup) { try { cleanup(); } catch { /* ignore */ } cleanup = null; }
   const { path, query } = currentPath();
   try {
@@ -74,7 +94,8 @@ export async function render() {
     const m = path.match(re);
     if (!m) continue;
     try {
-      await Promise.all([store.loadMovements(), store.loadStudio(), store.loadClients()]);
+      await Promise.all([store.loadMovements(), store.loadStudio(), store.loadClients(), store.loadSeries()]);
+      track(location.hash.replace(/^#/, '') || '/', path);
       const result = await view(m, query);
       if (result.fullscreen) return mount(result.node, result.cleanup);
       const active = path === '/' || path.startsWith('/flows') ? '/' : path.startsWith('/explore') || path.startsWith('/movements') ? '/explore' : '/' + path.split('/')[1];

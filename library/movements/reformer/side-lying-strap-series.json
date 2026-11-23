@@ -86,28 +86,19 @@
     },
     {
       "tag": "L4",
-      "title": "Single-leg frog",
-      "text": "Turn out, bend and press."
-    },
-    {
-      "tag": "L5",
       "title": "Clams",
       "text": "Knees bent, open and close the top knee; hold the carriage still."
     },
     {
-      "tag": "L6",
+      "tag": "L5",
       "title": "Circles",
       "text": "Both directions."
     },
     {
-      "tag": "L7",
+      "tag": "L6",
       "title": "Propped",
       "text": "Up on the forearm for more waist work."
     }
-  ],
-  "modifications": [
-    "Take spring off if the pelvis rocks.",
-    "Small ball or cushion under the head."
   ],
   "cautions": [
     {
@@ -130,5 +121,29 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Side-lying leg work",
+    "Side leg series"
+  ],
+  "variations": [
+    {
+      "name": "Single leg",
+      "kind": "progression",
+      "note": "Turn out, bend and press."
+    },
+    {
+      "name": "Take spring off if the pelvis rocks",
+      "kind": "regression"
+    },
+    {
+      "name": "Small ball or cushion under the head",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "onform",
+    "manual"
+  ]
 }

@@ -58,10 +58,6 @@
   "summary": "Kneeling side-on, one hand in a strap; lift the arm and side bend away from the springs.",
   "steps": [],
   "layers": [],
-  "modifications": [
-    "Sit on the long box for sore knees.",
-    "Long loop for less resistance."
-  ],
   "cautions": [
     {
       "tag": "knee",
@@ -80,5 +76,21 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Sit on the long box for sore knees",
+      "kind": "regression"
+    },
+    {
+      "name": "Long loop for less resistance",
+      "kind": "regression"
+    }
+  ],
+  "retired": true,
+  "sources": [
+    "pilatesology",
+    "bbcards"
+  ]
 }

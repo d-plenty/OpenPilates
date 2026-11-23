@@ -1,6 +1,6 @@
 {
   "slug": "mermaid-mat",
-  "name": "Mermaid (Mat)",
+  "name": "Mermaid",
   "apparatus": "mat",
   "section": "stretch",
   "level": "beginner",
@@ -66,9 +66,6 @@
       "text": "Both hands overhead on a ball."
     }
   ],
-  "modifications": [
-    "Sit cross-legged or on a block."
-  ],
   "cautions": [
     {
       "tag": "knee",
@@ -86,5 +83,21 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Seated side bend"
+  ],
+  "variations": [
+    {
+      "name": "Sit cross-legged or on a block",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "pa",
+    "manual"
+  ]
 }

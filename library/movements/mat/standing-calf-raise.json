@@ -1,6 +1,6 @@
 {
   "slug": "standing-calf-raise",
-  "name": "Standing Heel Raises",
+  "name": "Standing Calf Raises",
   "apparatus": "mat",
   "section": "lower",
   "level": "beginner",
@@ -68,17 +68,9 @@
     },
     {
       "tag": "L4",
-      "title": "Single leg",
-      "text": "One foot."
-    },
-    {
-      "tag": "L5",
       "title": "With a squat",
       "text": "Rise at the top of each squat."
     }
-  ],
-  "modifications": [
-    "Hold a wall or chair."
   ],
   "cautions": [
     {
@@ -96,5 +88,22 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Heel raises"
+  ],
+  "variations": [
+    {
+      "name": "Single leg",
+      "kind": "progression",
+      "note": "One foot."
+    },
+    {
+      "name": "Hold a wall or chair",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "manual"
+  ]
 }

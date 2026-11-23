@@ -91,10 +91,6 @@
       "text": "Add a beat in the air on two legs."
     }
   ],
-  "modifications": [
-    "Press out and in without leaving the board.",
-    "Add a spring to slow it down."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -147,5 +143,20 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Press out and in without leaving the board",
+      "kind": "regression"
+    },
+    {
+      "name": "Add a spring to slow it down",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "manual"
+  ]
 }

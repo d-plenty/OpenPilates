@@ -4,9 +4,9 @@ import { readFileSync, existsSync, statSync, createReadStream, mkdirSync, writeF
 import { join, extname, resolve, normalize } from 'node:path';
 import { randomBytes } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
-import { openDb, loadLibrary, libraryVersionOf, getSetting, setSetting } from './db.js';
+import { openDb, loadLibrary, loadSeries, libraryVersionOf, getSetting, setSetting } from './db.js';
 import { hashPassword, verifyPassword, passwordProblem, createSession, userForToken, parseCookies, loginBlocked, noteFailure, clearFailures } from './auth.js';
-import { cleanMovement, cleanFlow, cleanClient, cleanStudio, defaultStudio, Invalid, slugify } from './validate.js';
+import { cleanMovement, cleanFlow, cleanClient, cleanStudio, cleanSeries, defaultStudio, Invalid, slugify } from './validate.js';
 
 const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const PKG = JSON.parse(readFileSync(join(ROOT, 'package.json'), 'utf8'));
@@ -25,6 +25,7 @@ export function createApp(opts = {}) {
   const cfg = { ...config, ...opts };
   const db = openDb(cfg.dataDir);
   const loaded = loadLibrary(db, cfg.libraryDir);
+  loadSeries(db, cfg.seriesDir || join(cfg.libraryDir, '..', 'series'));
   if (!cfg.quiet) console.log(`OpenPilates ${VERSION}: ${loaded} library movements loaded, data in ${cfg.dataDir}`);
 
   // Optional first admin from environment (handy for scripted installs).
@@ -65,15 +66,20 @@ export function createApp(opts = {}) {
     const m = cache ? cache[slug] : db.prepare('SELECT file, credit FROM movement_media WHERE slug = ?').get(slug);
     return m ? { photo: `/api/media/${m.file}`, photoCredit: m.credit } : {};
   };
-  const movementRow = (r, notes, media) => {
+  const checkOf = (slug, cache) => {
+    const c = cache ? cache[slug] : db.prepare('SELECT status, note, by_name, updated_at FROM movement_reviews WHERE slug = ?').get(slug);
+    return c ? { check: { status: c.status, note: c.note, by: c.by_name, at: c.updated_at } } : {};
+  };
+  const movementRow = (r, notes, media, checks) => {
     const d = JSON.parse(r.data);
-    return { ...d, ...photoOf(r.slug, media), source: r.source, ownerId: r.owner_id, updatedAt: r.updated_at, myNote: notes ? notes[r.slug] || '' : undefined };
+    return { ...d, ...photoOf(r.slug, media), ...checkOf(r.slug, checks), source: r.source, ownerId: r.owner_id, updatedAt: r.updated_at, myNote: notes ? notes[r.slug] || '' : undefined };
   };
   const allMovements = (userId) => {
     const media = Object.fromEntries(db.prepare('SELECT slug, file, credit FROM movement_media').all().map((m) => [m.slug, m]));
     const notes = {};
     if (userId) for (const n of db.prepare('SELECT slug, text FROM movement_notes WHERE user_id = ?').all(userId)) notes[n.slug] = n.text;
-    return db.prepare('SELECT * FROM movements ORDER BY apparatus, slug').all().map((r) => movementRow(r, notes, media));
+    const checks = Object.fromEntries(db.prepare('SELECT * FROM movement_reviews').all().map((c) => [c.slug, c]));
+    return db.prepare('SELECT * FROM movements ORDER BY apparatus, slug').all().map((r) => movementRow(r, notes, media, checks));
   };
   const flowOut = (r, user) => {
     const owner = r.owner_id ? db.prepare('SELECT display_name FROM users WHERE id = ?').get(r.owner_id) : null;
@@ -258,6 +264,42 @@ export function createApp(opts = {}) {
     createReadStream(file).pipe(res);
   });
 
+  // The studio's own check of a movement: "ok" (a teacher has looked and it's right) or "fix" (something is wrong), with a note.
+  route('PUT', '/api/movements/:slug/check', async (req, res, { user, params }) => {
+    if (!db.prepare('SELECT 1 FROM movements WHERE slug = ?').get(params.slug)) return fail(res, 404, 'No such movement.');
+    const b = await readBody(req);
+    const status = b.status === 'ok' || b.status === 'fix' ? b.status : '';
+    const note = String(b.note || '').slice(0, 1000).trim();
+    if (!status && !note) db.prepare('DELETE FROM movement_reviews WHERE slug = ?').run(params.slug);
+    else db.prepare("INSERT INTO movement_reviews (slug, status, note, by_name) VALUES (?, ?, ?, ?) ON CONFLICT(slug) DO UPDATE SET status = excluded.status, note = excluded.note, by_name = excluded.by_name, updated_at = datetime('now')").run(params.slug, status || 'fix', note, user.displayName || user.display_name || user.username || '');
+    send(res, 200, checkOf(params.slug).check || {});
+  });
+  route('GET', '/api/reviews/export', (req, res) => {
+    const names = Object.fromEntries(db.prepare('SELECT slug, data FROM movements').all().map((r) => [r.slug, JSON.parse(r.data).name]));
+    const rows = db.prepare('SELECT * FROM movement_reviews ORDER BY status, slug').all().map((c) => ({ slug: c.slug, name: names[c.slug] || c.slug, status: c.status, note: c.note, by: c.by_name, at: c.updated_at }));
+    send(res, 200, JSON.stringify({ openpilates: 'review', appVersion: VERSION, exportedAt: new Date().toISOString(), reviews: rows }, null, 2), { 'Content-Type': 'application/json', 'Content-Disposition': `attachment; filename="openpilates-review-${new Date().toISOString().slice(0, 10)}.json"` });
+  });
+
+  // ---- series: ready-built runs of movements
+  const seriesOut = (r) => ({ ...JSON.parse(r.data), source: r.source, ownerId: r.owner_id });
+  route('GET', '/api/series', (req, res) => send(res, 200, db.prepare('SELECT * FROM series ORDER BY apparatus DESC, slug').all().map(seriesOut)));
+  route('POST', '/api/series', async (req, res, { user }) => {
+    const s = cleanSeries(await readBody(req));
+    let slug = s.slug || 'series';
+    for (let i = 2; db.prepare('SELECT 1 FROM series WHERE slug = ?').get(slug); i++) slug = `${s.slug}-${i}`;
+    s.slug = slug;
+    db.prepare("INSERT INTO series (slug, apparatus, data, source, owner_id) VALUES (?, ?, ?, 'custom', ?)").run(slug, s.apparatus, JSON.stringify(s), user.id);
+    send(res, 201, seriesOut(db.prepare('SELECT * FROM series WHERE slug = ?').get(slug)));
+  });
+  route('DELETE', '/api/series/:slug', (req, res, { user, params }) => {
+    const r = db.prepare('SELECT * FROM series WHERE slug = ?').get(params.slug);
+    if (!r) return fail(res, 404, 'No such series.');
+    if (r.source === 'library') return fail(res, 400, "Library series can't be deleted.");
+    if (r.owner_id !== user.id && user.role !== 'admin') return fail(res, 403, 'You can only delete your own series.');
+    db.prepare('DELETE FROM series WHERE slug = ?').run(params.slug);
+    send(res, 200, { ok: true });
+  });
+
   route('PUT', '/api/movements/:slug/note', async (req, res, { user, params }) => {
     const b = await readBody(req);
     const text = String(b.text || '').slice(0, 4000);
@@ -367,7 +409,9 @@ export function createApp(opts = {}) {
       movements: db.prepare("SELECT * FROM movements WHERE source != 'library'").all().map((r) => ({ ...JSON.parse(r.data), source: r.source, ownerId: r.owner_id })),
       flows: db.prepare('SELECT * FROM flows').all().map((r) => ({ id: r.id, ownerId: r.owner_id, shared: !!r.shared, createdAt: r.created_at, updatedAt: r.updated_at, ...JSON.parse(r.data) })),
       clients: db.prepare('SELECT * FROM clients').all().map(clientOut),
-      notes: db.prepare('SELECT * FROM movement_notes').all()
+      notes: db.prepare('SELECT * FROM movement_notes').all(),
+      series: db.prepare("SELECT * FROM series WHERE source != 'library'").all().map(seriesOut),
+      reviews: db.prepare('SELECT * FROM movement_reviews').all()
     };
     send(res, 200, JSON.stringify(backup, null, 2), { 'Content-Type': 'application/json', 'Content-Disposition': `attachment; filename="openpilates-backup-${new Date().toISOString().slice(0, 10)}.json"` });
   }, { auth: 'admin' });

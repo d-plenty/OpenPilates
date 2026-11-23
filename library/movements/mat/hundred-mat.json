@@ -1,6 +1,6 @@
 {
   "slug": "hundred-mat",
-  "name": "The Hundred (Mat)",
+  "name": "The Hundred",
   "apparatus": "mat",
   "section": "core",
   "level": "beginner",
@@ -71,11 +71,6 @@
       "text": "Ball between the knees."
     }
   ],
-  "modifications": [
-    "Head down.",
-    "Feet on the floor.",
-    "Fewer counts."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -102,5 +97,31 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Hundred",
+    "Hundreds"
+  ],
+  "variations": [
+    {
+      "name": "Head down",
+      "kind": "regression"
+    },
+    {
+      "name": "Feet on the floor",
+      "kind": "regression"
+    },
+    {
+      "name": "Fewer counts",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "contrology",
+    "alo",
+    "manual"
+  ]
 }

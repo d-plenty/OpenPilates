@@ -77,10 +77,6 @@
       "text": "Only if the pelvis stays quiet."
     }
   ],
-  "modifications": [
-    "Bend the circling knee.",
-    "Bend the bottom knee with the foot flat."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -111,5 +107,26 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Single leg circles",
+    "Leg circles"
+  ],
+  "variations": [
+    {
+      "name": "Bend the circling knee",
+      "kind": "regression"
+    },
+    {
+      "name": "Bend the bottom knee with the foot flat",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "matlists",
+    "manual"
+  ]
 }

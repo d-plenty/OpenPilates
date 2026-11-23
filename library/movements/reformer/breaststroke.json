@@ -1,6 +1,6 @@
 {
   "slug": "breaststroke",
-  "name": "Breaststroke (Long Box)",
+  "name": "Breaststroke",
   "apparatus": "reformer",
   "section": "back_shoulders",
   "level": "intermediate",
@@ -30,7 +30,7 @@
   ],
   "load": {
     "springs": [
-      "light"
+      "medium"
     ],
     "advance": [
       "light",
@@ -68,10 +68,6 @@
     "Breathe in to lengthen, bend the elbows and return to the start."
   ],
   "layers": [],
-  "modifications": [
-    "Bend the knees for a tender lower back.",
-    "Light springs, or no straps, for sore shoulders."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -103,5 +99,24 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Breast stroke"
+  ],
+  "variations": [
+    {
+      "name": "Bend the knees for a tender lower back",
+      "kind": "regression"
+    },
+    {
+      "name": "Light springs, or no straps, for sore shoulders",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "saran",
+    "manual"
+  ]
 }

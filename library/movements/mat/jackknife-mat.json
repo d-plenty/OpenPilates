@@ -57,10 +57,6 @@
     "Breathe in to roll down bone by bone, legs staying over the face as long as possible."
   ],
   "layers": [],
-  "modifications": [
-    "Roll Over only.",
-    "Hands supporting the hips."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -109,5 +105,23 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Jack knife"
+  ],
+  "variations": [
+    {
+      "name": "Roll Over only",
+      "kind": "regression"
+    },
+    {
+      "name": "Hands supporting the hips",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "pa",
+    "manual"
+  ]
 }

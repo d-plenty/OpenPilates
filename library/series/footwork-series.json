@@ -1,0 +1,39 @@
+{
+  "slug": "footwork-series",
+  "name": "Footwork Series",
+  "apparatus": "reformer",
+  "aka": [
+    "Footwork"
+  ],
+  "summary": "The run of foot positions that opens most reformer classes.",
+  "items": [
+    {
+      "slug": "footwork-series",
+      "variation": "Heels, parallel",
+      "duration": 60
+    },
+    {
+      "slug": "footwork-series",
+      "variation": "Toes, parallel",
+      "duration": 60
+    },
+    {
+      "slug": "footwork-series",
+      "variation": "Pilates V",
+      "duration": 60
+    },
+    {
+      "slug": "footwork-series",
+      "variation": "Wide, turned out",
+      "duration": 60
+    },
+    {
+      "slug": "heel-raises",
+      "duration": 60
+    },
+    {
+      "slug": "prances",
+      "duration": 60
+    }
+  ]
+}

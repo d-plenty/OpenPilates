@@ -2,10 +2,10 @@
   "slug": "tendon-stretch",
   "name": "Tendon Stretch",
   "apparatus": "reformer",
-  "section": "lower",
+  "section": "core",
   "level": "advanced",
   "levelTo": "advanced",
-  "pose": "pike-bar",
+  "pose": "tendon-stretch",
   "position": "standing",
   "spine": [
     "flexion"
@@ -19,24 +19,24 @@
   "muscles": {
     "primary": [
       "abdominals",
-      "calves",
-      "triceps"
+      "triceps",
+      "serratus"
     ],
     "secondary": [
+      "calves",
       "hamstrings",
-      "serratus",
-      "lats"
+      "lats",
+      "deltoids"
     ]
   },
   "equipment": [],
   "load": {
     "springs": [
       "medium",
-      "medium"
+      "light"
     ],
     "advance": [
-      "medium",
-      "light"
+      "medium"
     ],
     "lighterIsHarder": true
   },
@@ -81,15 +81,7 @@
       "tag": "L2",
       "title": "Out and in",
       "text": "Full movement."
-    },
-    {
-      "tag": "L3",
-      "title": "Single leg",
-      "text": "One leg lifted behind."
     }
-  ],
-  "modifications": [
-    "Elephant or Up Stretch instead."
   ],
   "cautions": [
     {
@@ -147,5 +139,22 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Single leg",
+      "kind": "progression"
+    },
+    {
+      "name": "Elephant or Up Stretch instead",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "manual"
+  ]
 }

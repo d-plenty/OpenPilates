@@ -80,9 +80,6 @@
       "text": "Band round the foot and opposite knee."
     }
   ],
-  "modifications": [
-    "Forearms down."
-  ],
   "cautions": [
     {
       "tag": "wrist",
@@ -108,5 +105,18 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Donkey kicks",
+    "Kneeling kickback"
+  ],
+  "variations": [
+    {
+      "name": "Forearms down",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "matlists"
+  ]
 }

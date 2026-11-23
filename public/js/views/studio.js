@@ -85,7 +85,7 @@ export async function studioView() {
   draw();
   return { title: 'Studio', node: [
     h('div', { class: 'page-head' }, h('div', { class: 'grow' }, h('h1', null, 'Studio'), h('p', { class: 'small muted' }, admin ? 'These settings filter the library, set spring colours and drive the analysis for everyone.' : 'Only admins can change studio settings.')),
-      h('div', { class: 'btn-row' }, admin ? h('a', { class: 'btn', href: '#/team' }, icon('user'), 'Team & backup') : null, admin ? btn('Save studio settings', save, { kind: 'primary', iconName: 'check' }) : null)),
+      h('div', { class: 'btn-row' }, h('a', { class: 'btn', href: '#/review' }, icon('check'), 'Review the library'), admin ? h('a', { class: 'btn', href: '#/team' }, icon('user'), 'Team & backup') : null, admin ? btn('Save studio settings', save, { kind: 'primary', iconName: 'check' }) : null)),
     wrap,
     admin ? h('div', { class: 'btn-row', style: { marginTop: '16px' } }, btn('Save studio settings', save, { kind: 'primary', iconName: 'check' })) : null] };
 }

@@ -30,11 +30,10 @@
   "equipment": [],
   "load": {
     "springs": [
-      "light",
-      "xlight"
+      "light"
     ],
     "advance": [
-      "light"
+      "xlight"
     ],
     "lighterIsHarder": true
   },
@@ -76,28 +75,19 @@
     },
     {
       "tag": "L2",
-      "title": "Single leg",
-      "text": "One foot hovers."
-    },
-    {
-      "tag": "L3",
       "title": "Mountain climbers",
       "text": "Alternate knees quickly."
     },
     {
-      "tag": "L4",
+      "tag": "L3",
       "title": "Twist",
       "text": "Knees draw towards one elbow."
     },
     {
-      "tag": "L5",
+      "tag": "L4",
       "title": "Feet further down the carriage",
       "text": "More range."
     }
-  ],
-  "modifications": [
-    "Forearms down.",
-    "A heavier spring to steady the carriage."
   ],
   "cautions": [
     {
@@ -130,5 +120,31 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Knee tucks",
+    "Kneeling abs facing front"
+  ],
+  "variations": [
+    {
+      "name": "Single leg",
+      "kind": "progression",
+      "note": "One foot hovers."
+    },
+    {
+      "name": "Forearms down",
+      "kind": "regression"
+    },
+    {
+      "name": "A heavier spring to steady the carriage",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "saran",
+    "onform",
+    "matlists",
+    "alo",
+    "manual"
+  ]
 }

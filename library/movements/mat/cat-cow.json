@@ -51,10 +51,6 @@
     "Breathe in to lengthen through to a gentle arch, chest forward."
   ],
   "layers": [],
-  "modifications": [
-    "Fists or forearms for sore wrists.",
-    "Smaller range for sore backs."
-  ],
   "cautions": [
     {
       "tag": "wrist",
@@ -72,5 +68,22 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Cat stretch"
+  ],
+  "variations": [
+    {
+      "name": "Fists or forearms for sore wrists",
+      "kind": "regression"
+    },
+    {
+      "name": "Smaller range for sore backs",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "matlists",
+    "manual"
+  ]
 }

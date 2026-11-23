@@ -31,7 +31,7 @@
   "load": {
     "springs": [
       "medium",
-      "xlight"
+      "light"
     ],
     "advance": [
       "medium"
@@ -87,24 +87,14 @@
     },
     {
       "tag": "L4",
-      "title": "Single leg",
-      "text": "Lift one leg."
-    },
-    {
-      "tag": "L5",
       "title": "With push-ups",
       "text": "Add a push-up at the bar."
     },
     {
-      "tag": "L6",
+      "tag": "L5",
       "title": "Hold and bend",
       "text": "Hold out and bend and straighten the knees."
     }
-  ],
-  "modifications": [
-    "Knees down on the carriage (see Kneeling Long Stretch).",
-    "Heavier spring.",
-    "Smaller range."
   ],
   "cautions": [
     {
@@ -140,5 +130,39 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Plank on the footbar",
+    "Moving plank"
+  ],
+  "variations": [
+    {
+      "name": "Single leg",
+      "kind": "progression",
+      "note": "Lift one leg."
+    },
+    {
+      "name": "Knees down on the carriage (see Kneeling Long Stretch)",
+      "kind": "regression"
+    },
+    {
+      "name": "Heavier spring",
+      "kind": "regression"
+    },
+    {
+      "name": "Smaller range",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "saran",
+    "complete",
+    "onform",
+    "matlists",
+    "alo",
+    "manual"
+  ]
 }

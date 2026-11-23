@@ -58,23 +58,14 @@
   "layers": [
     {
       "tag": "L1",
-      "title": "One leg at a time",
-      "text": "Hold one ankle and lift."
-    },
-    {
-      "tag": "L2",
       "title": "Bow, no rock",
       "text": "Lift and hold."
     },
     {
-      "tag": "L3",
+      "tag": "L2",
       "title": "Rocking",
       "text": "Full version."
     }
-  ],
-  "modifications": [
-    "Hold a band looped round the ankles.",
-    "Bow without the rock."
   ],
   "cautions": [
     {
@@ -120,5 +111,26 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Single leg",
+      "kind": "progression",
+      "note": "Hold one ankle and lift."
+    },
+    {
+      "name": "Hold a band looped round the ankles",
+      "kind": "regression"
+    },
+    {
+      "name": "Bow without the rock",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "manual"
+  ]
 }

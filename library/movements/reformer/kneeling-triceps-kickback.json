@@ -1,6 +1,6 @@
 {
   "slug": "kneeling-triceps-kickback",
-  "name": "Kneeling Triceps Press Back",
+  "name": "Triceps Press Back",
   "apparatus": "reformer",
   "section": "back_shoulders",
   "level": "beginner",
@@ -31,8 +31,7 @@
       "light"
     ],
     "advance": [
-      "light",
-      "xlight"
+      "medium"
     ]
   },
   "setup": {
@@ -81,10 +80,6 @@
       "text": "Small pulses with straight arms."
     }
   ],
-  "modifications": [
-    "Long loops for less resistance.",
-    "Sit on the long box."
-  ],
   "cautions": [
     {
       "tag": "knee",
@@ -105,5 +100,30 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Triceps kickback",
+    "Kneeling arms facing back"
+  ],
+  "variations": [
+    {
+      "name": "Single arm",
+      "kind": "variation",
+      "springs": [
+        "xlight"
+      ]
+    },
+    {
+      "name": "Long loops for less resistance",
+      "kind": "regression"
+    },
+    {
+      "name": "Sit on the long box",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "bbcards",
+    "saran"
+  ]
 }

@@ -1,6 +1,6 @@
 {
   "slug": "footwork-series",
-  "name": "Footwork Series",
+  "name": "Footwork",
   "apparatus": "reformer",
   "section": "lower",
   "level": "beginner",
@@ -31,8 +31,7 @@
     "springs": [
       "medium",
       "medium",
-      "medium",
-      "xlight"
+      "medium"
     ],
     "advance": [
       "medium",
@@ -72,49 +71,19 @@
   "layers": [
     {
       "tag": "L1",
-      "title": "Heels, parallel",
-      "text": "Hip-width, feet flexed."
-    },
-    {
-      "tag": "L2",
-      "title": "Toes, parallel",
-      "text": "Balls of the feet on the bar, heels lifted and still."
-    },
-    {
-      "tag": "L3",
-      "title": "Small V",
-      "text": "Heels together, toes apart."
-    },
-    {
-      "tag": "L4",
-      "title": "Wide and turned out",
-      "text": "Feet wide on the bar, knees over toes."
-    },
-    {
-      "tag": "L5",
-      "title": "Feet and knees together",
-      "text": "Inner-thigh bias."
-    },
-    {
-      "tag": "L6",
       "title": "Pulses and holds",
       "text": "Low, middle or top of the range."
     },
     {
-      "tag": "L7",
+      "tag": "L2",
       "title": "Tempo",
       "text": "Three counts out, one count in."
     },
     {
-      "tag": "L8",
+      "tag": "L3",
       "title": "Add arms or a prop",
       "text": "Arms off the carriage, ring or ball between the knees."
     }
-  ],
-  "modifications": [
-    "Take a spring off if the legs can't press with control.",
-    "Heels on the bar for sore ankles or knees.",
-    "Too heavy a spring can aggravate the shoulders against the shoulder rests."
   ],
   "cautions": [
     {
@@ -141,5 +110,73 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Leg press",
+    "Footwork series",
+    "Bend and stretch"
+  ],
+  "variations": [
+    {
+      "name": "Heels, parallel",
+      "kind": "variation",
+      "note": "Hip-width, feet flexed."
+    },
+    {
+      "name": "Toes, parallel",
+      "kind": "variation",
+      "note": "Balls of the feet on the bar, heels lifted and still."
+    },
+    {
+      "name": "Pilates V",
+      "kind": "variation",
+      "note": "Heels together, toes apart, on the balls of the feet."
+    },
+    {
+      "name": "Wide, turned out",
+      "kind": "variation",
+      "note": "Feet wide on the bar, knees over toes."
+    },
+    {
+      "name": "Arches",
+      "kind": "variation",
+      "note": "Arches wrapped over the bar."
+    },
+    {
+      "name": "Feet and knees together",
+      "kind": "variation",
+      "note": "Inner-thigh bias."
+    },
+    {
+      "name": "Single leg",
+      "kind": "progression",
+      "springs": [
+        "medium",
+        "medium"
+      ],
+      "note": "One leg presses, the other in tabletop."
+    },
+    {
+      "name": "Take a spring off if the legs can't press with control",
+      "kind": "regression"
+    },
+    {
+      "name": "Heels on the bar for sore ankles or knees",
+      "kind": "regression"
+    },
+    {
+      "name": "Too heavy a spring can aggravate the shoulders against the shoulder rests",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "saran",
+    "complete",
+    "contrology",
+    "onform",
+    "manual"
+  ]
 }

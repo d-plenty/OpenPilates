@@ -1,6 +1,6 @@
-import { h, icon, btn } from '../ui.js';
-import { POSITIONS, labelOf, SPINE, MUSCLES, SECTIONS, springLabel, sectionOf, levelLabel } from '/shared/vocab.js';
-import { figure } from '../figure.js';
+import { h, icon, btn, modal } from '../ui.js';
+import { POSITIONS, labelOf, SPINE, MUSCLES, SECTIONS, OPTION_KINDS, springLabel, sectionOf, levelLabel, fitSprings, variationsOf } from '/shared/vocab.js';
+import { figure, figurePair } from '../figure.js';
 import { fmtClock, fmtMin } from '/shared/analysis.js';
 import { bodyMap, bodyLegend, radar, intensityChart, positionStrip, positionKey, purposeBars, springDots } from '../charts.js';
 
@@ -14,7 +14,7 @@ export function initials(name) {
 
 export function mvMeta(mv, room) {
   const parts = [mv.apparatus === 'mat' ? 'Mat' : 'Reformer', posLabel(mv.position)];
-  if (mv.apparatus === 'reformer' && mv.load) parts.push(springLabel(room.brand, mv.load.springs, room.springOverrides));
+  if (mv.apparatus === 'reformer' && mv.load) parts.push(springLabel(room.brand, fitSprings(mv.load.springs, room).loads, room.springOverrides));
   return parts.join(' · ');
 }
 
@@ -32,11 +32,46 @@ export function thumb(mv, { width = 72, photo = true } = {}) {
   return h('span', { class: 'thumb-fig', style: { width: width + 'px' } }, figure(mv, { width }));
 }
 
-export function movementCard(mv, room, { draggable, onAdd, addLabel = 'Add', inFlow, extraTags = [], big } = {}) {
+// "20–30" on its own means nothing to a reader, so bare numbers get the word "reps".
+export const repsLabel = (r) => { const t = String(r || '').trim(); return !t ? '' : /^[\d\s–\-to]+$/.test(t) ? `${t} reps` : /^[\d–\-]+ each/.test(t) ? t.replace(/^([\d–\-]+) each/, '$1 reps each') : t; };
+
+const KIND = Object.fromEntries(OPTION_KINDS.map((k) => [k.id, k]));
+// One line per variation: mark, name, springs if it has its own, and the note.
+export function variationList(mv, room) {
+  const vs = variationsOf(mv);
+  if (!vs.length) return null;
+  return h('ul', { class: 'var-list' }, ['variation', 'progression', 'regression'].flatMap((k) => vs.filter((v) => v.kind === k)).map((v) => h('li', { class: `var-${v.kind}` },
+    h('span', { class: 'var-k', title: KIND[v.kind].hint }, `${KIND[v.kind].mark} ${KIND[v.kind].label}`),
+    h('span', null, h('b', null, v.name), v.springs && mv.apparatus === 'reformer' ? [' ', springDots(v.springs, room)] : null, v.note ? h('span', { class: 'muted' }, ` — ${v.note}`) : null))));
+}
+
+// A quick look at a movement without leaving the page you're on.
+export function peekMovement(mv, room) {
+  const body = (close) => h('div', { class: 'stack-sm peek' },
+    (mv.aka || []).length ? h('p', { class: 'small muted', style: { margin: 0 } }, 'Also called: ', mv.aka.join(', ')) : null,
+    h('div', { class: 'hero-figs' }, mv.photo ? h('figure', { style: { background: 'none', padding: 0 } }, h('img', { class: 'hero-photo', src: mv.photo, alt: mv.name, style: { maxHeight: '180px' } })) : null,
+      figurePair(mv, { width: 200 }).map((f, i, all) => h('figure', null, f, h('figcaption', null, all.length === 1 ? 'Position' : i === 0 ? 'Start' : 'Finish')))),
+    mv.summary ? h('p', { style: { margin: 0 } }, mv.summary) : null,
+    h('dl', { class: 'kv' },
+      mv.apparatus === 'reformer' ? [h('dt', null, 'Springs'), h('dd', null, springDots(mv.load?.springs || [], room), mv.load?.advance?.length ? [h('span', { class: 'tiny muted' }, ' · to progress '), springDots(mv.load.advance, room)] : null)] : null,
+      h('dt', null, 'Level'), h('dd', null, levelLabel(mv)),
+      h('dt', null, 'Works'), h('dd', null, mv.muscles.primary.map(muscleLabel).join(', '), mv.muscles.secondary.length ? h('span', { class: 'muted' }, ` · also ${mv.muscles.secondary.map(muscleLabel).join(', ')}`) : null),
+      mv.reps ? [h('dt', null, 'Typical'), h('dd', null, repsLabel(mv.reps))] : null),
+    (mv.layers || []).length ? h('div', null, h('h3', null, 'Layers'), h('ol', { class: 'small', style: { margin: '4px 0 0', paddingLeft: '20px' } }, mv.layers.map((l) => h('li', null, h('b', null, l.title), l.text ? ` — ${l.text}` : '')))) : null,
+    variationsOf(mv).length ? h('div', null, h('h3', null, 'Variations'), variationList(mv, room)) : null,
+    mv.cues ? h('div', null, h('h3', null, 'Cues'), h('ul', { class: 'cue-list' }, mv.cues.split('\n').filter(Boolean).map((c) => h('li', null, c)))) : null,
+    mv.myNote ? h('div', null, h('h3', null, 'My notes'), h('p', { class: 'small', style: { margin: 0, whiteSpace: 'pre-wrap' } }, mv.myNote)) : null,
+    h('p', { style: { margin: 0 } }, h('a', { href: `#/movements/${mv.slug}`, onclick: () => close(null) }, 'Open the full page')));
+  return modal(mv.name, body, { wide: true, actions: [{ label: 'Close', value: false }] });
+}
+
+export function movementCard(mv, room, { draggable, onAdd, addLabel = 'Add', inFlow, extraTags = [], big, onOpen } = {}) {
+  const open = onOpen ? (e) => { e.preventDefault(); onOpen(mv); } : null;
   const card = h('div', { class: ['mv-card', big && 'mv-card-big'], draggable: draggable ? 'true' : null },
-    h('a', { class: 'thumb', href: `#/movements/${mv.slug}`, tabindex: '-1', 'aria-hidden': 'true', style: { borderColor: posColor(mv.position) } }, thumb(mv, { width: big ? 132 : 66 })),
+    h('a', { class: 'thumb', href: `#/movements/${mv.slug}`, onclick: open, tabindex: '-1', 'aria-hidden': 'true', style: { borderColor: posColor(mv.position) } }, thumb(mv, { width: big ? 132 : 66 })),
     h('div', { class: 'body' },
-      h('a', { class: 'name', href: `#/movements/${mv.slug}`, style: { color: 'inherit', textDecoration: 'none' } }, mv.name),
+      h('a', { class: 'name', href: `#/movements/${mv.slug}`, onclick: open, style: { color: 'inherit', textDecoration: 'none' } }, mv.name),
+      big && (mv.aka || []).length ? h('div', { class: 'aka' }, mv.aka.slice(0, 3).join(' · ')) : null,
       h('div', { class: 'meta' }, mvMeta(mv, room)),
       h('div', { class: 'tags' },
         (mv.spine || []).filter((s) => s !== 'neutral').map((s) => h('span', { class: 'tag' }, labelOf(SPINE, s))),
@@ -93,10 +128,10 @@ export function bodyCard(a, { size = 110 } = {}) {
 
 export function intensityCard(a, flow) {
   return h('div', { class: 'card' },
-    h('div', { class: 'card-head' }, h('h2', null, 'Effort & tempo'),
+    h('div', { class: 'card-head' }, h('h2', null, 'Effort across the class'),
       h('span', { class: 'tiny muted' }, a.peak ? `Peak: ${a.peak.name} at ${a.peak.pct}%` : ''),
       h('div', { class: 'spacer' }),
-      h('span', { class: 'legend', style: { margin: 0 } }, h('span', null, h('i', { style: { background: '#0F6E62' } }), 'Effort'), h('span', null, h('i', { style: { background: '#7A4FA0' } }), 'BPM'))),
+      null),
     intensityChart(a, flow));
 }
 
@@ -127,7 +162,7 @@ export function springsCard(a, room, { compact } = {}) {
     blocks.length ? h('ol', { class: 'spring-map' }, blocks.map((b, i) => h('li', null,
       h('div', { class: 'sm-head' }, springDots(b.loads, room), h('span', { class: 'tiny muted' }, i === 0 ? 'Start' : `Change ${i}`), h('span', { class: 'tiny muted' }, `${b.names.length} movement${b.names.length === 1 ? '' : 's'}`)),
       compact ? null : h('div', { class: 'tiny muted' }, b.names.join(' → '))))) : h('p', { class: 'muted small' }, 'No reformer movements yet.'),
-    h('p', { class: 'tiny muted', style: { marginTop: '8px' } }, 'A movement stays on the springs already set when its usual or "to advance" setting matches. One extra-light spring on or off is not counted as a change.'));
+    h('p', { class: 'tiny muted', style: { marginTop: '8px' } }, 'A movement stays on the springs already set when its usual or progression setting matches. One of the lightest springs on or off is not counted as a change.'));
 }
 
 // What to put out before people arrive.

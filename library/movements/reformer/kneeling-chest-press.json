@@ -1,6 +1,6 @@
 {
   "slug": "kneeling-chest-press",
-  "name": "Kneeling Chest Press",
+  "name": "Chest Press",
   "apparatus": "reformer",
   "section": "chest_arms",
   "level": "beginner",
@@ -32,8 +32,7 @@
       "light"
     ],
     "advance": [
-      "light",
-      "xlight"
+      "medium"
     ]
   },
   "setup": {
@@ -86,10 +85,6 @@
       "text": "Harder base."
     }
   ],
-  "modifications": [
-    "Long loops for less tension.",
-    "Sit on the long box for sore knees."
-  ],
   "cautions": [
     {
       "tag": "knee",
@@ -110,5 +105,28 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Kneeling chest press"
+  ],
+  "variations": [
+    {
+      "name": "Single arm",
+      "kind": "variation",
+      "springs": [
+        "xlight"
+      ]
+    },
+    {
+      "name": "Long loops for less tension",
+      "kind": "regression"
+    },
+    {
+      "name": "Sit on the long box for sore knees",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "manual"
+  ]
 }

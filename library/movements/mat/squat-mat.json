@@ -86,10 +86,6 @@
       "text": "Rise onto the toes at the top."
     }
   ],
-  "modifications": [
-    "Sit back to a chair.",
-    "Hold a support."
-  ],
   "cautions": [
     {
       "tag": "knee",
@@ -116,5 +112,19 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Sit back to a chair",
+      "kind": "regression"
+    },
+    {
+      "name": "Hold a support",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "onform"
+  ]
 }

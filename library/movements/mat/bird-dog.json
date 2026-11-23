@@ -81,10 +81,6 @@
       "text": "Supporting knee lifts a little."
     }
   ],
-  "modifications": [
-    "Toes stay on the floor.",
-    "Forearms down for sore wrists."
-  ],
   "cautions": [
     {
       "tag": "wrist",
@@ -107,5 +103,27 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Quadruped arm and leg reach",
+    "Swimming on all fours"
+  ],
+  "variations": [
+    {
+      "name": "Toes stay on the floor",
+      "kind": "regression"
+    },
+    {
+      "name": "Forearms down for sore wrists",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "onform",
+    "matlists",
+    "manual"
+  ]
 }

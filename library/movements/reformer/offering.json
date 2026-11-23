@@ -1,6 +1,6 @@
 {
   "slug": "offering",
-  "name": "Offering (Front Arm Raise)",
+  "name": "Offering",
   "apparatus": "reformer",
   "section": "chest_arms",
   "level": "beginner",
@@ -17,10 +17,10 @@
   ],
   "muscles": {
     "primary": [
-      "deltoids",
-      "chest"
+      "deltoids"
     ],
     "secondary": [
+      "chest",
       "biceps",
       "serratus",
       "abdominals"
@@ -32,8 +32,7 @@
       "light"
     ],
     "advance": [
-      "light",
-      "xlight"
+      "medium"
     ]
   },
   "setup": {
@@ -77,19 +76,9 @@
     },
     {
       "tag": "L3",
-      "title": "Single arm with a twist",
-      "text": "One arm at a time, chest turning with it."
-    },
-    {
-      "tag": "L4",
       "title": "Kneeling upright",
       "text": "Harder base."
     }
-  ],
-  "modifications": [
-    "Long loops for less resistance.",
-    "Sit on the long box for sore knees.",
-    "A little elbow bend on the way down for sore shoulders."
   ],
   "cautions": [
     {
@@ -111,5 +100,43 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Front arm raise",
+    "Serving",
+    "Shoulder flexion"
+  ],
+  "variations": [
+    {
+      "name": "Single arm",
+      "kind": "variation",
+      "springs": [
+        "xlight"
+      ]
+    },
+    {
+      "name": "Single arm with a twist",
+      "kind": "progression",
+      "springs": [
+        "xlight"
+      ],
+      "note": "One arm at a time, chest turning with it."
+    },
+    {
+      "name": "Long loops for less resistance",
+      "kind": "regression"
+    },
+    {
+      "name": "Sit on the long box for sore knees",
+      "kind": "regression"
+    },
+    {
+      "name": "A little elbow bend on the way down for sore shoulders",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "bbcards",
+    "manual"
+  ]
 }

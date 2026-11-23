@@ -31,9 +31,9 @@
       "medium"
     ],
     "advance": [
-      "medium",
-      "xlight"
-    ]
+      "light"
+    ],
+    "lighterIsHarder": true
   },
   "setup": {
     "headrest": "any",
@@ -97,10 +97,6 @@
       "text": "Standing foot on a box or platform."
     }
   ],
-  "modifications": [
-    "Pregnancy: a lighter spring and both hands on the bar.",
-    "Smaller range for knees."
-  ],
   "cautions": [
     {
       "tag": "knee",
@@ -119,5 +115,24 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Standing leg press"
+  ],
+  "variations": [
+    {
+      "name": "Pregnancy: a lighter spring and both hands on the bar",
+      "kind": "regression"
+    },
+    {
+      "name": "Smaller range for knees",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "bbcards",
+    "complete",
+    "onform",
+    "manual"
+  ]
 }

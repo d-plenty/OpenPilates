@@ -1,0 +1,21 @@
+{
+  "slug": "prone-series",
+  "name": "Prone Series",
+  "apparatus": "mat",
+  "aka": [],
+  "summary": "Back-extension work lying on the front.",
+  "items": [
+    {
+      "slug": "swan-prep"
+    },
+    {
+      "slug": "single-leg-kick"
+    },
+    {
+      "slug": "double-leg-kick"
+    },
+    {
+      "slug": "swimming"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "slug": "rowing-series",
+  "name": "Rowing Series",
+  "apparatus": "reformer",
+  "aka": [
+    "Rowing 1 to 6"
+  ],
+  "summary": "The classical six: two facing the straps, four facing the footbar.",
+  "items": [
+    {
+      "slug": "rowing-back",
+      "variation": "Round back (Into the Sternum)"
+    },
+    {
+      "slug": "rowing-back",
+      "variation": "Flat back (90 Degrees)"
+    },
+    {
+      "slug": "rowing-front",
+      "variation": "Sitting tall (From the Chest)"
+    },
+    {
+      "slug": "rowing-front",
+      "variation": "Bending down (From the Hips)"
+    },
+    {
+      "slug": "shave"
+    },
+    {
+      "slug": "hug-a-tree"
+    }
+  ]
+}

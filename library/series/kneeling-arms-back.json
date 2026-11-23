@@ -1,0 +1,23 @@
+{
+  "slug": "kneeling-arms-back",
+  "name": "Kneeling Arm Series: Facing the Straps",
+  "apparatus": "reformer",
+  "aka": [
+    "Arms facing back"
+  ],
+  "summary": "Facing the straps: pulling work.",
+  "items": [
+    {
+      "slug": "chest-expansion"
+    },
+    {
+      "slug": "kneeling-row"
+    },
+    {
+      "slug": "kneeling-biceps-curl"
+    },
+    {
+      "slug": "kneeling-triceps-kickback"
+    }
+  ]
+}

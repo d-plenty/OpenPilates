@@ -68,9 +68,6 @@
       "text": "Against body weight."
     }
   ],
-  "modifications": [
-    "Smaller range if anything clicks or pinches."
-  ],
   "cautions": [
     {
       "tag": "shoulder",
@@ -89,5 +86,15 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Smaller range if anything clicks or pinches",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "manual"
+  ]
 }

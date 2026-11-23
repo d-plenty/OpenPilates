@@ -53,27 +53,19 @@
   "layers": [
     {
       "tag": "L1",
-      "title": "One leg at a time from feet down",
-      "text": "Start here."
-    },
-    {
-      "tag": "L2",
       "title": "Alternate from tabletop",
       "text": "Basic."
     },
     {
-      "tag": "L3",
+      "tag": "L2",
       "title": "Both legs together",
       "text": "Harder."
     },
     {
-      "tag": "L4",
+      "tag": "L3",
       "title": "Head and shoulders curled up",
       "text": "Adds upper abdominals."
     }
-  ],
-  "modifications": [
-    "Keep the other foot on the floor."
   ],
   "cautions": [
     {
@@ -98,5 +90,25 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Tabletop toe taps",
+    "Femur arcs",
+    "Leg lowers"
+  ],
+  "variations": [
+    {
+      "name": "Single leg",
+      "kind": "progression",
+      "note": "Start here."
+    },
+    {
+      "name": "Keep the other foot on the floor",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "matlists",
+    "manual"
+  ]
 }

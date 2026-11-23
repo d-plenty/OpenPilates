@@ -77,10 +77,6 @@
       "text": "Draw the lifted knee to the chest."
     }
   ],
-  "modifications": [
-    "Knees down, or on hands and knees.",
-    "Forearms down for sore wrists."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -118,5 +114,20 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Knees down, or on hands and knees",
+      "kind": "regression"
+    },
+    {
+      "name": "Forearms down for sore wrists",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "manual"
+  ]
 }

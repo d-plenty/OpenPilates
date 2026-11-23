@@ -1,6 +1,6 @@
 {
   "slug": "standing-roll-down",
-  "name": "Roll Down (Standing)",
+  "name": "Standing Roll Down",
   "apparatus": "mat",
   "section": "stretch",
   "level": "beginner",
@@ -74,10 +74,6 @@
       "text": "See Inchworm."
     }
   ],
-  "modifications": [
-    "Bend the knees.",
-    "Go halfway."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -100,5 +96,22 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Roll down"
+  ],
+  "variations": [
+    {
+      "name": "Bend the knees",
+      "kind": "regression"
+    },
+    {
+      "name": "Go halfway",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "bbcards",
+    "manual"
+  ]
 }

@@ -1,6 +1,6 @@
 {
   "slug": "seated-roll-back-straps",
-  "name": "Seated Roll Back with Straps",
+  "name": "Roll Down with Straps",
   "apparatus": "reformer",
   "section": "core",
   "level": "beginner",
@@ -81,16 +81,7 @@
       "tag": "L3",
       "title": "Add a twist",
       "text": "Turn the ribs to one side at the back."
-    },
-    {
-      "tag": "L4",
-      "title": "Single arm row",
-      "text": "Row one arm as you turn."
     }
-  ],
-  "modifications": [
-    "Heavier spring for more help.",
-    "Smaller range."
   ],
   "cautions": [
     {
@@ -120,5 +111,33 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Roll back",
+    "Half roll back",
+    "Roll down series"
+  ],
+  "variations": [
+    {
+      "name": "Single arm",
+      "kind": "variation",
+      "springs": [
+        "light"
+      ],
+      "note": "Row one arm as you turn."
+    },
+    {
+      "name": "Heavier spring for more help",
+      "kind": "regression"
+    },
+    {
+      "name": "Smaller range",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "bbcards",
+    "onform",
+    "manual"
+  ]
 }

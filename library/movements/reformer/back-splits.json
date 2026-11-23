@@ -81,10 +81,6 @@
       "text": "Arms out to the sides."
     }
   ],
-  "modifications": [
-    "Hands on the shoulder rests.",
-    "Front foot only halfway down the carriage for a smaller split."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -131,5 +127,20 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Hands on the shoulder rests",
+      "kind": "regression"
+    },
+    {
+      "name": "Front foot only halfway down the carriage for a smaller split",
+      "kind": "regression"
+    }
+  ],
+  "retired": true,
+  "sources": [
+    "manual"
+  ]
 }

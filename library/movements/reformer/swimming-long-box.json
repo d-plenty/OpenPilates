@@ -5,7 +5,7 @@
   "section": "back_shoulders",
   "level": "intermediate",
   "levelTo": "intermediate",
-  "pose": "prone-long-box",
+  "pose": "prone-long-box-lift",
   "position": "prone",
   "spine": [
     "extension"
@@ -85,9 +85,6 @@
       "text": "Legs only."
     }
   ],
-  "modifications": [
-    "Arms only or legs only."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -127,5 +124,17 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Arms only or legs only",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "matlists"
+  ]
 }

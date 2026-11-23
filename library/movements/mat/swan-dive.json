@@ -73,9 +73,6 @@
       "text": "Full dive, arms forward or wide."
     }
   ],
-  "modifications": [
-    "Stay with Swan Prep."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -118,5 +115,18 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Stay with Swan Prep",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "manual"
+  ]
 }

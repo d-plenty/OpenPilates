@@ -75,9 +75,6 @@
       "text": "Open and thread."
     }
   ],
-  "modifications": [
-    "Go back to Side Bend."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -120,5 +117,18 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Go back to Side Bend",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "manual"
+  ]
 }

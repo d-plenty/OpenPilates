@@ -1,0 +1,20 @@
+{
+  "slug": "supine-arm-series",
+  "name": "Supine Arm Series",
+  "apparatus": "reformer",
+  "aka": [
+    "Arms in straps"
+  ],
+  "summary": "Arm work lying on the back with the legs in tabletop.",
+  "items": [
+    {
+      "slug": "supine-arm-pulls"
+    },
+    {
+      "slug": "supine-arm-openings"
+    },
+    {
+      "slug": "supine-triceps-press"
+    }
+  ]
+}

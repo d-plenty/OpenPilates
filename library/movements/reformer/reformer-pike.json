@@ -30,11 +30,10 @@
   "equipment": [],
   "load": {
     "springs": [
-      "light",
-      "xlight"
+      "light"
     ],
     "advance": [
-      "light"
+      "xlight"
     ],
     "lighterIsHarder": true
   },
@@ -81,18 +80,9 @@
     },
     {
       "tag": "L3",
-      "title": "Single leg",
-      "text": "One leg lifted."
-    },
-    {
-      "tag": "L4",
       "title": "Feet on shoulder rests",
       "text": "Higher feet."
     }
-  ],
-  "modifications": [
-    "Forearms down.",
-    "Knee tucks instead."
   ],
   "cautions": [
     {
@@ -142,5 +132,27 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Pike on the reformer"
+  ],
+  "variations": [
+    {
+      "name": "Single leg",
+      "kind": "progression",
+      "note": "One leg lifted."
+    },
+    {
+      "name": "Forearms down",
+      "kind": "regression"
+    },
+    {
+      "name": "Knee tucks instead",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "alo",
+    "manual"
+  ]
 }

@@ -1,6 +1,6 @@
 {
   "slug": "kneeling-arm-circles-back",
-  "name": "Front Raise & Arm Circles (Facing Straps)",
+  "name": "Arm Circles Facing the Straps",
   "apparatus": "reformer",
   "section": "back_shoulders",
   "level": "beginner",
@@ -91,11 +91,6 @@
       "text": "Harder base."
     }
   ],
-  "modifications": [
-    "Long box or cross-legged for sore knees.",
-    "Long loops for less resistance.",
-    "Stay below shoulder height for sore shoulders."
-  ],
   "cautions": [
     {
       "tag": "knee",
@@ -114,5 +109,27 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Kneeling arm circles",
+    "Front raise and circles"
+  ],
+  "variations": [
+    {
+      "name": "Long box or cross-legged for sore knees",
+      "kind": "regression"
+    },
+    {
+      "name": "Long loops for less resistance",
+      "kind": "regression"
+    },
+    {
+      "name": "Stay below shoulder height for sore shoulders",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc"
+  ]
 }

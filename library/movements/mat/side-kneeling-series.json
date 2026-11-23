@@ -1,6 +1,6 @@
 {
   "slug": "side-kneeling-series",
-  "name": "Side Kneeling Leg Series",
+  "name": "Kneeling Side Kicks",
   "apparatus": "mat",
   "section": "pelvic",
   "level": "intermediate",
@@ -77,10 +77,6 @@
       "text": "Knee in, leg out."
     }
   ],
-  "modifications": [
-    "Down on the forearm.",
-    "Lie on the side instead (see Side Kick Series)."
-  ],
   "cautions": [
     {
       "tag": "wrist",
@@ -112,5 +108,24 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Side kick kneeling",
+    "Side kneeling leg series"
+  ],
+  "variations": [
+    {
+      "name": "Down on the forearm",
+      "kind": "regression"
+    },
+    {
+      "name": "Lie on the side instead (see Side Kick Series)",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "pa",
+    "matlists"
+  ]
 }

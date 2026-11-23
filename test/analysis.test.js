@@ -5,7 +5,7 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { analyze } from '../shared/analysis.js';
 import { draftFlow } from '../shared/draft.js';
-import { springFor, springLabel, sameSetting, sectionOf, categoriesOf } from '../shared/vocab.js';
+import { springFor, springLabel, sameSetting, sectionOf, categoriesOf, fitSprings, itemName, kindOf } from '../shared/vocab.js';
 
 const dir = fileURLToPath(new URL('../library/movements', import.meta.url));
 const movements = {};
@@ -24,7 +24,7 @@ test('counts spring and position changes', () => {
   const a = analyze({ flow: flow([{ id: 's', role: 'build', items: [
     { id: '1', slug: 'footwork-series' }, { id: '2', slug: 'bridging-reformer' }, { id: '3', slug: 'swan-long-box' }] }]), movements });
   assert.equal(a.count, 3);
-  assert.equal(a.springChanges, 1); // footwork -> bridge is a change; the swan can stay (one yellow apart)
+  assert.equal(a.springChanges, 2); // 3 red -> 2 red for the bridge -> 1 red for the swan
   assert.equal(a.positionChanges, 1); // supine -> prone
   assert.equal(a.boxChanges, 1); // long box goes on
   assert.ok(a.transitionSec > 0);
@@ -72,11 +72,12 @@ test('spring colours per brand', () => {
 });
 
 test('a movement stays on the current springs when its "to advance" setting matches', () => {
-  // lunge (R, RY to advance) after bridge (RY): no change needed
-  const a = analyze({ flow: flow([{ id: 's', role: 'build', items: [{ id: '1', slug: 'bridging-reformer' }, { id: '2', slug: 'standing-lunge' }, { id: '3', slug: 'kneeling-chest-press' }] }]), movements });
+  // scooter (1 red, 1 blue to progress) after the lunge (1 blue): no change needed; footwork then needs one
+  const a = analyze({ flow: flow([{ id: 's', role: 'build', items: [{ id: '1', slug: 'standing-lunge' }, { id: '2', slug: 'scooter' }, { id: '3', slug: 'footwork-series' }] }]), movements });
   assert.equal(a.springChanges, 1);
   assert.deepEqual(a.springPlan.map((p) => p.changed), [false, false, true]);
-  assert.equal(a.springStops[0].before, 'Kneeling Chest Press');
+  assert.equal(a.springPlan[1].advanced, true);
+  assert.equal(a.springStops[0].before, 'Footwork');
 });
 
 test('settings one extra-light spring apart count as the same', () => {
@@ -86,9 +87,9 @@ test('settings one extra-light spring apart count as the same', () => {
 });
 
 test('spring budget check warns when the class changes springs too often', () => {
-  const items = ['footwork-series', 'kneeling-chest-press', 'bridging-reformer', 'kneeling-row', 'feet-in-straps', 'external-rotation'].map((slug, i) => ({ id: String(i), slug }));
+  const items = ['footwork-series', 'kneeling-chest-press', 'bridging-reformer', 'feet-in-straps', 'kneeling-row', 'external-rotation'].map((slug, i) => ({ id: String(i), slug }));
   const a = analyze({ flow: { ...flow([{ id: 's', role: 'build', items }]), springBudget: 3 }, movements });
-  assert.equal(a.springChanges, 4); // the row can stay on the bridge springs
+  assert.equal(a.springChanges, 4); // feet in straps stays on the bridge's two reds
   assert.ok(a.checks.some((c) => c.id === 'springs' && c.level === 'warn'));
 });
 
@@ -214,4 +215,59 @@ test('every pose draws, and every library movement names a real pose for its app
   }
   assert.ok(POSES[poseOf({ apparatus: 'reformer', position: 'kneeling', setup: { straps: 'short' } })]);
   assert.ok(POSES[poseOf({ apparatus: 'mat', position: 'prone' })]);
+});
+
+test('a picked variation names the item and brings its own springs', () => {
+  const offering = movements.offering;
+  const single = offering.variations.find((v) => v.name === 'Single arm');
+  assert.ok(single && single.kind === 'variation' && single.springs.length);
+  assert.equal(itemName(offering, { variation: 'Single arm' }), 'Offering · Single arm');
+  assert.equal(itemName(offering, {}), 'Offering');
+  const a = analyze({ flow: flow([{ id: 's', role: 'build', items: [{ id: '1', slug: 'offering' }, { id: '2', slug: 'offering', variation: 'Single arm' }] }]), movements });
+  assert.deepEqual(a.springPlan[0].loads, ['light']);
+  assert.deepEqual(a.springPlan[1].loads, single.springs);
+  assert.equal(a.springPlan[1].name, 'Offering · Single arm');
+  assert.equal(a.springChanges, 1);
+});
+
+test('old easier/harder options read as regression/progression', () => {
+  assert.equal(kindOf('easier'), 'regression');
+  assert.equal(kindOf('harder'), 'progression');
+  assert.equal(kindOf('variation'), 'variation');
+  const hard = { id: '1', slug: 'jackknife-reformer', options: [{ id: 'o', kind: 'easier', title: 'Overhead only' }] };
+  const a = analyze({ flow: flow([{ id: 's', role: 'build', items: [{ id: 'a', slug: 'footwork-series' }, { id: 'b', slug: 'bridging-reformer' }, { id: 'c', slug: 'scooter' }, { id: 'd', slug: 'offering' }, { id: 'e', slug: 'pulling-straps' }, { id: 'f', slug: 'mermaid' }, hard, { id: '2', slug: 'snake' }, { id: '3', slug: 'star' }] }]), movements });
+  const c = a.checks.find((x) => x.id === 'options');
+  assert.ok(c && !c.body.includes('Jackknife') && c.title.includes('regression'));
+});
+
+test("springs are written in the springs the studio's reformers have", () => {
+  const room = { brand: 'align', springs: { heavy: 1, medium: 2, light: 2 } }; // no extra-light spring, only two reds
+  assert.deepEqual(fitSprings(['medium', 'xlight'], room), { loads: ['medium', 'light'], approx: true, short: false });
+  assert.equal(fitSprings(['medium', 'medium', 'medium'], room).short, true);
+  assert.deepEqual(fitSprings(['light'], room), { loads: ['light'], approx: false, short: false });
+  assert.deepEqual(fitSprings(['medium'], {}).loads, ['medium']);
+});
+
+test('the library ships no unconfirmed or half-converted movements', () => {
+  const live = Object.values(movements).filter((m) => !m.retired);
+  assert.ok(live.length >= 160);
+  for (const m of live) {
+    assert.ok((m.sources || []).length >= 1, `${m.slug} has no source`);
+    assert.equal(m.modifications, undefined, `${m.slug} still has modifications`);
+    assert.ok(Array.isArray(m.aka) && Array.isArray(m.variations), m.slug);
+    for (const v of m.variations) assert.ok(['regression', 'progression', 'variation'].includes(v.kind), `${m.slug}: ${v.name}`);
+    for (const p of m.prep || []) assert.ok(!movements[p].retired, `${m.slug} leads in with a retired movement`);
+  }
+  assert.ok(movements['jackknife-reformer'] && movements['jackknife-mat']);
+  assert.equal(movements['footwork-series'].name, 'Footwork');
+  assert.ok(movements['footwork-series'].variations.some((v) => v.name === 'Pilates V'));
+});
+
+test('drafts never use retired movements and open footwork with Footwork', () => {
+  for (const seed of [1, 2, 3, 4]) {
+    const f = draftFlow({ movements, goal: 'full_body', apparatus: 'reformer', format: 'flow', lengthMin: 50, level: 'intermediate', props, seed });
+    for (const s of f.segments) { assert.equal(s.bpm, undefined); for (const i of s.items) assert.ok(!movements[i.slug].retired, i.slug); }
+    const warm = f.segments[0].items.map((i) => i.slug);
+    if (warm.includes('footwork-series')) assert.equal(warm[0], 'footwork-series');
+  }
 });

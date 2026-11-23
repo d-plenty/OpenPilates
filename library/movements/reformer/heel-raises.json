@@ -1,6 +1,6 @@
 {
   "slug": "heel-raises",
-  "name": "Heel Raises",
+  "name": "Calf Raises",
   "apparatus": "reformer",
   "section": "lower",
   "level": "beginner",
@@ -29,8 +29,7 @@
     "springs": [
       "medium",
       "medium",
-      "medium",
-      "xlight"
+      "medium"
     ],
     "advance": [
       "medium",
@@ -76,16 +75,7 @@
       "tag": "L2",
       "title": "Slow lower",
       "text": "Three counts down, one count up."
-    },
-    {
-      "tag": "L3",
-      "title": "Single leg",
-      "text": "One foot on the bar, the other leg in tabletop."
     }
-  ],
-  "modifications": [
-    "Take a spring off if the legs can't straighten with control.",
-    "Smaller range for sore ankles or Achilles."
   ],
   "cautions": [
     {
@@ -102,5 +92,32 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Heel raises",
+    "Lower and lift",
+    "Tendon stretch (footwork)",
+    "Calf press"
+  ],
+  "variations": [
+    {
+      "name": "Single leg",
+      "kind": "progression",
+      "note": "One foot on the bar, the other leg in tabletop."
+    },
+    {
+      "name": "Take a spring off if the legs can't straighten with control",
+      "kind": "regression"
+    },
+    {
+      "name": "Smaller range for sore ankles or Achilles",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "manual"
+  ]
 }

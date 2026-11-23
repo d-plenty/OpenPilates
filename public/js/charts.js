@@ -1,5 +1,5 @@
 import { h, s } from './ui.js';
-import { POSITIONS, springFor, springLabel, PURPOSES } from '/shared/vocab.js';
+import { POSITIONS, springFor, springLabel, PURPOSES, fitSprings } from '/shared/vocab.js';
 import { fmtClock } from '/shared/analysis.js';
 
 const BASE = '#E2E7E4';
@@ -77,7 +77,7 @@ export function radar(values, target, { size = 180 } = {}) {
     s('text', { x: 2, y: 94, class: 'radar-label' }, 'Side'));
 }
 
-// Intensity curve over the class with segment bands and BPM steps.
+// Intensity curve over the class with segment bands.
 export function intensityChart(a, flow, { height = 200 } = {}) {
   const W = 1000, H = 200, top = 14, bottom = 170;
   const total = a.totalSec || 1;
@@ -86,20 +86,12 @@ export function intensityChart(a, flow, { height = 200 } = {}) {
   const bands = a.segments.map((sg, i) => s('rect', { x: x(sg.start).toFixed(1), y: 0, width: Math.max(0, x(sg.sec)).toFixed(1), height: bottom, fill: i % 2 ? '#F6F8F7' : '#EAF4F1' }));
   const pts = a.intensity.flatMap((i) => [[x(i.at), y(i.value)], [x(i.end), y(i.value)]]);
   const line = pts.length ? s('polyline', { points: pts.map((p) => p.map((n) => n.toFixed(1)).join(',')).join(' '), fill: 'none', stroke: '#0F6E62', 'stroke-width': 3, 'vector-effect': 'non-scaling-stroke', 'stroke-linejoin': 'round' }) : null;
-  const bpmPts = [];
-  (flow.segments || []).forEach((seg, i) => {
-    const sg = a.segments[i];
-    if (!sg || !seg.bpm) return;
-    const yy = bottom - ((seg.bpm - 60) / 120) * (bottom - top);
-    bpmPts.push([x(sg.start), yy], [x(sg.start + sg.sec), yy]);
-  });
-  const bpm = bpmPts.length ? s('polyline', { points: bpmPts.map((p) => p.map((n) => n.toFixed(1)).join(',')).join(' '), fill: 'none', stroke: '#7A4FA0', 'stroke-width': 2, 'stroke-dasharray': '6 4', 'vector-effect': 'non-scaling-stroke' }) : null;
   const peak = a.peak ? s('circle', { cx: x(a.peak.at + (a.peak.end - a.peak.at) / 2).toFixed(1), cy: y(a.peak.value).toFixed(1), r: 6, fill: '#16201C' }) : null;
   // Segment names sit under the chart as ordinary text so they never stretch or overlap.
   const labels = h('div', { class: 'chart-labels', 'aria-hidden': 'true' }, a.segments.map((sg) => h('span', { style: { flex: `${Math.max(sg.sec, 1)} 1 0` }, title: sg.name }, sg.name)));
   const svg = s('svg', { width: '100%', height: height - 22, viewBox: `0 0 ${W} ${bottom}`, preserveAspectRatio: 'none', role: 'img', class: 'intensity-chart',
     'aria-label': a.peak ? `Effort across the class, peaking at ${a.peak.name} around ${a.peak.pct}% of the way through` : 'Effort across the class' },
-  ...bands, bpm, line, peak);
+  ...bands, line, peak);
   return h('div', null, svg, labels);
 }
 
@@ -127,11 +119,22 @@ export function purposeBars(purpose) {
 
 export function springDots(loads, room, { label = true } = {}) {
   if (!loads || !loads.length) return h('span', { class: 'springs muted' }, 'No springs');
-  const dots = loads.map((l) => {
+  // Written in the springs this room's reformers really have.
+  const fit = fitSprings(loads, room);
+  const dots = fit.loads.map((l) => {
     const sp = springFor(room.brand, l, room.springOverrides);
-    return h('span', { class: 'dot', style: { background: sp.color }, title: `${sp.name} (${l})` });
+    return h('span', { class: 'dot', style: { background: sp.color }, title: sp.name });
   });
-  return h('span', { class: 'springs', title: loads.join(' + ') }, ...dots, label ? h('span', { class: 'spring-label' }, springLabel(room.brand, loads, room.springOverrides)) : null);
+  const note = fit.short ? 'More of one spring than this reformer has. Check the setting.' : fit.approx ? 'Closest setting with the springs this reformer has.' : null;
+  return h('span', { class: ['springs', (fit.short || fit.approx) && 'springs-approx'], title: note || springNames(fit.loads, room) }, ...dots,
+    label ? h('span', { class: 'spring-label' }, springLabel(room.brand, fit.loads, room.springOverrides), fit.short || fit.approx ? '*' : '') : null);
+}
+// "2 Red + 1 Blue" for a setting, in the room's own spring names.
+export function springNames(loads, room) {
+  if (!loads || !loads.length) return 'No springs';
+  const counts = new Map();
+  for (const l of fitSprings(loads, room).loads) { const n = springFor(room.brand, l, room.springOverrides).name; counts.set(n, (counts.get(n) || 0) + 1); }
+  return [...counts.entries()].map(([n, c]) => `${c} ${n}`).join(' + ');
 }
 
 export function donut(fraction, { size = 250, label = '', big = '', sub = '' } = {}) {

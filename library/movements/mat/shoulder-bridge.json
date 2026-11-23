@@ -77,10 +77,6 @@
       "text": "Elbows down, hands supporting the pelvis."
     }
   ],
-  "modifications": [
-    "Lower bridge.",
-    "March instead of kick."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -113,5 +109,24 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Single-leg bridge"
+  ],
+  "variations": [
+    {
+      "name": "Lower bridge",
+      "kind": "regression"
+    },
+    {
+      "name": "March instead of kick",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "saran",
+    "matlists",
+    "manual"
+  ]
 }

@@ -80,10 +80,6 @@
       "text": "Straighten the leg to the side at the top."
     }
   ],
-  "modifications": [
-    "Forearms down.",
-    "Smaller lift."
-  ],
   "cautions": [
     {
       "tag": "wrist",
@@ -109,5 +105,18 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Forearms down",
+      "kind": "regression"
+    },
+    {
+      "name": "Smaller lift",
+      "kind": "regression"
+    }
+  ],
+  "sources": [],
+  "retired": true
 }

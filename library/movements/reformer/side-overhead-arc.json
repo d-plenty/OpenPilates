@@ -1,6 +1,6 @@
 {
   "slug": "side-overhead-arc",
-  "name": "Single-arm Overhead Arc",
+  "name": "Side Arms: Overhead Arc",
   "apparatus": "reformer",
   "section": "single_arm",
   "level": "beginner",
@@ -81,10 +81,6 @@
       "text": "Seated."
     }
   ],
-  "modifications": [
-    "Long loop for less resistance.",
-    "Sit on the long box for sore knees."
-  ],
   "cautions": [
     {
       "tag": "knee",
@@ -99,12 +95,30 @@
     }
   ],
   "prep": [
-    "side-hug"
+    "draw-a-sword"
   ],
   "cues": "Shoulder stays down as the arm goes up.\nStay upright — don't lean towards the footbar.\nRibs and pelvis quiet.",
   "labels": [],
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Side arm raise"
+  ],
+  "variations": [
+    {
+      "name": "Long loop for less resistance",
+      "kind": "regression"
+    },
+    {
+      "name": "Sit on the long box for sore knees",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards"
+  ]
 }

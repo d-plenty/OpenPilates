@@ -1,6 +1,6 @@
 {
   "slug": "single-leg-press",
-  "name": "Single Leg Press",
+  "name": "Single-leg Footwork",
   "apparatus": "reformer",
   "section": "lower",
   "level": "beginner",
@@ -29,8 +29,7 @@
   "load": {
     "springs": [
       "medium",
-      "medium",
-      "xlight"
+      "medium"
     ],
     "advance": [
       "medium",
@@ -91,16 +90,7 @@
       "tag": "L5",
       "title": "Bicycle",
       "text": "The free leg cycles."
-    },
-    {
-      "tag": "L6",
-      "title": "Single-leg heel raise",
-      "text": "Leg long, lower and lift the heel."
     }
-  ],
-  "modifications": [
-    "Take a spring off.",
-    "Heel on the bar for ankle or knee trouble."
   ],
   "cautions": [
     {
@@ -127,5 +117,34 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Single leg press",
+    "Single leg footwork"
+  ],
+  "variations": [
+    {
+      "name": "Single leg",
+      "kind": "progression",
+      "note": "Leg long, lower and lift the heel."
+    },
+    {
+      "name": "Take a spring off",
+      "kind": "regression"
+    },
+    {
+      "name": "Heel on the bar for ankle or knee trouble",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "saran",
+    "complete",
+    "contrology",
+    "onform",
+    "manual"
+  ]
 }

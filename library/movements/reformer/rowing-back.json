@@ -1,6 +1,6 @@
 {
   "slug": "rowing-back",
-  "name": "Rowing — Back Series",
+  "name": "Rowing Back",
   "apparatus": "reformer",
   "section": "back_shoulders",
   "level": "intermediate",
@@ -30,6 +30,9 @@
   "load": {
     "springs": [
       "light"
+    ],
+    "advance": [
+      "medium"
     ]
   },
   "setup": {
@@ -58,7 +61,6 @@
   "summary": "Seated facing the straps, roll back and reach the arms through several rowing patterns.",
   "steps": [],
   "layers": [],
-  "modifications": [],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -77,5 +79,27 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Rowing 1 and 2",
+    "Into the sternum",
+    "90 degrees",
+    "Back rowing"
+  ],
+  "variations": [
+    {
+      "name": "Round back (Into the Sternum)",
+      "kind": "variation"
+    },
+    {
+      "name": "Flat back (90 Degrees)",
+      "kind": "variation"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "manual"
+  ]
 }

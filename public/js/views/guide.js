@@ -1,55 +1,48 @@
-// A plain-language guide to how OpenPilates thinks, for people who aren't Pilates teachers.
+// How OpenPilates works: the words it uses and what its checks mean.
 import { h } from '../ui.js';
 import { store } from '../store.js';
 import { BRANDS, springFor, LOAD_LEVELS } from '/shared/vocab.js';
-import { figure } from '../figure.js';
 
 const dl = (...pairs) => h('dl', null, pairs.map(([t, d]) => [h('dt', null, t), h('dd', null, d)]));
 
 export async function guideView() {
   const room = store.roomFor({ apparatus: 'reformer' });
   const brand = BRANDS[room.brand] || BRANDS.balanced_body;
-  const springs = LOAD_LEVELS.map((l) => springFor(room.brand, l, room.springOverrides)).filter((s) => !s.approx);
+  const have = room.springs && Object.keys(room.springs).length ? LOAD_LEVELS.filter((l) => Number(room.springs[l]) > 0) : LOAD_LEVELS.filter((l) => !springFor(room.brand, l, room.springOverrides).approx);
   return { title: 'Guide', node: h('div', { class: 'guide' },
-    h('div', { class: 'page-head' }, h('div', { class: 'grow' }, h('h1', null, 'Guide'), h('p', { class: 'small muted' }, 'What the words mean and how to get from a blank page to a class you can teach.'))),
+    h('div', { class: 'page-head' }, h('div', { class: 'grow' }, h('h1', null, 'Guide'), h('p', { class: 'small muted' }, 'How the app works. It assumes you know your Pilates.'))),
 
-    h('section', { class: 'card stack' }, h('h2', null, 'The quick version'),
+    h('section', { class: 'card stack' }, h('h2', null, 'From blank page to class'),
       h('ol', { class: 'steps-list' },
-        h('li', null, h('b', null, 'Make a flow. '), 'Flows → New flow. Let the app draft one, or start blank.'),
-        h('li', null, h('b', null, 'Fill the segments. '), 'A flow is split into segments (warm-up, legs, arms, core, stretch…). Drag movements in from the list on the left, or press + on a movement.'),
-        h('li', null, h('b', null, 'Add layers and options. '), 'Press the layers button on any movement to choose the layers you\'ll teach, and the easier and harder options you\'ll offer.'),
-        h('li', null, h('b', null, 'Check it. '), 'The right-hand column and the Analysis tab tell you what the class does and what to fix.'),
-        h('li', null, h('b', null, 'Teach it. '), 'Press the green play button on the flow. Or print the run sheet.'))),
+        h('li', null, h('b', null, 'Make a flow. '), 'Flows → New flow. Draft one, or start blank.'),
+        h('li', null, h('b', null, 'Fill the segments. '), 'Drag movements in from the library, or press +. Switch the library to Series to drop in a whole run at once.'),
+        h('li', null, h('b', null, 'Set layers & variations. '), 'The layers button on each movement: which version the class does, the springs, the layers you\'ll build, and what you\'ll offer individuals.'),
+        h('li', null, h('b', null, 'Check it. '), 'The right-hand column and the Analysis tab.'),
+        h('li', null, h('b', null, 'Teach it. '), 'The play button on the flow, or print the run sheet.'))),
 
-    h('section', { class: 'card stack' }, h('h2', null, 'The reformer'),
-      h('div', { style: { maxWidth: '360px' } }, figure('supine-footbar', { width: 340 })),
-      dl(['Carriage', 'The padded platform that slides. You lie, sit, kneel or stand on it.'],
-        ['Footbar', 'The bar at one end that feet or hands push against.'],
-        ['Springs', 'They pull the carriage back towards the footbar. More spring is usually more resistance — but for planks and balance work, less spring is harder because the carriage is free to slide.'],
-        ['Straps', 'Ropes with loops for the hands (short loops) or feet (long loops). They pull from the end away from the footbar.'],
-        ['Shoulder rests and headrest', 'Blocks that stop you sliding off when you push with your legs, and a small adjustable pillow.'],
-        ['Long box / short box', 'A padded box. Lengthways on the carriage it is the "long box" (lie on it); crossways it is the "short box" (sit on it).'],
-        ['Jump board', 'A padded board in place of the footbar, for lying-down jumping.'])),
+    h('section', { class: 'card stack' }, h('h2', null, 'Words the app uses'),
+      dl(['Movement', 'One exercise: Footwork, Offering, Elephant. It has a usual spring setting and, often, a setting to progress to.'],
+        ['Also called', 'Other names for the same movement: the classical name, a studio nickname. Search finds all of them.'],
+        ['Variation', 'Another version of a movement. A regression (▼) is simpler or more supported. A progression (▲) is harder. A plain variation (◆) is just different: single arm instead of double, a different foot position. A variation can have its own springs.'],
+        ['Layer', 'Something built on top of the movement with the whole class, in order: pulses, a hold, tempo, arms added.'],
+        ['Series', 'A ready-built run of movements and variations, such as the Footwork series or the Short Box series. Adding a series drops every movement into the segment, where you can reorder, edit or remove them. Save any segment as a series of your own.'],
+        ['Level', 'A range, such as Beginner–Intermediate: where the standard version starts and how far its progressions take it.'])),
 
-    h('section', { class: 'card stack' }, h('h2', null, `Springs in your studio (${brand.label})`),
-      h('div', { class: 'btn-row' }, springs.map((s) => h('span', { class: 'tag', style: { fontSize: '13px' } }, h('span', { style: { display: 'inline-block', width: '12px', height: '12px', borderRadius: '6px', background: s.color, border: '1px solid rgba(0,0,0,.2)', marginRight: '6px', verticalAlign: '-1px' } }), `${s.name} = ${s.level.replace('x', 'extra ')}`))),
-      h('p', { class: 'small' }, 'Movements are saved with a load (light, medium, heavy) and shown in your machine\'s colours. Each movement has its ', h('b', null, 'usual'), ' springs and, often, springs ', h('b', null, 'to advance'), '.'),
-      h('p', { class: 'small' }, h('b', null, 'Spring changes. '), 'Every time the class stops to change springs, the flow is broken. The app plans which setting each movement runs on, keeps a movement on the springs already set whenever its usual or advance setting allows, and counts the changes against your limit. ', h('b', null, 'Tidy springs'), ' reorders movements inside each segment to cut the count.')),
+    h('section', { class: 'card stack' }, h('h2', null, `Springs (${room.name || 'your reformers'}: ${brand.label})`),
+      h('div', { class: 'btn-row' }, have.map((l) => { const s = springFor(room.brand, l, room.springOverrides); return h('span', { class: 'tag', style: { fontSize: '13px' } }, h('span', { style: { display: 'inline-block', width: '12px', height: '12px', borderRadius: '6px', background: s.color, border: '1px solid rgba(0,0,0,.2)', marginRight: '6px', verticalAlign: '-1px' } }), `${room.springs?.[l] ? room.springs[l] + ' × ' : ''}${s.name}`); })),
+      h('p', { class: 'small' }, 'Every spring setting in the app is shown in the springs your reformers have, as set in Studio. If a movement asks for a spring you don\'t have, the closest one is shown with a *. Change brand, colours or how many of each spring you have in Studio and everything follows.'),
+      h('p', { class: 'small' }, h('b', null, 'Spring changes. '), 'The app works out which setting each movement runs on. A movement stays on the springs already set when its usual or progression setting matches, and the changes are counted against the limit for the flow. ', h('b', null, 'Tidy springs'), ' reorders movements inside each segment to cut the count.')),
 
-    h('section', { class: 'card stack' }, h('h2', null, 'Levels, layers and options'),
-      dl(['Level', 'Most movements suit a range, such as Beginner–Intermediate. The first level is where the basic version starts; the second is how far the layers and heavier or lighter springs can take it.'],
-        ['Layers', 'Steps that build one movement up for the whole class: start with the basic shape, add a pulse, add an arm, lift a leg. In a flow you pick which layers you\'ll teach.'],
-        ['Options', 'What you offer to individuals: an easier version for someone who needs less, a harder one for someone who wants more. An option can be different springs, an extra movement added in (a biceps curl during a lunge), or a variation.'],
-        ['Build-up', 'Easier movements that prepare the body for a harder one. The app checks one of them comes earlier in the class.'])),
+    h('section', { class: 'card stack' }, h('h2', null, 'What the checks look at'),
+      dl(['Spine movement', 'Share of class time in flexion, extension, rotation and side bend, against the target for the class type.'],
+        ['Parts of the body', 'Time on lower body, upper body, core and stretch.'],
+        ['Stability vs mobility', 'Holding still against load versus moving through range.'],
+        ['Movement categories', 'Trunk flexion, extension, side bend and rotation, upper body, the four hip directions, hands-and-knees and standing.'],
+        ['Lead-in', 'A harder movement with none of its build-up movements earlier in the class.'],
+        ['Client checks', 'Each booked client\'s cautions against each movement: "adjust" (teach it with the noted change) or "avoid" (with a suggested swap).'])),
 
-    h('section', { class: 'card stack' }, h('h2', null, 'What the checks mean'),
-      dl(['Spine movement', 'How the class shares out bending forward (flexion), arching back (extension), twisting (rotation) and bending sideways. A balanced class does all four.'],
-        ['Parts of the body', 'Time on legs, arms and back, core, and stretching. A full-body class has all of them.'],
-        ['Stability vs mobility', 'Stability work holds part of the body still against load (a plank). Mobility work moves through range (a roll down). Classes feel best when hard holds are paired with something that moves.'],
-        ['Movement categories', 'Eleven things a rounded class usually touches: trunk flexion, extension, side bend, rotation, upper body, the four hip directions, hands-and-knees work, and standing.'],
-        ['Client checks', 'If someone booked in has a caution (pregnancy, a sore knee), each movement that matters is flagged "adjust" (teach it with a change) or "avoid" (with a suggested swap).'],
-        ['Draft', 'Every library movement is marked as a draft until a qualified instructor has checked it. Treat the app as a planning aid, not as teaching advice.'])),
-
-    h('section', { class: 'card stack' }, h('h2', null, 'Pictures'),
-      h('p', { class: 'small' }, 'Each movement has a simple drawn figure: the solid figure is the start, the faint one is where it goes. They are diagrams to jog the memory, not technique photos. An admin can add your studio\'s own photo to any movement from its page.'))) };
+    h('section', { class: 'card stack' }, h('h2', null, 'How far to trust the library'),
+      h('p', { class: 'small' }, 'Every movement was written for OpenPilates and cross-checked against several published references for its name, other names and springs. Set-up, cues, muscles, levels and timings are still one author\'s draft until a teacher has looked at them.'),
+      h('p', { class: 'small' }, h('a', { href: '#/review' }, 'Review the library'), ' lists every movement with a "Looks right" and a "Needs fixing" button. Anything flagged can be fixed on the movement\'s Edit page, or downloaded and sent to whoever maintains the library.'),
+      h('p', { class: 'small' }, 'The pictures are drawn diagrams of the start and finish positions. Add your studio\'s own photo to any movement from its page.'))) };
 }

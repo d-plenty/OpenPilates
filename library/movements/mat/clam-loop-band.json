@@ -71,10 +71,6 @@
       "text": "Stay open."
     }
   ],
-  "modifications": [
-    "No band.",
-    "Smaller range."
-  ],
   "cautions": [
     {
       "tag": "hip_replacement",
@@ -91,5 +87,23 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Clamshells",
+    "Clam"
+  ],
+  "variations": [
+    {
+      "name": "No band",
+      "kind": "regression"
+    },
+    {
+      "name": "Smaller range",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "matlists",
+    "manual"
+  ]
 }

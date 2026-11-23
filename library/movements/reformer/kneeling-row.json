@@ -1,6 +1,6 @@
 {
   "slug": "kneeling-row",
-  "name": "Kneeling Row",
+  "name": "Row",
   "apparatus": "reformer",
   "section": "back_shoulders",
   "level": "beginner",
@@ -33,7 +33,7 @@
     ],
     "advance": [
       "medium",
-      "xlight"
+      "light"
     ]
   },
   "setup": {
@@ -97,10 +97,6 @@
       "text": "Harder base."
     }
   ],
-  "modifications": [
-    "Long box or cross-legged for sore knees.",
-    "Long loops for less resistance."
-  ],
   "cautions": [
     {
       "tag": "knee",
@@ -116,5 +112,31 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Rows",
+    "Kneeling row",
+    "Kneeling arms facing back"
+  ],
+  "variations": [
+    {
+      "name": "Single arm",
+      "kind": "variation",
+      "springs": [
+        "light"
+      ]
+    },
+    {
+      "name": "Long box or cross-legged for sore knees",
+      "kind": "regression"
+    },
+    {
+      "name": "Long loops for less resistance",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "bbcards",
+    "saran"
+  ]
 }

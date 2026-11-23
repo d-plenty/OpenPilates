@@ -1,6 +1,6 @@
 {
   "slug": "short-box-side-over",
-  "name": "Short Box — Side Over",
+  "name": "Short Box — Side to Side",
   "apparatus": "reformer",
   "section": "core",
   "level": "intermediate",
@@ -84,9 +84,6 @@
       "text": "Pause at the bottom."
     }
   ],
-  "modifications": [
-    "Smaller range."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -137,5 +134,23 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Side bend",
+    "Side over",
+    "Side sit-ups"
+  ],
+  "variations": [
+    {
+      "name": "Smaller range",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "contrology",
+    "manual"
+  ]
 }

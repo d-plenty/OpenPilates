@@ -89,10 +89,6 @@
       "text": "Finish each rep by lifting the carriage knee forward."
     }
   ],
-  "modifications": [
-    "Smaller range.",
-    "Use the straight-back lunge instead."
-  ],
   "cautions": [
     {
       "tag": "knee",
@@ -125,5 +121,21 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Smaller range",
+      "kind": "regression"
+    },
+    {
+      "name": "Use the straight-back lunge instead",
+      "kind": "regression"
+    }
+  ],
+  "retired": true,
+  "sources": [
+    "saran",
+    "onform"
+  ]
 }

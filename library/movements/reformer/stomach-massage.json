@@ -33,7 +33,7 @@
     "springs": [
       "medium",
       "medium",
-      "medium"
+      "light"
     ],
     "advance": [
       "medium",
@@ -95,11 +95,6 @@
       "text": "Tall spine; turn and reach one arm back as you press out."
     }
   ],
-  "modifications": [
-    "Sit on a pad to make room at the hips.",
-    "Stay with the round-back version.",
-    "Footwork lying down instead."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -153,5 +148,52 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Stomach massage series"
+  ],
+  "variations": [
+    {
+      "name": "Round back",
+      "kind": "variation"
+    },
+    {
+      "name": "Hands back",
+      "kind": "variation"
+    },
+    {
+      "name": "Reach up",
+      "kind": "progression",
+      "springs": [
+        "medium",
+        "medium"
+      ]
+    },
+    {
+      "name": "Twist",
+      "kind": "progression",
+      "springs": [
+        "medium",
+        "medium"
+      ]
+    },
+    {
+      "name": "Sit on a pad to make room at the hips",
+      "kind": "regression"
+    },
+    {
+      "name": "Stay with the round-back version",
+      "kind": "regression"
+    },
+    {
+      "name": "Footwork lying down instead",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "manual"
+  ]
 }

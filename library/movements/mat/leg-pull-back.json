@@ -57,10 +57,6 @@
     "Alternate."
   ],
   "layers": [],
-  "modifications": [
-    "Reverse plank hold.",
-    "Knees bent tabletop."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -102,5 +98,22 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Leg pull"
+  ],
+  "variations": [
+    {
+      "name": "Reverse plank hold",
+      "kind": "regression"
+    },
+    {
+      "name": "Knees bent tabletop",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "manual"
+  ]
 }

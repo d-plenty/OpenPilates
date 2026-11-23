@@ -1,0 +1,24 @@
+{
+  "slug": "short-box-series",
+  "name": "Short Box Series",
+  "apparatus": "reformer",
+  "aka": [],
+  "summary": "Seated on the short box with the feet under the strap.",
+  "items": [
+    {
+      "slug": "short-box-round-back"
+    },
+    {
+      "slug": "short-box-flat-back"
+    },
+    {
+      "slug": "short-box-side-over"
+    },
+    {
+      "slug": "short-box-twist"
+    },
+    {
+      "slug": "short-box-tree"
+    }
+  ]
+}

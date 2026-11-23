@@ -34,7 +34,10 @@
     "springs": [
       "medium"
     ],
-    "lighterIsHarder": true
+    "advance": [
+      "medium",
+      "light"
+    ]
   },
   "setup": {
     "headrest": "any",
@@ -73,10 +76,6 @@
       "text": "Push the footbar away as the chest lifts."
     }
   ],
-  "modifications": [
-    "Keep the spine level for a sore lower back.",
-    "Make sure the hips are right at the front edge of the box before you start."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -109,5 +108,23 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Swan"
+  ],
+  "variations": [
+    {
+      "name": "Keep the spine level for a sore lower back",
+      "kind": "regression"
+    },
+    {
+      "name": "Make sure the hips are right at the front edge of the box before you start",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards"
+  ]
 }

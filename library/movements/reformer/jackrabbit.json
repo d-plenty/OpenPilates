@@ -1,0 +1,152 @@
+{
+  "slug": "jackrabbit",
+  "name": "Jackrabbit",
+  "apparatus": "reformer",
+  "section": "core",
+  "level": "intermediate",
+  "levelTo": "advanced",
+  "pose": "pike-bar",
+  "position": "plank",
+  "spine": [
+    "flexion",
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "flexion",
+    "stabilisation",
+    "push"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "quadriceps",
+      "deltoids"
+    ],
+    "secondary": [
+      "hip_flexors",
+      "glutes",
+      "hamstrings",
+      "serratus"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "light"
+    ],
+    "advance": [
+      "medium"
+    ],
+    "lighterIsHarder": true
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "both",
+  "stable": "Shoulders over the hands",
+  "mobile": "Hips and knees",
+  "categories": [
+    "trunk_flexion",
+    "hip_flexion",
+    "upper_body"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 3,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 8,
+  "duration": 90,
+  "reps": "6–10",
+  "summary": "Hands on the footbar, feet against the shoulder rests, heels lifted. The legs push the carriage out to a plank, then the knees bend in under the body with a rounded back before stretching out again.",
+  "steps": [
+    "Hands on the footbar, feet against the shoulder rests with the heels lifted; start with the knees bent and the back rounded.",
+    "Breathe in to straighten the legs and send the carriage back to a long plank.",
+    "Breathe out to bend the knees in under the hips, rounding the back, without letting the shoulders drift behind the hands."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Knees stay on the carriage",
+      "text": "Knee Stretches shape; learn the pattern."
+    },
+    {
+      "tag": "L2",
+      "title": "Knees hover",
+      "text": "Knees a few centimetres up the whole time."
+    },
+    {
+      "tag": "L3",
+      "title": "Add a pike",
+      "text": "From the plank, lift the hips before bending in."
+    }
+  ],
+  "cautions": [
+    {
+      "tag": "wrist",
+      "severity": "modify",
+      "note": "Fists or forearms on the box."
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Smaller range; keep the shoulders over the hands."
+    },
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Loaded plank and flexion.",
+      "swap": "bird-dog-carriage"
+    },
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Smaller bend."
+    }
+  ],
+  "prep": [
+    "knee-stretches",
+    "long-stretch"
+  ],
+  "cues": "Shoulders stay over the wrists.\nRound from the tail, not the upper back only.\nThe carriage comes home quietly.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  },
+  "aka": [
+    "Jack rabbit"
+  ],
+  "variations": [
+    {
+      "name": "Knee Stretches instead",
+      "kind": "regression",
+      "note": "Same pattern with the knees down."
+    },
+    {
+      "name": "Heavier spring",
+      "kind": "regression",
+      "springs": [
+        "medium",
+        "medium"
+      ],
+      "note": "More support for the plank."
+    },
+    {
+      "name": "Single leg",
+      "kind": "progression"
+    }
+  ],
+  "sources": [
+    "bbcards",
+    "saran",
+    "complete"
+  ]
+}

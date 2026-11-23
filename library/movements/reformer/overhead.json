@@ -5,7 +5,7 @@
   "section": "pelvic",
   "level": "advanced",
   "levelTo": "advanced",
-  "pose": "supine-roll-over",
+  "pose": "supine-overhead",
   "position": "supine",
   "spine": [
     "articulation"
@@ -66,9 +66,6 @@
     "Breathe in to roll down bone by bone; lower the legs as the arms lift."
   ],
   "layers": [],
-  "modifications": [
-    "Supine arm pulls with a leg lower instead."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -111,5 +108,19 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Roll over on the reformer"
+  ],
+  "variations": [
+    {
+      "name": "Supine arm pulls with a leg lower instead",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "manual"
+  ]
 }

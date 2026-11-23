@@ -60,10 +60,6 @@
   "summary": "Kneeling tall on the carriage, arm work with the straps: biceps, triceps, hug and salute.",
   "steps": [],
   "layers": [],
-  "modifications": [
-    "Sit on the heels or the long box.",
-    "Long loops for less resistance."
-  ],
   "cautions": [
     {
       "tag": "knee",
@@ -82,5 +78,21 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Sit on the heels or the long box",
+      "kind": "regression"
+    },
+    {
+      "name": "Long loops for less resistance",
+      "kind": "regression"
+    }
+  ],
+  "retired": true,
+  "sources": [
+    "bbcards",
+    "complete"
+  ]
 }

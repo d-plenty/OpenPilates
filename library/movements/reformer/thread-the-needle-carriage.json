@@ -62,10 +62,6 @@
     "Breathe in to come back and open the arm to the ceiling."
   ],
   "layers": [],
-  "modifications": [
-    "Smaller range.",
-    "Carriage still: all springs on."
-  ],
   "cautions": [
     {
       "tag": "wrist",
@@ -93,5 +89,21 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Thoracic rotation stretch"
+  ],
+  "variations": [
+    {
+      "name": "Smaller range",
+      "kind": "regression"
+    },
+    {
+      "name": "Carriage still: all springs on",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "manual"
+  ]
 }

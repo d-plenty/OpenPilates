@@ -88,10 +88,6 @@
       "text": "Long loop on the top foot with one light spring for resistance."
     }
   ],
-  "modifications": [
-    "Forearm on the short box instead of a straight arm.",
-    "Side-lying version instead."
-  ],
   "cautions": [
     {
       "tag": "wrist",
@@ -123,5 +119,22 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Forearm on the short box instead of a straight arm",
+      "kind": "regression"
+    },
+    {
+      "name": "Side-lying version instead",
+      "kind": "regression"
+    }
+  ],
+  "retired": true,
+  "sources": [
+    "pilatesology",
+    "pa",
+    "matlists"
+  ]
 }

@@ -30,8 +30,6 @@
   "equipment": [],
   "load": {
     "springs": [
-      "medium",
-      "medium",
       "medium"
     ],
     "advance": [
@@ -98,10 +96,6 @@
       "text": "Carriage moves as the leg reaches."
     }
   ],
-  "modifications": [
-    "Toes stay down.",
-    "Forearms down for sore wrists."
-  ],
   "cautions": [
     {
       "tag": "wrist",
@@ -124,5 +118,25 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Quadruped",
+    "Four-point arm and leg reach"
+  ],
+  "variations": [
+    {
+      "name": "Toes stay down",
+      "kind": "regression"
+    },
+    {
+      "name": "Forearms down for sore wrists",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "bbcards",
+    "onform",
+    "matlists",
+    "manual"
+  ]
 }

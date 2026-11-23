@@ -1,0 +1,23 @@
+{
+  "slug": "kneeling-arms-side",
+  "name": "Kneeling Arm Series: Facing the Side",
+  "apparatus": "reformer",
+  "aka": [
+    "Side arms"
+  ],
+  "summary": "Side-on, one arm at a time. Repeat on the other side.",
+  "items": [
+    {
+      "slug": "draw-a-sword"
+    },
+    {
+      "slug": "external-rotation"
+    },
+    {
+      "slug": "internal-rotation"
+    },
+    {
+      "slug": "side-overhead-arc"
+    }
+  ]
+}

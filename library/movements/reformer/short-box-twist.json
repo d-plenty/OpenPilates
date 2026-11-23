@@ -1,6 +1,6 @@
 {
   "slug": "short-box-twist",
-  "name": "Short Box — Twist & Reach",
+  "name": "Short Box — Twist",
   "apparatus": "reformer",
   "section": "core",
   "level": "intermediate",
@@ -60,9 +60,6 @@
   "summary": "Seated tall on the short box, rotate, then hinge and reach on the diagonal.",
   "steps": [],
   "layers": [],
-  "modifications": [
-    "Smaller twist and lean."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -83,5 +80,21 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Twist and reach",
+    "Twist"
+  ],
+  "variations": [
+    {
+      "name": "Smaller twist and lean",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "contrology"
+  ]
 }

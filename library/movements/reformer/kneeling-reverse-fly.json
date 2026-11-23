@@ -1,6 +1,6 @@
 {
   "slug": "kneeling-reverse-fly",
-  "name": "Kneeling Reverse Fly",
+  "name": "Reverse Fly",
   "apparatus": "reformer",
   "section": "back_shoulders",
   "level": "beginner",
@@ -77,16 +77,7 @@
       "tag": "L3",
       "title": "Crossed ropes",
       "text": "Longer pull."
-    },
-    {
-      "tag": "L4",
-      "title": "Single arm",
-      "text": "One at a time."
     }
-  ],
-  "modifications": [
-    "Long loops for less resistance.",
-    "Sit on the long box for sore knees."
   ],
   "cautions": [
     {
@@ -108,5 +99,29 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Kneeling reverse fly",
+    "Rear delt fly"
+  ],
+  "variations": [
+    {
+      "name": "Single arm",
+      "kind": "variation",
+      "springs": [
+        "xlight"
+      ],
+      "note": "One at a time."
+    },
+    {
+      "name": "Long loops for less resistance",
+      "kind": "regression"
+    },
+    {
+      "name": "Sit on the long box for sore knees",
+      "kind": "regression"
+    }
+  ],
+  "sources": [],
+  "retired": true
 }

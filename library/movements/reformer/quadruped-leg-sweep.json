@@ -82,11 +82,6 @@
       "text": "Lift the opposite arm forward."
     }
   ],
-  "modifications": [
-    "Down on the forearms.",
-    "Smaller sweep.",
-    "No strap."
-  ],
   "cautions": [
     {
       "tag": "wrist",
@@ -110,5 +105,24 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Down on the forearms",
+      "kind": "regression"
+    },
+    {
+      "name": "Smaller sweep",
+      "kind": "regression"
+    },
+    {
+      "name": "No strap",
+      "kind": "regression"
+    }
+  ],
+  "retired": true,
+  "sources": [
+    "onform"
+  ]
 }

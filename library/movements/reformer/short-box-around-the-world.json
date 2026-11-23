@@ -88,10 +88,6 @@
       "text": "Ball, ring or pole."
     }
   ],
-  "modifications": [
-    "Smaller circle.",
-    "Stay with the twist or the flat-back lean."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -140,5 +136,26 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Around the world",
+    "Twist and reach"
+  ],
+  "variations": [
+    {
+      "name": "Smaller circle",
+      "kind": "regression"
+    },
+    {
+      "name": "Stay with the twist or the flat-back lean",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "contrology",
+    "manual"
+  ]
 }

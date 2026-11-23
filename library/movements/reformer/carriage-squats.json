@@ -1,6 +1,6 @@
 {
   "slug": "carriage-squats",
-  "name": "Side Squats",
+  "name": "Standing Side Squats",
   "apparatus": "reformer",
   "section": "lower",
   "level": "beginner",
@@ -95,10 +95,6 @@
       "text": "Band above the knees."
     }
   ],
-  "modifications": [
-    "Put all the springs on to lock the carriage and step the feet wider.",
-    "Half-depth squats for knees."
-  ],
   "cautions": [
     {
       "tag": "knee",
@@ -122,5 +118,26 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Side splits with bent knees",
+    "Lateral squat",
+    "Side squats"
+  ],
+  "variations": [
+    {
+      "name": "Put all the springs on to lock the carriage and step the feet wider",
+      "kind": "regression"
+    },
+    {
+      "name": "Half-depth squats for knees",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "onform"
+  ]
 }

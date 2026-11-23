@@ -1,6 +1,6 @@
 {
   "slug": "bridging-reformer",
-  "name": "Bridging (Reformer)",
+  "name": "Bridging",
   "apparatus": "reformer",
   "section": "pelvic",
   "level": "beginner",
@@ -29,12 +29,14 @@
   "load": {
     "springs": [
       "medium",
-      "xlight"
-    ],
-    "advance": [
       "medium"
     ],
-    "lighterIsHarder": true
+    "advance": [
+      "medium",
+      "light"
+    ],
+    "lighterIsHarder": true,
+    "note": "Two to three full springs. Lighter makes the hamstrings work harder to hold the carriage still."
   },
   "setup": {
     "headrest": "down",
@@ -94,23 +96,14 @@
     },
     {
       "tag": "L6",
-      "title": "Single leg",
-      "text": "One leg long or in tabletop."
-    },
-    {
-      "tag": "L7",
       "title": "Prop",
       "text": "Loop band, ring or ball."
     },
     {
-      "tag": "L8",
+      "tag": "L7",
       "title": "Foot position",
       "text": "Toes, turned out, or wide."
     }
-  ],
-  "modifications": [
-    "All springs on to lock the carriage for tight or cramping hamstrings.",
-    "Feet on the platform instead of the bar."
   ],
   "cautions": [
     {
@@ -140,5 +133,52 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Pelvic curl",
+    "Pelvic lift",
+    "Hip lift",
+    "Hip rolls",
+    "Bridges",
+    "Shoulder bridge"
+  ],
+  "variations": [
+    {
+      "name": "Arms long on the carriage",
+      "kind": "regression",
+      "note": "The arms press down for support."
+    },
+    {
+      "name": "Arms reaching to the ceiling",
+      "kind": "progression",
+      "note": "No help from the arms, so the trunk has to hold steady."
+    },
+    {
+      "name": "Balls of the feet on the bar",
+      "kind": "variation",
+      "note": "More calf and hamstring."
+    },
+    {
+      "name": "Single leg",
+      "kind": "progression",
+      "note": "One leg long or in tabletop."
+    },
+    {
+      "name": "All springs on to lock the carriage for tight or cramping hamstrings",
+      "kind": "regression"
+    },
+    {
+      "name": "Feet on the platform instead of the bar",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "saran",
+    "onform",
+    "matlists",
+    "manual"
+  ]
 }

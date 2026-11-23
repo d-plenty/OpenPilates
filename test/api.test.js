@@ -143,7 +143,7 @@ test('flows keep layers and options, and drop junk', async () => {
   assert.equal(item.options.length, 3);
   assert.deepEqual(item.options[0].springs, ['medium', 'light']);
   assert.equal(item.options[1].note.length, 300);
-  assert.equal(item.options[2].kind, 'harder');
+  assert.deepEqual(item.options.map((o) => o.kind), ['progression', 'regression', 'progression']);
   assert.equal(item.options[2].slug, 'kneeling-biceps-curl');
   await call('admin', 'DELETE', `/flows/${made.data.id}`);
 });
@@ -157,4 +157,61 @@ test('movements keep a level range and a picture, and fix an upside-down range',
   assert.equal(b.data.levelTo, 'advanced');
   assert.equal(b.data.pose, undefined);
   await call('admin', 'DELETE', `/movements/${a.data.slug}`);
+});
+
+test('movements carry other names and variations; old "modifications" become regressions', async () => {
+  const r = await call('admin', 'POST', '/movements', { name: 'Var Test', position: 'kneeling', muscles: { primary: ['deltoids'] }, aka: ['Other name', ''], modifications: ['Sit on the box'],
+    variations: [{ name: 'Single arm', kind: 'variation', springs: ['xlight', 'nope'] }, { name: 'Kneel up', kind: 'harder' }, { name: 'single arm', kind: 'variation' }, { kind: 'variation' }] });
+  assert.equal(r.status, 201);
+  assert.deepEqual(r.data.aka, ['Other name']);
+  assert.deepEqual(r.data.variations, [{ name: 'Single arm', kind: 'variation', springs: ['xlight'] }, { name: 'Kneel up', kind: 'progression' }, { name: 'Sit on the box', kind: 'regression' }]);
+  assert.equal(r.data.modifications, undefined);
+  const f = await call('admin', 'POST', '/flows', { title: 'V', segments: [{ name: 'A', bpm: 100, items: [{ slug: r.data.slug, variation: 'Single arm' }] }] });
+  assert.equal(f.data.segments[0].items[0].variation, 'Single arm');
+  await call('admin', 'DELETE', `/flows/${f.data.id}`);
+  await call('admin', 'DELETE', `/movements/${r.data.slug}`);
+});
+
+test('retired movements still resolve; the library lists series', async () => {
+  const all = (await call('admin', 'GET', '/movements')).data;
+  const retired = all.filter((m) => m.retired);
+  assert.ok(retired.length > 0 && retired.every((m) => m.slug && m.name));
+  const series = (await call('admin', 'GET', '/series')).data;
+  const footwork = series.find((s) => s.slug === 'footwork-series');
+  assert.ok(footwork && footwork.source === 'library' && footwork.items.length >= 5);
+  const bySlug = Object.fromEntries(all.map((m) => [m.slug, m]));
+  for (const s of series) for (const i of s.items) {
+    assert.ok(bySlug[i.slug] && !bySlug[i.slug].retired, `${s.slug}: ${i.slug}`);
+    if (i.variation) assert.ok(bySlug[i.slug].variations.some((v) => v.name === i.variation), `${s.slug}: ${i.variation}`);
+  }
+});
+
+test('a studio can save, list and delete its own series, but not library ones', async () => {
+  assert.equal((await call('admin', 'POST', '/series', { name: 'Empty', items: [] })).status, 400);
+  const made = await call('admin', 'POST', '/series', { name: 'My glute block', items: [{ slug: 'standing-lunge', variation: 'Curtsy lunge', duration: 90 }, { slug: 'Scooter' }, { slug: '' }] });
+  assert.equal(made.status, 201);
+  assert.equal(made.data.slug, 'my-glute-block');
+  assert.equal(made.data.items.length, 2);
+  assert.equal(made.data.source, 'custom');
+  assert.ok((await call('admin', 'GET', '/series')).data.some((s) => s.slug === 'my-glute-block'));
+  assert.equal((await call('admin', 'DELETE', '/series/footwork-series')).status, 400);
+  assert.equal((await call('admin', 'DELETE', '/series/my-glute-block')).status, 200);
+  assert.equal((await call('admin', 'DELETE', '/series/my-glute-block')).status, 404);
+});
+
+test('a teacher can mark a movement checked or flagged, and export the list', async () => {
+  assert.equal((await call('admin', 'PUT', '/movements/nope/check', { status: 'ok' })).status, 404);
+  const ok = await call('admin', 'PUT', '/movements/offering/check', { status: 'ok' });
+  assert.equal(ok.data.status, 'ok');
+  assert.equal(ok.data.by, 'Sarah');
+  const fix = await call('admin', 'PUT', '/movements/elephant/check', { status: 'fix', note: 'Springs too light' });
+  assert.equal(fix.data.status, 'fix');
+  const all = (await call('admin', 'GET', '/movements')).data;
+  assert.equal(all.find((m) => m.slug === 'offering').check.status, 'ok');
+  assert.equal(all.find((m) => m.slug === 'elephant').check.note, 'Springs too light');
+  const exp = (await call('admin', 'GET', '/reviews/export')).data;
+  assert.equal(exp.openpilates, 'review');
+  assert.ok(exp.reviews.some((r) => r.slug === 'elephant' && r.name === 'Elephant' && r.status === 'fix'));
+  await call('admin', 'PUT', '/movements/offering/check', { status: '' });
+  assert.equal((await call('admin', 'GET', '/movements')).data.find((m) => m.slug === 'offering').check, undefined);
 });

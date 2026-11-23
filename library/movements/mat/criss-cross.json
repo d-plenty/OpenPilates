@@ -49,10 +49,6 @@
   "summary": "Hands behind the head, rotate the chest towards the opposite knee as the legs switch.",
   "steps": [],
   "layers": [],
-  "modifications": [
-    "Feet down.",
-    "Head down between sides."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -81,5 +77,19 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Feet down",
+      "kind": "regression"
+    },
+    {
+      "name": "Head down between sides",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology"
+  ]
 }

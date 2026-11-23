@@ -1,6 +1,6 @@
 {
   "slug": "pilates-push-up",
-  "name": "Push-up (Pilates)",
+  "name": "Push Up",
   "apparatus": "mat",
   "section": "chest_arms",
   "level": "intermediate",
@@ -73,16 +73,7 @@
       "tag": "L3",
       "title": "Full",
       "text": "Classical."
-    },
-    {
-      "tag": "L4",
-      "title": "Single leg",
-      "text": "One leg lifted."
     }
-  ],
-  "modifications": [
-    "Knees down.",
-    "Hands on a raised surface."
   ],
   "cautions": [
     {
@@ -117,5 +108,28 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Pilates push-up"
+  ],
+  "variations": [
+    {
+      "name": "Single leg",
+      "kind": "progression",
+      "note": "One leg lifted."
+    },
+    {
+      "name": "Knees down",
+      "kind": "regression"
+    },
+    {
+      "name": "Hands on a raised surface",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "manual"
+  ]
 }

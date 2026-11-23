@@ -68,9 +68,6 @@
       "text": "Float one leg to tabletop without the pelvis moving."
     }
   ],
-  "modifications": [
-    "Small cushion under the head."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -94,5 +91,19 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Pelvic clock",
+    "Pelvic tilt"
+  ],
+  "variations": [
+    {
+      "name": "Small cushion under the head",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "matlists",
+    "manual"
+  ]
 }

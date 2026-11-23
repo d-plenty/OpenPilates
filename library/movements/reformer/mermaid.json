@@ -27,7 +27,7 @@
   "equipment": [],
   "load": {
     "springs": [
-      "xlight"
+      "medium"
     ],
     "flexible": true,
     "note": "Any light setting works — stay on whatever is already on if it feels supportive."
@@ -74,9 +74,6 @@
       "text": "Finish with a side bend the other way."
     }
   ],
-  "modifications": [
-    "Sit cross-legged or on the box for sore knees or hips."
-  ],
   "cautions": [
     {
       "tag": "knee",
@@ -93,5 +90,29 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Side stretch",
+    "Seated side bend"
+  ],
+  "variations": [
+    {
+      "name": "Lighter spring",
+      "kind": "regression",
+      "springs": [
+        "light"
+      ]
+    },
+    {
+      "name": "Sit cross-legged or on the box for sore knees or hips",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "pa",
+    "manual"
+  ]
 }

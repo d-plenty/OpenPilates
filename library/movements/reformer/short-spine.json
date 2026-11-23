@@ -30,10 +30,8 @@
   "load": {
     "springs": [
       "medium",
-      "medium",
-      "xlight"
-    ],
-    "lighterIsHarder": true
+      "medium"
+    ]
   },
   "setup": {
     "headrest": "down",
@@ -67,9 +65,6 @@
     "Finish with one frog press towards the footbar."
   ],
   "layers": [],
-  "modifications": [
-    "Bridge or frog instead."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -106,5 +101,21 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Short spine",
+    "Short spine stretch"
+  ],
+  "variations": [
+    {
+      "name": "Bridge or frog instead",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "manual"
+  ]
 }

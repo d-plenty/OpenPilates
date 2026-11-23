@@ -51,10 +51,6 @@
     "Breathe in to unwind."
   ],
   "layers": [],
-  "modifications": [
-    "Smaller range.",
-    "Forearm down on the supporting side."
-  ],
   "cautions": [
     {
       "tag": "wrist",
@@ -77,5 +73,19 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Smaller range",
+      "kind": "regression"
+    },
+    {
+      "name": "Forearm down on the supporting side",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "manual"
+  ]
 }

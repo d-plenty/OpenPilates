@@ -90,9 +90,6 @@
       "text": "Bend and straighten the elbows."
     }
   ],
-  "modifications": [
-    "Feet on the platform, or knees on the platform."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -136,5 +133,18 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Feet on the platform, or knees on the platform",
+      "kind": "regression"
+    }
+  ],
+  "retired": true,
+  "sources": [
+    "onform",
+    "matlists",
+    "alo"
+  ]
 }

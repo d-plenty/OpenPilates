@@ -5,7 +5,7 @@
   "section": "core",
   "level": "intermediate",
   "levelTo": "advanced",
-  "pose": "supine-curl",
+  "pose": "teaser-box",
   "position": "supine",
   "spine": [
     "flexion"
@@ -18,18 +18,25 @@
   ],
   "muscles": {
     "primary": [
-      "abdominals",
-      "deltoids"
+      "abdominals"
     ],
     "secondary": [
       "hip_flexors",
-      "lats"
+      "lats",
+      "adductors",
+      "deltoids"
     ]
   },
-  "equipment": [],
+  "equipment": [
+    "long_box"
+  ],
   "load": {
     "springs": [
       "medium"
+    ],
+    "advance": [
+      "medium",
+      "light"
     ]
   },
   "setup": {
@@ -58,9 +65,6 @@
   "summary": "Curled up with knees in, reach arms and legs to the ceiling, open, circle and return.",
   "steps": [],
   "layers": [],
-  "modifications": [
-    "Head down, arms only."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -94,5 +98,21 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Back stroke"
+  ],
+  "variations": [
+    {
+      "name": "Head down, arms only",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "saran",
+    "pa"
+  ]
 }

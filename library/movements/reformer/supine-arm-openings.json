@@ -1,6 +1,6 @@
 {
   "slug": "supine-arm-openings",
-  "name": "Supine Arms in Straps — Out & In",
+  "name": "Supine Arms: Out & In",
   "apparatus": "reformer",
   "section": "core",
   "level": "beginner",
@@ -30,13 +30,11 @@
   "equipment": [],
   "load": {
     "springs": [
-      "medium",
-      "light"
+      "medium"
     ],
     "advance": [
       "medium",
-      "light",
-      "xlight"
+      "light"
     ]
   },
   "setup": {
@@ -90,10 +88,6 @@
       "text": "Legs move while the arms work."
     }
   ],
-  "modifications": [
-    "Long loops for less resistance.",
-    "Feet down on the footbar if the back arches."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -117,5 +111,32 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Supine arm series",
+    "Arms to a T",
+    "Adduction"
+  ],
+  "variations": [
+    {
+      "name": "Single arm",
+      "kind": "variation",
+      "springs": [
+        "light"
+      ]
+    },
+    {
+      "name": "Long loops for less resistance",
+      "kind": "regression"
+    },
+    {
+      "name": "Feet down on the footbar if the back arches",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "bbcards",
+    "complete",
+    "manual"
+  ]
 }

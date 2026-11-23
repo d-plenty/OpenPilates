@@ -71,10 +71,6 @@
       "text": "Classical."
     }
   ],
-  "modifications": [
-    "Bend the knees.",
-    "A strap or partner holding the feet."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -116,5 +112,19 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Bend the knees",
+      "kind": "regression"
+    },
+    {
+      "name": "A strap or partner holding the feet",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology"
+  ]
 }

@@ -76,10 +76,6 @@
       "text": "See Bird Dog."
     }
   ],
-  "modifications": [
-    "Lift only the arms or only the legs.",
-    "Forehead rests on a towel."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -103,5 +99,22 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [],
+  "variations": [
+    {
+      "name": "Lift only the arms or only the legs",
+      "kind": "regression"
+    },
+    {
+      "name": "Forehead rests on a towel",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "matlists",
+    "manual"
+  ]
 }

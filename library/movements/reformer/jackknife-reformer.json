@@ -1,0 +1,153 @@
+{
+  "slug": "jackknife-reformer",
+  "name": "Jackknife",
+  "apparatus": "reformer",
+  "section": "pelvic",
+  "level": "advanced",
+  "levelTo": "advanced",
+  "pose": "supine-jackknife",
+  "position": "supine",
+  "spine": [
+    "articulation"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "spinal-articulation",
+    "pull"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "glutes",
+      "triceps"
+    ],
+    "secondary": [
+      "lats",
+      "spinal_extensors",
+      "hamstrings",
+      "hip_flexors"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium"
+    ],
+    "advance": [
+      "medium",
+      "light"
+    ]
+  },
+  "setup": {
+    "headrest": "down",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "mobility",
+  "stable": "Arms pressed down, shoulders wide",
+  "mobile": "Spine and hips",
+  "categories": [
+    "trunk_flexion",
+    "hip_extension",
+    "upper_body"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 3,
+    "stability": 2,
+    "flexibility": 1,
+    "mobility": 2
+  },
+  "multiJoint": true,
+  "intensity": 9,
+  "duration": 90,
+  "reps": "3–5",
+  "summary": "Lying on the back with hands in the straps. The arms press down, the legs go over the head, then the hips and legs shoot up to the ceiling before the spine rolls down slowly.",
+  "steps": [
+    "Headrest down. Lie on the back, hands in the short loops, arms pressed to the carriage beside the hips, legs straight up.",
+    "Breathe in to carry the legs over the head until they are level with the floor, weight across the shoulders.",
+    "Breathe out to lift the hips and reach the legs straight up, toes over the eyes.",
+    "Breathe in, then roll down through the spine with the legs staying close; lower the legs to finish."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Overhead only",
+      "text": "Stop with the legs level; no lift."
+    },
+    {
+      "tag": "L2",
+      "title": "Full jackknife",
+      "text": "Lift the hips to a long line."
+    }
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "supine-arm-pulls"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "supine-arm-pulls"
+    },
+    {
+      "tag": "neck",
+      "severity": "avoid",
+      "note": "Body weight rests near the neck.",
+      "swap": "bridging-reformer"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Loaded spinal flexion.",
+      "swap": "bridging-reformer"
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Lighter spring and a smaller range."
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "Deep loaded flexion.",
+      "swap": "bridging-reformer"
+    }
+  ],
+  "prep": [
+    "short-spine",
+    "overhead"
+  ],
+  "cues": "Weight on the shoulders, never the neck.\nArms stay long and heavy on the carriage.\nRoll down slowly; the carriage should hardly move.\nHead stays still: no looking around.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  },
+  "aka": [
+    "Jack knife",
+    "Overhead to a lift"
+  ],
+  "variations": [
+    {
+      "name": "Overhead (no lift)",
+      "kind": "regression",
+      "note": "Roll over and back without the lift to vertical."
+    },
+    {
+      "name": "Lift less high",
+      "kind": "regression",
+      "note": "Stay balanced over the shoulders instead of going to vertical."
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "pa",
+    "manual"
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "slug": "ab-curl-in-straps",
-  "name": "Abdominal Curl in Straps",
+  "name": "Abdominal Curl with Straps",
   "apparatus": "reformer",
   "section": "core",
   "level": "beginner",
@@ -28,13 +28,11 @@
   "equipment": [],
   "load": {
     "springs": [
-      "medium",
-      "light"
+      "medium"
     ],
     "advance": [
       "medium",
-      "light",
-      "xlight"
+      "light"
     ]
   },
   "setup": {
@@ -94,10 +92,6 @@
       "text": "Ball or ring between the legs."
     }
   ],
-  "modifications": [
-    "Long loops for less resistance.",
-    "Keep the head down and do the arm press only."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -138,5 +132,26 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Ab curl",
+    "Chest lift with straps",
+    "Supine abdominal series"
+  ],
+  "variations": [
+    {
+      "name": "Long loops for less resistance",
+      "kind": "regression"
+    },
+    {
+      "name": "Keep the head down and do the arm press only",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "bbcards",
+    "saran",
+    "complete",
+    "onform"
+  ]
 }

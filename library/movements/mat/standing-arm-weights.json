@@ -1,6 +1,6 @@
 {
   "slug": "standing-arm-weights",
-  "name": "Standing Arm Series with Weights",
+  "name": "Standing Arm Weights",
   "apparatus": "mat",
   "section": "chest_arms",
   "level": "beginner",
@@ -52,10 +52,6 @@
   "summary": "Standing tall with light weights: curls, presses, chest expansion and arm circles.",
   "steps": [],
   "layers": [],
-  "modifications": [
-    "Lighter or no weights.",
-    "Sit down."
-  ],
   "cautions": [
     {
       "tag": "shoulder",
@@ -69,5 +65,21 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Arm weights series"
+  ],
+  "variations": [
+    {
+      "name": "Lighter or no weights",
+      "kind": "regression"
+    },
+    {
+      "name": "Sit down",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology"
+  ]
 }

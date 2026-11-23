@@ -85,10 +85,6 @@
       "text": "Back over the box."
     }
   ],
-  "modifications": [
-    "Keep the knee bent.",
-    "Only go halfway back."
-  ],
   "cautions": [
     {
       "tag": "pregnancy",
@@ -136,5 +132,26 @@
   "review": {
     "status": "draft",
     "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
-  }
+  },
+  "aka": [
+    "Climb a tree",
+    "Tree"
+  ],
+  "variations": [
+    {
+      "name": "Keep the knee bent",
+      "kind": "regression"
+    },
+    {
+      "name": "Only go halfway back",
+      "kind": "regression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc",
+    "bbcards",
+    "saran",
+    "contrology"
+  ]
 }
