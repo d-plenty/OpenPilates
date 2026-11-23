@@ -1,4 +1,4 @@
-import { h, field, select } from '../ui.js';
+import { h, field, select, passwordInput } from '../ui.js';
 import { api, store } from '../store.js';
 import { BRANDS, LEVEL_PRESETS } from '/shared/vocab.js';
 
@@ -14,8 +14,8 @@ export async function setupView(done) {
   let levelScheme = 'three';
   const display = h('input', { type: 'text', autocomplete: 'name', placeholder: 'e.g. Sarah Blake' });
   const user = h('input', { type: 'text', autocomplete: 'username', placeholder: 'e.g. sarah', autocapitalize: 'none' });
-  const pass = h('input', { type: 'password', autocomplete: 'new-password' });
-  const pass2 = h('input', { type: 'password', autocomplete: 'new-password' });
+  const passBox = passwordInput({ autocomplete: 'new-password' }); const pass = passBox.input;
+  const pass2Box = passwordInput({ autocomplete: 'new-password' }); const pass2 = pass2Box.input;
   const submit = async (e) => {
     e.preventDefault();
     err.textContent = '';
@@ -35,8 +35,8 @@ export async function setupView(done) {
       field('Class levels you run', select(Object.entries(LEVEL_PRESETS).map(([id, p]) => ({ id, label: p.levels.map((l) => l.label).join(' · ') })), levelScheme, (v) => { levelScheme = v; }), 'Rename them or write your own under Studio afterwards.'),
       field('Your name', display),
       field('Username', user),
-      field('Password', pass, 'At least 10 characters. A few random words works well.'),
-      field('Password again', pass2),
+      field('Password', passBox, 'At least 10 characters. A few random words works well.'),
+      field('Password again', pass2Box),
       err,
       h('button', { class: 'btn btn-primary', type: 'submit' }, 'Create studio')));
 }
@@ -44,7 +44,7 @@ export async function setupView(done) {
 export async function loginView(done) {
   const err = h('p', { class: 'error', role: 'alert' });
   const user = h('input', { type: 'text', autocomplete: 'username', autocapitalize: 'none' });
-  const pass = h('input', { type: 'password', autocomplete: 'current-password' });
+  const passBox = passwordInput({ autocomplete: 'current-password' }); const pass = passBox.input;
   const submit = async (e) => {
     e.preventDefault();
     err.textContent = '';
@@ -58,7 +58,7 @@ export async function loginView(done) {
     store.state?.studioName ? h('p', { class: 'muted' }, store.state.studioName) : null,
     h('form', { class: 'stack', onsubmit: submit },
       field('Username', user),
-      field('Password', pass),
+      field('Password', passBox),
       err,
       h('button', { class: 'btn btn-primary', type: 'submit' }, 'Sign in')),
     h('p', { class: 'hint' }, 'Forgotten your password? Ask your studio admin to set a new one.'));

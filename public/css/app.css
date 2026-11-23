@@ -650,3 +650,9 @@ pre.code { margin: 0; background: var(--panel); color: var(--accent-line); borde
 
 /* Paper is always light, whatever the screen is set to. */
 @media print { :root[data-theme=dark] { --bg: #F3F5F4; --surface: #FFFFFF; --soft: #F4F9F7; --line: #DDE3E0; --line-2: #EEF1EF; --input: #C9D2CE; --ink: #16201C; --ink-2: #3E4A44; --muted: #56625C; --accent: #0F6E62; --accent-dark: #0A5047; --accent-soft: #E1F0EC; --warn: #8A3A14; --warn-bg: #FCEFE6; --warn-dot: #C2571A; --info: #6B5000; --info-bg: #FFF4D1; --ok-bg: #EEF6F3; --tint: #F4F7F6; --line-strong: #A7B5AF; --accent-line: #BFDCD5; --accent-fill: #0F6E62; --accent-fill-dark: #0A5047; --inverse: #16201C; --on-inverse: #FFFFFF; --panel: #16201C; --danger: #A33A1F; --warn-line: #EBC9B1; --info-line: #E3BC2C; --fig-body: #23433A; --fig-far: #7FA296; --fig-ghost: #0F6E62; --fig-frame: #C3CEC9; --fig-pad: #9DB0A9; --fig-wood: #D9C39A; --fig-skin: #F0D9C6; --fig-mat: #BFD5CE; --fig-floor: #DDE3E0; --fig-hair: #16201C; --chart-track: #E2E7E4; --chart-grid: #D3DAD7; --chart-fill: #EAF4F1; color-scheme: light; } }
+
+/* password box with an eye to show what is typed */
+.pw { position: relative; display: flex; }
+.pw input { flex: 1; min-width: 0; padding-right: 44px; }
+.pw-eye { position: absolute; right: 2px; top: 50%; transform: translateY(-50%); width: 38px; height: 36px; border: 0; background: none; color: var(--muted); border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+.pw-eye:hover, .pw-eye[aria-pressed=true] { color: var(--accent); }

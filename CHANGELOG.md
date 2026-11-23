@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.1
+
+- **Show password.** Every password box (sign in, first set-up, account) has an eye beside it to show what you are typing.
+- **Change your password without the old one.** Account → Password asks only for the new password. Being signed in is enough, so a forgotten password can be replaced from any device that is still signed in. Other devices signed in to the same account are signed out when it changes.
+- Locked out completely? `node tools/reset-password.js <username> <new password>` inside the container sets a new one.
+
 ## 0.6.0
 
 ### Pictures that match the movement

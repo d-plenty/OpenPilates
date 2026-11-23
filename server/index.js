@@ -154,10 +154,12 @@ export function createApp(opts = {}) {
     const b = await readBody(req);
     if (b.displayName) db.prepare('UPDATE users SET display_name = ? WHERE id = ?').run(String(b.displayName).slice(0, 80), user.id);
     if (b.newPassword) {
-      const row = db.prepare('SELECT pass_hash FROM users WHERE id = ?').get(user.id);
-      if (!verifyPassword(b.currentPassword, row.pass_hash)) return fail(res, 400, 'Your current password is wrong.');
+      // Being signed in is enough to set a new password: the old one is not asked for, so someone who
+      // has forgotten theirs can change it from a device that is still signed in. Every other device
+      // signed in to this account is signed out, so a new password also shuts out anyone else on it.
       const p = passwordProblem(b.newPassword); if (p) return fail(res, 400, p);
       db.prepare('UPDATE users SET pass_hash = ? WHERE id = ?').run(hashPassword(b.newPassword), user.id);
+      db.prepare('DELETE FROM sessions WHERE user_id = ? AND token != ?').run(user.id, parseCookies(req.headers.cookie).op_session || '');
     }
     send(res, 200, { ok: true });
   });

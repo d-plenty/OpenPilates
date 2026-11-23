@@ -1,4 +1,4 @@
-import { h, icon, btn, toast, field, select, chips, modal, confirmDialog, empty, fmtDate, fill, debounce } from '../ui.js';
+import { h, icon, btn, toast, field, select, chips, modal, confirmDialog, empty, fmtDate, fill, debounce, passwordInput } from '../ui.js';
 import { api, store, viewState } from '../store.js';
 import { BRANDS, LOAD_LEVELS, CAUTIONS, BUILTIN, studioList, applyStudioLists, springFor, labelOf, DEFAULT_TARGETS, LEVEL_PRESETS, DEFAULT_CLASS_TYPES, DEFAULT_LENGTHS, DEFAULT_TIMING, SEGMENT_ROLES, SECTIONS, POSITIONS } from '/shared/vocab.js';
 
@@ -411,8 +411,7 @@ export async function teamView() {
 
 export async function accountView() {
   const name = h('input', { type: 'text', value: store.user.displayName });
-  const cur = h('input', { type: 'password', autocomplete: 'current-password' });
-  const next = h('input', { type: 'password', autocomplete: 'new-password' });
+  const nextBox = passwordInput({ autocomplete: 'new-password' }); const next = nextBox.input;
   return { title: 'Account', node: [
     h('div', { class: 'page-head' }, h('div', { class: 'grow' }, h('h1', null, 'Your account'), h('p', { class: 'small muted' }, `Signed in as ${store.user.username} · ${store.user.role === 'admin' ? 'Admin' : 'Instructor'} · OpenPilates ${store.state.version}`))),
     h('div', { class: 'auto-grid', style: { maxWidth: '900px' } },
@@ -421,8 +420,8 @@ export async function accountView() {
         h('p', { class: 'hint' }, 'Kept in this browser, so each device can have its own. The sun or moon at the top of every page switches it too.')),
       h('div', { class: 'card stack' }, h('h2', null, 'Name'), field('Display name', name),
         h('div', null, btn('Save name', async () => { try { await api('PUT', '/me', { displayName: name.value }); store.state = null; toast('Saved.'); location.reload(); } catch (e) { toast(e.message, { kind: 'error' }); } }, { kind: 'primary' }))),
-      h('div', { class: 'card stack' }, h('h2', null, 'Password'), field('Current password', cur), field('New password', next, 'At least 10 characters.'),
-        h('div', null, btn('Change password', async () => { try { await api('PUT', '/me', { currentPassword: cur.value, newPassword: next.value }); cur.value = next.value = ''; toast('Password changed.'); } catch (e) { toast(e.message, { kind: 'error' }); } }, { kind: 'primary' })))),
+      h('div', { class: 'card stack' }, h('h2', null, 'Password'), field('New password', nextBox, 'At least 10 characters. Press the eye to check what you typed. Your current password is not needed, and other devices signed in as you are signed out.'),
+        h('div', null, btn('Change password', async () => { try { await api('PUT', '/me', { newPassword: next.value }); next.value = ''; toast('Password changed.'); } catch (e) { toast(e.message, { kind: 'error' }); } }, { kind: 'primary' })))),
     h('p', { class: 'tiny muted', style: { marginTop: '18px' } }, 'OpenPilates is free software (GPL-3.0). ', h('a', { href: 'https://github.com/d-plenty/OpenPilates', target: '_blank', rel: 'noopener' }, 'Source code and help on GitHub'), '.')] };
 }
 

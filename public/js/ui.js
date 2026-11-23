@@ -47,6 +47,8 @@ const ICONS = {
   pause: 'M7 5h3v14H7zM14 5h3v14h-3z',
   alert: 'M12 3l10 18H2L12 3zM12 10v5M12 18v.5',
   check: 'M5 12l5 5 9-10',
+  eye: 'M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z',
+  'eye-off': 'M3 3l18 18M10.6 5.2A10.6 10.6 0 0 1 12 5c6.4 0 10 7 10 7a17.6 17.6 0 0 1-3.2 4M6.6 6.6C3.7 8.5 2 12 2 12s3.6 7 10 7c1.6 0 3-.4 4.3-1M9.9 9.9a3 3 0 0 0 4.2 4.2',
   up: 'M6 15l6-6 6 6',
   down: 'M6 9l6 6 6-6',
   trash: 'M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13',
@@ -160,4 +162,21 @@ export function fmtDate(s) {
   if (!s) return '';
   const d = new Date(s.includes('T') ? s : s.replace(' ', 'T') + 'Z');
   return d.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: d.getFullYear() !== new Date().getFullYear() ? 'numeric' : undefined });
+}
+
+// A password box with an eye beside it to show what is being typed. Returns the wrapper; `.input` is the box itself.
+export function passwordInput(attrs = {}) {
+  const input = h('input', { type: 'password', ...attrs });
+  const eye = h('button', { type: 'button', class: 'pw-eye', 'aria-label': 'Show password', title: 'Show password', 'aria-pressed': 'false', onclick: () => {
+    const show = input.type === 'password';
+    input.type = show ? 'text' : 'password';
+    eye.setAttribute('aria-pressed', show ? 'true' : 'false');
+    eye.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+    eye.title = show ? 'Hide password' : 'Show password';
+    fill(eye, icon(show ? 'eye-off' : 'eye', 18));
+    input.focus();
+  } }, icon('eye', 18));
+  const wrap = h('div', { class: 'pw' }, input, eye);
+  wrap.input = input;
+  return wrap;
 }

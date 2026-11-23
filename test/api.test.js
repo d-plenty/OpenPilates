@@ -357,3 +357,15 @@ test('a series can be edited; editing a library series makes it the studio\'s', 
   assert.equal(again.name, lib.name);
   assert.equal(again.items.length, lib.items.length);
 });
+
+test('a signed-in user sets a new password without the old one; other devices are signed out', async () => {
+  const second = await fetch(base + '/api/login', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-OpenPilates': '1' }, body: JSON.stringify({ username: 'alex', password: 'another long password' }) });
+  const other = second.headers.get('set-cookie').split(';')[0];
+  assert.equal((await fetch(base + '/api/flows', { headers: { Cookie: other } })).status, 200);
+  assert.equal((await call('alex', 'PUT', '/me', { newPassword: 'short' })).status, 400);
+  assert.equal((await call('alex', 'PUT', '/me', { newPassword: 'a brand new password' })).status, 200);
+  assert.equal((await call('alex', 'GET', '/flows')).status, 200, 'the device that changed it stays signed in');
+  assert.equal((await fetch(base + '/api/flows', { headers: { Cookie: other } })).status, 401, 'other devices are signed out');
+  const again = await fetch(base + '/api/login', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-OpenPilates': '1' }, body: JSON.stringify({ username: 'alex', password: 'a brand new password' }) });
+  assert.equal(again.status, 200);
+});

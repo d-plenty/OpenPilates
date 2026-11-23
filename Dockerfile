@@ -11,6 +11,7 @@ COPY server ./server
 COPY shared ./shared
 COPY public ./public
 COPY library ./library
+COPY tools ./tools
 
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN apk add --no-cache su-exec && mkdir -p /data && chown -R node:node /data
