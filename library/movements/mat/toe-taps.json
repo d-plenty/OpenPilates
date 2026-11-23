@@ -1,0 +1,102 @@
+{
+  "slug": "toe-taps",
+  "name": "Toe Taps",
+  "apparatus": "mat",
+  "section": "core",
+  "level": "beginner",
+  "levelTo": "beginner",
+  "pose": "mat-supine",
+  "position": "supine",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "hip-dissociation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals"
+    ],
+    "secondary": [
+      "hip_flexors",
+      "obliques"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "stability",
+  "stable": "Pelvis and spine",
+  "mobile": "Hips",
+  "categories": [
+    "hip_flexion"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 1,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": false,
+  "intensity": 2,
+  "duration": 90,
+  "reps": "8–10 each leg",
+  "summary": "From tabletop legs, one bent leg lowers to tap the toes on the mat and lifts back, without the pelvis moving.",
+  "steps": [
+    "Lie on the back, arms by the sides; float one leg, then the other, to tabletop.",
+    "Breathe in to lower one foot, keeping the knee bent, until the toes tap the mat.",
+    "Breathe out to lift it back; change legs."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "One leg at a time from feet down",
+      "text": "Start here."
+    },
+    {
+      "tag": "L2",
+      "title": "Alternate from tabletop",
+      "text": "Basic."
+    },
+    {
+      "tag": "L3",
+      "title": "Both legs together",
+      "text": "Harder."
+    },
+    {
+      "tag": "L4",
+      "title": "Head and shoulders curled up",
+      "text": "Adds upper abdominals."
+    }
+  ],
+  "modifications": [
+    "Keep the other foot on the floor."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "modify",
+      "note": "Keep one foot down."
+    }
+  ],
+  "prep": [],
+  "cues": "The knee angle doesn't change — the movement is at the hip.\nPelvis stays level.\nBelly stays flat, not domed.",
+  "labels": [
+    "fundamental",
+    "warm-up",
+    "rehab-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

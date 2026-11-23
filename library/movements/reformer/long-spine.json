@@ -4,6 +4,8 @@
   "apparatus": "reformer",
   "section": "pelvic",
   "level": "advanced",
+  "levelTo": "advanced",
+  "pose": "supine-roll-over",
   "position": "supine",
   "spine": [
     "articulation"

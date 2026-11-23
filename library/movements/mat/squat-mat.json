@@ -1,0 +1,120 @@
+{
+  "slug": "squat-mat",
+  "name": "Squat",
+  "apparatus": "mat",
+  "section": "lower",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "mat-squat",
+  "position": "standing",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "push"
+  ],
+  "muscles": {
+    "primary": [
+      "glutes",
+      "quadriceps"
+    ],
+    "secondary": [
+      "hamstrings",
+      "adductors",
+      "abdominals",
+      "spinal_extensors"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "both",
+  "stable": "Spine long, knees tracking",
+  "mobile": "Hips, knees and ankles",
+  "categories": [
+    "hip_extension",
+    "standing"
+  ],
+  "pregnancy": "recommended",
+  "purpose": {
+    "strength": 3,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 4,
+  "duration": 120,
+  "reps": "12–20",
+  "summary": "Feet hip-width or a little wider, sit the hips back and down with a long spine, then press through the heels to stand.",
+  "steps": [
+    "Stand with feet hip-width or slightly wider, toes forward or a little out.",
+    "Breathe in to sit the hips back and down, arms reaching forward.",
+    "Breathe out to press through the heels and stand."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Half squat",
+      "text": "Start here."
+    },
+    {
+      "tag": "L2",
+      "title": "Full squat",
+      "text": "Hips to knee height."
+    },
+    {
+      "tag": "L3",
+      "title": "Pulses and holds",
+      "text": "Stay low."
+    },
+    {
+      "tag": "L4",
+      "title": "Wide and turned out",
+      "text": "Plié squat."
+    },
+    {
+      "tag": "L5",
+      "title": "Add a prop",
+      "text": "Loop band above the knees, ball between them, or hand weights."
+    },
+    {
+      "tag": "L6",
+      "title": "Heel raises",
+      "text": "Rise onto the toes at the top."
+    }
+  ],
+  "modifications": [
+    "Sit back to a chair.",
+    "Hold a support."
+  ],
+  "cautions": [
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Half range."
+    },
+    {
+      "tag": "balance",
+      "severity": "modify",
+      "note": "Hold a support."
+    },
+    {
+      "tag": "hip_pain",
+      "severity": "modify",
+      "note": "Comfortable range only."
+    }
+  ],
+  "prep": [],
+  "cues": "Knees track over the middle toes.\nWeight in the heels.\nChest lifts; spine long.",
+  "labels": [
+    "pregnancy-friendly",
+    "warm-up"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

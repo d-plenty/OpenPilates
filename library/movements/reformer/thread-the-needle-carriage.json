@@ -1,0 +1,97 @@
+{
+  "slug": "thread-the-needle-carriage",
+  "name": "Thread the Needle on the Carriage",
+  "apparatus": "reformer",
+  "section": "stretch",
+  "level": "beginner",
+  "levelTo": "beginner",
+  "pose": "cat-carriage",
+  "position": "quadruped",
+  "spine": [
+    "rotation"
+  ],
+  "plane": "transverse",
+  "patterns": [
+    "rotation"
+  ],
+  "muscles": {
+    "primary": [
+      "obliques",
+      "upper_back"
+    ],
+    "secondary": [
+      "lats",
+      "deltoids"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "light"
+    ],
+    "flexible": true,
+    "note": "Any light setting works — stay on whatever is already on if it feels supportive."
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": true,
+  "role": "mobility",
+  "stable": "Pelvis and knees",
+  "mobile": "Upper spine (rotation), shoulder",
+  "categories": [
+    "rotation",
+    "quadruped"
+  ],
+  "pregnancy": "recommended",
+  "purpose": {
+    "strength": 0,
+    "stability": 1,
+    "flexibility": 2,
+    "mobility": 3
+  },
+  "multiJoint": false,
+  "intensity": 2,
+  "duration": 120,
+  "reps": "4–6 each side",
+  "summary": "On hands and knees with one hand on the footbar and the carriage free to glide, the other arm threads under the body as the chest turns, then opens to the ceiling.",
+  "steps": [
+    "Kneel on the carriage, one hand on the footbar, knees under hips.",
+    "Breathe out to thread the free arm under the body, letting the carriage slide back and the shoulder lower.",
+    "Breathe in to come back and open the arm to the ceiling."
+  ],
+  "layers": [],
+  "modifications": [
+    "Smaller range.",
+    "Carriage still: all springs on."
+  ],
+  "cautions": [
+    {
+      "tag": "wrist",
+      "severity": "modify",
+      "note": "Fist or forearm on the bar."
+    },
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Pad under the knees."
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Small range."
+    }
+  ],
+  "prep": [],
+  "cues": "Hips stay over the knees.\nTurn from the ribs.\nLet the carriage glide; don't force it.",
+  "labels": [
+    "cool-down",
+    "warm-up",
+    "pregnancy-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

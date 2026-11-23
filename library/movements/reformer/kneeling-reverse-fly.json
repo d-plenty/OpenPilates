@@ -1,0 +1,112 @@
+{
+  "slug": "kneeling-reverse-fly",
+  "name": "Kneeling Reverse Fly",
+  "apparatus": "reformer",
+  "section": "back_shoulders",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "kneel-face-straps",
+  "position": "kneeling",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "transverse",
+  "patterns": [
+    "stabilisation",
+    "pull"
+  ],
+  "muscles": {
+    "primary": [
+      "upper_back",
+      "deltoids"
+    ],
+    "secondary": [
+      "abdominals",
+      "triceps"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "xlight"
+    ],
+    "advance": [
+      "light"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Trunk and pelvis",
+  "mobile": "Shoulders",
+  "categories": [
+    "upper_body"
+  ],
+  "pregnancy": "ok",
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": false,
+  "intensity": 4,
+  "duration": 120,
+  "reps": "10–20",
+  "summary": "Kneeling facing the straps with long arms in front at chest height, the arms open wide to a T and return.",
+  "steps": [
+    "Kneel facing the straps, sitting on the heels; short loops, arms long in front at chest height, palms facing in.",
+    "Breathe out to open the arms wide in line with the shoulders.",
+    "Breathe in to close slowly."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Sitting on heels",
+      "text": "Most stable."
+    },
+    {
+      "tag": "L2",
+      "title": "Kneeling upright",
+      "text": "Harder base."
+    },
+    {
+      "tag": "L3",
+      "title": "Crossed ropes",
+      "text": "Longer pull."
+    },
+    {
+      "tag": "L4",
+      "title": "Single arm",
+      "text": "One at a time."
+    }
+  ],
+  "modifications": [
+    "Long loops for less resistance.",
+    "Sit on the long box for sore knees."
+  ],
+  "cautions": [
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Sit on the long box."
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Lightest spring; stop short of the full T."
+    }
+  ],
+  "prep": [],
+  "cues": "Arms stay at chest height; soft elbows.\nShoulder blades glide in; don't pinch.\nRibs stay closed — no leaning back.",
+  "labels": [
+    "pregnancy-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

@@ -3,7 +3,9 @@
   "name": "Abdominal Curl in Straps",
   "apparatus": "reformer",
   "section": "core",
-  "level": "intermediate",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "supine-curl",
   "position": "supine",
   "spine": [
     "flexion"

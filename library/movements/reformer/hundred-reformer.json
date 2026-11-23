@@ -3,7 +3,9 @@
   "name": "The Hundred (Reformer)",
   "apparatus": "reformer",
   "section": "core",
-  "level": "intermediate",
+  "level": "beginner",
+  "levelTo": "advanced",
+  "pose": "supine-curl",
   "position": "supine",
   "spine": [
     "flexion"

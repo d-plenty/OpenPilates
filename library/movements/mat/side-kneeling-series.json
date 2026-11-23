@@ -4,6 +4,8 @@
   "apparatus": "mat",
   "section": "pelvic",
   "level": "intermediate",
+  "levelTo": "intermediate",
+  "pose": "mat-kneel-side",
   "position": "kneeling",
   "spine": [
     "neutral"

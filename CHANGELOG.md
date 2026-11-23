@@ -1,5 +1,54 @@
 # Changelog
 
+## 0.3.0
+
+A rework of the builder and the library, plus a click-through test of every screen.
+
+### Layers and options inside a flow
+- Each movement in a flow has an options button. From there you can:
+  - choose the springs for this class: follow the plan, the usual setting, the advance setting, or your own
+  - tick the layers you plan to teach
+  - add options for the room: harder springs, easier springs, a movement added inside the movement, or a note of your own
+  - pull ideas straight from the movement's library entry
+- Options show under the movement in the builder, on the run sheet and in Play mode.
+- An added movement counts towards the muscles, categories and equipment of the class.
+- New check: a hard movement with no easier option planned.
+
+### Getting to a class faster
+- Every flow card has a large play button in the top right corner.
+- **Run sheet** tab: a printable page with what to set out, then each segment with springs, spring changes, reps, layers and options. Cues can be shown or hidden.
+- **Set out before class** card: starting springs, straps and every piece of equipment the class needs, with a warning for anything the room doesn't have.
+- **Tidy springs** reorders movements inside each segment to cut spring changes, with undo. Warm-up and cool-down keep their order.
+
+### Levels
+- Movements now carry a level range, such as Beginner–Intermediate or Intermediate–Advanced, or All levels. Filters and drafts use the whole range.
+
+### Pictures
+- Every movement has a drawn diagram showing the start position and, faintly, the finish. About 70 poses cover the reformer and mat library.
+- Admins can add the studio's own photo to any movement, with a credit line. Photos are shrunk in the browser and stored in `/data/media`.
+
+### Movement library
+- 182 movements, up from 133: 110 reformer and 72 mat.
+- New reformer work includes more footwork and bridging variations, kneeling and standing arm work, long and short box series, side splits and standing work, plank and pike variations, classical pieces such as snake, tendon stretch and control balance prep, and more stretches.
+- New mat work fills out the classical order, adds standing and prop work, and more side-lying and prone options.
+- All entries are still drafts that need an instructor's review.
+
+### Guide
+- New **Guide** page in plain language: the parts of a reformer, how springs work in your studio's colours, levels, layers and options, what each check means, and how the pictures work.
+
+### Fixed
+- Filter chips (Mine, Shared, Reformer, Mat and others) now highlight when chosen.
+- Clicking a tick box or typing in a segment no longer loses the click.
+- A read-only flow no longer shows a save error when you leave it.
+- "Reset to library version" now refreshes the page.
+- A refused role change in Team no longer leaves the wrong role showing.
+- Signing out returns you to the sign-in page.
+- Phone: the Clients table no longer pushes the page sideways, and the Explorer's flow bar stays a thin strip.
+- Effort chart labels no longer overlap on short segments.
+
+### Upgrading
+Nothing to do. Flows from 0.1 and 0.2 open as they are. Library movements refresh on start, and movements your studio has edited keep your version.
+
 ## 0.2.0
 
 A reformer-first update. The library, the class checks and the draft generator were rebuilt around how a reformer class is actually planned and taught.

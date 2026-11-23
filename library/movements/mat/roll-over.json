@@ -4,6 +4,8 @@
   "apparatus": "mat",
   "section": "core",
   "level": "advanced",
+  "levelTo": "advanced",
+  "pose": "mat-roll-over",
   "position": "supine",
   "spine": [
     "flexion",
@@ -87,7 +89,7 @@
       "tag": "pregnancy_early",
       "severity": "avoid",
       "note": "Not suitable during pregnancy.",
-      "swap": "pelvic-curl"
+      "swap": "cat-cow"
     },
     {
       "tag": "neck",

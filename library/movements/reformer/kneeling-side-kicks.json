@@ -1,0 +1,127 @@
+{
+  "slug": "kneeling-side-kicks",
+  "name": "Kneeling Side Kicks on the Carriage",
+  "apparatus": "reformer",
+  "section": "pelvic",
+  "level": "intermediate",
+  "levelTo": "intermediate",
+  "pose": "quadruped-carriage",
+  "position": "kneeling",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "frontal",
+  "patterns": [
+    "stabilisation",
+    "abduction",
+    "hip-dissociation"
+  ],
+  "muscles": {
+    "primary": [
+      "abductors",
+      "glutes",
+      "obliques"
+    ],
+    "secondary": [
+      "deltoids",
+      "adductors"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "medium",
+      "medium"
+    ],
+    "note": "All springs on: the carriage is just a platform here."
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": true,
+  "role": "stability",
+  "stable": "Trunk, supporting arm and knee",
+  "mobile": "Top hip",
+  "categories": [
+    "hip_abduction",
+    "lateral_flexion"
+  ],
+  "pregnancy": "ok",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 180,
+  "reps": "8–10 of each, each side",
+  "summary": "Kneeling side-on with one hand on the shoulder rest and the top leg long at hip height: lifts, kicks and circles with a still trunk.",
+  "steps": [
+    "Kneel side-on on the carriage; tip over to place one hand on the shoulder rest.",
+    "Stretch the top leg long in line with the body; top hand behind the head.",
+    "Lift the leg to hip height.",
+    "Kick forward and back, lift and lower, then circle."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Lifts",
+      "text": "Up and down."
+    },
+    {
+      "tag": "L2",
+      "title": "Kicks",
+      "text": "Forward and back."
+    },
+    {
+      "tag": "L3",
+      "title": "Circles",
+      "text": "Both ways."
+    },
+    {
+      "tag": "L4",
+      "title": "Add a strap",
+      "text": "Long loop on the top foot with one light spring for resistance."
+    }
+  ],
+  "modifications": [
+    "Forearm on the short box instead of a straight arm.",
+    "Side-lying version instead."
+  ],
+  "cautions": [
+    {
+      "tag": "wrist",
+      "severity": "modify",
+      "note": "Forearm on a box."
+    },
+    {
+      "tag": "knee",
+      "severity": "avoid",
+      "note": "Weight on one knee.",
+      "swap": "side-lying-strap-series"
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Forearm on a box."
+    },
+    {
+      "tag": "balance",
+      "severity": "modify",
+      "note": "Lock the carriage with all springs."
+    }
+  ],
+  "prep": [
+    "side-lying-strap-series"
+  ],
+  "cues": "Hips stacked, facing the side wall.\nLift out of the supporting shoulder.\nThe leg moves; the waist does not.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

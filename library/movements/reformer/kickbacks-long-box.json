@@ -3,7 +3,9 @@
   "name": "Kneeling Kickbacks on the Box",
   "apparatus": "reformer",
   "section": "lower",
-  "level": "intermediate",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "quadruped-box",
   "position": "quadruped",
   "spine": [
     "neutral"

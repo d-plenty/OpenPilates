@@ -1,0 +1,140 @@
+{
+  "slug": "short-box-tree",
+  "name": "Short Box — Tree",
+  "apparatus": "reformer",
+  "section": "core",
+  "level": "intermediate",
+  "levelTo": "advanced",
+  "pose": "short-box",
+  "position": "seated",
+  "spine": [
+    "flexion",
+    "articulation"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "spinal-articulation",
+    "flexion"
+  ],
+  "muscles": {
+    "primary": [
+      "hamstrings",
+      "abdominals"
+    ],
+    "secondary": [
+      "hip_flexors",
+      "spinal_extensors"
+    ]
+  },
+  "equipment": [
+    "short_box"
+  ],
+  "load": {
+    "springs": [
+      "medium",
+      "medium",
+      "medium"
+    ],
+    "note": "All springs on so the carriage can't move."
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": true,
+  "role": "mobility",
+  "stable": "Pelvis and the strapped leg",
+  "mobile": "Spine and the lifted hip",
+  "categories": [
+    "hip_flexion",
+    "trunk_flexion",
+    "trunk_extension"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 1,
+    "stability": 2,
+    "flexibility": 3,
+    "mobility": 2
+  },
+  "multiJoint": true,
+  "intensity": 7,
+  "duration": 150,
+  "reps": "3 each leg",
+  "summary": "Sitting on the short box with one foot under the strap, hold the other leg, straighten it, then walk the hands up and down it as the spine rolls back over the box and up again.",
+  "steps": [
+    "Sit on the short box, one foot under the strap; hold behind the other thigh with the knee bent.",
+    "Stretch that leg up three times.",
+    "Keeping it up, walk the hands down the leg as you roll back over the box.",
+    "Walk the hands back up the leg to sit tall and fold over it."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Leg stretches only",
+      "text": "Stay upright."
+    },
+    {
+      "tag": "L2",
+      "title": "Roll back halfway",
+      "text": "Hands stay on the thigh."
+    },
+    {
+      "tag": "L3",
+      "title": "Full tree",
+      "text": "Back over the box."
+    }
+  ],
+  "modifications": [
+    "Keep the knee bent.",
+    "Only go halfway back."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "mermaid"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "mermaid"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Loaded flexion.",
+      "swap": "short-box-flat-back"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "Deep flexion.",
+      "swap": "short-box-flat-back"
+    },
+    {
+      "tag": "extension_pain",
+      "severity": "avoid",
+      "note": "Arching back over the box.",
+      "swap": "short-box-flat-back"
+    },
+    {
+      "tag": "hip_replacement",
+      "severity": "avoid",
+      "note": "Deep hip flexion.",
+      "swap": "short-box-flat-back"
+    }
+  ],
+  "prep": [
+    "short-box-round-back",
+    "short-box-flat-back"
+  ],
+  "cues": "Hips stay square on the box.\nThe leg stays where it is; you move around it.\nRoll through the spine both ways.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

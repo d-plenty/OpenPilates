@@ -1,0 +1,113 @@
+{
+  "slug": "long-back-stretch",
+  "name": "Long Back Stretch",
+  "apparatus": "reformer",
+  "section": "back_shoulders",
+  "level": "advanced",
+  "levelTo": "advanced",
+  "pose": "plank-bar",
+  "position": "plank",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "push"
+  ],
+  "muscles": {
+    "primary": [
+      "triceps",
+      "deltoids",
+      "lats"
+    ],
+    "secondary": [
+      "abdominals",
+      "glutes",
+      "upper_back"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "light"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Legs and trunk in one line",
+  "mobile": "Shoulders and elbows",
+  "categories": [
+    "upper_body"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 3,
+    "stability": 2,
+    "flexibility": 1,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 8,
+  "duration": 90,
+  "reps": "3 each direction",
+  "summary": "A reverse dip on the footbar: sitting on the bar edge with hands beside the hips and feet against the shoulder rests, the body lowers, the carriage travels out and the body lifts, tracing a circle.",
+  "steps": [
+    "Sit on the footbar with the hands beside the hips, fingers forward; feet against the shoulder rests, legs straight.",
+    "Lift the seat forward off the bar.",
+    "Breathe in to bend the elbows and lower, then press the carriage out.",
+    "Breathe out to straighten the arms and bring the carriage home. Reverse the circle."
+  ],
+  "layers": [],
+  "modifications": [
+    "Smaller dip.",
+    "Triceps work in straps instead."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "kneeling-triceps-kickback"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "kneeling-triceps-kickback"
+    },
+    {
+      "tag": "shoulder",
+      "severity": "avoid",
+      "note": "Deep loaded shoulder extension.",
+      "swap": "kneeling-triceps-kickback"
+    },
+    {
+      "tag": "wrist",
+      "severity": "avoid",
+      "note": "Body weight through the wrists.",
+      "swap": "kneeling-triceps-kickback"
+    },
+    {
+      "tag": "balance",
+      "severity": "avoid",
+      "note": "Seat off the footbar.",
+      "swap": "kneeling-triceps-kickback"
+    }
+  ],
+  "prep": [
+    "footbar-press-up",
+    "long-stretch"
+  ],
+  "cues": "Chest stays open; shoulders don't roll forward.\nElbows point straight back.\nLegs stay long and strong.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

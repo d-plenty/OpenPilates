@@ -1,3 +1,4 @@
+import { POSE_IDS } from '../shared/poses.js';
 import { POSITIONS, SPINE, MUSCLES, EQUIPMENT, LEVELS, CAUTIONS, PATTERNS, PLANES, LOAD_LEVELS, SEGMENT_ROLES, BRANDS, DEFAULT_TARGETS, SECTIONS, CATEGORIES, ROLES, PREGNANCY, HEADREST, STRAPS, FORMATS } from '../shared/vocab.js';
 
 const ids = (list) => new Set(list.map((x) => x.id));
@@ -8,6 +9,9 @@ const lines = (v, max, len) => (Array.isArray(v) ? v : String(v ?? '').split('\n
 const loads = (v) => (Array.isArray(v) ? v : []).filter((x) => LOADS.has(x)).slice(0, 5);
 
 export class Invalid extends Error {}
+const POSE = new Set(POSE_IDS);
+const RANK = Object.fromEntries(LEVELS.map((l) => [l.id, l.rank]));
+const levelTo = (m) => { const from = LV.has(m.level) ? m.level : 'beginner'; return LV.has(m.levelTo) && RANK[m.levelTo] >= RANK[from] ? m.levelTo : from; };
 
 const str = (v, max = 200) => String(v ?? '').slice(0, max).trim();
 const num = (v, min, max, dflt) => { const n = Number(v); return Number.isFinite(n) ? Math.min(max, Math.max(min, n)) : dflt; };
@@ -35,6 +39,8 @@ export function cleanMovement(input, { slug } = {}) {
     apparatus,
     ...(SEC.has(m.section) ? { section: m.section } : {}),
     level: LV.has(m.level) ? m.level : 'beginner',
+    levelTo: levelTo(m),
+    ...(POSE.has(m.pose) ? { pose: m.pose } : {}),
     position,
     spine: pick(m.spine, SP, 4).length ? pick(m.spine, SP, 4) : ['neutral'],
     plane: PL.has(m.plane) ? m.plane : 'sagittal',
@@ -72,6 +78,18 @@ export function cleanMovement(input, { slug } = {}) {
   };
 }
 
+// Layers the class will be taught through, in order (tags from the movement's own layers).
+const itemLayers = (i) => [...new Set([...(Array.isArray(i.layers) ? i.layers : []), ...(i.layer ? [i.layer] : [])].map((x) => str(x, 4)).filter(Boolean))].slice(0, 12);
+// Options offered to individuals: an easier or harder version, with springs, an add-on movement, or just a note.
+const itemOptions = (i) => (Array.isArray(i.options) ? i.options : []).slice(0, 8).map((o) => ({
+  id: str(o.id, 40) || Math.random().toString(36).slice(2),
+  kind: o.kind === 'easier' ? 'easier' : 'harder',
+  title: str(o.title, 120),
+  ...(Array.isArray(o.springs) ? { springs: o.springs.filter((x) => LOADS.has(x)).slice(0, 5) } : {}),
+  ...(o.slug ? { slug: slugify(o.slug) } : {}),
+  ...(str(o.note, 300) ? { note: str(o.note, 300) } : {})
+})).filter((o) => o.title || o.springs || o.slug || o.note);
+
 export function cleanFlow(input) {
   const f = input || {};
   const title = str(f.title, 120) || 'Untitled flow';
@@ -88,7 +106,8 @@ export function cleanFlow(input) {
       slug: slugify(i.slug),
       ...(i.duration ? { duration: Math.round(num(i.duration, 10, 1800, 120)) } : {}),
       ...(i.reps ? { reps: str(i.reps, 60) } : {}),
-      ...(i.layer ? { layer: str(i.layer, 4) } : {}),
+      ...(itemLayers(i).length ? { layers: itemLayers(i) } : {}),
+      ...(itemOptions(i).length ? { options: itemOptions(i) } : {}),
       ...(i.note ? { note: str(i.note, 500) } : {}),
       ...(i.load && Array.isArray(i.load.springs) ? { load: { springs: i.load.springs.filter((x) => LOADS.has(x)).slice(0, 5) } } : {})
     })).filter((i) => i.slug)

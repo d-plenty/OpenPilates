@@ -4,6 +4,8 @@
   "apparatus": "reformer",
   "section": "chest_arms",
   "level": "intermediate",
+  "levelTo": "advanced",
+  "pose": "sit-carriage-face-bar",
   "position": "seated",
   "spine": [
     "flexion",

@@ -3,7 +3,9 @@
   "name": "Salute",
   "apparatus": "reformer",
   "section": "chest_arms",
-  "level": "intermediate",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "sit-box-face-bar",
   "position": "seated",
   "spine": [
     "neutral"

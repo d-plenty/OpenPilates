@@ -1,0 +1,125 @@
+{
+  "slug": "kneeling-rotation",
+  "name": "Kneeling Rotation",
+  "apparatus": "reformer",
+  "section": "core",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "kneel-side",
+  "position": "kneeling",
+  "spine": [
+    "rotation"
+  ],
+  "plane": "transverse",
+  "patterns": [
+    "rotation",
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "obliques",
+      "abdominals"
+    ],
+    "secondary": [
+      "deltoids",
+      "upper_back",
+      "glutes"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "xlight"
+    ],
+    "advance": [
+      "light"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "short"
+  },
+  "perSide": true,
+  "role": "both",
+  "stable": "Pelvis and knees",
+  "mobile": "Ribcage (rotation)",
+  "categories": [
+    "rotation",
+    "upper_body"
+  ],
+  "pregnancy": "ok",
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 4,
+  "duration": 150,
+  "reps": "8–12 each side",
+  "summary": "Kneeling side-on with both hands holding one strap in front of the chest, the ribcage turns away from the straps and returns, arms travelling with it.",
+  "steps": [
+    "Kneel side-on to the straps, sitting on the heels or kneeling upright.",
+    "Hold one short loop in both hands, arms long in front of the breastbone.",
+    "Breathe out to turn the chest away from the straps.",
+    "Breathe in to return slowly."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Sitting on heels",
+      "text": "Start here."
+    },
+    {
+      "tag": "L2",
+      "title": "Kneeling upright",
+      "text": "Harder base."
+    },
+    {
+      "tag": "L3",
+      "title": "Low to high",
+      "text": "Start at the hip nearest the straps and finish high on the far side."
+    },
+    {
+      "tag": "L4",
+      "title": "High to low",
+      "text": "Reverse."
+    },
+    {
+      "tag": "L5",
+      "title": "Lunge stance",
+      "text": "Front foot on the carriage."
+    }
+  ],
+  "modifications": [
+    "Long loop for less tension.",
+    "Sit on the long box."
+  ],
+  "cautions": [
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Sit on the long box."
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "modify",
+      "note": "Small, unforced rotation with a tall spine."
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "modify",
+      "note": "Small range, stay tall."
+    }
+  ],
+  "prep": [],
+  "cues": "Hips stay facing the side wall.\nArms stay in front of the breastbone — the ribs do the turning.\nGrow taller as you turn.",
+  "labels": [
+    "pregnancy-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

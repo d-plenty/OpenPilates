@@ -1,0 +1,157 @@
+{
+  "slug": "stomach-massage",
+  "name": "Stomach Massage",
+  "apparatus": "reformer",
+  "section": "core",
+  "level": "intermediate",
+  "levelTo": "advanced",
+  "pose": "sit-feet-bar",
+  "position": "seated",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "flexion",
+    "stabilisation",
+    "push"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "quadriceps"
+    ],
+    "secondary": [
+      "calves",
+      "hip_flexors",
+      "glutes",
+      "triceps"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "medium",
+      "medium"
+    ],
+    "advance": [
+      "medium",
+      "medium"
+    ],
+    "lighterIsHarder": true,
+    "note": "Take a spring off for the hands-back, reach and twist versions."
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "both",
+  "stable": "The curve of the spine",
+  "mobile": "Hips, knees and ankles",
+  "categories": [
+    "trunk_flexion",
+    "hip_flexion",
+    "hip_extension"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 1,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 7,
+  "duration": 180,
+  "reps": "8–10 of each version",
+  "summary": "Sitting at the front edge of the carriage with the feet on the footbar in a small V and the spine rounded, press out, lower and lift the heels, and bend back in. Four versions get steadily harder.",
+  "steps": [
+    "Sit near the front edge of the carriage facing the footbar; balls of the feet on the bar, heels together, knees open.",
+    "Hands on the front edge beside the hips; round the spine and scoop the belly.",
+    "Breathe in to press out; lower and lift the heels.",
+    "Breathe out to bend the knees and bring the carriage home."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Round back",
+      "text": "Hands on the front edge."
+    },
+    {
+      "tag": "L2",
+      "title": "Hands back",
+      "text": "Hands on the shoulder rests, chest open, spine tall."
+    },
+    {
+      "tag": "L3",
+      "title": "Reach",
+      "text": "Arms forward at shoulder height, spine tall."
+    },
+    {
+      "tag": "L4",
+      "title": "Twist",
+      "text": "Tall spine; turn and reach one arm back as you press out."
+    }
+  ],
+  "modifications": [
+    "Sit on a pad to make room at the hips.",
+    "Stay with the round-back version.",
+    "Footwork lying down instead."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "footwork-series"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "footwork-series"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Loaded flexion; the twist adds rotation.",
+      "swap": "footwork-series"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "Loaded flexion.",
+      "swap": "footwork-series"
+    },
+    {
+      "tag": "knee",
+      "severity": "avoid",
+      "note": "Deep knee bend under load.",
+      "swap": "footwork-series"
+    },
+    {
+      "tag": "hip_replacement",
+      "severity": "avoid",
+      "note": "Deep hip flexion with turnout.",
+      "swap": "footwork-series"
+    },
+    {
+      "tag": "hip_pain",
+      "severity": "avoid",
+      "note": "Deep hip flexion.",
+      "swap": "footwork-series"
+    }
+  ],
+  "prep": [
+    "footwork-series",
+    "short-box-round-back"
+  ],
+  "cues": "Hold the shape of the spine as the legs move.\nHeels stay glued together.\nShoulders stay over the hips.\nBring the carriage all the way in.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

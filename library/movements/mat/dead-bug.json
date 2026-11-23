@@ -1,0 +1,110 @@
+{
+  "slug": "dead-bug",
+  "name": "Dead Bug",
+  "apparatus": "mat",
+  "section": "core",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "mat-dead-bug",
+  "position": "supine",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "hip-dissociation",
+    "coordination"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals"
+    ],
+    "secondary": [
+      "obliques",
+      "hip_flexors",
+      "deltoids"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "stability",
+  "stable": "Pelvis, spine and ribs",
+  "mobile": "Opposite arm and leg",
+  "categories": [
+    "hip_flexion",
+    "upper_body"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 1,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 3,
+  "duration": 120,
+  "reps": "6–10 each side",
+  "summary": "On the back with legs in tabletop and arms to the ceiling, one leg and the opposite arm reach away and return while the trunk stays still. No head lift, so it suits most people.",
+  "steps": [
+    "Lie on the back, legs in tabletop, arms straight up over the shoulders.",
+    "Breathe out to reach one leg long and the opposite arm back by the ear.",
+    "Breathe in to return; change sides."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Legs only",
+      "text": "Arms stay up."
+    },
+    {
+      "tag": "L2",
+      "title": "Toe taps",
+      "text": "Bent knee lowers to tap the toe."
+    },
+    {
+      "tag": "L3",
+      "title": "Opposite arm and leg",
+      "text": "Basic."
+    },
+    {
+      "tag": "L4",
+      "title": "Add a prop",
+      "text": "Press a ball between the still knee and hand."
+    }
+  ],
+  "modifications": [
+    "Keep the knee bent as the leg lowers.",
+    "Smaller range."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "modify",
+      "note": "Usually well tolerated; keep the range small."
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Arms stay vertical."
+    }
+  ],
+  "prep": [],
+  "cues": "The back of the ribs stays heavy on the mat.\nOnly go as low as the lower back stays quiet.\nMove slowly enough that nothing wobbles.",
+  "labels": [
+    "fundamental",
+    "rehab-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

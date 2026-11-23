@@ -4,6 +4,8 @@
   "apparatus": "mat",
   "section": "pelvic",
   "level": "beginner",
+  "levelTo": "beginner",
+  "pose": "mat-stand",
   "position": "standing",
   "spine": [
     "neutral"

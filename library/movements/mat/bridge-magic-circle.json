@@ -4,6 +4,8 @@
   "apparatus": "mat",
   "section": "pelvic",
   "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "mat-bridge",
   "position": "supine",
   "spine": [
     "articulation"

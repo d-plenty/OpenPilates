@@ -1,0 +1,112 @@
+{
+  "slug": "donkey-kick-mat",
+  "name": "Donkey Kick",
+  "apparatus": "mat",
+  "section": "lower",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "mat-quadruped",
+  "position": "quadruped",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "hip-dissociation"
+  ],
+  "muscles": {
+    "primary": [
+      "glutes",
+      "hamstrings"
+    ],
+    "secondary": [
+      "abdominals",
+      "spinal_extensors",
+      "deltoids"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": true,
+  "role": "stability",
+  "stable": "Trunk and pelvis",
+  "mobile": "One hip",
+  "categories": [
+    "hip_extension",
+    "quadruped"
+  ],
+  "pregnancy": "recommended",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": false,
+  "intensity": 4,
+  "duration": 120,
+  "reps": "10–15 each side",
+  "summary": "On hands and knees, one bent leg presses the sole of the foot up to the ceiling and lowers, without the lower back arching.",
+  "steps": [
+    "Start on hands and knees, spine long.",
+    "Breathe out to lift one bent leg until the thigh is level with the body, sole to the ceiling.",
+    "Breathe in to lower the knee back under the hip."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Lift and lower",
+      "text": "Basic."
+    },
+    {
+      "tag": "L2",
+      "title": "Pulses",
+      "text": "At the top."
+    },
+    {
+      "tag": "L3",
+      "title": "Straight leg",
+      "text": "Lengthen the leg and lift."
+    },
+    {
+      "tag": "L4",
+      "title": "Ball or weight behind the knee",
+      "text": "Squeeze to hold it."
+    },
+    {
+      "tag": "L5",
+      "title": "Loop band",
+      "text": "Band round the foot and opposite knee."
+    }
+  ],
+  "modifications": [
+    "Forearms down."
+  ],
+  "cautions": [
+    {
+      "tag": "wrist",
+      "severity": "modify",
+      "note": "Forearms down."
+    },
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Pad under the supporting knee."
+    },
+    {
+      "tag": "extension_pain",
+      "severity": "modify",
+      "note": "Keep the thigh lower and the ribs drawn in."
+    }
+  ],
+  "prep": [],
+  "cues": "Stop when the thigh is level; higher just arches the back.\nHips stay square.\nLift from under the seat.",
+  "labels": [
+    "pregnancy-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

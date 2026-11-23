@@ -1,0 +1,109 @@
+{
+  "slug": "kneeling-triceps-kickback",
+  "name": "Kneeling Triceps Press Back",
+  "apparatus": "reformer",
+  "section": "back_shoulders",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "kneel-face-straps",
+  "position": "kneeling",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "push"
+  ],
+  "muscles": {
+    "primary": [
+      "triceps"
+    ],
+    "secondary": [
+      "upper_back",
+      "lats",
+      "abdominals"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "light"
+    ],
+    "advance": [
+      "light",
+      "xlight"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Trunk, pelvis and upper arms",
+  "mobile": "Elbows",
+  "categories": [
+    "upper_body"
+  ],
+  "pregnancy": "ok",
+  "purpose": {
+    "strength": 2,
+    "stability": 1,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": false,
+  "intensity": 4,
+  "duration": 120,
+  "reps": "10–20",
+  "summary": "Kneeling facing the straps, tipped slightly forward with the elbows held back by the ribs, the forearms press back until the arms are straight.",
+  "steps": [
+    "Kneel facing the straps; hinge a little forward with a long spine.",
+    "Short loops in the hands; draw the elbows back beside the ribs.",
+    "Breathe out to straighten the elbows, hands pressing back past the hips.",
+    "Breathe in to bend without the elbows dropping."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Sitting on heels",
+      "text": "Start here."
+    },
+    {
+      "tag": "L2",
+      "title": "Kneeling upright",
+      "text": "Harder base."
+    },
+    {
+      "tag": "L3",
+      "title": "Pulses",
+      "text": "Small pulses with straight arms."
+    }
+  ],
+  "modifications": [
+    "Long loops for less resistance.",
+    "Sit on the long box."
+  ],
+  "cautions": [
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Sit on the long box."
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Light spring, elbows lower."
+    }
+  ],
+  "prep": [],
+  "cues": "Elbows stay pinned high.\nCollarbones wide.\nSpine long; the hinge doesn't change.",
+  "labels": [
+    "pregnancy-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "slug": "platform-lunge",
+  "name": "Lunge on the Reformer",
+  "apparatus": "reformer",
+  "section": "lower",
+  "level": "intermediate",
+  "levelTo": "advanced",
+  "pose": "splits-front",
+  "position": "standing",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "hip-dissociation"
+  ],
+  "muscles": {
+    "primary": [
+      "glutes",
+      "quadriceps"
+    ],
+    "secondary": [
+      "hamstrings",
+      "adductors",
+      "abdominals",
+      "calves"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium"
+    ],
+    "advance": [
+      "medium",
+      "xlight"
+    ],
+    "note": "A single blue makes the return a real hamstring and balance challenge."
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": true,
+  "role": "stability",
+  "stable": "Pelvis square, front knee",
+  "mobile": "Back hip and knee",
+  "categories": [
+    "hip_extension",
+    "hip_flexion",
+    "standing"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 3,
+    "stability": 3,
+    "flexibility": 1,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 7,
+  "duration": 180,
+  "reps": "10–20 each side",
+  "summary": "Standing up on the reformer: front foot on the platform, back foot on the carriage against the shoulder rest. The back leg slides the carriage away into a lunge and draws it home.",
+  "steps": [
+    "Step onto the platform with one foot; place the other foot on the carriage against the shoulder rest.",
+    "Hands on the footbar to start, standing tall with both knees soft.",
+    "Breathe in to slide the carriage back, bending the front knee into a lunge.",
+    "Breathe out to pull the carriage home with the front leg and inner thighs."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Hands on the footbar",
+      "text": "Supported."
+    },
+    {
+      "tag": "L2",
+      "title": "Hands free",
+      "text": "Hands on hips or arms forward."
+    },
+    {
+      "tag": "L3",
+      "title": "Pulses and holds",
+      "text": "Stay low."
+    },
+    {
+      "tag": "L4",
+      "title": "Add arms",
+      "text": "Weights, or a twist over the front leg."
+    },
+    {
+      "tag": "L5",
+      "title": "Back knee bends",
+      "text": "Lower the back knee towards the carriage like a split squat."
+    }
+  ],
+  "modifications": [
+    "Go back to the lunge with one foot on the floor.",
+    "Keep hands on the bar.",
+    "Smaller range."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "standing-lunge"
+    },
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Small range, hands on the bar."
+    },
+    {
+      "tag": "balance",
+      "severity": "avoid",
+      "note": "Standing on a moving carriage.",
+      "swap": "standing-lunge"
+    },
+    {
+      "tag": "hip_pain",
+      "severity": "modify",
+      "note": "Small range."
+    },
+    {
+      "tag": "si_joint",
+      "severity": "modify",
+      "note": "Short range, both hands on the bar."
+    }
+  ],
+  "prep": [
+    "standing-lunge",
+    "scooter"
+  ],
+  "cues": "Front knee stays over the ankle, tracking the middle toes.\nHips stay square to the footbar.\nCome up by pressing the front heel down, not by yanking the carriage.\nTall spine; ribs over hips.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

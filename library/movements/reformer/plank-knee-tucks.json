@@ -4,6 +4,8 @@
   "apparatus": "reformer",
   "section": "core",
   "level": "intermediate",
+  "levelTo": "advanced",
+  "pose": "plank-platform",
   "position": "plank",
   "spine": [
     "flexion"

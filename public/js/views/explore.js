@@ -1,7 +1,7 @@
 import { h, icon, btn, toast, select, debounce, fill } from '../ui.js';
 import { api, store } from '../store.js';
 import { go } from '../app.js';
-import { POSITIONS, SPINE, PATTERNS, EQUIPMENT, APPARATUS, LEVELS, REGIONS, PURPOSES, LOAD_LEVELS, SECTIONS, CATEGORIES, ROLES, PREGNANCY, springFor, labelOf, sectionOf, categoriesOf, roleOf } from '/shared/vocab.js';
+import { POSITIONS, SPINE, PATTERNS, EQUIPMENT, APPARATUS, LEVELS, REGIONS, PURPOSES, LOAD_LEVELS, SECTIONS, CATEGORIES, ROLES, PREGNANCY, springFor, labelOf, sectionOf, categoriesOf, roleOf, levelsOf } from '/shared/vocab.js';
 import { newId } from '/shared/draft.js';
 import { movementCard } from './common.js';
 
@@ -15,7 +15,7 @@ const FACETS = [
   { id: 'equipment', label: 'By equipment', values: (m) => (m.equipment && m.equipment.length ? m.equipment : [m.apparatus === 'mat' ? 'none-mat' : 'none-reformer']), names: [...EQUIPMENT, { id: 'none-mat', label: 'Mat only' }, { id: 'none-reformer', label: 'Reformer only' }] },
   { id: 'load', label: 'By spring load', values: (m) => (m.load ? [...new Set(m.load.springs)] : ['none']), names: null },
   { id: 'purpose', label: 'By purpose', values: (m) => PURPOSES.filter((p) => (m.purpose?.[p.id] || 0) >= 2).map((p) => p.id), names: PURPOSES },
-  { id: 'level', label: 'By level', values: (m) => [m.level], names: LEVELS },
+  { id: 'level', label: 'By level', values: (m) => levelsOf(m), names: LEVELS },
   { id: 'role', label: 'Stability or mobility', values: (m) => [roleOf(m)], names: ROLES },
   { id: 'pregnancy', label: 'Pregnancy', values: (m) => [m.pregnancy || 'ok'], names: PREGNANCY }
 ];
@@ -54,7 +54,7 @@ export async function exploreView(query) {
     const inFlow = new Set(flow ? flow.segments.flatMap((s) => s.items.map((i) => i.slug)) : []);
     fill(cardsEl, 
       h('div', { class: 'card-head' }, h('h2', null, labelOf(names, st.cat) || 'Movements'), h('span', { class: 'tiny muted' }, `${list.length} movement${list.length === 1 ? '' : 's'}`)),
-      h('div', { class: 'cards-grid' }, list.map((m) => movementCard(m, room(), { onAdd: flow ? addToFlow : null, addLabel: 'Flow', inFlow: inFlow.has(m.slug) }))));
+      h('div', { class: 'cards-grid' }, list.map((m) => movementCard(m, room(), { onAdd: flow ? addToFlow : null, addLabel: 'Flow', inFlow: inFlow.has(m.slug), big: true }))));
     drawDock();
   };
 
@@ -75,7 +75,9 @@ export async function exploreView(query) {
       h('div', { class: 'dock-head' },
         h('h2', null, 'Flow builder'),
         flows.length ? select(flows.map((f) => ({ id: f.id, label: f.title })), st.flowId, (v) => { st.flowId = v; flow = flows.find((f) => f.id === v); st.activeSeg = flow?.segments[0]?.id; draw(); }, { 'aria-label': 'Flow to add to' }) : null,
-        flow ? h('span', { class: 'tiny muted' }, `${flow.segments.length} segments · ${count} movements`) : h('span', { class: 'tiny muted' }, 'No flow yet'),
+        // On a phone the segment tiles are swapped for this one menu so the dock stays a thin bar.
+        flow && flow.segments.length ? select(flow.segments.map((s) => ({ id: s.id, label: `Add to: ${s.name} (${s.items.length})` })), st.activeSeg || flow.segments[0].id, (v) => { st.activeSeg = v; drawDock(); }, { 'aria-label': 'Segment to add to', class: 'dock-segsel' }) : null,
+        flow ? h('span', { class: 'tiny muted dock-count' }, `${flow.segments.length} segments · ${count} movements`) : h('span', { class: 'tiny muted' }, 'No flow yet'),
         h('div', { class: 'spacer' }),
         flow ? h('a', { class: 'btn btn-sm btn-primary', href: `#/flows/${flow.id}` }, 'Open in builder') : btn('Create a flow', async () => {
           const f = await api('POST', '/flows', { title: 'New flow', apparatus: st.apparatus === 'mat' ? 'mat' : 'reformer', segments: [{ id: newId('s'), name: 'Warm-up', role: 'warmup', items: [] }, { id: newId('s'), name: 'Main', role: 'build', items: [] }, { id: newId('s'), name: 'Cool-down', role: 'cooldown', items: [] }] });

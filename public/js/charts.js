@@ -95,10 +95,12 @@ export function intensityChart(a, flow, { height = 200 } = {}) {
   });
   const bpm = bpmPts.length ? s('polyline', { points: bpmPts.map((p) => p.map((n) => n.toFixed(1)).join(',')).join(' '), fill: 'none', stroke: '#7A4FA0', 'stroke-width': 2, 'stroke-dasharray': '6 4', 'vector-effect': 'non-scaling-stroke' }) : null;
   const peak = a.peak ? s('circle', { cx: x(a.peak.at + (a.peak.end - a.peak.at) / 2).toFixed(1), cy: y(a.peak.value).toFixed(1), r: 6, fill: '#16201C' }) : null;
-  const labels = a.segments.map((sg) => s('text', { x: (x(sg.start) + 6).toFixed(1), y: 192, class: 'chart-label' }, sg.name));
-  return s('svg', { width: '100%', height, viewBox: `0 0 ${W} ${H}`, preserveAspectRatio: 'none', role: 'img', class: 'intensity-chart',
+  // Segment names sit under the chart as ordinary text so they never stretch or overlap.
+  const labels = h('div', { class: 'chart-labels', 'aria-hidden': 'true' }, a.segments.map((sg) => h('span', { style: { flex: `${Math.max(sg.sec, 1)} 1 0` }, title: sg.name }, sg.name)));
+  const svg = s('svg', { width: '100%', height: height - 22, viewBox: `0 0 ${W} ${bottom}`, preserveAspectRatio: 'none', role: 'img', class: 'intensity-chart',
     'aria-label': a.peak ? `Effort across the class, peaking at ${a.peak.name} around ${a.peak.pct}% of the way through` : 'Effort across the class' },
-  ...bands, bpm, line, peak, ...labels);
+  ...bands, bpm, line, peak);
+  return h('div', null, svg, labels);
 }
 
 export function positionStrip(timeline, { height = 36, labels = true } = {}) {

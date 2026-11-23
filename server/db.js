@@ -50,6 +50,13 @@ const MIGRATIONS = [
      archived INTEGER NOT NULL DEFAULT 0,
      created_at TEXT NOT NULL DEFAULT (datetime('now')),
      updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+   );`,
+  // 2: studio photos for movements. Kept apart from the movement data so a library refresh never loses them.
+  `CREATE TABLE movement_media (
+     slug TEXT PRIMARY KEY,
+     file TEXT NOT NULL,
+     credit TEXT NOT NULL DEFAULT '',
+     updated_at TEXT NOT NULL DEFAULT (datetime('now'))
    );`
 ];
 

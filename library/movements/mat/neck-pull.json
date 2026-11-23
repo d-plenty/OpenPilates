@@ -1,0 +1,120 @@
+{
+  "slug": "neck-pull",
+  "name": "Neck Pull",
+  "apparatus": "mat",
+  "section": "core",
+  "level": "intermediate",
+  "levelTo": "advanced",
+  "pose": "mat-roll-up",
+  "position": "supine",
+  "spine": [
+    "flexion",
+    "articulation"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "spinal-articulation",
+    "flexion"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals"
+    ],
+    "secondary": [
+      "hip_flexors",
+      "spinal_extensors",
+      "hamstrings"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "mobility",
+  "stable": "Legs and pelvis",
+  "mobile": "Whole spine",
+  "categories": [
+    "trunk_flexion",
+    "hip_flexion"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 2,
+    "mobility": 2
+  },
+  "multiJoint": true,
+  "intensity": 7,
+  "duration": 120,
+  "reps": "5",
+  "summary": "A Roll Up with the hands behind the head: curl up and over the legs, stack up tall, hinge back with a flat spine, then roll down.",
+  "steps": [
+    "Lie on the back, hands behind the head, legs long and hip-width, feet flexed.",
+    "Breathe in to curl the head up; breathe out to roll up and fold over the legs.",
+    "Breathe in to stack the spine up tall.",
+    "Hinge back with a long spine, then breathe out to tuck and roll down bone by bone."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Hands on the thighs",
+      "text": "Roll Up first."
+    },
+    {
+      "tag": "L2",
+      "title": "Arms crossed on the chest",
+      "text": "Shorter lever."
+    },
+    {
+      "tag": "L3",
+      "title": "Hands behind the head",
+      "text": "Classical."
+    }
+  ],
+  "modifications": [
+    "Bend the knees.",
+    "A strap or partner holding the feet."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "spine-stretch-forward"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "spine-stretch-forward"
+    },
+    {
+      "tag": "neck",
+      "severity": "avoid",
+      "note": "Hands behind the head tempt pulling.",
+      "swap": "spine-stretch-forward"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Loaded flexion.",
+      "swap": "spine-twist"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "Deep flexion.",
+      "swap": "spine-twist"
+    }
+  ],
+  "prep": [
+    "roll-up",
+    "half-roll-back"
+  ],
+  "cues": "Elbows stay wide.\nHeels stay anchored.\nThe hands support the head; they don't pull it.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

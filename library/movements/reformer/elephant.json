@@ -4,6 +4,8 @@
   "apparatus": "reformer",
   "section": "lower",
   "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "pike-bar",
   "position": "standing",
   "spine": [
     "flexion"

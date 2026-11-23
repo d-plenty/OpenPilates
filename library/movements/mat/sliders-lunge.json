@@ -4,6 +4,8 @@
   "apparatus": "mat",
   "section": "lower",
   "level": "intermediate",
+  "levelTo": "intermediate",
+  "pose": "mat-lunge",
   "position": "standing",
   "spine": [
     "neutral"

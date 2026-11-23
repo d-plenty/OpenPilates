@@ -4,6 +4,8 @@
   "apparatus": "reformer",
   "section": "back_shoulders",
   "level": "intermediate",
+  "levelTo": "advanced",
+  "pose": "prone-long-box-bar",
   "position": "prone",
   "spine": [
     "extension"

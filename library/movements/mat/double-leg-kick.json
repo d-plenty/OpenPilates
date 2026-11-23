@@ -1,0 +1,110 @@
+{
+  "slug": "double-leg-kick",
+  "name": "Double Leg Kick",
+  "apparatus": "mat",
+  "section": "back_shoulders",
+  "level": "intermediate",
+  "levelTo": "intermediate",
+  "pose": "mat-prone",
+  "position": "prone",
+  "spine": [
+    "extension"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "extension",
+    "coordination"
+  ],
+  "muscles": {
+    "primary": [
+      "spinal_extensors",
+      "hamstrings",
+      "glutes"
+    ],
+    "secondary": [
+      "upper_back",
+      "chest",
+      "deltoids"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "both",
+  "stable": "Pelvis",
+  "mobile": "Knees, then spine and shoulders",
+  "categories": [
+    "trunk_extension",
+    "hip_extension",
+    "upper_body"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 2,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 90,
+  "reps": "3 each side",
+  "summary": "Face down with the hands clasped high on the back: kick both heels to the seat three times, then stretch the legs and arms back as the chest lifts.",
+  "steps": [
+    "Lie face down, one cheek on the mat, hands clasped high on the back, elbows dropped.",
+    "Breathe out to kick both heels to the seat three times.",
+    "Breathe in to stretch the legs long, reach the clasped hands to the feet and lift the chest.",
+    "Lower, turn the other cheek and repeat."
+  ],
+  "layers": [],
+  "modifications": [
+    "Hands by the hips, not clasped.",
+    "Smaller chest lift."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "extension_pain",
+      "severity": "avoid",
+      "note": "Loaded extension.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "shoulder",
+      "severity": "avoid",
+      "note": "Hands clasped behind the back under load.",
+      "swap": "swan-prep"
+    },
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Smaller kick."
+    },
+    {
+      "tag": "neck",
+      "severity": "modify",
+      "note": "Keep the forehead down between sides."
+    }
+  ],
+  "prep": [
+    "single-leg-kick",
+    "swan-prep"
+  ],
+  "cues": "Hips stay down as the heels kick.\nOpen the front of the shoulders as you lift.\nLegs together.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

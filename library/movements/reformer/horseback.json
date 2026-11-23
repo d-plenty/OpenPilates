@@ -1,0 +1,141 @@
+{
+  "slug": "horseback",
+  "name": "Horseback",
+  "apparatus": "reformer",
+  "section": "back_shoulders",
+  "level": "intermediate",
+  "levelTo": "advanced",
+  "pose": "sit-box-face-bar",
+  "position": "seated",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "pull",
+    "adduction"
+  ],
+  "muscles": {
+    "primary": [
+      "adductors",
+      "abdominals",
+      "lats"
+    ],
+    "secondary": [
+      "deltoids",
+      "glutes",
+      "upper_back"
+    ]
+  },
+  "equipment": [
+    "long_box"
+  ],
+  "load": {
+    "springs": [
+      "medium"
+    ],
+    "advance": [
+      "medium",
+      "light"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Legs gripping the box",
+  "mobile": "Shoulders; spine in the round version",
+  "categories": [
+    "hip_adduction",
+    "upper_body",
+    "trunk_flexion"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 7,
+  "duration": 90,
+  "reps": "3–5",
+  "summary": "Sitting astride the long box facing the footbar with straps in the hands: squeeze the box with the legs, lift the seat just off it, and reach the arms forward or lift them.",
+  "steps": [
+    "Sit astride the long box near the front edge, facing the footbar, legs long down the sides.",
+    "Hold the short loops by the hips, arms long.",
+    "Breathe out to squeeze the box, round the spine and lift the seat a hair as the arms reach forward and up.",
+    "Breathe in to lower with control."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Arms reach, seat stays down",
+      "text": "Preparation."
+    },
+    {
+      "tag": "L2",
+      "title": "Round back with lift",
+      "text": "Classic."
+    },
+    {
+      "tag": "L3",
+      "title": "Tall back",
+      "text": "Long spine, arms circle."
+    }
+  ],
+  "modifications": [
+    "Keep the seat down."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "kneeling-chest-press"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "kneeling-chest-press"
+    },
+    {
+      "tag": "groin",
+      "severity": "avoid",
+      "note": "Strong inner-thigh squeeze.",
+      "swap": "kneeling-chest-press"
+    },
+    {
+      "tag": "hip_replacement",
+      "severity": "avoid",
+      "note": "Wide straddle under load.",
+      "swap": "kneeling-chest-press"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "modify",
+      "note": "Use the tall-back version."
+    },
+    {
+      "tag": "hip_pain",
+      "severity": "avoid",
+      "note": "Straddle position.",
+      "swap": "kneeling-chest-press"
+    }
+  ],
+  "prep": [
+    "short-box-round-back",
+    "offering"
+  ],
+  "cues": "The lift comes from the inner thighs and the belly.\nShoulders stay down as the arms lift.\nIt is a small lift.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

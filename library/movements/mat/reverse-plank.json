@@ -3,7 +3,9 @@
   "name": "Reverse Plank",
   "apparatus": "mat",
   "section": "back_shoulders",
-  "level": "advanced",
+  "level": "intermediate",
+  "levelTo": "advanced",
+  "pose": "mat-reverse-plank",
   "position": "plank",
   "spine": [
     "extension"

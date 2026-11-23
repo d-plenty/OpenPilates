@@ -4,6 +4,8 @@
   "apparatus": "mat",
   "section": "core",
   "level": "advanced",
+  "levelTo": "advanced",
+  "pose": "mat-teaser",
   "position": "seated",
   "spine": [
     "flexion"

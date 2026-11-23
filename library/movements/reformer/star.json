@@ -1,0 +1,137 @@
+{
+  "slug": "star",
+  "name": "Star",
+  "apparatus": "reformer",
+  "section": "core",
+  "level": "advanced",
+  "levelTo": "advanced",
+  "pose": "side-plank-carriage",
+  "position": "plank",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "frontal",
+  "patterns": [
+    "stabilisation",
+    "abduction"
+  ],
+  "muscles": {
+    "primary": [
+      "obliques",
+      "abductors",
+      "deltoids"
+    ],
+    "secondary": [
+      "abdominals",
+      "serratus",
+      "glutes",
+      "adductors"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium"
+    ],
+    "advance": [
+      "light"
+    ],
+    "lighterIsHarder": true
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": true,
+  "role": "stability",
+  "stable": "Supporting arm and trunk",
+  "mobile": "Top leg and arm; the carriage",
+  "categories": [
+    "lateral_flexion",
+    "hip_abduction",
+    "quadruped"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 10,
+  "duration": 120,
+  "reps": "3 each side",
+  "summary": "A moving side plank: one hand on the footbar, the bottom foot against the shoulder rest. The carriage presses out and in while the top arm and leg lift into a star.",
+  "steps": [
+    "Side-on: one hand on the footbar, the outside edge of the bottom foot against the shoulder rest, body in a side plank.",
+    "Lift the top leg and reach the top arm to the ceiling.",
+    "Breathe in to press the carriage out a little.",
+    "Breathe out to draw it home, hips staying high."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Side plank, both feet down",
+      "text": "Hold."
+    },
+    {
+      "tag": "L2",
+      "title": "Carriage out and in",
+      "text": "Both feet down."
+    },
+    {
+      "tag": "L3",
+      "title": "Star",
+      "text": "Top leg and arm lifted."
+    }
+  ],
+  "modifications": [
+    "Side plank facing the straps on the forearm."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "side-lying-strap-series"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "side-lying-strap-series"
+    },
+    {
+      "tag": "wrist",
+      "severity": "avoid",
+      "note": "Body weight on one wrist.",
+      "swap": "side-plank-reformer"
+    },
+    {
+      "tag": "shoulder",
+      "severity": "avoid",
+      "note": "Body weight on one shoulder.",
+      "swap": "rear-plank"
+    },
+    {
+      "tag": "balance",
+      "severity": "avoid",
+      "note": "One hand, one foot.",
+      "swap": "rear-plank"
+    }
+  ],
+  "prep": [
+    "side-plank-reformer",
+    "long-stretch",
+    "snake"
+  ],
+  "cues": "Hips high the whole time.\nPush the bar away; don't sink into the shoulder.\nSmall carriage movement.",
+  "labels": [
+    "peak"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

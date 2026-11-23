@@ -1,0 +1,115 @@
+{
+  "slug": "overhead",
+  "name": "Overhead",
+  "apparatus": "reformer",
+  "section": "pelvic",
+  "level": "advanced",
+  "levelTo": "advanced",
+  "pose": "supine-roll-over",
+  "position": "supine",
+  "spine": [
+    "articulation"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "spinal-articulation",
+    "pull"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "lats",
+      "triceps"
+    ],
+    "secondary": [
+      "hip_flexors",
+      "hamstrings",
+      "spinal_extensors"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "medium"
+    ]
+  },
+  "setup": {
+    "headrest": "down",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "mobility",
+  "stable": "Arms pressed down",
+  "mobile": "Whole spine and hips",
+  "categories": [
+    "trunk_flexion",
+    "hip_flexion",
+    "upper_body"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 2,
+    "mobility": 2
+  },
+  "multiJoint": true,
+  "intensity": 8,
+  "duration": 120,
+  "reps": "3–5",
+  "summary": "Hands in the straps: as the arms press down to the carriage, straight legs lift up and over the head; the spine then rolls down as the arms return.",
+  "steps": [
+    "Headrest down. Lie on the back, hands in the short loops with arms up, legs long at about 45°.",
+    "Breathe in to press the arms to the carriage and lift the legs to the ceiling.",
+    "Breathe out to roll over until the legs are level with the floor.",
+    "Breathe in to roll down bone by bone; lower the legs as the arms lift."
+  ],
+  "layers": [],
+  "modifications": [
+    "Supine arm pulls with a leg lower instead."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "supine-arm-pulls"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "supine-arm-pulls"
+    },
+    {
+      "tag": "neck",
+      "severity": "avoid",
+      "note": "Weight near the neck.",
+      "swap": "supine-arm-pulls"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Loaded spinal flexion.",
+      "swap": "supine-arm-pulls"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "Deep spinal flexion.",
+      "swap": "supine-arm-pulls"
+    }
+  ],
+  "prep": [
+    "supine-arm-pulls",
+    "short-spine",
+    "straight-leg-lowers-straps"
+  ],
+  "cues": "Arms push down the whole time you are rolled up.\nWeight on the shoulders, not the neck.\nRoll down slowly.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

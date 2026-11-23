@@ -4,6 +4,8 @@
   "apparatus": "reformer",
   "section": "core",
   "level": "intermediate",
+  "levelTo": "intermediate",
+  "pose": "short-box",
   "position": "seated",
   "spine": [
     "rotation"

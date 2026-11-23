@@ -4,6 +4,8 @@
   "apparatus": "reformer",
   "section": "stretch",
   "level": "intermediate",
+  "levelTo": "intermediate",
+  "pose": "kneel-up-face-straps",
   "position": "kneeling",
   "spine": [
     "neutral"

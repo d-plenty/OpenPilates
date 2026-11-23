@@ -3,7 +3,9 @@
   "name": "Arm Circles (Back to Straps)",
   "apparatus": "reformer",
   "section": "chest_arms",
-  "level": "intermediate",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "kneel-face-bar",
   "position": "kneeling",
   "spine": [
     "neutral"

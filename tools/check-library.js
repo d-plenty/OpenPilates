@@ -4,6 +4,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { join, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { cleanMovement } from '../server/validate.js';
+import { POSES } from '../shared/poses.js';
 
 const dir = fileURLToPath(new URL('../library/movements', import.meta.url));
 const all = new Map();
@@ -34,7 +35,9 @@ for (const mv of all.values()) {
     if (c.swap && all.has(c.swap) && (all.get(c.swap).cautions || []).some((x) => x.tag === c.tag && x.severity !== 'modify')) { console.error(`✗ ${mv.slug}: swap "${c.swap}" carries the same "${c.tag}" caution`); problems++; }
   }
   for (const p of mv.prep || []) if (!all.has(p)) { console.error(`✗ ${mv.slug}: lead-in "${p}" doesn't exist`); problems++; }
-  for (const k of ['section', 'role', 'pregnancy']) if (!mv[k]) { console.error(`✗ ${mv.slug}: missing ${k}`); problems++; }
+  if (!POSES[mv.pose]) { console.error(`✗ ${mv.slug}: no picture (pose "${mv.pose}")`); problems++; }
+  else if (POSES[mv.pose].ctx !== (mv.apparatus === 'mat' ? 'mat' : 'reformer')) { console.error(`✗ ${mv.slug}: picture "${mv.pose}" is for the other apparatus`); problems++; }
+  for (const k of ['section', 'role', 'pregnancy', 'levelTo']) if (!mv[k]) { console.error(`✗ ${mv.slug}: missing ${k}`); problems++; }
   if (!mv.summary) { console.error(`✗ ${mv.slug}: no description`); problems++; }
   if ((mv.pregnancy === 'avoid' || mv.pregnancy === 'early_only') && !(mv.cautions || []).some((c) => c.tag === 'pregnancy')) { console.error(`✗ ${mv.slug}: pregnancy is "${mv.pregnancy}" but there is no pregnancy caution`); problems++; }
 }

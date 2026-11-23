@@ -1,0 +1,110 @@
+{
+  "slug": "serve-a-tray",
+  "name": "Serve a Tray",
+  "apparatus": "reformer",
+  "section": "chest_arms",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "sit-box-face-bar",
+  "position": "seated",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "push"
+  ],
+  "muscles": {
+    "primary": [
+      "biceps",
+      "deltoids"
+    ],
+    "secondary": [
+      "chest",
+      "abdominals"
+    ]
+  },
+  "equipment": [
+    "long_box"
+  ],
+  "load": {
+    "springs": [
+      "light"
+    ],
+    "advance": [
+      "light",
+      "xlight"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Trunk and pelvis",
+  "mobile": "Shoulders and elbows",
+  "categories": [
+    "upper_body"
+  ],
+  "pregnancy": "recommended",
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": false,
+  "intensity": 3,
+  "duration": 120,
+  "reps": "10–20",
+  "summary": "Sitting on the long box with your back to the straps, elbows by the waist and palms up, the forearms slide straight forward as if offering a tray and return.",
+  "steps": [
+    "Sit tall on the long box facing the footbar, feet on the headrest or the frame.",
+    "Short loops in the hands, elbows bent by the waist, palms up.",
+    "Breathe out to reach the hands straight forward at waist height.",
+    "Breathe in to draw the elbows back."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Forward and back",
+      "text": "Basic."
+    },
+    {
+      "tag": "L2",
+      "title": "Open and close",
+      "text": "At full reach, open the arms wide and close."
+    },
+    {
+      "tag": "L3",
+      "title": "Lift",
+      "text": "Raise the level tray to shoulder height."
+    },
+    {
+      "tag": "L4",
+      "title": "Kneeling",
+      "text": "On the carriage without the box."
+    }
+  ],
+  "modifications": [
+    "Long loops for less tension."
+  ],
+  "cautions": [
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Lightest spring, small range."
+    }
+  ],
+  "prep": [],
+  "cues": "The tray stays level.\nSit tall; no rocking.\nShoulders stay wide.",
+  "labels": [
+    "pregnancy-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

@@ -4,6 +4,8 @@
   "apparatus": "reformer",
   "section": "core",
   "level": "advanced",
+  "levelTo": "advanced",
+  "pose": "teaser-box",
   "position": "supine",
   "spine": [
     "flexion",

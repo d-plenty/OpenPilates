@@ -4,6 +4,8 @@
   "apparatus": "mat",
   "section": "core",
   "level": "intermediate",
+  "levelTo": "advanced",
+  "pose": "mat-side-plank",
   "position": "plank",
   "spine": [
     "side-bend"

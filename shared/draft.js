@@ -2,7 +2,7 @@
 // Reformer drafts are built in blocks by body section (legs, hips, arms, back, core, stretch),
 // start with simple big-range leg work, save the hardest core work for late in the class, and
 // keep movements that share a spring setting next to each other. Instructors edit everything afterwards.
-import { LEVELS, FORMATS, sectionOf, roleOf, sameSetting } from './vocab.js';
+import { LEVELS, FORMATS, sectionOf, roleOf, sameSetting, levelRange } from './vocab.js';
 
 const RANK = Object.fromEntries(LEVELS.map((l) => [l.id, l.rank]));
 
@@ -100,7 +100,7 @@ export function draftFlow({ movements, goal = 'full_body', apparatus = 'reformer
     const scored = () => pool
       .filter((mv) => !used.has(mv.slug) && fits(mv, tpl))
       // prefer movements that can stay on the springs already set
-      .map((mv) => ({ mv, s: score(mv, tpl, g) + rand() * 1.5 - flagged(mv, prefer) * 6 + (lastKeys.length && shares(mv, lastKeys) ? 5 : mv.load?.flexible ? 2 : 0) }))
+      .map((mv) => ({ mv, s: score(mv, tpl, g, RANK[level] || 2) + rand() * 1.5 - flagged(mv, prefer) * 6 + (lastKeys.length && shares(mv, lastKeys) ? 5 : mv.load?.flexible ? 2 : 0) }))
       .sort((a, b) => b.s - a.s);
     let guard = 0;
     while (filled < budget * 0.8 && guard++ < 8) {
@@ -119,22 +119,9 @@ export function draftFlow({ movements, goal = 'full_body', apparatus = 'reformer
     if (tpl.role === 'cooldown' || tpl.role === 'warmup') {
       ordered = [...items].sort((a, b) => (movements[a.slug].intensity || 0) - (movements[b.slug].intensity || 0));
     } else {
-      ordered = [];
-      const rest = [...items];
-      let keys = incoming;
-      while (rest.length) {
-        rest.sort((a, b) => {
-          const A = movements[a.slug]; const B = movements[b.slug];
-          const sa = shares(A, keys) || A.load?.flexible ? 1 : 0;
-          const sb = shares(B, keys) || B.load?.flexible ? 1 : 0;
-          return sb - sa || loadWeight(B) - loadWeight(A) || (A.intensity || 0) - (B.intensity || 0);
-        });
-        const next = rest.shift();
-        ordered.push(next);
-        const mv = movements[next.slug];
-        if (mv.load && !mv.load.flexible && !shares(mv, keys)) keys = optionKeys(mv).slice(0, 1);
-      }
-      lastKeys = keys;
+      const r = orderBySprings(items, movements, incoming);
+      ordered = r.ordered;
+      lastKeys = r.keys;
     }
     items.length = 0; items.push(...ordered);
     return { id: newId('s'), name: tpl.name, role: tpl.role, bpm: tpl.bpm, song: '', items, _tpl: tpl, _budget: budget };
@@ -210,8 +197,55 @@ function loadWeight(mv) {
   return (mv.load.springs || []).reduce((a, l) => a + (w[l] || 0), 0);
 }
 
-function score(mv, tpl, g) {
+// Put a block's movements in an order that changes springs as rarely as possible, starting
+// from whatever is already on the machine. Returns the ordered items and the setting left on.
+export function orderBySprings(items, movements, incoming = []) {
+  const ordered = [];
+  const rest = [...items];
+  let keys = incoming;
+  while (rest.length) {
+    rest.sort((a, b) => {
+      const A = movements[a.slug]; const B = movements[b.slug];
+      if (!A || !B) return 0;
+      const sa = shares(A, keys) || A.load?.flexible || !A.load ? 1 : 0;
+      const sb = shares(B, keys) || B.load?.flexible || !B.load ? 1 : 0;
+      return sb - sa || loadWeight(B) - loadWeight(A) || (A.intensity || 0) - (B.intensity || 0);
+    });
+    const next = rest.shift();
+    ordered.push(next);
+    const mv = movements[next.slug];
+    if (mv && mv.load && !mv.load.flexible && !next.load && !shares(mv, keys)) keys = optionKeys(mv).slice(0, 1);
+    if (next.load && Array.isArray(next.load.springs)) keys = [keyOf(next.load.springs)];
+  }
+  // a movement goes after any of its lead-ins that are in the same block
+  ordered.sort((a, b) => {
+    const A = movements[a.slug]; const B = movements[b.slug];
+    if (A && (A.prep || []).includes(b.slug)) return 1;
+    if (B && (B.prep || []).includes(a.slug)) return -1;
+    return 0;
+  });
+  return { ordered, keys };
+}
+
+// "Tidy springs": reorder inside each segment (never across segments) to cut spring changes.
+// Warm-ups and cool-downs keep their order.
+export function tidySprings(flow, movements) {
+  let keys = [];
+  const segments = (flow.segments || []).map((seg) => {
+    if (seg.role === 'warmup' || seg.role === 'cooldown') {
+      for (const it of seg.items || []) { const mv = movements[it.slug]; if (mv && mv.load && !mv.load.flexible && !shares(mv, keys)) keys = optionKeys(mv).slice(0, 1); }
+      return seg;
+    }
+    const r = orderBySprings(seg.items || [], movements, keys);
+    keys = r.keys;
+    return { ...seg, items: r.ordered };
+  });
+  return segments;
+}
+
+function score(mv, tpl, g, classRank) {
   let s = 0;
+  if (classRank) { const [from, to] = levelRange(mv); if (classRank >= from && classRank <= to) s += 1.5; else if (to < classRank) s -= (classRank - to) * 1.5; }
   const [lo, hi] = tpl.intensity;
   const i = mv.intensity || 3;
   s += i >= lo && i <= hi ? 3 : -Math.min(Math.abs(i - lo), Math.abs(i - hi));

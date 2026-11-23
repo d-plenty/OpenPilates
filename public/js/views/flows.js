@@ -25,17 +25,20 @@ export async function flowsView() {
     const a = analyze({ ...store.analysisContext(f), flow: f });
     const segTotal = a.totalSec || 1;
     const warn = a.checks.filter((c) => c.level === 'warn' || c.level === 'action').length;
-    return h('a', { class: 'flow-card', href: `#/flows/${f.id}` },
-      h('div', { style: { display: 'flex', gap: '6px', flexWrap: 'wrap' } },
-        h('span', { class: 'tag tag-accent' }, f.apparatus === 'mat' ? 'Mat' : f.apparatus === 'mixed' ? 'Mixed' : 'Reformer'),
-        h('span', { class: 'tag' }, labelOf(LEVELS, f.level)),
-        f.shared ? h('span', { class: 'tag' }, 'Shared') : null,
-        f.ownerId !== store.user.id ? h('span', { class: 'tag' }, `By ${f.ownerName}`) : null),
-      h('div', { class: 't' }, f.title),
-      h('div', { class: 'mini-bar' }, a.segments.map((s, i) => h('div', { style: { flex: `${s.sec || 1} 1 0`, background: ['#7FB8AD', '#4E9C8F', '#0F6E62', '#2F4A3F'][i % 4] } }))),
-      h('div', { class: 'tiny muted' }, `${fmtMin(a.totalSec)} · ${f.segments.length} segments · ${a.count} movements`),
-      h('div', { class: 'tiny', style: { fontWeight: 600, color: warn ? '#8A3A14' : '#0A5047' } }, warn ? `${warn} thing${warn > 1 ? 's' : ''} to check` : a.count ? 'Looks balanced' : 'Empty'),
-      h('div', { class: 'tiny muted' }, `Updated ${fmtDate(f.updatedAt)}`));
+    return h('div', { class: 'flow-card' },
+      a.count ? h('a', { class: 'card-play', href: `#/flows/${f.id}/play`, 'aria-label': `Play ${f.title}`, title: 'Start teaching' }, icon('play', 20)) : null,
+      h('a', { class: 'card-link', href: `#/flows/${f.id}` },
+        h('div', { style: { display: 'flex', gap: '6px', flexWrap: 'wrap' } },
+          h('span', { class: 'tag tag-accent' }, f.apparatus === 'mat' ? 'Mat' : f.apparatus === 'mixed' ? 'Mixed' : 'Reformer'),
+          h('span', { class: 'tag' }, labelOf(LEVELS, f.level)),
+          f.format && f.format !== 'open' && f.apparatus !== 'mat' ? h('span', { class: 'tag' }, labelOf(FORMATS, f.format)) : null,
+          f.shared ? h('span', { class: 'tag' }, 'Shared') : null,
+          f.ownerId !== store.user.id ? h('span', { class: 'tag' }, `By ${f.ownerName}`) : null),
+        h('div', { class: 't' }, f.title),
+        h('div', { class: 'mini-bar' }, a.segments.map((s, i) => h('div', { style: { flex: `${s.sec || 1} 1 0`, background: ['#7FB8AD', '#4E9C8F', '#0F6E62', '#2F4A3F'][i % 4] } }))),
+        h('div', { class: 'tiny muted' }, `${fmtMin(a.totalSec)} · ${f.segments.length} segments · ${a.count} movements${a.hasReformer ? ` · ${a.springChanges} spring change${a.springChanges === 1 ? '' : 's'}` : ''}`),
+        h('div', { class: 'tiny', style: { fontWeight: 600, color: warn ? '#8A3A14' : '#0A5047' } }, warn ? `${warn} thing${warn > 1 ? 's' : ''} to check` : a.count ? 'Looks balanced' : 'Empty'),
+        h('div', { class: 'tiny muted' }, `Updated ${fmtDate(f.updatedAt)}`)));
   };
 
   const importFile = async (file) => {

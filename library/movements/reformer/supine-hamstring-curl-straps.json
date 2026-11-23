@@ -1,0 +1,113 @@
+{
+  "slug": "supine-hamstring-curl-straps",
+  "name": "Hamstring Curl in Straps",
+  "apparatus": "reformer",
+  "section": "pelvic",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "supine-frog",
+  "position": "supine",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "pull"
+  ],
+  "muscles": {
+    "primary": [
+      "hamstrings",
+      "glutes"
+    ],
+    "secondary": [
+      "adductors",
+      "abdominals"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "medium",
+      "xlight"
+    ],
+    "advance": [
+      "medium",
+      "medium",
+      "light"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "long"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Pelvis and spine",
+  "mobile": "Knees; hips a little",
+  "categories": [
+    "hip_extension"
+  ],
+  "pregnancy": "supine",
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 4,
+  "duration": 120,
+  "reps": "15–20",
+  "summary": "Feet in the long loops with the legs long on a diagonal: bend the knees to pull the heels towards the seat, parallel, then press out again.",
+  "steps": [
+    "Lie on the back with the long loops over the arches, legs long on a 45° line, parallel.",
+    "Breathe in to bend the knees, heels drawing towards the sit bones.",
+    "Breathe out to press out along the same line."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Both legs",
+      "text": "Basic."
+    },
+    {
+      "tag": "L2",
+      "title": "Single leg",
+      "text": "One strap; other leg in tabletop."
+    },
+    {
+      "tag": "L3",
+      "title": "Add a small bridge",
+      "text": "At full bend, float the pelvis a few centimetres and lower."
+    }
+  ],
+  "modifications": [
+    "Lighter spring."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "modify",
+      "note": "Lying flat on the back: keep it to a few minutes, raise the head end if you can, and stop if she feels dizzy."
+    },
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Smaller bend."
+    },
+    {
+      "tag": "hip_replacement",
+      "severity": "modify",
+      "note": "Stay above 90° of hip bend."
+    }
+  ],
+  "prep": [],
+  "cues": "Knees stay hip-width and parallel.\nTailbone stays down.\nFeel the backs of the thighs pull, not the hip creases.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

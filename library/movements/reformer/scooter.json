@@ -3,7 +3,9 @@
   "name": "Scooter",
   "apparatus": "reformer",
   "section": "lower",
-  "level": "intermediate",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "lunge-floor",
   "position": "standing",
   "spine": [
     "neutral"

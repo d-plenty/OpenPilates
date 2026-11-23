@@ -4,7 +4,8 @@ import { go } from '../app.js';
 import { itemDuration, fmtClock, analyze } from '/shared/analysis.js';
 import { CAUTIONS, labelOf } from '/shared/vocab.js';
 import { donut, springDots } from '../charts.js';
-import { posLabel } from './common.js';
+import { posLabel, thumb } from './common.js';
+import { itemExtras } from './options.js';
 
 export function playView(flow) {
   const room = store.roomFor(flow);
@@ -78,7 +79,6 @@ export function playView(flow) {
     for (const c of clients) for (const ca of st.mv.cautions || []) if ((c.tags || []).includes(ca.tag)) alerts.push({ c, ca });
     const nextAlerts = [];
     if (next[0]) for (const c of clients) for (const ca of next[0].mv.cautions || []) if ((c.tags || []).includes(ca.tag)) nextAlerts.push({ c, ca });
-    const layer = st.item.layer && (st.mv.layers || []).find((l) => l.tag === st.item.layer);
 
     clockEl = h('div', { style: { display: 'flex', justifyContent: 'center' } });
     fill(el, 
@@ -99,7 +99,9 @@ export function playView(flow) {
               h('span', null, posLabel(st.mv.position)),
               st.item.reps || st.mv.reps ? h('span', null, st.item.reps || st.mv.reps) : null,
               setupBits.length ? h('span', null, setupBits.join(' · ')) : null,
-              layer ? h('span', null, `${layer.tag}: ${layer.title}`) : null)),
+              null)),
+          h('div', { class: 'play-fig' }, thumb(st.mv, { width: 230 })),
+          itemExtras(st.item, st.mv, room, { dark: true }) ? h('div', { class: 'panel' }, h('div', { class: 'tiny muted' }, 'Layers and options'), itemExtras(st.item, st.mv, room, { dark: true })) : null,
           st.item.note ? h('div', { class: 'panel' }, h('div', { class: 'tiny muted' }, 'Your note'), h('div', null, st.item.note)) : null,
           ...alerts.map(({ c, ca }) => h('div', { class: 'panel alert' }, h('b', null, `${c.name}${c.spot ? ' · ' + c.spot : ''}: ${labelOf(CAUTIONS, ca.tag)}`), h('div', { class: 'small' }, ca.note))),
           st.mv.steps?.length ? h('div', { class: 'panel' }, h('div', { class: 'tiny muted' }, 'Set-up'), h('ol', { class: 'small' }, st.mv.steps.map((s) => h('li', null, s)))) : null,

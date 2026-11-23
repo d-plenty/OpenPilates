@@ -1,0 +1,112 @@
+{
+  "slug": "side-lying-inner-thigh",
+  "name": "Side-lying Inner Thigh in Strap",
+  "apparatus": "reformer",
+  "section": "pelvic",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "side-lying-strap",
+  "position": "side-lying",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "frontal",
+  "patterns": [
+    "stabilisation",
+    "adduction"
+  ],
+  "muscles": {
+    "primary": [
+      "adductors"
+    ],
+    "secondary": [
+      "obliques",
+      "glutes"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "light"
+    ],
+    "advance": [
+      "medium"
+    ]
+  },
+  "setup": {
+    "headrest": "up",
+    "straps": "long"
+  },
+  "perSide": true,
+  "role": "stability",
+  "stable": "Pelvis and waist",
+  "mobile": "Top hip",
+  "categories": [
+    "hip_adduction"
+  ],
+  "pregnancy": "recommended",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": false,
+  "intensity": 4,
+  "duration": 150,
+  "reps": "15–20 each side",
+  "summary": "Lying on one side facing the footbar with the top foot in a long loop, the long top leg draws down from hip height to meet the bottom leg.",
+  "steps": [
+    "Headrest up. Lie on one side with the back to the straps, hips stacked, bottom knee bent for balance.",
+    "Long loop over the top foot; top leg long at hip height.",
+    "Breathe out to press the top leg down to the bottom leg.",
+    "Breathe in to lift it back to hip height with control."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Lower and lift",
+      "text": "Basic."
+    },
+    {
+      "tag": "L2",
+      "title": "Small circles",
+      "text": "At the bottom of the range."
+    },
+    {
+      "tag": "L3",
+      "title": "Holds",
+      "text": "Pause with the legs together."
+    }
+  ],
+  "modifications": [
+    "Lighter spring.",
+    "Smaller range."
+  ],
+  "cautions": [
+    {
+      "tag": "groin",
+      "severity": "modify",
+      "note": "Light spring, small range."
+    },
+    {
+      "tag": "hip_replacement",
+      "severity": "modify",
+      "note": "Don't cross the midline."
+    },
+    {
+      "tag": "hip_pain",
+      "severity": "modify",
+      "note": "Avoid lying on a sore hip."
+    }
+  ],
+  "prep": [],
+  "cues": "The strap wants to lift the leg — you decide how fast.\nWaist stays lifted off the carriage.\nHips don't rock.",
+  "labels": [
+    "pregnancy-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

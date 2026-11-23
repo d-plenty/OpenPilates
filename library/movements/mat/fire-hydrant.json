@@ -1,0 +1,113 @@
+{
+  "slug": "fire-hydrant",
+  "name": "Fire Hydrant",
+  "apparatus": "mat",
+  "section": "pelvic",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "mat-quadruped",
+  "position": "quadruped",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "frontal",
+  "patterns": [
+    "stabilisation",
+    "abduction"
+  ],
+  "muscles": {
+    "primary": [
+      "abductors",
+      "glutes"
+    ],
+    "secondary": [
+      "abdominals",
+      "obliques",
+      "deltoids"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": true,
+  "role": "stability",
+  "stable": "Trunk and pelvis",
+  "mobile": "One hip",
+  "categories": [
+    "hip_abduction",
+    "quadruped"
+  ],
+  "pregnancy": "recommended",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": false,
+  "intensity": 4,
+  "duration": 120,
+  "reps": "10–15 each side",
+  "summary": "On hands and knees, one bent knee lifts out to the side to hip height and lowers, with the trunk staying square.",
+  "steps": [
+    "Start on hands and knees, spine long.",
+    "Breathe out to lift one bent knee out to the side.",
+    "Breathe in to lower with control."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Lift and lower",
+      "text": "Basic."
+    },
+    {
+      "tag": "L2",
+      "title": "Pulses and holds",
+      "text": "At the top."
+    },
+    {
+      "tag": "L3",
+      "title": "Circles",
+      "text": "Knee draws circles."
+    },
+    {
+      "tag": "L4",
+      "title": "Loop band",
+      "text": "Band above the knees."
+    },
+    {
+      "tag": "L5",
+      "title": "Kick out",
+      "text": "Straighten the leg to the side at the top."
+    }
+  ],
+  "modifications": [
+    "Forearms down.",
+    "Smaller lift."
+  ],
+  "cautions": [
+    {
+      "tag": "wrist",
+      "severity": "modify",
+      "note": "Forearms down."
+    },
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Pad under the supporting knee."
+    },
+    {
+      "tag": "hip_pain",
+      "severity": "modify",
+      "note": "Small range."
+    }
+  ],
+  "prep": [],
+  "cues": "Don't lean away to get the knee higher.\nBoth hip bones face the floor.\nElbows soft; push the floor away.",
+  "labels": [
+    "pregnancy-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

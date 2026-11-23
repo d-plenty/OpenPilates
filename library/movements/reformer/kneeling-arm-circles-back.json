@@ -3,7 +3,9 @@
   "name": "Front Raise & Arm Circles (Facing Straps)",
   "apparatus": "reformer",
   "section": "back_shoulders",
-  "level": "intermediate",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "kneel-face-straps",
   "position": "kneeling",
   "spine": [
     "neutral"

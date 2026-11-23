@@ -4,6 +4,8 @@
   "apparatus": "reformer",
   "section": "core",
   "level": "advanced",
+  "levelTo": "advanced",
+  "pose": "side-plank-carriage",
   "position": "plank",
   "spine": [
     "neutral"

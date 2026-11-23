@@ -4,6 +4,8 @@
   "apparatus": "reformer",
   "section": "stretch",
   "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "mermaid",
   "position": "seated",
   "spine": [
     "side-bend",

@@ -1,0 +1,113 @@
+{
+  "slug": "jackknife-mat",
+  "name": "Jackknife",
+  "apparatus": "mat",
+  "section": "core",
+  "level": "advanced",
+  "levelTo": "advanced",
+  "pose": "mat-roll-over",
+  "position": "supine",
+  "spine": [
+    "flexion",
+    "articulation"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "spinal-articulation",
+    "flexion"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "triceps"
+    ],
+    "secondary": [
+      "glutes",
+      "hip_flexors",
+      "spinal_extensors"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "mobility",
+  "stable": "Arms and shoulders",
+  "mobile": "Whole spine and hips",
+  "categories": [
+    "trunk_flexion",
+    "hip_flexion",
+    "hip_extension"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 1,
+    "mobility": 2
+  },
+  "multiJoint": true,
+  "intensity": 9,
+  "duration": 90,
+  "reps": "3–5",
+  "summary": "From a Roll Over, the legs shoot up to the ceiling so the body balances straight on the shoulders, then the spine rolls down slowly.",
+  "steps": [
+    "Lie on the back, arms pressing down, legs long.",
+    "Breathe in to lift the legs over the head, level with the floor.",
+    "Breathe out to send the legs straight up, hips over shoulders.",
+    "Breathe in to roll down bone by bone, legs staying over the face as long as possible."
+  ],
+  "layers": [],
+  "modifications": [
+    "Roll Over only.",
+    "Hands supporting the hips."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "cat-cow"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "cat-cow"
+    },
+    {
+      "tag": "neck",
+      "severity": "avoid",
+      "note": "High load near the neck.",
+      "swap": "pelvic-curl"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Loaded flexion.",
+      "swap": "pelvic-curl"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "Deep flexion.",
+      "swap": "pelvic-curl"
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Check the shoulders tolerate the load."
+    }
+  ],
+  "prep": [
+    "roll-over",
+    "shoulder-bridge"
+  ],
+  "cues": "Weight on the shoulders and arms, never the neck.\nSqueeze the seat to stand the legs up.\nThe roll down is the slow part.",
+  "labels": [
+    "peak"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

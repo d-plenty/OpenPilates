@@ -1,0 +1,121 @@
+{
+  "slug": "open-leg-rocker",
+  "name": "Open Leg Rocker",
+  "apparatus": "mat",
+  "section": "core",
+  "level": "intermediate",
+  "levelTo": "advanced",
+  "pose": "mat-teaser",
+  "position": "seated",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "flexion",
+    "spinal-articulation",
+    "coordination"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "hip_flexors"
+    ],
+    "secondary": [
+      "hamstrings",
+      "adductors",
+      "spinal_extensors"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "both",
+  "stable": "The V shape",
+  "mobile": "The whole body rolls",
+  "categories": [
+    "trunk_flexion",
+    "hip_flexion"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 1,
+    "stability": 3,
+    "flexibility": 2,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 7,
+  "duration": 90,
+  "reps": "6",
+  "summary": "Balancing in a wide V with the hands holding the ankles, rock back to the shoulders and up to balance again.",
+  "steps": [
+    "Sit balanced behind the sit bones, holding the ankles with knees bent and open.",
+    "Straighten one leg, then the other, into a V.",
+    "Breathe in to scoop and rock back to the shoulder blades.",
+    "Breathe out to rock up and find the balance with a lifted chest."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Balance with bent knees",
+      "text": "Hold."
+    },
+    {
+      "tag": "L2",
+      "title": "Balance in the V",
+      "text": "No rock."
+    },
+    {
+      "tag": "L3",
+      "title": "Rock",
+      "text": "Classical."
+    }
+  ],
+  "modifications": [
+    "Hold behind the calves or thighs.",
+    "Keep the knees soft."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "spine-stretch-forward"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "spine-stretch-forward"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Rolling on a flexed spine.",
+      "swap": "spine-twist"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "Deep flexion.",
+      "swap": "spine-stretch-forward"
+    },
+    {
+      "tag": "neck",
+      "severity": "modify",
+      "note": "Stop at the shoulder blades."
+    }
+  ],
+  "prep": [
+    "rolling-like-a-ball",
+    "spine-stretch-forward",
+    "teaser"
+  ],
+  "cues": "Arms stay straight; the V doesn't change.\nLift the chest at the top.\nStop on the shoulders, not the neck.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "slug": "prone-hamstring-curl",
+  "name": "Hamstring Curl on the Long Box",
+  "apparatus": "reformer",
+  "section": "lower",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "prone-box-hamstring",
+  "position": "prone",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "pull"
+  ],
+  "muscles": {
+    "primary": [
+      "hamstrings"
+    ],
+    "secondary": [
+      "glutes",
+      "calves",
+      "spinal_extensors"
+    ]
+  },
+  "equipment": [
+    "long_box"
+  ],
+  "load": {
+    "springs": [
+      "light"
+    ],
+    "advance": [
+      "medium"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "long"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Pelvis, spine and thighs",
+  "mobile": "Knees",
+  "categories": [
+    "hip_extension"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 3,
+    "stability": 1,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": false,
+  "intensity": 4,
+  "duration": 120,
+  "reps": "10–20",
+  "summary": "Lying face down on the long box with the head towards the footbar and the long loops round the feet, the knees bend to draw the heels towards the seat.",
+  "steps": [
+    "Long box lengthways. Lie face down, head towards the footbar, forehead on the hands, knees just off the back edge of the box.",
+    "Hook the long loops over the feet or ankles, legs long.",
+    "Breathe out to bend the knees, heels towards the seat.",
+    "Breathe in to straighten slowly."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Both legs",
+      "text": "Basic."
+    },
+    {
+      "tag": "L2",
+      "title": "Single leg",
+      "text": "One strap at a time."
+    },
+    {
+      "tag": "L3",
+      "title": "Hover the thighs",
+      "text": "Lift the thighs slightly before curling."
+    },
+    {
+      "tag": "L4",
+      "title": "Tempo",
+      "text": "Three counts to straighten."
+    }
+  ],
+  "modifications": [
+    "Lighter spring.",
+    "Smaller range for cramping hamstrings."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "side-lying-strap-series"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "side-lying-strap-series"
+    },
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Smaller range, light spring."
+    },
+    {
+      "tag": "extension_pain",
+      "severity": "modify",
+      "note": "Keep the belly lifted; no thigh lift."
+    }
+  ],
+  "prep": [],
+  "cues": "Pubic bone stays heavy on the box.\nThighs stay still; only the shins move.\nBelly lifted so the lower back stays long.\nSlow on the way back.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

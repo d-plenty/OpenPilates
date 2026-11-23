@@ -4,6 +4,8 @@
   "apparatus": "mat",
   "section": "chest_arms",
   "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "mat-stand",
   "position": "standing",
   "spine": [
     "neutral"

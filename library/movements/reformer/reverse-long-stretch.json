@@ -4,6 +4,8 @@
   "apparatus": "reformer",
   "section": "core",
   "level": "advanced",
+  "levelTo": "advanced",
+  "pose": "plank-rear",
   "position": "plank",
   "spine": [
     "neutral"

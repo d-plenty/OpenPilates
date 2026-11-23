@@ -1,0 +1,121 @@
+{
+  "slug": "rolling-like-a-ball",
+  "name": "Rolling Like a Ball",
+  "apparatus": "mat",
+  "section": "core",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "mat-half-roll-back",
+  "position": "seated",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "flexion",
+    "spinal-articulation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals"
+    ],
+    "secondary": [
+      "hip_flexors",
+      "obliques"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "both",
+  "stable": "The ball shape",
+  "mobile": "The whole body rolls",
+  "categories": [
+    "trunk_flexion",
+    "hip_flexion"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 1,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 2
+  },
+  "multiJoint": true,
+  "intensity": 4,
+  "duration": 90,
+  "reps": "6–8",
+  "summary": "Balanced just behind the sit bones in a tight tuck, roll back to the shoulder blades and up to balance again without the shape changing.",
+  "steps": [
+    "Sit near the front of the mat, knees bent, hands on the shins, feet just off the floor.",
+    "Round the spine and find the balance.",
+    "Breathe in to roll back to the shoulder blades.",
+    "Breathe out to roll up and balance without the feet touching."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Balance only",
+      "text": "Hold the tuck."
+    },
+    {
+      "tag": "L2",
+      "title": "Hands behind the thighs",
+      "text": "Looser ball."
+    },
+    {
+      "tag": "L3",
+      "title": "Hands on the shins",
+      "text": "Classical."
+    },
+    {
+      "tag": "L4",
+      "title": "Hands on the ankles, head to knees",
+      "text": "Tightest ball."
+    }
+  ],
+  "modifications": [
+    "Practise the balance without rolling.",
+    "Thicker mat for bony spines."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "cat-cow"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "cat-cow"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Rolling on a flexed spine.",
+      "swap": "dead-bug"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "Deep flexion under load.",
+      "swap": "dead-bug"
+    },
+    {
+      "tag": "neck",
+      "severity": "modify",
+      "note": "Stop at the shoulder blades."
+    }
+  ],
+  "prep": [
+    "half-roll-back"
+  ],
+  "cues": "The distance between heels and seat never changes.\nRoll on the spine, not onto the neck.\nUse the belly to come up, not a kick.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

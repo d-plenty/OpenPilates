@@ -3,7 +3,9 @@
   "name": "Short Box — Side Over",
   "apparatus": "reformer",
   "section": "core",
-  "level": "advanced",
+  "level": "intermediate",
+  "levelTo": "advanced",
+  "pose": "short-box-side",
   "position": "seated",
   "spine": [
     "side-bend"

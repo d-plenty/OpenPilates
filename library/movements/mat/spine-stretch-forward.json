@@ -4,6 +4,8 @@
   "apparatus": "mat",
   "section": "stretch",
   "level": "beginner",
+  "levelTo": "beginner",
+  "pose": "mat-sit-tall",
   "position": "seated",
   "spine": [
     "flexion"

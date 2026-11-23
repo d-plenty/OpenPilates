@@ -1,0 +1,115 @@
+{
+  "slug": "one-leg-circle",
+  "name": "One Leg Circle",
+  "apparatus": "mat",
+  "section": "pelvic",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "mat-legs-up",
+  "position": "supine",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "transverse",
+  "patterns": [
+    "stabilisation",
+    "hip-dissociation"
+  ],
+  "muscles": {
+    "primary": [
+      "hip_flexors",
+      "abdominals"
+    ],
+    "secondary": [
+      "adductors",
+      "abductors",
+      "quadriceps"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": true,
+  "role": "both",
+  "stable": "Pelvis and spine",
+  "mobile": "One hip, circling",
+  "categories": [
+    "hip_flexion",
+    "hip_adduction",
+    "hip_abduction"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 1,
+    "stability": 3,
+    "flexibility": 1,
+    "mobility": 2
+  },
+  "multiJoint": false,
+  "intensity": 4,
+  "duration": 120,
+  "reps": "5 each way, each leg",
+  "summary": "On the back with one leg to the ceiling, the leg draws a circle from the hip — across, down, round and up — while the pelvis stays still.",
+  "steps": [
+    "Lie on the back, one leg long on the mat, the other to the ceiling.",
+    "Breathe in to take the leg across the body, down and round.",
+    "Breathe out to bring it back up to the start.",
+    "Reverse, then change legs."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Knee bent",
+      "text": "Shorter lever."
+    },
+    {
+      "tag": "L2",
+      "title": "Bottom knee bent",
+      "text": "More support."
+    },
+    {
+      "tag": "L3",
+      "title": "Both legs long",
+      "text": "Classical."
+    },
+    {
+      "tag": "L4",
+      "title": "Bigger circle",
+      "text": "Only if the pelvis stays quiet."
+    }
+  ],
+  "modifications": [
+    "Bend the circling knee.",
+    "Bend the bottom knee with the foot flat."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "clam-loop-band"
+    },
+    {
+      "tag": "hip_replacement",
+      "severity": "avoid",
+      "note": "Crossing the midline.",
+      "swap": "side-kick-series"
+    },
+    {
+      "tag": "hip_pain",
+      "severity": "modify",
+      "note": "Small circles, knee bent."
+    },
+    {
+      "tag": "si_joint",
+      "severity": "modify",
+      "note": "Small circles, bottom knee bent."
+    }
+  ],
+  "prep": [],
+  "cues": "The circle is only as big as the pelvis stays still.\nBoth hips stay heavy.\nA tiny pause at the top each time.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

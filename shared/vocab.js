@@ -351,3 +351,25 @@ export function sameSetting(a, b) {
   for (const l of short) { const i = rest.indexOf(l); if (i < 0) return false; rest.splice(i, 1); }
   return rest.length === 1 && rest[0] === 'xlight';
 }
+
+// ---- levels. A movement suits a range of levels: `level` is where it starts, `levelTo` where it tops out.
+const LEVEL_RANK = Object.fromEntries(LEVELS.map((l) => [l.id, l.rank]));
+export function levelRange(mv) {
+  const from = LEVEL_RANK[mv && mv.level] || 1;
+  const to = Math.max(from, LEVEL_RANK[mv && mv.levelTo] || from);
+  return [from, to];
+}
+export function levelsOf(mv) {
+  const [from, to] = levelRange(mv);
+  return LEVELS.filter((l) => l.rank >= from && l.rank <= to).map((l) => l.id);
+}
+export function levelLabel(mv) {
+  const [from, to] = levelRange(mv);
+  const name = (r) => LEVELS.find((l) => l.rank === r).label;
+  if (from === 1 && to === 3) return 'All levels';
+  return from === to ? name(from) : `${name(from)}–${name(to)}`;
+}
+export const OPTION_KINDS = [
+  { id: 'easier', label: 'Easier', mark: '▼' },
+  { id: 'harder', label: 'Harder', mark: '▲' }
+];

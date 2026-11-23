@@ -3,7 +3,9 @@
   "name": "Short Box — Round Back",
   "apparatus": "reformer",
   "section": "core",
-  "level": "intermediate",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "short-box",
   "position": "seated",
   "spine": [
     "flexion"

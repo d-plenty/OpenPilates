@@ -3,7 +3,9 @@
   "name": "Jump Board — Jumping",
   "apparatus": "reformer",
   "section": "cardio",
-  "level": "intermediate",
+  "level": "beginner",
+  "levelTo": "advanced",
+  "pose": "supine-jump",
   "position": "supine",
   "spine": [
     "neutral"

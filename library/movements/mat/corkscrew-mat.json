@@ -1,0 +1,125 @@
+{
+  "slug": "corkscrew-mat",
+  "name": "Corkscrew (Mat)",
+  "apparatus": "mat",
+  "section": "core",
+  "level": "intermediate",
+  "levelTo": "advanced",
+  "pose": "mat-legs-up",
+  "position": "supine",
+  "spine": [
+    "rotation"
+  ],
+  "plane": "transverse",
+  "patterns": [
+    "rotation",
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "obliques"
+    ],
+    "secondary": [
+      "hip_flexors",
+      "adductors"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "both",
+  "stable": "Shoulders and ribs",
+  "mobile": "Pelvis and legs, circling",
+  "categories": [
+    "rotation",
+    "hip_flexion",
+    "trunk_flexion"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 7,
+  "duration": 90,
+  "reps": "3 each way",
+  "summary": "On the back with legs together to the ceiling, the legs draw a circle — to one side, down, round and up — as the pelvis tips with them.",
+  "steps": [
+    "Lie on the back, arms pressing down by the sides, legs together to the ceiling.",
+    "Breathe in to take the legs to one side, down and round.",
+    "Breathe out to bring them up the other side to centre.",
+    "Reverse."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Small circles, hips down",
+      "text": "Start here."
+    },
+    {
+      "tag": "L2",
+      "title": "Bigger circles",
+      "text": "Pelvis tips."
+    },
+    {
+      "tag": "L3",
+      "title": "With a hip lift",
+      "text": "Roll the hips up at the top of each circle."
+    }
+  ],
+  "modifications": [
+    "Bend the knees.",
+    "Hands under the pelvis."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "spine-twist"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "spine-twist"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Loaded rotation in flexion.",
+      "swap": "spine-twist"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "Loaded rotation.",
+      "swap": "spine-twist"
+    },
+    {
+      "tag": "si_joint",
+      "severity": "avoid",
+      "note": "Twisting load through the pelvis.",
+      "swap": "spine-twist"
+    },
+    {
+      "tag": "neck",
+      "severity": "modify",
+      "note": "Keep the head down."
+    }
+  ],
+  "prep": [
+    "one-leg-circle",
+    "double-leg-lower-lift"
+  ],
+  "cues": "Legs stay glued together.\nShoulders stay down and square.\nThe lower back stays long as the legs pass low.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

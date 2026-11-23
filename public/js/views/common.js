@@ -1,5 +1,6 @@
 import { h, icon, btn } from '../ui.js';
-import { POSITIONS, LEVELS, labelOf, SPINE, MUSCLES, SECTIONS, springLabel, sectionOf } from '/shared/vocab.js';
+import { POSITIONS, labelOf, SPINE, MUSCLES, SECTIONS, springLabel, sectionOf, levelLabel } from '/shared/vocab.js';
+import { figure } from '../figure.js';
 import { fmtClock, fmtMin } from '/shared/analysis.js';
 import { bodyMap, bodyLegend, radar, intensityChart, positionStrip, positionKey, purposeBars, springDots } from '../charts.js';
 
@@ -25,16 +26,22 @@ export function pregnancyTag(mv) {
   return p ? h('span', { class: ['tag', p[1]] }, p[0]) : null;
 }
 
-export function movementCard(mv, room, { draggable, onAdd, addLabel = 'Add', inFlow, extraTags = [] } = {}) {
-  const card = h('div', { class: 'mv-card', draggable: draggable ? 'true' : null },
-    h('div', { class: 'thumb', style: { background: posColor(mv.position) }, 'aria-hidden': 'true' }, initials(mv.name)),
+// The picture for a movement: the studio's own photo if there is one, otherwise the drawn figure.
+export function thumb(mv, { width = 72, photo = true } = {}) {
+  if (photo && mv.photo) return h('img', { class: 'thumb-photo', src: mv.photo, alt: `${mv.name}${mv.photoCredit ? ' — photo: ' + mv.photoCredit : ''}`, width, height: Math.round(width * 0.66), loading: 'lazy' });
+  return h('span', { class: 'thumb-fig', style: { width: width + 'px' } }, figure(mv, { width }));
+}
+
+export function movementCard(mv, room, { draggable, onAdd, addLabel = 'Add', inFlow, extraTags = [], big } = {}) {
+  const card = h('div', { class: ['mv-card', big && 'mv-card-big'], draggable: draggable ? 'true' : null },
+    h('a', { class: 'thumb', href: `#/movements/${mv.slug}`, tabindex: '-1', 'aria-hidden': 'true', style: { borderColor: posColor(mv.position) } }, thumb(mv, { width: big ? 132 : 66 })),
     h('div', { class: 'body' },
       h('a', { class: 'name', href: `#/movements/${mv.slug}`, style: { color: 'inherit', textDecoration: 'none' } }, mv.name),
       h('div', { class: 'meta' }, mvMeta(mv, room)),
       h('div', { class: 'tags' },
         (mv.spine || []).filter((s) => s !== 'neutral').map((s) => h('span', { class: 'tag' }, labelOf(SPINE, s))),
         h('span', { class: 'tag' }, sectionLabel(mv)),
-        h('span', { class: 'tag' }, labelOf(LEVELS, mv.level)),
+        h('span', { class: 'tag' }, levelLabel(mv)),
         mv.perSide ? h('span', { class: 'tag' }, 'Each side') : null,
         mv.source !== 'library' ? h('span', { class: 'tag tag-accent' }, mv.source === 'studio' ? 'Studio edit' : 'Custom') : null,
         extraTags)),
@@ -121,6 +128,18 @@ export function springsCard(a, room, { compact } = {}) {
       h('div', { class: 'sm-head' }, springDots(b.loads, room), h('span', { class: 'tiny muted' }, i === 0 ? 'Start' : `Change ${i}`), h('span', { class: 'tiny muted' }, `${b.names.length} movement${b.names.length === 1 ? '' : 's'}`)),
       compact ? null : h('div', { class: 'tiny muted' }, b.names.join(' → '))))) : h('p', { class: 'muted small' }, 'No reformer movements yet.'),
     h('p', { class: 'tiny muted', style: { marginTop: '8px' } }, 'A movement stays on the springs already set when its usual or "to advance" setting matches. One extra-light spring on or off is not counted as a change.'));
+}
+
+// What to put out before people arrive.
+export function setOutCard(a, room) {
+  const s = a.setOut;
+  if (!a.count) return null;
+  const rows = [];
+  if (a.hasReformer && s.springs) rows.push(h('li', null, h('b', null, 'Start on '), springDots(s.springs, room)));
+  if (s.straps.length) rows.push(h('li', null, h('b', null, 'Straps: '), s.straps.map((x) => (x === 'long' ? 'long loops (feet)' : 'short loops (hands)')).join(' and ')));
+  for (const e of s.equipment) rows.push(h('li', null, h('b', null, e.label), e.have ? '' : h('span', { class: 'tag tag-warn', style: { marginLeft: '6px' } }, 'none listed in Studio'), h('div', { class: 'tiny muted' }, `for ${e.for.slice(0, 4).join(', ')}${e.for.length > 4 ? '…' : ''}`)));
+  if (!rows.length) rows.push(h('li', { class: 'muted' }, 'Nothing extra — just the mat.'));
+  return h('div', { class: 'card' }, h('h2', null, 'Set out before class'), h('ul', { class: 'setout' }, rows));
 }
 
 // Whole-body balance: body sections, stabilising vs moving work, and movement categories.

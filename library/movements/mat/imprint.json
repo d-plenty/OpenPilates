@@ -4,6 +4,8 @@
   "apparatus": "mat",
   "section": "core",
   "level": "beginner",
+  "levelTo": "beginner",
+  "pose": "mat-supine",
   "position": "supine",
   "spine": [
     "flexion"

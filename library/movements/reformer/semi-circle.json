@@ -1,0 +1,129 @@
+{
+  "slug": "semi-circle",
+  "name": "Semi-circle",
+  "apparatus": "reformer",
+  "section": "pelvic",
+  "level": "advanced",
+  "levelTo": "advanced",
+  "pose": "supine-bridge",
+  "position": "supine",
+  "spine": [
+    "articulation",
+    "extension"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "spinal-articulation",
+    "extension"
+  ],
+  "muscles": {
+    "primary": [
+      "glutes",
+      "hamstrings",
+      "spinal_extensors"
+    ],
+    "secondary": [
+      "quadriceps",
+      "hip_flexors",
+      "triceps",
+      "abdominals"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "medium"
+    ]
+  },
+  "setup": {
+    "headrest": "down",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "mobility",
+  "stable": "Arms and shoulders",
+  "mobile": "Whole spine, hips, knees",
+  "categories": [
+    "hip_extension",
+    "trunk_extension",
+    "trunk_flexion"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 2,
+    "mobility": 3
+  },
+  "multiJoint": true,
+  "intensity": 8,
+  "duration": 150,
+  "reps": "3 each direction",
+  "summary": "A bridge off the front of the carriage: with hands pressing into the shoulder rests and feet on the footbar, the spine rolls down below the carriage, travels out and rolls back up, drawing a half circle.",
+  "steps": [
+    "Headrest down. Slide down so the shoulders are off the carriage edge, hands pushing against the shoulder rests, balls of the feet on the bar in a small V.",
+    "Lift into a high bridge.",
+    "Breathe in to roll the spine down towards the springs with the carriage at home.",
+    "Breathe out to press the carriage out with the hips low, then lift the hips and bring the carriage home. Reverse."
+  ],
+  "layers": [],
+  "modifications": [
+    "Bridge with the carriage press instead."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "side-lying-strap-series"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "side-lying-strap-series"
+    },
+    {
+      "tag": "shoulder",
+      "severity": "avoid",
+      "note": "Body weight hanging from the arms.",
+      "swap": "bridging-reformer"
+    },
+    {
+      "tag": "neck",
+      "severity": "avoid",
+      "note": "Head and neck unsupported.",
+      "swap": "bridging-reformer"
+    },
+    {
+      "tag": "extension_pain",
+      "severity": "avoid",
+      "note": "Deep extension.",
+      "swap": "bridging-reformer"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Loaded articulation.",
+      "swap": "bridging-reformer"
+    },
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Small range."
+    }
+  ],
+  "prep": [
+    "bridging-reformer",
+    "short-spine"
+  ],
+  "cues": "Arms stay long and strong.\nMove bone by bone.\nKnees stay in line with the toes.\nOpen the front of the hips at the top.",
+  "labels": [
+    "peak"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

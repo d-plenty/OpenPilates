@@ -4,6 +4,8 @@
   "apparatus": "mat",
   "section": "back_shoulders",
   "level": "advanced",
+  "levelTo": "advanced",
+  "pose": "mat-prone",
   "position": "prone",
   "spine": [
     "extension"

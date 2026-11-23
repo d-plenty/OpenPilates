@@ -1,0 +1,137 @@
+{
+  "slug": "corkscrew-reformer",
+  "name": "Corkscrew",
+  "apparatus": "reformer",
+  "section": "pelvic",
+  "level": "advanced",
+  "levelTo": "advanced",
+  "pose": "supine-roll-over",
+  "position": "supine",
+  "spine": [
+    "articulation",
+    "rotation"
+  ],
+  "plane": "transverse",
+  "patterns": [
+    "spinal-articulation",
+    "rotation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "obliques"
+    ],
+    "secondary": [
+      "hip_flexors",
+      "adductors",
+      "triceps"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "medium"
+    ]
+  },
+  "setup": {
+    "headrest": "down",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "both",
+  "stable": "Shoulders and arms",
+  "mobile": "Spine and pelvis, circling",
+  "categories": [
+    "trunk_flexion",
+    "rotation",
+    "hip_flexion"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 1,
+    "mobility": 2
+  },
+  "multiJoint": true,
+  "intensity": 9,
+  "duration": 120,
+  "reps": "3 each way",
+  "summary": "Holding the posts or the carriage edge behind the head, legs together to the ceiling: roll up onto the shoulders, then lower the spine down one side, circle the legs and roll up the other.",
+  "steps": [
+    "Headrest down. Lie on the back holding the posts behind you, legs long and together to the ceiling.",
+    "Roll up until the weight rests on the shoulder blades.",
+    "Lower the spine down one side, circle the legs round low, and roll up the other side.",
+    "Reverse."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Legs circle, hips stay down",
+      "text": "Preparation."
+    },
+    {
+      "tag": "L2",
+      "title": "Small tilt",
+      "text": "Hips lift a little each side."
+    },
+    {
+      "tag": "L3",
+      "title": "Full corkscrew",
+      "text": "Roll up onto the shoulders."
+    }
+  ],
+  "modifications": [
+    "Keep the hips down and circle the legs only."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "side-lying-strap-series"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "side-lying-strap-series"
+    },
+    {
+      "tag": "neck",
+      "severity": "avoid",
+      "note": "Weight near the neck.",
+      "swap": "feet-in-straps"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Loaded flexion with rotation.",
+      "swap": "feet-in-straps"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "Loaded flexion with rotation.",
+      "swap": "feet-in-straps"
+    },
+    {
+      "tag": "si_joint",
+      "severity": "avoid",
+      "note": "Twisting load through the pelvis.",
+      "swap": "feet-in-straps"
+    }
+  ],
+  "prep": [
+    "short-spine",
+    "long-spine",
+    "feet-in-straps"
+  ],
+  "cues": "Legs stay glued together.\nWeight never reaches the neck.\nKeep the circle small enough to control.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

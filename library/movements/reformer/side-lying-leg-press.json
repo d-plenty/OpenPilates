@@ -4,6 +4,8 @@
   "apparatus": "reformer",
   "section": "pelvic",
   "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "side-lying-footbar",
   "position": "side-lying",
   "spine": [
     "neutral"

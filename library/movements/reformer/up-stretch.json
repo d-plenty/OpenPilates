@@ -3,7 +3,9 @@
   "name": "Up Stretch",
   "apparatus": "reformer",
   "section": "core",
-  "level": "advanced",
+  "level": "intermediate",
+  "levelTo": "advanced",
+  "pose": "pike-bar",
   "position": "plank",
   "spine": [
     "flexion"

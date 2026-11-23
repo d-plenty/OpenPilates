@@ -1,0 +1,109 @@
+{
+  "slug": "seal",
+  "name": "Seal",
+  "apparatus": "mat",
+  "section": "core",
+  "level": "intermediate",
+  "levelTo": "intermediate",
+  "pose": "mat-half-roll-back",
+  "position": "seated",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "flexion",
+    "spinal-articulation",
+    "coordination"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals"
+    ],
+    "secondary": [
+      "hip_flexors",
+      "adductors"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "both",
+  "stable": "The ball shape",
+  "mobile": "The whole body rolls",
+  "categories": [
+    "trunk_flexion",
+    "hip_flexion"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 1,
+    "stability": 3,
+    "flexibility": 1,
+    "mobility": 2
+  },
+  "multiJoint": true,
+  "intensity": 5,
+  "duration": 90,
+  "reps": "6",
+  "summary": "A rolling exercise to finish: balanced in a tuck with the hands threaded inside the legs to hold the ankles, clap the feet three times, roll back, clap three times, roll up.",
+  "steps": [
+    "Sit balanced with knees open, arms threaded between the legs and hands holding the outside of the ankles.",
+    "Clap the feet together three times.",
+    "Breathe in to roll back to the shoulder blades and clap three times.",
+    "Breathe out to roll up and balance."
+  ],
+  "layers": [],
+  "modifications": [
+    "Skip the claps.",
+    "Rolling Like a Ball instead."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "cat-cow"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "cat-cow"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Rolling on a flexed spine.",
+      "swap": "cat-cow"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "Deep flexion.",
+      "swap": "cat-cow"
+    },
+    {
+      "tag": "hip_replacement",
+      "severity": "avoid",
+      "note": "Deep hip flexion with turnout.",
+      "swap": "cat-cow"
+    },
+    {
+      "tag": "neck",
+      "severity": "modify",
+      "note": "Stop at the shoulder blades."
+    }
+  ],
+  "prep": [
+    "rolling-like-a-ball"
+  ],
+  "cues": "Stay round.\nThe clap comes from the hips, not the knees.\nStop on the shoulders, never the neck.",
+  "labels": [
+    "cool-down"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

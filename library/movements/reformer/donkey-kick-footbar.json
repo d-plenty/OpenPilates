@@ -1,0 +1,123 @@
+{
+  "slug": "donkey-kick-footbar",
+  "name": "Kneeling Kickback on the Footbar",
+  "apparatus": "reformer",
+  "section": "lower",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "quadruped-foot-bar",
+  "position": "quadruped",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "hip-dissociation",
+    "push"
+  ],
+  "muscles": {
+    "primary": [
+      "glutes",
+      "hamstrings"
+    ],
+    "secondary": [
+      "abdominals",
+      "deltoids",
+      "quadriceps"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium"
+    ],
+    "advance": [
+      "medium",
+      "light"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": true,
+  "role": "stability",
+  "stable": "Trunk, pelvis and shoulders",
+  "mobile": "Working hip and knee",
+  "categories": [
+    "hip_extension",
+    "quadruped"
+  ],
+  "pregnancy": "ok",
+  "purpose": {
+    "strength": 3,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 5,
+  "duration": 150,
+  "reps": "10–20 each side",
+  "summary": "On hands and knees on the carriage facing the straps, one foot on the footbar behind you. That leg presses back to move the carriage.",
+  "steps": [
+    "Kneel on the carriage facing the straps, hands on the shoulder rests or the carriage edge.",
+    "Place the ball of one foot on the footbar behind you, knee bent under the hip.",
+    "Breathe out to press the foot into the bar until the leg is nearly straight; the carriage travels away from the bar.",
+    "Breathe in to bend the knee and return with control."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Bend and press",
+      "text": "Basic."
+    },
+    {
+      "tag": "L2",
+      "title": "Pulses",
+      "text": "Small pulses near straight."
+    },
+    {
+      "tag": "L3",
+      "title": "Hover the supporting knee",
+      "text": "Lift it a couple of centimetres."
+    },
+    {
+      "tag": "L4",
+      "title": "Opposite arm reach",
+      "text": "Lift the opposite arm."
+    }
+  ],
+  "modifications": [
+    "Forearms on the carriage for sore wrists.",
+    "Lighter spring.",
+    "Pad under the knee."
+  ],
+  "cautions": [
+    {
+      "tag": "wrist",
+      "severity": "modify",
+      "note": "Forearms down."
+    },
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Pad under the supporting knee."
+    },
+    {
+      "tag": "extension_pain",
+      "severity": "modify",
+      "note": "Keep the ribs drawn in and the range small."
+    }
+  ],
+  "prep": [],
+  "cues": "Back stays flat like a table top.\nPush from the seat, not by arching the lower back.\nHips stay level and square.\nShoulders stay over the hands.",
+  "labels": [
+    "pregnancy-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

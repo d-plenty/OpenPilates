@@ -1,0 +1,131 @@
+{
+  "slug": "double-leg-lower-lift",
+  "name": "Double Leg Lower & Lift",
+  "apparatus": "mat",
+  "section": "core",
+  "level": "intermediate",
+  "levelTo": "advanced",
+  "pose": "mat-legs-up",
+  "position": "supine",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "flexion",
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "hip_flexors"
+    ],
+    "secondary": [
+      "obliques",
+      "adductors",
+      "quadriceps"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "stability",
+  "stable": "Curl, pelvis and lower back",
+  "mobile": "Hips",
+  "categories": [
+    "trunk_flexion",
+    "hip_flexion"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 3,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 8,
+  "duration": 90,
+  "reps": "6–10",
+  "summary": "Curled up with hands behind the head and both legs straight to the ceiling, lower the legs together as far as the back stays anchored, then lift.",
+  "steps": [
+    "Lie on the back, hands behind the head, legs straight up and squeezed together.",
+    "Curl the head and shoulders up.",
+    "Breathe in to lower both legs.",
+    "Breathe out to lift them back to vertical."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Hands under the pelvis",
+      "text": "Most support."
+    },
+    {
+      "tag": "L2",
+      "title": "Knees bent",
+      "text": "Shorter lever."
+    },
+    {
+      "tag": "L3",
+      "title": "Small range",
+      "text": "A few centimetres."
+    },
+    {
+      "tag": "L4",
+      "title": "Full range",
+      "text": "Classical."
+    }
+  ],
+  "modifications": [
+    "Head down.",
+    "Bend the knees.",
+    "One leg at a time."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "neck",
+      "severity": "modify",
+      "note": "Head down."
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Sustained loaded flexion.",
+      "swap": "dead-bug"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "High load through the lower back.",
+      "swap": "dead-bug"
+    },
+    {
+      "tag": "si_joint",
+      "severity": "modify",
+      "note": "One leg at a time."
+    }
+  ],
+  "prep": [
+    "scissors-mat",
+    "double-leg-stretch",
+    "toe-taps"
+  ],
+  "cues": "The moment the lower back lifts, you have gone too far.\nElbows wide; head heavy in the hands.\nSqueeze the legs together.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

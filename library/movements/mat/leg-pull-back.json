@@ -1,0 +1,106 @@
+{
+  "slug": "leg-pull-back",
+  "name": "Leg Pull Back",
+  "apparatus": "mat",
+  "section": "back_shoulders",
+  "level": "advanced",
+  "levelTo": "advanced",
+  "pose": "mat-reverse-plank",
+  "position": "plank",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "hip-dissociation"
+  ],
+  "muscles": {
+    "primary": [
+      "glutes",
+      "hamstrings",
+      "triceps"
+    ],
+    "secondary": [
+      "hip_flexors",
+      "deltoids",
+      "abdominals"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "stability",
+  "stable": "Trunk and pelvis",
+  "mobile": "One hip",
+  "categories": [
+    "hip_extension",
+    "hip_flexion",
+    "upper_body"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 3,
+    "stability": 3,
+    "flexibility": 1,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 8,
+  "duration": 90,
+  "reps": "3 each leg",
+  "summary": "In a reverse plank, one straight leg kicks up to the ceiling and lowers while the hips stay high.",
+  "steps": [
+    "Lift into a reverse plank: hands behind, legs long, body in one line.",
+    "Breathe in to kick one leg up.",
+    "Breathe out to lower it with control.",
+    "Alternate."
+  ],
+  "layers": [],
+  "modifications": [
+    "Reverse plank hold.",
+    "Knees bent tabletop."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "wrist",
+      "severity": "avoid",
+      "note": "Body weight through bent-back wrists.",
+      "swap": "shoulder-bridge"
+    },
+    {
+      "tag": "shoulder",
+      "severity": "avoid",
+      "note": "Loaded shoulder extension.",
+      "swap": "shoulder-bridge"
+    },
+    {
+      "tag": "si_joint",
+      "severity": "avoid",
+      "note": "One-leg loading.",
+      "swap": "pelvic-curl"
+    }
+  ],
+  "prep": [
+    "reverse-plank",
+    "shoulder-bridge"
+  ],
+  "cues": "Hips don't drop as the leg lifts.\nChest open; shoulders away from the ears.\nLook ahead, not at the ceiling.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "slug": "shoulder-bridge",
+  "name": "Shoulder Bridge",
+  "apparatus": "mat",
+  "section": "pelvic",
+  "level": "intermediate",
+  "levelTo": "intermediate",
+  "pose": "mat-bridge",
+  "position": "supine",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "hip-dissociation",
+    "extension"
+  ],
+  "muscles": {
+    "primary": [
+      "glutes",
+      "hamstrings"
+    ],
+    "secondary": [
+      "abdominals",
+      "spinal_extensors",
+      "hip_flexors"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": true,
+  "role": "stability",
+  "stable": "Pelvis level and lifted",
+  "mobile": "One hip",
+  "categories": [
+    "hip_extension",
+    "hip_flexion"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 3,
+    "stability": 3,
+    "flexibility": 1,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 120,
+  "reps": "3–5 kicks each leg",
+  "summary": "Holding a bridge, one leg stretches long, kicks up to the ceiling and lowers level with the other thigh, without the pelvis dipping.",
+  "steps": [
+    "Lie on the back, knees bent, feet hip-width; lift into a bridge.",
+    "Stretch one leg long in line with the other thigh.",
+    "Breathe in to kick it up to the ceiling.",
+    "Breathe out to lower it long. Repeat, then change legs."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Bridge and march",
+      "text": "Knee lifts to tabletop."
+    },
+    {
+      "tag": "L2",
+      "title": "Leg long, hold",
+      "text": "No kick."
+    },
+    {
+      "tag": "L3",
+      "title": "Kicks",
+      "text": "Classical."
+    },
+    {
+      "tag": "L4",
+      "title": "Hands under the hips",
+      "text": "Elbows down, hands supporting the pelvis."
+    }
+  ],
+  "modifications": [
+    "Lower bridge.",
+    "March instead of kick."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "clam-loop-band"
+    },
+    {
+      "tag": "si_joint",
+      "severity": "avoid",
+      "note": "One-leg loading.",
+      "swap": "pelvic-curl"
+    },
+    {
+      "tag": "neck",
+      "severity": "modify",
+      "note": "Lower bridge."
+    },
+    {
+      "tag": "extension_pain",
+      "severity": "modify",
+      "note": "Keep the ribs down and the bridge lower."
+    }
+  ],
+  "prep": [
+    "pelvic-curl"
+  ],
+  "cues": "Both hip bones stay level and high.\nThe standing foot pushes down hard.\nRibs soft.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

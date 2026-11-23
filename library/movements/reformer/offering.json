@@ -4,6 +4,8 @@
   "apparatus": "reformer",
   "section": "chest_arms",
   "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "kneel-face-bar",
   "position": "kneeling",
   "spine": [
     "neutral"

@@ -1,0 +1,128 @@
+{
+  "slug": "bird-dog-carriage",
+  "name": "Bird Dog on the Carriage",
+  "apparatus": "reformer",
+  "section": "core",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "quadruped-carriage",
+  "position": "quadruped",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "hip-dissociation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "glutes",
+      "spinal_extensors"
+    ],
+    "secondary": [
+      "deltoids",
+      "obliques",
+      "hamstrings"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "medium",
+      "medium"
+    ],
+    "advance": [
+      "light"
+    ],
+    "lighterIsHarder": true,
+    "note": "All springs on is a steady platform. One light spring lets the carriage wobble, which is much harder."
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Trunk and pelvis",
+  "mobile": "Opposite arm and leg",
+  "categories": [
+    "quadruped",
+    "hip_extension",
+    "upper_body"
+  ],
+  "pregnancy": "recommended",
+  "purpose": {
+    "strength": 1,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 3,
+  "duration": 120,
+  "reps": "6–8 each side",
+  "summary": "On hands and knees on the carriage, slide one leg back and reach the opposite arm forward without letting the trunk move.",
+  "steps": [
+    "Kneel on the carriage with hands under shoulders and knees under hips.",
+    "Breathe out to slide one leg back and lift it to hip height.",
+    "Add the opposite arm reaching forward.",
+    "Breathe in to return; change sides."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Leg only",
+      "text": "Slide and lift."
+    },
+    {
+      "tag": "L2",
+      "title": "Arm and leg",
+      "text": "Basic."
+    },
+    {
+      "tag": "L3",
+      "title": "Elbow to knee",
+      "text": "Draw them together under the body."
+    },
+    {
+      "tag": "L4",
+      "title": "Light spring",
+      "text": "Carriage free to move."
+    },
+    {
+      "tag": "L5",
+      "title": "Hands on the footbar",
+      "text": "Carriage moves as the leg reaches."
+    }
+  ],
+  "modifications": [
+    "Toes stay down.",
+    "Forearms down for sore wrists."
+  ],
+  "cautions": [
+    {
+      "tag": "wrist",
+      "severity": "modify",
+      "note": "Forearms down."
+    },
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Pad under the knees."
+    }
+  ],
+  "prep": [],
+  "cues": "Imagine a glass of water on the lower back.\nHips stay square to the carriage.\nReach long rather than high.",
+  "labels": [
+    "pregnancy-friendly",
+    "rehab-friendly",
+    "warm-up"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

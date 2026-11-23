@@ -4,6 +4,8 @@
   "apparatus": "reformer",
   "section": "pelvic",
   "level": "beginner",
+  "levelTo": "advanced",
+  "pose": "supine-bridge",
   "position": "supine",
   "spine": [
     "articulation"

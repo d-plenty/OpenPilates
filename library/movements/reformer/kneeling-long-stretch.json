@@ -4,6 +4,8 @@
   "apparatus": "reformer",
   "section": "core",
   "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "knee-stretch",
   "position": "kneeling",
   "spine": [
     "neutral"

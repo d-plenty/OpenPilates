@@ -150,3 +150,68 @@ test('every library movement names real lead-ins and swaps', () => {
     assert.ok(mv.section && mv.role && mv.pregnancy, mv.slug);
   }
 });
+
+import { levelLabel, levelsOf } from '../shared/vocab.js';
+import { tidySprings } from '../shared/draft.js';
+import { POSES, POSE_IDS, solve, poseOf } from '../shared/poses.js';
+
+test('level ranges read naturally', () => {
+  assert.equal(levelLabel({ level: 'beginner' }), 'Beginner');
+  assert.equal(levelLabel({ level: 'beginner', levelTo: 'intermediate' }), 'Beginner–Intermediate');
+  assert.equal(levelLabel({ level: 'beginner', levelTo: 'advanced' }), 'All levels');
+  assert.equal(levelLabel({ level: 'advanced', levelTo: 'beginner' }), 'Advanced');
+  assert.deepEqual(levelsOf({ level: 'intermediate', levelTo: 'advanced' }), ['intermediate', 'advanced']);
+  assert.equal(levelLabel(movements['kneeling-arm-circles-front']), 'Beginner–Intermediate');
+});
+
+test('tidy springs never adds changes and keeps every movement in its segment', () => {
+  for (const seed of [1, 2, 3, 4, 5]) {
+    const f = draftFlow({ movements, goal: 'full_body', apparatus: 'reformer', lengthMin: 50, level: 'intermediate', props, seed });
+    // shuffle each build block so there is something to tidy
+    for (const s of f.segments) if (s.role === 'build' || s.role === 'peak') s.items.reverse();
+    const before = analyze({ flow: f, movements }).springChanges;
+    const tidy = { ...f, segments: tidySprings(f, movements) };
+    const after = analyze({ flow: tidy, movements }).springChanges;
+    assert.ok(after <= before, `seed ${seed}: ${before} -> ${after}`);
+    f.segments.forEach((s, i) => assert.deepEqual(tidy.segments[i].items.map((x) => x.slug).sort(), s.items.map((x) => x.slug).sort()));
+  }
+});
+
+test('an add-on movement inside an option counts towards muscles, categories and kit', () => {
+  const item = { id: '1', slug: 'standing-lunge' };
+  const plain = analyze({ flow: flow([{ id: 's', role: 'build', items: [item] }]), movements, studio: { props: {} } });
+  const withAdd = analyze({ flow: flow([{ id: 's', role: 'build', items: [{ ...item, options: [{ id: 'o', kind: 'harder', slug: 'salute' }] }] }]), movements, studio: { props: {} } });
+  assert.ok(!plain.muscles.some((m) => m.id === 'triceps'));
+  assert.ok(withAdd.muscles.some((m) => m.id === 'triceps'));
+  assert.equal(withAdd.categories.find((c) => c.id === 'upper_body').count, 1);
+  assert.ok(withAdd.setOut.equipment.some((e) => e.id === 'long_box'));
+  assert.equal(withAdd.springChanges, plain.springChanges); // options never count as a class spring change
+  assert.equal(withAdd.withOptions, 1);
+});
+
+test('hard movements with no easier option are pointed out when someone is booked', () => {
+  const items = [{ id: '1', slug: 'footwork-series' }, { id: '2', slug: 'elephant' }, { id: '3', slug: 'long-stretch' }, { id: '4', slug: 'snake' }, { id: '5', slug: 'mermaid' }, { id: '6', slug: 'kneeling-row' }];
+  const a = analyze({ flow: flow([{ id: 's', role: 'build', items }]), movements, clients: [{ id: 1, name: 'Jo', tags: [] }] });
+  const mentions = (r) => { const c = r.checks.find((x) => x.id === 'options'); return c ? c.title + ' ' + c.body : ''; };
+  assert.ok(mentions(a).includes('Snake'));
+  items[3].options = [{ id: 'o', kind: 'easier', title: 'Plank and pike only' }];
+  const b = analyze({ flow: flow([{ id: 's', role: 'build', items }]), movements, clients: [{ id: 1, name: 'Jo', tags: [] }] });
+  assert.ok(!mentions(b).includes('Snake'));
+});
+
+test('every pose draws, and every library movement names a real pose for its apparatus', () => {
+  for (const id of POSE_IDS) for (const frame of ['a', 'b']) {
+    const j = solve(POSES[id], frame);
+    for (const pt of [j.hip, j.sh, j.head, j.mid, ...(j.leg ? [j.leg.knee, j.leg.foot] : []), ...(j.arm ? [j.arm.elbow, j.arm.hand] : [])]) {
+      assert.ok(Number.isFinite(pt[0]) && Number.isFinite(pt[1]), `${id} ${frame}`);
+      assert.ok(pt[0] > 0 && pt[0] < 240 && pt[1] > -34 && pt[1] < 126, `${id} ${frame} off the canvas: ${pt}`);
+    }
+  }
+  for (const mv of Object.values(movements)) {
+    assert.ok(POSES[mv.pose], `${mv.slug} has no pose`);
+    assert.equal(POSES[mv.pose].ctx, mv.apparatus === 'mat' ? 'mat' : 'reformer', `${mv.slug} uses a ${POSES[mv.pose].ctx} picture`);
+    assert.ok(mv.levelTo, `${mv.slug} has no level range`);
+  }
+  assert.ok(POSES[poseOf({ apparatus: 'reformer', position: 'kneeling', setup: { straps: 'short' } })]);
+  assert.ok(POSES[poseOf({ apparatus: 'mat', position: 'prone' })]);
+});

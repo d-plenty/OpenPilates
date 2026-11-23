@@ -2,16 +2,19 @@ import { h, icon, btn, toast, select, field, chips, debounce, confirmDialog, mod
 import { api, store } from '../store.js';
 import { go } from '../app.js';
 import { analyze, itemDuration, fmtClock, avoids } from '/shared/analysis.js';
-import { newId } from '/shared/draft.js';
+import { newId, tidySprings } from '/shared/draft.js';
 import { POSITIONS, SPINE, MUSCLES, LEVELS, SEGMENT_ROLES, CAUTIONS, SECTIONS, FORMATS, labelOf, sectionOf } from '/shared/vocab.js';
-import { movementCard, checksList, statTiles, radarCard, bodyCard, intensityCard, positionsCard, focusCard, muscleListCard, clientsCard, springsCard, balanceCard, posLabel, muscleLabel, springDots, fmtMin } from './common.js';
+import { movementCard, checksList, statTiles, radarCard, bodyCard, intensityCard, positionsCard, focusCard, muscleListCard, clientsCard, springsCard, balanceCard, setOutCard, thumb, posLabel, muscleLabel, springDots, fmtMin } from './common.js';
 import { playView } from './play.js';
+import { sheetView } from './sheet.js';
+import { itemExtras, editItemDialog } from './options.js';
 
 const ROLE_COLOR = { warmup: '#7FB8AD', build: '#4E9C8F', peak: '#0F6E62', cooldown: '#A9C7BF' };
 
 export async function flowView(id, tab) {
   const data = await api('GET', `/flows/${id}`);
   if (tab === 'play') return playView(data);
+  if (tab === 'sheet') return sheetView(data);
   const meta = { id: data.id, ownerName: data.ownerName, ownerId: data.ownerId, canEdit: data.canEdit, shared: data.shared };
   const flow = pickFlow(data);
   const history = [];
@@ -66,16 +69,22 @@ export async function flowView(id, tab) {
     flow.apparatus !== 'mat' ? select([0, 1, 2, 3, 4, 5, 6, 8, 10].map((n) => ({ id: String(n), label: `Spring changes: up to ${n}` })), String(flow.springBudget ?? 6), (v) => change(() => { flow.springBudget = Number(v); }), { 'aria-label': 'Spring-change limit', disabled: !meta.canEdit, style: { width: 'auto' } }) : null);
 
   const tabs = (current) => h('div', { class: 'seg', role: 'tablist', 'aria-label': 'Flow views' },
-    [['build', 'Build'], ['analysis', 'Analysis'], ['play', 'Play']].map(([t, l]) =>
+    [['build', 'Build'], ['analysis', 'Analysis'], ['sheet', 'Run sheet'], ['play', 'Play']].map(([t, l]) =>
       h('a', { role: 'tab', 'aria-selected': current === t ? 'true' : 'false', class: current === t ? 'on' : null, href: `#/flows/${meta.id}/${t}` }, l)));
 
   const actions = () => h('div', { class: 'btn-row no-print' },
     meta.canEdit ? btn('', undo, { iconName: 'undo', title: 'Undo (Ctrl+Z)' }) : null,
+    meta.canEdit && flow.apparatus !== 'mat' ? btn('Tidy springs', () => {
+      const before = analysis().springChanges;
+      change(() => { flow.segments = tidySprings(flow, store.movements); });
+      const after = analysis().springChanges;
+      toast(after < before ? `Reordered inside each segment: ${before} spring changes down to ${after}.` : 'Already as tidy as it gets without moving movements between segments.', after < before ? { action: { label: 'Undo', run: undo } } : {});
+    }, { iconName: 'wand', title: 'Reorder movements inside each segment so the springs change as rarely as possible' }) : null,
     meta.canEdit && meta.ownerId === store.user.id ? h('label', { class: 'btn', title: 'Let other instructors see and copy this flow' },
       h('input', { type: 'checkbox', checked: meta.shared, onchange: (e) => { meta.shared = e.target.checked; change(() => {}, { redraw: false }); } }), 'Share with team') : null,
     btn('Duplicate', async () => { const f = await api('POST', `/flows/${meta.id}/duplicate`); toast('Copy made.'); go(`/flows/${f.id}`); }, { iconName: 'copy' }),
     h('a', { class: 'btn', href: `/api/flows/${meta.id}/export`, download: '', title: 'Download a flow file to share. Client details are never included.' }, icon('download'), 'Export'),
-    btn('', () => window.print(), { iconName: 'print', title: 'Print' }),
+    h('a', { class: 'btn btn-icon', href: `#/flows/${meta.id}/sheet`, title: 'Run sheet to print', 'aria-label': 'Run sheet to print' }, icon('print')),
     meta.canEdit ? btn('', async () => { if (await confirmDialog('Delete this flow?', `"${flow.title}" will be deleted for everyone.`)) { await api('DELETE', `/flows/${meta.id}`); toast('Flow deleted.'); go('/'); } }, { iconName: 'trash', title: 'Delete flow' }) : null);
 
   // ---------- library pane
@@ -165,14 +174,15 @@ export async function flowView(id, tab) {
     const planned = plan.get(item.id);
     const li = h('li', { class: 'item', draggable: meta.canEdit ? 'true' : null, 'data-id': item.id },
       meta.canEdit ? h('span', { 'aria-hidden': 'true' }, icon('grip')) : h('span'),
-      h('div', { style: { minWidth: 0 } },
+      h('div', { class: 'item-main' }, mv ? h('span', { class: 'item-thumb', 'aria-hidden': 'true' }, thumb(mv, { width: 54 })) : null, h('div', { style: { minWidth: 0, flex: 1 } },
         h('div', { style: { display: 'flex', gap: '6px', alignItems: 'center', flexWrap: 'wrap' } },
           mv ? h('a', { class: 'name', href: `#/movements/${mv.slug}`, style: { color: 'inherit', textDecoration: 'none' } }, mv.name) : h('span', { class: 'name' }, `Missing: ${item.slug}`),
           flags.length ? h('span', { class: 'tag tag-warn', title: flags.map((f) => f.note).join(' ') }, icon('alert', 11), flags.map((f) => labelOf(CAUTIONS, f.tag)).join(', ')) : null,
           adjust.length ? h('span', { class: 'tag', title: adjust.map((f) => `${labelOf(CAUTIONS, f.tag)}: ${f.note}`).join(' ') }, 'Adjust') : null,
           planned && planned.advanced ? h('span', { class: 'tag', title: 'Taught on its "to advance" springs so the class doesn\'t stop for a change' }, 'On advance springs') : null,
           item.note ? h('span', { class: 'tag', title: item.note }, 'Note') : null),
-        mv ? h('div', { class: 'sub' }, labelOf(SECTIONS, sectionOf(mv)), ' · ', mv.muscles.primary.slice(0, 3).map(muscleLabel).join(' · '), item.reps || mv.reps ? ` · ${item.reps || mv.reps}` : '') : null),
+        mv ? h('div', { class: 'sub' }, labelOf(SECTIONS, sectionOf(mv)), ' · ', mv.muscles.primary.slice(0, 3).map(muscleLabel).join(' · '), item.reps || mv.reps ? ` · ${item.reps || mv.reps}` : '') : null,
+        itemExtras(item, mv, room()))),
       h('span', { class: 'pos' }, mv ? posLabel(mv.position) : ''),
       mv && mv.apparatus === 'reformer' ? springDots(planned ? planned.loads : (item.load?.springs || mv.load?.springs || []), room()) : h('span', { class: 'tiny muted' }, mv ? 'Mat' : ''),
       h('div', { style: { display: 'flex', alignItems: 'center', gap: '4px' } },
@@ -181,7 +191,7 @@ export async function flowView(id, tab) {
         meta.canEdit ? h('div', { class: 'tools' },
           btn('', () => nudge(item.id, -1), { iconName: 'up', small: true, kind: 'ghost', title: 'Move up' }),
           btn('', () => nudge(item.id, 1), { iconName: 'down', small: true, kind: 'ghost', title: 'Move down' }),
-          btn('', () => editItem(item, mv), { iconName: 'edit', small: true, kind: 'ghost', title: 'Reps, springs and notes' }),
+          btn('', () => editItem(item, mv), { iconName: 'layers', small: true, kind: 'ghost', title: 'Options: layers, springs, add-ons and notes' }),
           btn('', () => { change(() => { seg.items = seg.items.filter((x) => x.id !== item.id); }); toast('Removed.', { action: { label: 'Undo', run: undo } }); }, { iconName: 'close', small: true, kind: 'ghost', title: 'Remove' })) : null));
     if (meta.canEdit) {
       li.addEventListener('dragstart', (e) => { dragItemId = item.id; e.dataTransfer.setData('text/x-op-item', item.id); e.dataTransfer.effectAllowed = 'move'; li.classList.add('dragging'); });
@@ -196,7 +206,8 @@ export async function flowView(id, tab) {
 
   const segmentCard = (seg, si) => {
     const a = segSeconds(seg);
-    const el = h('div', { class: ['segment'], style: activeSeg === seg.id && meta.canEdit ? { borderColor: '#0F6E62', boxShadow: '0 0 0 1px #0F6E62' } : null, onclick: () => { if (activeSeg !== seg.id) { activeSeg = seg.id; drawSegments(); } } },
+    // Selecting a segment only moves the highlight; redrawing here would swallow the click on whatever was pressed.
+    const el = h('div', { class: ['segment', activeSeg === seg.id && meta.canEdit && 'active'], 'data-seg': seg.id, onclick: () => { if (activeSeg !== seg.id) { activeSeg = seg.id; segWrap.querySelectorAll('.segment').forEach((x) => x.classList.toggle('active', meta.canEdit && x.dataset.seg === seg.id)); } } },
       h('div', { class: 'seg-head' },
         h('span', { class: 'seg-dot', style: { background: ROLE_COLOR[seg.role] } }),
         h('input', { class: 'seg-name', type: 'text', value: seg.name, 'aria-label': 'Segment name', disabled: !meta.canEdit, oninput: (e) => change(() => { seg.name = e.target.value; }, { redraw: false }) }),
@@ -253,30 +264,11 @@ export async function flowView(id, tab) {
   // ---------- item editor
   const editItem = async (item, mv) => {
     if (!mv) return;
-    const reps = h('input', { type: 'text', value: item.reps || '', placeholder: mv.reps || 'e.g. 8 each side' });
-    const layerOptions = [{ id: '', label: 'Not set' }, ...(mv.layers || []).map((l) => ({ id: l.tag, label: `${l.tag} — ${l.title}` }))];
-    let layer = item.layer || '';
-    const note = h('textarea', { rows: 3, placeholder: 'Notes for this class' }, item.note || '');
-    let springs = [...(item.load?.springs || mv.load?.springs || [])];
-    const springsEl = h('div');
-    const drawSprings = () => fill(springsEl, springDots(springs, room()), ' ',
-      ['xlight', 'light', 'medium', 'heavy'].map((l) => btn(`+ ${l}`, () => { if (springs.length < 5) springs.push(l); drawSprings(); }, { small: true })),
-      btn('Usual', () => { springs = [...(mv.load?.springs || [])]; drawSprings(); }, { small: true, kind: 'ghost' }),
-      mv.load?.advance?.length ? btn('To advance', () => { springs = [...mv.load.advance]; drawSprings(); }, { small: true, kind: 'ghost' }) : null,
-      btn('Clear', () => { springs = []; drawSprings(); }, { small: true, kind: 'ghost' }));
-    drawSprings();
-    const r = await modal(mv.name, h('div', { class: 'stack' },
-      field('Reps', reps),
-      mv.layers?.length ? field('Layer', select(layerOptions, layer, (v) => { layer = v; })) : null,
-      mv.apparatus === 'reformer' ? field('Springs for this class', springsEl, `Leave on "Usual" and the plan keeps whichever of the usual or advance setting is already on the machine. Setting it here pins it.${mv.load?.note ? ' ' + mv.load.note : ''}`) : null,
-      field('Note', note)), { actions: [{ label: 'Cancel', value: false }, { label: 'Save', value: true, kind: 'primary' }] });
+    const r = await editItemDialog(item, mv, room());
     if (!r) return;
     change(() => {
-      item.reps = reps.value.trim() || undefined;
-      item.layer = layer || undefined;
-      item.note = note.value.trim() || undefined;
-      const def = (mv.load?.springs || []).join('+');
-      item.load = springs.join('+') !== def ? { springs } : undefined;
+      for (const k of ['reps', 'note', 'load', 'layers', 'options']) { if (r[k] === undefined) delete item[k]; else item[k] = r[k]; }
+      delete item.layer;
     });
   };
 
@@ -291,7 +283,8 @@ export async function flowView(id, tab) {
       radarCard(a),
       bodyCard(a, { size: 96 }),
       h('div', { class: 'card' }, h('div', { class: 'card-head' }, h('h2', null, 'Checks')), checksList(a.checks, { limit: 6 }),
-        h('a', { class: 'btn btn-dark', style: { width: '100%', marginTop: '10px' }, href: `#/flows/${meta.id}/analysis` }, 'Open full analysis')));
+        h('a', { class: 'btn btn-dark', style: { width: '100%', marginTop: '10px' }, href: `#/flows/${meta.id}/analysis` }, 'Open full analysis')),
+      setOutCard(a, room()));
   };
   const drawBody = () => { drawSegments(); drawLive(); drawLibrary(); };
 
@@ -299,12 +292,12 @@ export async function flowView(id, tab) {
   const analysisBody = () => {
     const a = analysis();
     const swap = (issue) => change(() => {
-      for (const seg of flow.segments) for (const it of seg.items) if (it.id === issue.itemId) { it.slug = issue.swap.slug; delete it.load; delete it.layer; }
+      for (const seg of flow.segments) for (const it of seg.items) if (it.id === issue.itemId) { it.slug = issue.swap.slug; delete it.load; delete it.layer; delete it.layers; delete it.options; }
     });
     return h('div', { class: 'stack' },
       statTiles(a),
       intensityCard(a, flow),
-      h('div', { class: 'auto-grid' }, springsCard(a, room()), balanceCard(a), radarCard(a), positionsCard(a), bodyCard(a), muscleListCard(a), focusCard(a),
+      h('div', { class: 'auto-grid' }, springsCard(a, room()), balanceCard(a), setOutCard(a, room()), radarCard(a), positionsCard(a), bodyCard(a), muscleListCard(a), focusCard(a),
         h('div', { class: 'card' }, h('h2', null, 'Class check'), checksList(a.checks))),
       clientsCard(a, { onSwap: meta.canEdit ? swap : null }));
   };

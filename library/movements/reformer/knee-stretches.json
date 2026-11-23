@@ -3,7 +3,9 @@
   "name": "Knee Stretches — Round & Flat",
   "apparatus": "reformer",
   "section": "lower",
-  "level": "intermediate",
+  "level": "beginner",
+  "levelTo": "advanced",
+  "pose": "knee-stretch",
   "position": "kneeling",
   "spine": [
     "flexion"

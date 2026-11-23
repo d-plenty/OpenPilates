@@ -64,7 +64,12 @@ const ICONS = {
   logout: 'M10 4H5v16h5M14 8l4 4-4 4M18 12H9',
   share: 'M12 15V4M8 8l4-4 4 4M5 13v7h14v-7',
   print: 'M6 9V4h12v5M6 17H4v-6h16v6h-2M7 14h10v6H7z',
-  undo: 'M9 14L4 9l5-5M4 9h10a6 6 0 0 1 0 12h-3'
+  undo: 'M9 14L4 9l5-5M4 9h10a6 6 0 0 1 0 12h-3',
+  help: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7M12 17v.5',
+  layers: 'M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5',
+  sheet: 'M6 3h9l4 4v14H6zM14 3v5h5M9 12h7M9 16h7',
+  camera: 'M4 8h4l1.5-2h5L16 8h4v11H4zM12 17a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z',
+  wand: 'M5 19L16 8M14 6l4 4M6 5v3M4.5 6.5h3M18 15v3M16.5 16.5h3'
 };
 
 export function icon(name, size = 18, extra = {}) {
@@ -125,10 +130,15 @@ export function select(options, value, onChange, attrs = {}) {
 
 export function chips(options, selected, onToggle, { multi = true, small } = {}) {
   const set = new Set(Array.isArray(selected) ? selected : [selected]);
-  return h('div', { class: 'chips', role: 'group' }, options.map((o) =>
-    h('button', { type: 'button', class: ['chip', set.has(o.id) && 'on', small && 'chip-sm'], 'aria-pressed': set.has(o.id) ? 'true' : 'false', onclick: () => {
-      if (multi) { set.has(o.id) ? set.delete(o.id) : set.add(o.id); onToggle([...set]); } else onToggle(o.id);
+  // The chips keep their own highlight in step, so callers don't have to redraw to show a selection.
+  const paint = (wrap) => [...wrap.children].forEach((b, i) => { const on = set.has(options[i].id); b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+  const wrap = h('div', { class: 'chips', role: 'group' }, options.map((o) =>
+    h('button', { type: 'button', class: ['chip', set.has(o.id) && 'on', small && 'chip-sm'], 'aria-pressed': set.has(o.id) ? 'true' : 'false', title: o.title || null, onclick: () => {
+      if (multi) { set.has(o.id) ? set.delete(o.id) : set.add(o.id); } else { set.clear(); set.add(o.id); }
+      if (wrap.isConnected) paint(wrap);
+      onToggle(multi ? [...set] : o.id);
     } }, o.label)));
+  return wrap;
 }
 
 export function empty(title, text, action) {
@@ -136,9 +146,11 @@ export function empty(title, text, action) {
 }
 
 export function debounce(fn, ms = 600) {
-  let t;
-  const d = (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); };
-  d.flush = (...a) => { clearTimeout(t); fn(...a); };
+  let t = null;
+  let last = [];
+  const d = (...a) => { clearTimeout(t); last = a; t = setTimeout(() => { t = null; fn(...a); }, ms); };
+  // flush() only runs the call that is still waiting; it does nothing if there isn't one
+  d.flush = () => { if (t === null) return; clearTimeout(t); t = null; fn(...last); };
   return d;
 }
 

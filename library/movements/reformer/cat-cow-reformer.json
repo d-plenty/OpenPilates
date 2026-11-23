@@ -4,6 +4,8 @@
   "apparatus": "reformer",
   "section": "stretch",
   "level": "beginner",
+  "levelTo": "beginner",
+  "pose": "cat-carriage",
   "position": "quadruped",
   "spine": [
     "flexion",

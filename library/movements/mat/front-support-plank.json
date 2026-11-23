@@ -3,7 +3,9 @@
   "name": "Plank (Front Support)",
   "apparatus": "mat",
   "section": "core",
-  "level": "intermediate",
+  "level": "beginner",
+  "levelTo": "advanced",
+  "pose": "mat-plank",
   "position": "plank",
   "spine": [
     "neutral"

@@ -3,7 +3,9 @@
   "name": "Pulling Straps",
   "apparatus": "reformer",
   "section": "back_shoulders",
-  "level": "intermediate",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "prone-long-box",
   "position": "prone",
   "spine": [
     "extension"

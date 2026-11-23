@@ -3,7 +3,9 @@
   "name": "Draw a Sword",
   "apparatus": "reformer",
   "section": "single_arm",
-  "level": "intermediate",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "kneel-side",
   "position": "kneeling",
   "spine": [
     "neutral"

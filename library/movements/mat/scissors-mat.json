@@ -1,0 +1,118 @@
+{
+  "slug": "scissors-mat",
+  "name": "Scissors (Single Straight Leg Stretch)",
+  "apparatus": "mat",
+  "section": "core",
+  "level": "intermediate",
+  "levelTo": "intermediate",
+  "pose": "mat-legs-up",
+  "position": "supine",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "flexion",
+    "stabilisation",
+    "hip-dissociation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "hip_flexors"
+    ],
+    "secondary": [
+      "hamstrings",
+      "obliques"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "stability",
+  "stable": "Curl and pelvis",
+  "mobile": "Hips",
+  "categories": [
+    "trunk_flexion",
+    "hip_flexion"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 2,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 90,
+  "reps": "8–10 each leg",
+  "summary": "Curled up with both legs straight, one leg comes towards the face as the other reaches away just above the mat; pulse twice and switch.",
+  "steps": [
+    "Curl the head and shoulders up; both legs straight to the ceiling.",
+    "Hold one calf or ankle and lower the other leg towards the mat.",
+    "Pulse the top leg in twice.",
+    "Switch legs with a clean scissor."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Head down",
+      "text": "Legs only."
+    },
+    {
+      "tag": "L2",
+      "title": "Knees soft",
+      "text": "For tight hamstrings."
+    },
+    {
+      "tag": "L3",
+      "title": "Hands on the leg",
+      "text": "Classical."
+    },
+    {
+      "tag": "L4",
+      "title": "Hands behind the head",
+      "text": "No help."
+    }
+  ],
+  "modifications": [
+    "Head down.",
+    "Bend the knees a little."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "neck",
+      "severity": "modify",
+      "note": "Head down or support with one hand."
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Sustained loaded flexion.",
+      "swap": "dead-bug"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "Sustained flexion.",
+      "swap": "dead-bug"
+    }
+  ],
+  "prep": [
+    "single-leg-stretch",
+    "supine-curl"
+  ],
+  "cues": "The curl stays high.\nLegs stay straight; the switch is crisp.\nHips don't rock.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

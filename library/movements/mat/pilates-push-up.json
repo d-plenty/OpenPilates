@@ -1,0 +1,121 @@
+{
+  "slug": "pilates-push-up",
+  "name": "Push-up (Pilates)",
+  "apparatus": "mat",
+  "section": "chest_arms",
+  "level": "intermediate",
+  "levelTo": "advanced",
+  "pose": "mat-plank",
+  "position": "standing",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "push",
+    "spinal-articulation"
+  ],
+  "muscles": {
+    "primary": [
+      "chest",
+      "triceps",
+      "abdominals"
+    ],
+    "secondary": [
+      "deltoids",
+      "serratus",
+      "hamstrings"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "both",
+  "stable": "Trunk in the plank",
+  "mobile": "Spine in the roll down; elbows in the push-up",
+  "categories": [
+    "upper_body",
+    "quadruped",
+    "standing",
+    "trunk_flexion"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 3,
+    "stability": 3,
+    "flexibility": 1,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 7,
+  "duration": 120,
+  "reps": "3–5 rounds of 3 push-ups",
+  "summary": "Roll down from standing, walk the hands out to a plank, do three narrow push-ups with the elbows close, walk back and roll up.",
+  "steps": [
+    "Stand tall; roll down until the hands reach the mat.",
+    "Walk the hands out to a plank.",
+    "Bend the elbows back along the ribs and press up, three times.",
+    "Lift the hips, walk the hands back and roll up."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Walk out and hold",
+      "text": "No push-up."
+    },
+    {
+      "tag": "L2",
+      "title": "Knees down",
+      "text": "Half push-ups."
+    },
+    {
+      "tag": "L3",
+      "title": "Full",
+      "text": "Classical."
+    },
+    {
+      "tag": "L4",
+      "title": "Single leg",
+      "text": "One leg lifted."
+    }
+  ],
+  "modifications": [
+    "Knees down.",
+    "Hands on a raised surface."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "standing-arm-weights"
+    },
+    {
+      "tag": "wrist",
+      "severity": "avoid",
+      "note": "Body weight through the wrists.",
+      "swap": "standing-arm-weights"
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Knees down, smaller range."
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "modify",
+      "note": "Hinge down with a long spine instead of rolling."
+    }
+  ],
+  "prep": [
+    "front-support-plank",
+    "inchworm"
+  ],
+  "cues": "Elbows skim the ribs.\nHead, ribs and hips move as one.\nHeels stay heavy as you walk back.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

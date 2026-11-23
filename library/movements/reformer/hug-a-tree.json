@@ -1,0 +1,113 @@
+{
+  "slug": "hug-a-tree",
+  "name": "Hug a Tree",
+  "apparatus": "reformer",
+  "section": "chest_arms",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "kneel-face-bar",
+  "position": "kneeling",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "transverse",
+  "patterns": [
+    "stabilisation",
+    "push"
+  ],
+  "muscles": {
+    "primary": [
+      "chest",
+      "deltoids"
+    ],
+    "secondary": [
+      "serratus",
+      "biceps",
+      "abdominals"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "light"
+    ],
+    "advance": [
+      "medium"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Trunk and pelvis",
+  "mobile": "Shoulders",
+  "categories": [
+    "upper_body"
+  ],
+  "pregnancy": "ok",
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": false,
+  "intensity": 4,
+  "duration": 120,
+  "reps": "8–15",
+  "summary": "With your back to the straps and arms open wide and softly rounded, both arms close in front of the chest as if wrapping round a trunk.",
+  "steps": [
+    "Sit or kneel facing the footbar; short loops, arms wide at chest height, elbows soft, palms forward.",
+    "Breathe out to bring the hands together in front of the breastbone.",
+    "Breathe in to open with control, hands staying in sight."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Sitting, legs long or crossed",
+      "text": "Classical."
+    },
+    {
+      "tag": "L2",
+      "title": "Sitting on heels",
+      "text": "Kneeling."
+    },
+    {
+      "tag": "L3",
+      "title": "Kneeling upright",
+      "text": "Harder base."
+    },
+    {
+      "tag": "L4",
+      "title": "On the long box",
+      "text": "Easiest on the knees."
+    }
+  ],
+  "modifications": [
+    "Long loops for less tension.",
+    "Sit on the long box."
+  ],
+  "cautions": [
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Sit on the long box or with legs long."
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Lightest spring; smaller range."
+    }
+  ],
+  "prep": [],
+  "cues": "The curve in the arms doesn't change.\nHands stay just in front of the shoulders when open.\nSit tall; no rocking.",
+  "labels": [
+    "pregnancy-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

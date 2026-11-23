@@ -4,6 +4,8 @@
   "apparatus": "mat",
   "section": "stretch",
   "level": "beginner",
+  "levelTo": "beginner",
+  "pose": "mat-kneel-rest",
   "position": "kneeling",
   "spine": [
     "flexion"

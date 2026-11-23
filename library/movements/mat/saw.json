@@ -4,6 +4,8 @@
   "apparatus": "mat",
   "section": "core",
   "level": "intermediate",
+  "levelTo": "intermediate",
+  "pose": "mat-sit-tall",
   "position": "seated",
   "spine": [
     "rotation",

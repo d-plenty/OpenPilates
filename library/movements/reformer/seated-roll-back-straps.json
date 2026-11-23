@@ -1,0 +1,124 @@
+{
+  "slug": "seated-roll-back-straps",
+  "name": "Seated Roll Back with Straps",
+  "apparatus": "reformer",
+  "section": "core",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "sit-carriage-face-straps",
+  "position": "seated",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "flexion",
+    "spinal-articulation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals"
+    ],
+    "secondary": [
+      "biceps",
+      "hip_flexors",
+      "lats"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium"
+    ],
+    "advance": [
+      "light"
+    ],
+    "lighterIsHarder": true,
+    "note": "The spring helps you up, so lighter is harder."
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "both",
+  "stable": "Legs",
+  "mobile": "Pelvis and spine",
+  "categories": [
+    "trunk_flexion",
+    "hip_flexion"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 4,
+  "duration": 120,
+  "reps": "8–12",
+  "summary": "Sitting facing the straps with knees bent and a loop in each hand, curl the tail under and roll back halfway with the straps taking some of the weight, then curl up.",
+  "steps": [
+    "Sit facing the straps, knees bent, feet on the headrest or the carriage; short loops in the hands, arms long.",
+    "Breathe out to tuck the tail and roll back until the lower back is close to the carriage.",
+    "Breathe in to hold.",
+    "Breathe out to curl forward and stack up tall."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Roll back and up",
+      "text": "Basic."
+    },
+    {
+      "tag": "L2",
+      "title": "Hold and curl the arms",
+      "text": "Stay back and add biceps curls."
+    },
+    {
+      "tag": "L3",
+      "title": "Add a twist",
+      "text": "Turn the ribs to one side at the back."
+    },
+    {
+      "tag": "L4",
+      "title": "Single arm row",
+      "text": "Row one arm as you turn."
+    }
+  ],
+  "modifications": [
+    "Heavier spring for more help.",
+    "Smaller range."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "kneeling-biceps-curl"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Loaded spinal flexion.",
+      "swap": "kneeling-biceps-curl"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "Spinal flexion.",
+      "swap": "kneeling-biceps-curl"
+    }
+  ],
+  "prep": [],
+  "cues": "Start from the pelvis, not the chest.\nArms stay long — don't pull yourself up with them.\nShoulders stay over the ribs.",
+  "labels": [
+    "warm-up"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

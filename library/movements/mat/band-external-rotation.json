@@ -4,6 +4,8 @@
   "apparatus": "mat",
   "section": "back_shoulders",
   "level": "beginner",
+  "levelTo": "beginner",
+  "pose": "mat-stand",
   "position": "kneeling",
   "spine": [
     "neutral"

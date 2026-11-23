@@ -4,6 +4,8 @@
   "apparatus": "mat",
   "section": "core",
   "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "mat-half-roll-back",
   "position": "seated",
   "spine": [
     "flexion",

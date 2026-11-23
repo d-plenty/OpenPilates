@@ -1,0 +1,120 @@
+{
+  "slug": "grasshopper",
+  "name": "Grasshopper",
+  "apparatus": "reformer",
+  "section": "back_shoulders",
+  "level": "advanced",
+  "levelTo": "advanced",
+  "pose": "prone-long-box-bar",
+  "position": "prone",
+  "spine": [
+    "extension"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "extension",
+    "coordination"
+  ],
+  "muscles": {
+    "primary": [
+      "spinal_extensors",
+      "glutes",
+      "hamstrings"
+    ],
+    "secondary": [
+      "triceps",
+      "upper_back",
+      "adductors"
+    ]
+  },
+  "equipment": [
+    "long_box"
+  ],
+  "load": {
+    "springs": [
+      "medium",
+      "light"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "mobility",
+  "stable": "Arms",
+  "mobile": "Whole spine, hips and knees",
+  "categories": [
+    "trunk_extension",
+    "hip_extension"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 1,
+    "mobility": 2
+  },
+  "multiJoint": true,
+  "intensity": 8,
+  "duration": 90,
+  "reps": "3–5",
+  "summary": "Face down on the long box with hands on the footbar: bend the arms to bring the chest down as the legs sweep up, then press up into a long back bend and beat the heels.",
+  "steps": [
+    "Lie face down on the long box facing the footbar, hips at the front edge, hands on the bar, arms straight, chest lifted.",
+    "Breathe in to bend the elbows, lowering the chest as the legs lift behind.",
+    "Bend the knees and beat the heels together a few times.",
+    "Breathe out to stretch the legs and press back up."
+  ],
+  "layers": [],
+  "modifications": [
+    "Swan on the long box instead."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "shoulder-retraction"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "shoulder-retraction"
+    },
+    {
+      "tag": "extension_pain",
+      "severity": "avoid",
+      "note": "Strong loaded extension.",
+      "swap": "pulling-straps"
+    },
+    {
+      "tag": "wrist",
+      "severity": "avoid",
+      "note": "Weight through the wrists.",
+      "swap": "pulling-straps"
+    },
+    {
+      "tag": "shoulder",
+      "severity": "avoid",
+      "note": "Loaded shoulder extension.",
+      "swap": "shoulder-retraction"
+    },
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Skip the heel beats."
+    }
+  ],
+  "prep": [
+    "swan-long-box",
+    "breaststroke"
+  ],
+  "cues": "One long curve, like a seesaw over the hips.\nLegs together.\nLift the belly to support the lower back.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

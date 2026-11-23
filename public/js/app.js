@@ -6,6 +6,7 @@ import { flowView } from './views/flow.js';
 import { exploreView } from './views/explore.js';
 import { movementView, movementEditView } from './views/movement.js';
 import { studioView, clientsView, teamView, accountView } from './views/studio.js';
+import { guideView } from './views/guide.js';
 
 const root = document.getElementById('app');
 let cleanup = null;
@@ -13,7 +14,7 @@ let cleanup = null;
 const routes = [
   [/^\/?$/, () => flowsView()],
   [/^\/flows\/new$/, () => newFlowView()],
-  [/^\/flows\/([\w-]+)(?:\/(build|analysis|play))?$/, (m) => flowView(m[1], m[2] || 'build')],
+  [/^\/flows\/([\w-]+)(?:\/(build|analysis|play|sheet))?$/, (m) => flowView(m[1], m[2] || 'build')],
   [/^\/explore$/, (m, q) => exploreView(q)],
   [/^\/movements\/new$/, () => movementEditView(null)],
   [/^\/movements\/([\w-]+)\/edit$/, (m) => movementEditView(m[1])],
@@ -21,10 +22,12 @@ const routes = [
   [/^\/studio$/, () => studioView()],
   [/^\/clients$/, () => clientsView()],
   [/^\/team$/, () => teamView()],
-  [/^\/account$/, () => accountView()]
+  [/^\/account$/, () => accountView()],
+  [/^\/guide$/, () => guideView()]
 ];
 
-export function go(path) { location.hash = '#' + path; }
+// Going to the page you are already on re-draws it (the browser fires no event for that).
+export function go(path) { if (location.hash === '#' + path) render(); else location.hash = '#' + path; }
 
 function currentPath() {
   const raw = location.hash.replace(/^#/, '') || '/';
@@ -34,6 +37,7 @@ function currentPath() {
 
 function shell(active, content) {
   const nav = [['/', 'Flows', 'list'], ['/explore', 'Movements', 'compass'], ['/clients', 'Clients', 'user'], ['/studio', 'Studio', 'home']];
+  const tabs = [...nav, ['/guide', 'Guide', 'help']];
   const user = store.user;
   return [
     h('header', { class: 'topbar no-print' },
@@ -41,15 +45,16 @@ function shell(active, content) {
         h('img', { src: '/icon.svg', width: 28, height: 28, alt: '' }), 'OpenPilates'),
       h('nav', { class: 'nav', 'aria-label': 'Main' },
         nav.map(([p, l]) => h('a', { href: '#' + p, class: active === p ? 'on' : null, 'aria-current': active === p ? 'page' : null }, l)),
-        store.isAdmin ? h('a', { href: '#/team', class: active === '/team' ? 'on' : null }, 'Team') : null),
+        store.isAdmin ? h('a', { href: '#/team', class: active === '/team' ? 'on' : null, 'aria-current': active === '/team' ? 'page' : null }, 'Team') : null,
+        h('a', { href: '#/guide', class: active === '/guide' ? 'on' : null, 'aria-current': active === '/guide' ? 'page' : null }, 'Guide')),
       h('div', { class: 'spacer' }),
       h('div', { class: 'userchip' },
         h('span', { class: 'who' }, store.state?.studioName ? `${store.state.studioName} · ` : '', user?.displayName),
         h('a', { href: '#/account', class: 'btn btn-sm btn-ghost', title: 'Your account', 'aria-label': 'Your account' }, icon('user', 18)),
-        h('button', { class: 'btn btn-sm btn-ghost', title: 'Sign out', 'aria-label': 'Sign out', onclick: async () => { await api('POST', '/logout'); store.state.user = null; store.reset(); render(); } }, icon('logout', 18)))),
+        h('button', { class: 'btn btn-sm btn-ghost', title: 'Sign out', 'aria-label': 'Sign out', onclick: async () => { await api('POST', '/logout'); store.state.user = null; store.reset(); if (location.hash && location.hash !== '#/') location.hash = '#/'; else render(); } }, icon('logout', 18)))),
     h('main', { class: 'page', id: 'main' }, content),
     h('nav', { class: 'tabbar no-print', 'aria-label': 'Tabs' },
-      nav.map(([p, l, ic]) => h('a', { href: '#' + p, class: active === p ? 'on' : null }, icon(ic, 22), l)))
+      tabs.map(([p, l, ic]) => h('a', { href: '#' + p, class: active === p ? 'on' : null, 'aria-current': active === p ? 'page' : null }, icon(ic, 22), l)))
   ];
 }
 

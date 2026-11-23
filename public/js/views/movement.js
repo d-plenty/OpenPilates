@@ -1,7 +1,9 @@
 import { h, icon, btn, toast, field, select, chips, confirmDialog, debounce, fill } from '../ui.js';
 import { api, store } from '../store.js';
-import { go } from '../app.js';
-import { POSITIONS, SPINE, PATTERNS, PLANES, MUSCLES, EQUIPMENT, LEVELS, CAUTIONS, PURPOSES, LOAD_LEVELS, BRANDS, SECTIONS, CATEGORIES, ROLES, PREGNANCY, HEADREST, STRAPS, SEVERITIES, springFor, labelOf, sectionOf, categoriesOf, roleOf } from '/shared/vocab.js';
+import { go, render } from '../app.js';
+import { POSITIONS, SPINE, PATTERNS, PLANES, MUSCLES, EQUIPMENT, LEVELS, CAUTIONS, PURPOSES, LOAD_LEVELS, BRANDS, SECTIONS, CATEGORIES, ROLES, PREGNANCY, HEADREST, STRAPS, SEVERITIES, springFor, labelOf, sectionOf, categoriesOf, roleOf, levelLabel } from '/shared/vocab.js';
+import { POSES, POSE_IDS, poseOf } from '/shared/poses.js';
+import { figure, figurePair } from '../figure.js';
 import { bodyMap, bodyLegend, springDots, bar } from '../charts.js';
 import { posLabel, muscleLabel, pregnancyTag } from './common.js';
 import { fmtClock } from '/shared/analysis.js';
@@ -14,10 +16,34 @@ export async function movementView(slug) {
   for (const m of mv.muscles.primary) levels[m] = 1;
   for (const m of mv.muscles.secondary) levels[m] = levels[m] || 0.5;
 
+  const leadsTo = store.movementList.filter((m) => (m.prep || []).includes(mv.slug)).slice(0, 8);
+
+  // Shrink the chosen photo in the browser, then send it to this studio's server.
+  const pickPhoto = async (file) => {
+    try {
+      const bmp = await createImageBitmap(file);
+      const scale = Math.min(1, 1400 / Math.max(bmp.width, bmp.height));
+      const cv = document.createElement('canvas');
+      cv.width = Math.round(bmp.width * scale); cv.height = Math.round(bmp.height * scale);
+      cv.getContext('2d').drawImage(bmp, 0, 0, cv.width, cv.height);
+      const dataUrl = cv.toDataURL('image/jpeg', 0.86);
+      await api('PUT', `/movements/${slug}/photo`, { dataUrl, credit: creditInput.value });
+      await store.loadMovements(true);
+      toast('Photo added.');
+      render();
+    } catch (e) { toast(e.message || 'That photo could not be read.', { kind: 'error' }); }
+  };
+  const creditInput = h('input', { type: 'text', placeholder: 'Photo credit (optional)', 'aria-label': 'Photo credit', value: mv.photoCredit || '', style: { maxWidth: '200px', height: '36px' } });
+  const fileInput = h('input', { type: 'file', accept: 'image/jpeg,image/png,image/webp', class: 'sr-only', onchange: (e) => e.target.files[0] && pickPhoto(e.target.files[0]) });
+  const photoControls = () => h('div', { class: 'btn-row' },
+    creditInput,
+    h('label', { class: 'btn btn-sm' }, icon('camera', 16), mv.photo ? 'Replace photo' : 'Add a photo', fileInput),
+    mv.photo ? btn('Remove photo', async () => { await api('DELETE', `/movements/${slug}/photo`); await store.loadMovements(true); toast('Photo removed.'); render(); }, { small: true, kind: 'ghost' }) : null);
+
   const saveNote = debounce(async (text) => { await api('PUT', `/movements/${slug}/note`, { text }); toast('Note saved.'); }, 900);
   const exportFile = () => {
     const clean = { ...mv };
-    for (const k of ['source', 'ownerId', 'updatedAt', 'myNote', 'hasLibraryVersion']) delete clean[k];
+    for (const k of ['source', 'ownerId', 'updatedAt', 'myNote', 'hasLibraryVersion', 'photo', 'photoCredit']) delete clean[k];
     const blob = new Blob([JSON.stringify(clean, null, 2) + '\n'], { type: 'application/json' });
     const a = h('a', { href: URL.createObjectURL(blob), download: `${mv.slug}.json` });
     document.body.append(a); a.click(); a.remove();
@@ -53,7 +79,7 @@ export async function movementView(slug) {
         h('div', { class: 'btn-row', style: { marginTop: '8px' } },
           h('span', { class: 'tag tag-accent' }, mv.apparatus === 'mat' ? 'Mat' : 'Reformer'),
           h('span', { class: 'tag tag-accent' }, labelOf(SECTIONS, sectionOf(mv))),
-          h('span', { class: 'tag' }, labelOf(LEVELS, mv.level)),
+          h('span', { class: 'tag' }, levelLabel(mv)),
           h('span', { class: 'tag' }, posLabel(mv.position)),
           h('span', { class: 'tag' }, { stability: 'Stability exercise', mobility: 'Mobility exercise', both: 'Stability + mobility' }[roleOf(mv)]),
           mv.perSide ? h('span', { class: 'tag' }, 'Each side') : null,
@@ -67,11 +93,19 @@ export async function movementView(slug) {
         btn('', exportFile, { iconName: 'download', title: 'Download movement file' }),
         canEdit && mv.source !== 'library' ? btn('', remove, { iconName: mv.hasLibraryVersion ? 'undo' : 'trash', title: mv.hasLibraryVersion ? 'Reset to library version' : 'Delete' }) : null)),
     mv.review?.status !== 'reviewed' ? h('p', { class: 'review-note', style: { marginBottom: '14px' } }, mv.review?.note || 'Draft entry — check before teaching from it.') : h('p', { class: 'tiny muted', style: { marginBottom: '14px' } }, `Reviewed by ${mv.review.by || 'an instructor'}${mv.review.date ? ' · ' + mv.review.date : ''}`),
+    h('div', { class: 'card', style: { marginBottom: '16px' } },
+      h('div', { class: 'hero-figs' },
+        mv.photo ? h('figure', { style: { flex: '2 1 300px', maxWidth: '460px', background: 'none', padding: 0 } }, h('img', { class: 'hero-photo', src: mv.photo, alt: `${mv.name}` }), mv.photoCredit ? h('figcaption', { style: { textTransform: 'none', letterSpacing: 0, fontWeight: 500 } }, `Photo: ${mv.photoCredit}`) : null) : null,
+        figurePair(mv, { width: 260 }).map((f, i, all) => h('figure', null, f, h('figcaption', null, all.length === 1 ? 'Position' : i === 0 ? 'Start' : 'Finish')))),
+      h('div', { class: 'btn-row', style: { marginTop: '10px' } },
+        h('span', { class: 'tiny muted', style: { flex: '1 1 260px' } }, 'The drawing is a simple diagram of the position, not a technique photo.', canEdit ? ' Add your studio\'s own photo if you have one.' : ''),
+        canEdit ? photoControls() : null)),
     h('div', { class: 'auto-grid' },
       h('div', { class: 'card stack' },
         h('h2', null, 'About'),
         mv.summary ? h('p', null, mv.summary) : h('p', { class: 'muted' }, 'No description yet.'),
         h('dl', { class: 'kv' },
+          h('dt', null, 'Level'), h('dd', null, levelLabel(mv), mv.level !== (mv.levelTo || mv.level) ? h('div', { class: 'tiny muted' }, 'The basic version suits the first level; the layers and advance springs take it further.') : null),
           h('dt', null, 'Typical'), h('dd', null, `${mv.reps || '—'} · about ${fmtClock(mv.duration)}`),
           h('dt', null, 'Effort'), h('dd', null, `${mv.intensity} / 10`),
           h('dt', null, 'Categories'), h('dd', null, categoriesOf(mv).map((c) => labelOf(CATEGORIES, c)).join(', ') || '—'),
@@ -103,10 +137,11 @@ export async function movementView(slug) {
         mv.stable || mv.mobile ? h('dl', { class: 'stable-mobile', style: { marginTop: '10px' } },
           mv.stable ? [h('dt', null, 'Stays still'), h('dd', null, mv.stable)] : null,
           mv.mobile ? [h('dt', null, 'Moves'), h('dd', null, mv.mobile)] : null) : null) : null,
-      mv.modifications?.length || mv.prep?.length ? h('div', { class: 'card stack-sm' }, h('h2', null, 'Make it easier & build-up'),
+      mv.modifications?.length || mv.prep?.length || leadsTo.length ? h('div', { class: 'card stack-sm' }, h('h2', null, 'Easier, harder & build-up'),
         mv.modifications?.length ? h('ul', { class: 'cue-list' }, mv.modifications.map((s) => h('li', null, s))) : null,
-        (mv.prep || []).filter((p) => store.movements[p]).length ? h('p', { class: 'small', style: { marginTop: '8px' } }, 'Build up to it with: ',
-          mv.prep.filter((p) => store.movements[p]).map((p, i) => [i ? ', ' : '', h('a', { href: `#/movements/${p}` }, store.movements[p].name)])) : null) : null,
+        (mv.prep || []).filter((p) => store.movements[p]).length ? h('p', { class: 'small', style: { marginTop: '8px' } }, h('b', null, 'Build up to it with: '),
+          mv.prep.filter((p) => store.movements[p]).map((p, i) => [i ? ', ' : '', h('a', { href: `#/movements/${p}` }, store.movements[p].name)])) : null,
+        leadsTo.length ? h('p', { class: 'small', style: { marginTop: '6px' } }, h('b', null, 'Leads on to: '), leadsTo.map((m, i) => [i ? ', ' : '', h('a', { href: `#/movements/${m.slug}` }, m.name)])) : null) : null,
       mv.layers?.length ? h('div', { class: 'card stack-sm' }, h('h2', null, 'Layers'), mv.layers.map((l) => h('div', { class: 'layer' }, h('span', { class: 'lt' }, l.tag), h('div', null, h('b', { class: 'small' }, l.title), h('div', { class: 'tiny muted' }, l.text))))) : null,
       h('div', { class: 'card stack-sm' }, h('h2', null, 'Cautions & swaps'),
         mv.cautions?.length ? mv.cautions.map((c) => h('div', { class: 'caution' }, h('b', null, labelOf(CAUTIONS, c.tag)), ' ', h('span', { class: ['tag', c.severity === 'modify' ? '' : 'tag-warn'] }, c.severity === 'modify' ? 'Adjust' : 'Avoid'), h('div', { class: 'tiny' }, c.note),
@@ -124,7 +159,7 @@ export async function movementEditView(slug) {
   }
   const mv = existing ? structuredClone(existing) : {
     name: '', apparatus: 'reformer', level: 'beginner', position: 'supine', spine: ['neutral'], plane: 'sagittal', patterns: [], muscles: { primary: [], secondary: [] },
-    equipment: [], load: { springs: ['medium'] }, setup: { headrest: 'any', straps: 'none' }, section: 'core', role: 'both', stable: '', mobile: '', categories: [], pregnancy: 'ok', perSide: false, steps: [], modifications: [], prep: [], purpose: { strength: 1, stability: 1, flexibility: 0, mobility: 0 }, multiJoint: true, intensity: 4, duration: 120, reps: '', summary: '', layers: [], cautions: [], cues: '', labels: [], review: { status: 'draft', note: '' }
+    levelTo: 'beginner', equipment: [], load: { springs: ['medium'] }, setup: { headrest: 'any', straps: 'none' }, section: 'core', role: 'both', stable: '', mobile: '', categories: [], pregnancy: 'ok', perSide: false, steps: [], modifications: [], prep: [], purpose: { strength: 1, stability: 1, flexibility: 0, mobility: 0 }, multiJoint: true, intensity: 4, duration: 120, reps: '', summary: '', layers: [], cautions: [], cues: '', labels: [], review: { status: 'draft', note: '' }
   };
   mv.load = mv.load || { springs: [] };
   mv.load.advance = mv.load.advance || [];
@@ -133,6 +168,7 @@ export async function movementEditView(slug) {
   mv.role = mv.role || roleOf(mv);
   mv.categories = mv.categories && mv.categories.length ? mv.categories : (existing ? categoriesOf(mv) : []);
   mv.pregnancy = mv.pregnancy || 'ok';
+  mv.levelTo = mv.levelTo || mv.level;
   for (const k of ['steps', 'modifications', 'prep']) mv[k] = mv[k] || [];
   const linesArea = (key, rows, placeholder) => h('textarea', { rows, placeholder, oninput: (e) => { mv[key] = e.target.value.split('\n').map((x) => x.trim()).filter(Boolean); } }, (mv[key] || []).join('\n'));
   const err = h('p', { class: 'error', role: 'alert' });
@@ -154,14 +190,19 @@ export async function movementEditView(slug) {
         field('Name', input('name', { required: true })),
         h('div', { class: 'grid-3' },
           field('Apparatus', select([{ id: 'reformer', label: 'Reformer' }, { id: 'mat', label: 'Mat' }], mv.apparatus, (v) => { mv.apparatus = v; draw(); })),
-          field('Level', select(LEVELS, mv.level, (v) => { mv.level = v; })),
-          field('Starting position', select(POSITIONS, mv.position, (v) => { mv.position = v; }))),
+          field('Level, from', select(LEVELS, mv.level, (v) => { mv.level = v; if (LEVELS.findIndex((l) => l.id === mv.levelTo) < LEVELS.findIndex((l) => l.id === v)) mv.levelTo = v; draw(); }), 'Who the basic version suits.'),
+          field('Level, up to', select(LEVELS.filter((l) => l.rank >= LEVELS.find((x) => x.id === mv.level).rank), mv.levelTo, (v) => { mv.levelTo = v; }), 'How far layers and springs can take it.')),
         h('div', { class: 'grid-3' },
+          field('Starting position', select(POSITIONS, mv.position, (v) => { mv.position = v; draw(); })),
           field('Part of the class', select(SECTIONS, mv.section, (v) => { mv.section = v; })),
-          field('Stability or mobility', select(ROLES, mv.role, (v) => { mv.role = v; })),
-          field('Pregnancy', select(PREGNANCY, mv.pregnancy, (v) => { mv.pregnancy = v; }), 'Also add a matching caution below so clients are flagged.')),
+          field('Stability or mobility', select(ROLES, mv.role, (v) => { mv.role = v; }))),
+        field('Pregnancy', select(PREGNANCY, mv.pregnancy, (v) => { mv.pregnancy = v; }, { style: { maxWidth: '320px' } }), 'Also add a matching caution below so clients are flagged.'),
         h('label', { class: 'small', style: { display: 'flex', gap: '8px', alignItems: 'center' } }, h('input', { type: 'checkbox', checked: mv.perSide, onchange: (e) => { mv.perSide = e.target.checked; } }), 'Done one side at a time'),
         field('Short description', area('summary', 3), 'In your own words. Don\'t copy text from books or other apps.'),
+        h('div', { class: 'field' }, h('label', null, 'Picture'),
+          h('div', { class: 'pose-pick', role: 'group', 'aria-label': 'Picture' }, POSE_IDS.filter((id) => POSES[id].ctx === (mv.apparatus === 'mat' ? 'mat' : 'reformer')).map((id) =>
+            h('button', { type: 'button', class: poseOf(mv) === id ? 'on' : null, title: POSES[id].label, 'aria-label': POSES[id].label, 'aria-pressed': poseOf(mv) === id ? 'true' : 'false', onclick: (e) => { mv.pose = id; const b = e.currentTarget; [...b.parentElement.children].forEach((x) => { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); }); b.parentElement.nextElementSibling.textContent = `Showing: ${POSES[id].label}.`; } }, figure(id, { width: 96 })))),
+          h('div', { class: 'hint' }, `Showing: ${POSES[poseOf(mv)].label}. Pick the drawing closest to the starting position.`)),
         h('div', { class: 'grid-3' },
           field('Typical reps', input('reps', { placeholder: 'e.g. 8 each side' })),
           field('Typical time (seconds)', input('duration', { type: 'number', min: 15, max: 1800 })),

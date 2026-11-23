@@ -1,6 +1,6 @@
 // OpenPilates server — zero runtime dependencies (Node 22+: node:http, node:sqlite, node:crypto).
 import { createServer } from 'node:http';
-import { readFileSync, existsSync, statSync, createReadStream } from 'node:fs';
+import { readFileSync, existsSync, statSync, createReadStream, mkdirSync, writeFileSync, unlinkSync } from 'node:fs';
 import { join, extname, resolve, normalize } from 'node:path';
 import { randomBytes } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
@@ -60,14 +60,20 @@ export function createApp(opts = {}) {
   const clientIp = (req) => (cfg.trustProxy && String(req.headers['x-forwarded-for'] || '').split(',')[0].trim()) || req.socket.remoteAddress || '?';
   const sessionCookie = (req, token, maxAge) => `op_session=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${maxAge}${isHttps(req) ? '; Secure' : ''}`;
 
-  const movementRow = (r, notes) => {
+  const mediaDir = join(cfg.dataDir, 'media');
+  const photoOf = (slug, cache) => {
+    const m = cache ? cache[slug] : db.prepare('SELECT file, credit FROM movement_media WHERE slug = ?').get(slug);
+    return m ? { photo: `/api/media/${m.file}`, photoCredit: m.credit } : {};
+  };
+  const movementRow = (r, notes, media) => {
     const d = JSON.parse(r.data);
-    return { ...d, source: r.source, ownerId: r.owner_id, updatedAt: r.updated_at, myNote: notes ? notes[r.slug] || '' : undefined };
+    return { ...d, ...photoOf(r.slug, media), source: r.source, ownerId: r.owner_id, updatedAt: r.updated_at, myNote: notes ? notes[r.slug] || '' : undefined };
   };
   const allMovements = (userId) => {
+    const media = Object.fromEntries(db.prepare('SELECT slug, file, credit FROM movement_media').all().map((m) => [m.slug, m]));
     const notes = {};
     if (userId) for (const n of db.prepare('SELECT slug, text FROM movement_notes WHERE user_id = ?').all(userId)) notes[n.slug] = n.text;
-    return db.prepare('SELECT * FROM movements ORDER BY apparatus, slug').all().map((r) => movementRow(r, notes));
+    return db.prepare('SELECT * FROM movements ORDER BY apparatus, slug').all().map((r) => movementRow(r, notes, media));
   };
   const flowOut = (r, user) => {
     const owner = r.owner_id ? db.prepare('SELECT display_name FROM users WHERE id = ?').get(r.owner_id) : null;
@@ -208,9 +214,50 @@ export function createApp(opts = {}) {
     if (!(r.source === 'custom' && r.owner_id === user.id) && user.role !== 'admin') return fail(res, 403, 'You can only delete your own movements.');
     const lib = libraryVersionOf(cfg.libraryDir, params.slug);
     if (lib) db.prepare("UPDATE movements SET data = ?, apparatus = ?, source = 'library', owner_id = NULL, updated_at = datetime('now') WHERE slug = ?").run(JSON.stringify(lib), lib.apparatus, params.slug);
-    else db.prepare('DELETE FROM movements WHERE slug = ?').run(params.slug);
+    else { db.prepare('DELETE FROM movements WHERE slug = ?').run(params.slug); dropPhoto(params.slug); }
     send(res, 200, { ok: true, restored: !!lib });
   });
+  // A studio's own photo for a movement (JPEG, PNG or WebP, sent as a data URL the browser has already shrunk).
+  const canEditMovement = (r, user) => user.role === 'admin' || (r.source === 'custom' && r.owner_id === user.id);
+  const dropPhoto = (slug) => {
+    const old = db.prepare('SELECT file FROM movement_media WHERE slug = ?').get(slug);
+    if (!old) return;
+    try { unlinkSync(join(mediaDir, old.file)); } catch { /* already gone */ }
+    db.prepare('DELETE FROM movement_media WHERE slug = ?').run(slug);
+  };
+  route('PUT', '/api/movements/:slug/photo', async (req, res, { user, params }) => {
+    const r = db.prepare('SELECT * FROM movements WHERE slug = ?').get(params.slug);
+    if (!r) return fail(res, 404, 'No such movement.');
+    if (!canEditMovement(r, user)) return fail(res, 403, 'Only an admin can add photos to library movements.');
+    const b = await readBody(req);
+    const m = /^data:image\/(jpeg|png|webp);base64,([A-Za-z0-9+/=]+)$/.exec(String(b.dataUrl || ''));
+    if (!m) return fail(res, 400, 'Choose a JPEG, PNG or WebP photo.');
+    const buf = Buffer.from(m[2], 'base64');
+    if (buf.length < 100 || buf.length > 2.5e6) return fail(res, 400, 'That photo is too large. Try a smaller one.');
+    const magic = { jpeg: [0xff, 0xd8], png: [0x89, 0x50], webp: [0x52, 0x49] }[m[1]];
+    if (buf[0] !== magic[0] || buf[1] !== magic[1]) return fail(res, 400, 'That file doesn\'t look like a photo.');
+    mkdirSync(mediaDir, { recursive: true });
+    dropPhoto(params.slug);
+    const file = `${params.slug}-${randomBytes(5).toString('hex')}.${m[1] === 'jpeg' ? 'jpg' : m[1]}`;
+    writeFileSync(join(mediaDir, file), buf);
+    db.prepare('INSERT INTO movement_media (slug, file, credit) VALUES (?, ?, ?)').run(params.slug, file, String(b.credit || '').slice(0, 120).trim());
+    send(res, 200, photoOf(params.slug));
+  });
+  route('DELETE', '/api/movements/:slug/photo', (req, res, { user, params }) => {
+    const r = db.prepare('SELECT * FROM movements WHERE slug = ?').get(params.slug);
+    if (!r) return fail(res, 404, 'No such movement.');
+    if (!canEditMovement(r, user)) return fail(res, 403, 'Only an admin can remove photos from library movements.');
+    dropPhoto(params.slug);
+    send(res, 200, { ok: true });
+  });
+  route('GET', '/api/media/:file', (req, res, { params }) => {
+    if (!/^[a-z0-9-]+\.(jpg|png|webp)$/.test(params.file)) return fail(res, 404, 'Not found.');
+    const file = join(mediaDir, params.file);
+    if (!existsSync(file)) return fail(res, 404, 'Not found.');
+    res.writeHead(200, { 'Content-Type': { jpg: 'image/jpeg', png: 'image/png', webp: 'image/webp' }[params.file.split('.').pop()], 'Cache-Control': 'private, max-age=86400', 'X-Content-Type-Options': 'nosniff' });
+    createReadStream(file).pipe(res);
+  });
+
   route('PUT', '/api/movements/:slug/note', async (req, res, { user, params }) => {
     const b = await readBody(req);
     const text = String(b.text || '').slice(0, 4000);
@@ -329,7 +376,7 @@ export function createApp(opts = {}) {
   const STATIC = { '/shared/': join(ROOT, 'shared'), '/': join(ROOT, 'public') };
   const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon', '.webmanifest': 'application/manifest+json', '.woff2': 'font/woff2' };
   const SECURITY = {
-    'Content-Security-Policy': "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'",
+    'Content-Security-Policy': "default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'",
     'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'same-origin', 'X-Frame-Options': 'SAMEORIGIN', 'Permissions-Policy': 'camera=(), microphone=(), geolocation=()'
   };
   const serveStatic = (req, res, pathname) => {

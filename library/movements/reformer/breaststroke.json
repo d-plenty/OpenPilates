@@ -3,7 +3,9 @@
   "name": "Breaststroke (Long Box)",
   "apparatus": "reformer",
   "section": "back_shoulders",
-  "level": "advanced",
+  "level": "intermediate",
+  "levelTo": "advanced",
+  "pose": "prone-long-box",
   "position": "prone",
   "spine": [
     "extension"

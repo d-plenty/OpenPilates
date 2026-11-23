@@ -4,6 +4,8 @@
   "apparatus": "reformer",
   "section": "lower",
   "level": "intermediate",
+  "levelTo": "advanced",
+  "pose": "squat-side",
   "position": "standing",
   "spine": [
     "neutral"

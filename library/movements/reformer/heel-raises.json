@@ -4,6 +4,8 @@
   "apparatus": "reformer",
   "section": "lower",
   "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "supine-footbar",
   "position": "supine",
   "spine": [
     "neutral"

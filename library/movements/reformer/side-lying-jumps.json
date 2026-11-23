@@ -4,6 +4,8 @@
   "apparatus": "reformer",
   "section": "cardio",
   "level": "intermediate",
+  "levelTo": "advanced",
+  "pose": "side-lying-footbar",
   "position": "side-lying",
   "spine": [
     "neutral"

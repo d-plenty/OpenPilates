@@ -3,7 +3,9 @@
   "name": "Short Spine Massage",
   "apparatus": "reformer",
   "section": "pelvic",
-  "level": "advanced",
+  "level": "intermediate",
+  "levelTo": "advanced",
+  "pose": "supine-roll-over",
   "position": "supine",
   "spine": [
     "flexion",

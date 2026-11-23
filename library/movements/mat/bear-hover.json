@@ -1,0 +1,108 @@
+{
+  "slug": "bear-hover",
+  "name": "Bear Hover",
+  "apparatus": "mat",
+  "section": "core",
+  "level": "intermediate",
+  "levelTo": "intermediate",
+  "pose": "mat-quadruped",
+  "position": "quadruped",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "quadriceps",
+      "serratus"
+    ],
+    "secondary": [
+      "deltoids",
+      "obliques",
+      "hip_flexors"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "stability",
+  "stable": "Everything",
+  "mobile": "Nothing",
+  "categories": [
+    "quadruped"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 90,
+  "reps": "3–5 holds of 15–30 s",
+  "summary": "From hands and knees with the toes tucked, the knees lift a few centimetres off the mat and hover.",
+  "steps": [
+    "Start on hands and knees, toes tucked under, spine long.",
+    "Breathe out to float the knees just off the mat.",
+    "Hold, breathing; lower with control."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Hover and lower",
+      "text": "Short holds."
+    },
+    {
+      "tag": "L2",
+      "title": "Longer holds",
+      "text": "Up to 30 seconds."
+    },
+    {
+      "tag": "L3",
+      "title": "Shoulder taps",
+      "text": "Tap one hand to the opposite shoulder."
+    },
+    {
+      "tag": "L4",
+      "title": "Step back to plank",
+      "text": "One foot at a time, and return."
+    }
+  ],
+  "modifications": [
+    "Shorter holds.",
+    "Forearms down."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "wrist",
+      "severity": "modify",
+      "note": "Forearms or fists."
+    },
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Short holds."
+    }
+  ],
+  "prep": [
+    "bird-dog"
+  ],
+  "cues": "Back stays flat — hips level with the shoulders.\nPush the floor away.\nKnees stay low; this isn't a pike.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

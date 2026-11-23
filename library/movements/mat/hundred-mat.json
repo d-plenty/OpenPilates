@@ -3,7 +3,9 @@
   "name": "The Hundred (Mat)",
   "apparatus": "mat",
   "section": "core",
-  "level": "intermediate",
+  "level": "beginner",
+  "levelTo": "advanced",
+  "pose": "mat-curl",
   "position": "supine",
   "spine": [
     "flexion"

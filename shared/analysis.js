@@ -3,7 +3,7 @@
 // body-position changes, time moving vs setting up, and muscle balance. On top of that it checks
 // the things a reformer class is usually planned around: how often the springs change, whether
 // every part of the body gets a turn, and whether stabilising work is balanced with movement.
-import { MUSCLES, SPINE_DIRECTIONS, DEFAULT_TARGETS, PURPOSES, LEVELS, CAUTIONS, SECTION_GROUPS, CATEGORIES, labelOf, byId, sectionOf, sectionGroupOf, categoriesOf, roleOf, sameSetting } from './vocab.js';
+import { MUSCLES, SPINE_DIRECTIONS, DEFAULT_TARGETS, PURPOSES, LEVELS, CAUTIONS, SECTION_GROUPS, CATEGORIES, EQUIPMENT, labelOf, byId, sectionOf, sectionGroupOf, categoriesOf, roleOf, sameSetting } from './vocab.js';
 
 const MUSCLE = byId(MUSCLES);
 const LEVEL_RANK = Object.fromEntries(LEVELS.map((l) => [l.id, l.rank]));
@@ -83,6 +83,11 @@ export function analyze({ flow, movements, studio = {}, clients = [] }) {
   const sequence = [];
   const positionsUsed = new Set();
   let hasReformer = false;
+  let withOptions = 0;
+  const noEasier = [];
+  const kit = new Map();
+  const strapsUsed = new Set();
+  let firstLoad = null;
 
   for (const seg of flow.segments || []) {
     const segStart = t;
@@ -113,6 +118,7 @@ export function analyze({ flow, movements, studio = {}, clients = [] }) {
           if (currentLoad) { springChanges++; t += TRANSITION_COST.spring; changed = true; springStops.push({ before: mv.name, loads: options[0] }); }
           currentLoad = options[0];
         }
+        if (!firstLoad) firstLoad = currentLoad;
         springPlan.push({ itemId: item.id, pass, slug: mv.slug, name: mv.name, loads: currentLoad, changed, advanced: !!stay && !flexible && options.length > 1 && keyOf(options[1]) === keyOf(currentLoad) });
       }
 
@@ -147,11 +153,30 @@ export function analyze({ flow, movements, studio = {}, clients = [] }) {
       positionsUsed.add(mv.position);
       sequence.push({ mv, role, pass });
 
-      for (const e of mv.equipment || []) {
-        if (!(Number(owned[e]) > 0)) {
-          if (!missingEquip.has(e)) missingEquip.set(e, []);
-          missingEquip.get(e).push(mv.name);
+      const needs = (m) => {
+        for (const e of m.equipment || []) {
+          if (!kit.has(e)) kit.set(e, new Set());
+          kit.get(e).add(m.name);
+          if (!(Number(owned[e]) > 0)) {
+            if (!missingEquip.has(e)) missingEquip.set(e, []);
+            missingEquip.get(e).push(m.name);
+          }
         }
+        if (m.setup && m.setup.straps && m.setup.straps !== 'none') strapsUsed.add(m.setup.straps);
+      };
+      needs(mv);
+      // options offered inside this movement: an add-on movement brings its own muscles and kit
+      if (pass === 1) {
+        const opts = item.options || [];
+        if (opts.length || (item.layers || []).length) withOptions++;
+        for (const o of opts) {
+          const add = o.slug && mvOf(o.slug);
+          if (!add) continue;
+          needs(add);
+          for (const m of add.muscles.primary || []) { muscleCount[m] = (muscleCount[m] || 0) + 1; muscleScore[m] = (muscleScore[m] || 0) + dur * 0.3; }
+          for (const c of categoriesOf(add)) if (c in categoryCount) categoryCount[c]++;
+        }
+        if (((mv.intensity || 3) >= 7 || mv.level === 'advanced') && !opts.some((o) => o.kind === 'easier')) noEasier.push(mv.name);
       }
       if ((LEVEL_RANK[mv.level] || 1) > flowLevel) aboveLevel.push(mv.name);
 
@@ -237,6 +262,8 @@ export function analyze({ flow, movements, studio = {}, clients = [] }) {
       if (count >= 8 && uncovered.length) add('info', 'categories', `Not covered: ${uncovered.map((c) => c.label.toLowerCase()).join(', ')}`, 'A rounded class usually touches every movement category at least once.');
       else if (count >= 8) add('ok', 'categories', 'Every movement category covered', 'Trunk, hips, upper body, hands-and-knees and standing work are all here.');
 
+      if (boxChanges > 3) add('info', 'box', `The box or board goes on and off ${boxChanges} times`, 'Put the movements that share a box or jump board next to each other.');
+      if (noEasier.length && (clients.length || noEasier.length >= 2)) add('info', 'options', `No easier option planned for ${noEasier.length === 1 ? noEasier[0] : noEasier.length + ' harder movements'}`, `${noEasier.length > 1 ? [...new Set(noEasier)].join(', ') + '. ' : ''}Open the movement in the builder and add an easier option so nobody is left out.`);
       if (positionsUsed.size < 3) add('info', 'positions', 'Not much change of position', 'Vary the orientation: lying on the back, side or front, kneeling, standing, facing the front or back.');
     }
     if (sequence.length >= 4) {
@@ -304,7 +331,12 @@ export function analyze({ flow, movements, studio = {}, clients = [] }) {
     movingPct: totalSec ? Math.round((movingSec / totalSec) * 100) : 0,
     springChanges, boxChanges, positionChanges, apparatusChanges,
     timeline, positionMinutes, spine, target: { key: targetKey, ...target },
-    springPlan, springBudget, springStops, sections, sectionSec, roles, categories, hasReformer,
+    springPlan, springBudget, springStops, sections, sectionSec, roles, categories, hasReformer, withOptions,
+    setOut: {
+      springs: firstLoad,
+      equipment: [...kit.entries()].map(([id, names]) => ({ id, label: labelOf(EQUIPMENT, id), for: [...names], have: Number(owned[id]) || 0 })),
+      straps: [...strapsUsed]
+    },
     muscles, frontBack, purpose, multiJoint: { multi, isolated },
     intensity, peak, checks, clientChecks
   };

@@ -1,0 +1,99 @@
+{
+  "slug": "standing-side-bend",
+  "name": "Standing Side Bend",
+  "apparatus": "mat",
+  "section": "stretch",
+  "level": "beginner",
+  "levelTo": "beginner",
+  "pose": "mat-stand",
+  "position": "standing",
+  "spine": [
+    "side-bend"
+  ],
+  "plane": "frontal",
+  "patterns": [
+    "lateral-flexion"
+  ],
+  "muscles": {
+    "primary": [
+      "obliques"
+    ],
+    "secondary": [
+      "lats",
+      "spinal_extensors"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": true,
+  "role": "mobility",
+  "stable": "Pelvis and legs",
+  "mobile": "Spine (side bend)",
+  "categories": [
+    "lateral_flexion",
+    "standing"
+  ],
+  "pregnancy": "recommended",
+  "purpose": {
+    "strength": 0,
+    "stability": 1,
+    "flexibility": 2,
+    "mobility": 3
+  },
+  "multiJoint": false,
+  "intensity": 1,
+  "duration": 90,
+  "reps": "4–6 each side",
+  "summary": "Standing tall, one arm reaches up and over as the spine bends to the side, then returns.",
+  "steps": [
+    "Stand with feet hip-width, one arm up by the ear.",
+    "Breathe in to reach up.",
+    "Breathe out to bend to the side, the other hand sliding down the leg.",
+    "Breathe in to return; change sides."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "One arm",
+      "text": "Basic."
+    },
+    {
+      "tag": "L2",
+      "title": "Both arms overhead",
+      "text": "Hold a ball or band."
+    },
+    {
+      "tag": "L3",
+      "title": "Feet together",
+      "text": "Narrower base."
+    }
+  ],
+  "modifications": [
+    "Smaller range.",
+    "Hand on the hip."
+  ],
+  "cautions": [
+    {
+      "tag": "low_bone_density",
+      "severity": "modify",
+      "note": "Gentle, unforced range."
+    },
+    {
+      "tag": "balance",
+      "severity": "modify",
+      "note": "Feet wider."
+    }
+  ],
+  "prep": [],
+  "cues": "Both feet stay evenly weighted.\nStay in one flat plane, as if between two walls.\nReach up before you go over.",
+  "labels": [
+    "warm-up",
+    "cool-down",
+    "mobilisation",
+    "pregnancy-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

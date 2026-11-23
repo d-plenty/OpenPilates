@@ -1,0 +1,131 @@
+{
+  "slug": "swimming-long-box",
+  "name": "Swimming on the Long Box",
+  "apparatus": "reformer",
+  "section": "back_shoulders",
+  "level": "intermediate",
+  "levelTo": "intermediate",
+  "pose": "prone-long-box",
+  "position": "prone",
+  "spine": [
+    "extension"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "extension",
+    "stabilisation",
+    "coordination"
+  ],
+  "muscles": {
+    "primary": [
+      "spinal_extensors",
+      "glutes",
+      "upper_back"
+    ],
+    "secondary": [
+      "hamstrings",
+      "deltoids"
+    ]
+  },
+  "equipment": [
+    "long_box"
+  ],
+  "load": {
+    "springs": [
+      "medium",
+      "medium",
+      "medium"
+    ],
+    "note": "All springs on so the carriage stays put."
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Trunk and pelvis",
+  "mobile": "Arms and legs",
+  "categories": [
+    "trunk_extension",
+    "hip_extension",
+    "upper_body"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 90,
+  "reps": "3–5 sets of 10 counts",
+  "summary": "Face down across the long box with arms and legs reaching long and lifted, flutter opposite arm and leg.",
+  "steps": [
+    "Lie face down on the long box, chest and thighs supported, arms long in front, legs long behind.",
+    "Lift the chest, arms and legs a little.",
+    "Flutter opposite arm and leg, breathing in for five and out for five."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Slow",
+      "text": "One opposite pair at a time."
+    },
+    {
+      "tag": "L2",
+      "title": "Flutter",
+      "text": "Basic."
+    },
+    {
+      "tag": "L3",
+      "title": "Hands on the footbar",
+      "text": "Legs only."
+    }
+  ],
+  "modifications": [
+    "Arms only or legs only."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "bird-dog-carriage"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "bird-dog-carriage"
+    },
+    {
+      "tag": "extension_pain",
+      "severity": "avoid",
+      "note": "Loaded extension.",
+      "swap": "bird-dog-carriage"
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Arms out to a T."
+    },
+    {
+      "tag": "neck",
+      "severity": "modify",
+      "note": "Look down."
+    }
+  ],
+  "prep": [
+    "back-extension-long-box",
+    "pulling-straps"
+  ],
+  "cues": "The trunk is still; the limbs do the moving.\nReach long rather than high.\nBelly lifted off the box.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

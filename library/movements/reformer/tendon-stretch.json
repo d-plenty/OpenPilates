@@ -1,0 +1,151 @@
+{
+  "slug": "tendon-stretch",
+  "name": "Tendon Stretch",
+  "apparatus": "reformer",
+  "section": "lower",
+  "level": "advanced",
+  "levelTo": "advanced",
+  "pose": "pike-bar",
+  "position": "standing",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "flexion",
+    "push"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "calves",
+      "triceps"
+    ],
+    "secondary": [
+      "hamstrings",
+      "serratus",
+      "lats"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "medium"
+    ],
+    "advance": [
+      "medium",
+      "light"
+    ],
+    "lighterIsHarder": true
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "The folded shape, shoulders",
+  "mobile": "Carriage (from the hips), ankles",
+  "categories": [
+    "trunk_flexion",
+    "hip_flexion",
+    "upper_body"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 2,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 9,
+  "duration": 90,
+  "reps": "3–5",
+  "summary": "Sitting on the footbar edge with the hands beside the hips and feet on the carriage edge, lift the seat, fold in half and send the carriage out and back with the body hovering.",
+  "steps": [
+    "Sit on the footbar, hands beside the hips, balls of the feet on the carriage edge.",
+    "Lift the seat off the bar, head down, body folded.",
+    "Breathe in to press the carriage away, heels reaching under.",
+    "Breathe out to pull the carriage in, lifting the hips high."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Heels lower and lift",
+      "text": "Hold the hover and work the ankles."
+    },
+    {
+      "tag": "L2",
+      "title": "Out and in",
+      "text": "Full movement."
+    },
+    {
+      "tag": "L3",
+      "title": "Single leg",
+      "text": "One leg lifted behind."
+    }
+  ],
+  "modifications": [
+    "Elephant or Up Stretch instead."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "shoulder-retraction"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "shoulder-retraction"
+    },
+    {
+      "tag": "wrist",
+      "severity": "avoid",
+      "note": "Body weight through the wrists.",
+      "swap": "scooter"
+    },
+    {
+      "tag": "shoulder",
+      "severity": "avoid",
+      "note": "High shoulder load.",
+      "swap": "elephant"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Loaded flexion.",
+      "swap": "scooter"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "Loaded flexion.",
+      "swap": "scooter"
+    },
+    {
+      "tag": "balance",
+      "severity": "avoid",
+      "note": "Balancing on the footbar.",
+      "swap": "elephant"
+    }
+  ],
+  "prep": [
+    "elephant",
+    "up-stretch",
+    "long-stretch"
+  ],
+  "cues": "Scoop the belly up hard to stay lifted.\nArms straight, shoulders wide.\nThe carriage comes all the way home each time.",
+  "labels": [
+    "peak"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

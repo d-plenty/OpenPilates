@@ -3,7 +3,9 @@
   "name": "Hands-and-knees Leg Sweep with Strap",
   "apparatus": "reformer",
   "section": "core",
-  "level": "intermediate",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "quadruped-carriage",
   "position": "quadruped",
   "spine": [
     "neutral"

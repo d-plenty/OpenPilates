@@ -4,6 +4,8 @@
   "apparatus": "reformer",
   "section": "stretch",
   "level": "beginner",
+  "levelTo": "beginner",
+  "pose": "supine-feet-straps",
   "position": "supine",
   "spine": [
     "neutral"

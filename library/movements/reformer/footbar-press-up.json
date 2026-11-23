@@ -4,6 +4,8 @@
   "apparatus": "reformer",
   "section": "chest_arms",
   "level": "intermediate",
+  "levelTo": "advanced",
+  "pose": "knee-stretch",
   "position": "plank",
   "spine": [
     "neutral"
