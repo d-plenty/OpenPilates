@@ -81,6 +81,7 @@ function shell(active, content) {
       h('div', { class: 'spacer' }),
       h('div', { class: 'userchip' },
         h('span', { class: 'who' }, store.state?.studioName ? `${store.state.studioName} · ` : '', user?.displayName),
+        h('button', { class: 'btn btn-sm btn-ghost', title: window.opTheme.isDark() ? 'Switch to light mode' : 'Switch to dark mode', 'aria-label': window.opTheme.isDark() ? 'Switch to light mode' : 'Switch to dark mode', onclick: () => { window.opTheme.set(window.opTheme.isDark() ? 'light' : 'dark'); render(); } }, icon(window.opTheme.isDark() ? 'sun' : 'moon', 18)),
         h('a', { href: '#/account', class: 'btn btn-sm btn-ghost', title: 'Your account', 'aria-label': 'Your account' }, icon('user', 18)),
         h('button', { class: 'btn btn-sm btn-ghost', title: 'Sign out', 'aria-label': 'Sign out', onclick: async () => { await api('POST', '/logout'); store.state.user = null; store.reset(); if (location.hash && location.hash !== '#/') location.hash = '#/'; else render(); } }, icon('logout', 18)))),
     h('main', { class: 'page', id: 'main' }, content),

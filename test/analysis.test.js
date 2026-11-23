@@ -201,9 +201,10 @@ test('hard movements with no easier option are pointed out when someone is booke
 });
 
 test('every pose draws, and every library movement names a real pose for its apparatus', () => {
-  for (const id of POSE_IDS) for (const frame of ['a', 'b']) {
+  for (const id of POSE_IDS) for (const frame of ['a', 'm', 'b']) {
+    if (frame !== 'a' && !POSES[id][frame]) continue;
     const j = solve(POSES[id], frame);
-    for (const pt of [j.hip, j.sh, j.head, j.mid, ...(j.leg ? [j.leg.knee, j.leg.foot] : []), ...(j.arm ? [j.arm.elbow, j.arm.hand] : [])]) {
+    for (const pt of [j.hip, j.sh, j.head, j.mid, ...(j.leg ? [j.leg.knee, j.leg.foot] : []), ...(j.leg2 ? [j.leg2.knee, j.leg2.foot] : []), ...(j.arm ? [j.arm.elbow, j.arm.hand] : []), ...(j.arm2 ? [j.arm2.elbow, j.arm2.hand] : [])]) {
       assert.ok(Number.isFinite(pt[0]) && Number.isFinite(pt[1]), `${id} ${frame}`);
       assert.ok(pt[0] > 0 && pt[0] < 240 && pt[1] > -34 && pt[1] < 126, `${id} ${frame} off the canvas: ${pt}`);
     }

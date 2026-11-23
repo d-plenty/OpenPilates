@@ -41,3 +41,7 @@ If there is still time, in order of value:
 2. Look pass on the movement page, review list, clients, analysis tab.
 3. Per-phase "Suggest blocks" in the builder (reuse the draft's phase filler).
 Screens: /home/claude/audit/look5.py (server 8498, DATA_DIR /tmp/oplook, sarah / pilates-test-123). Click-through: audit5.py (own server on 8499, about 3 minutes).
+
+## 0.6.0 (go given 24 Nov 04:56)
+Done: Running and Calf Raises redrawn; every movement that shared a picture has its own frames (poses.js, the `V(...)` block); middle frame and foot direction in the solver; 15 movements added with references; light and dark mode (public/js/theme.js, variables at the top of app.css). 53 tests, library check, 22/22 click-through (audit5.py). Contact sheets: /home/claude/audit/msheet.py.
+Not done: no further new movements beyond what a reference names; Sarah's content review still outstanding.

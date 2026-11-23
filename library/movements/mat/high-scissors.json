@@ -1,0 +1,142 @@
+{
+  "slug": "high-scissors",
+  "name": "Scissors",
+  "apparatus": "mat",
+  "section": "core",
+  "level": "advanced",
+  "levelTo": "advanced",
+  "pose": "high-scissors",
+  "position": "inverted",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "hip-dissociation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "hip_flexors",
+      "hamstrings"
+    ],
+    "secondary": [
+      "glutes",
+      "triceps"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": true,
+  "role": "stability",
+  "stable": "Pelvis and spine, held up by the hands",
+  "mobile": "Hips",
+  "categories": [
+    "hip_flexion",
+    "hip_extension"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 2,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 7,
+  "duration": 90,
+  "reps": "6–10 each leg",
+  "summary": "Up on the shoulders with the hands under the hips, the straight legs split away from each other and switch.",
+  "steps": [
+    "Roll over and prop the pelvis on the hands, elbows on the mat, legs to the ceiling.",
+    "Reach one leg over the head as the other reaches away towards the mat.",
+    "Pulse once, then switch with long legs.",
+    "Bring the legs together and roll down one bone at a time."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Hold the prop, legs still",
+      "text": "Find the balance on the shoulders before the legs move."
+    },
+    {
+      "tag": "L2",
+      "title": "Small splits",
+      "text": "Legs open a short way and switch."
+    },
+    {
+      "tag": "L3",
+      "title": "Full splits with a pulse",
+      "text": "The back leg reaches further than feels natural."
+    }
+  ],
+  "uses": [
+    "peak"
+  ],
+  "cautions": [
+    {
+      "tag": "neck",
+      "severity": "avoid",
+      "note": "Weight is on the shoulders and upper back.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Inverted and loaded through the abdominals.",
+      "swap": "side-kick-series"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Inverted and loaded through the abdominals.",
+      "swap": "side-kick-series"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Loaded flexion on the upper spine.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "wrist",
+      "severity": "modify",
+      "note": "The hands carry the pelvis. Use fists or leave it out."
+    }
+  ],
+  "prep": [
+    "roll-over",
+    "scissors-mat"
+  ],
+  "cues": "Weight on the shoulders, never the neck.\nHips stay still while the legs move.\nThe leg going away works harder than the one coming in.",
+  "labels": [
+    "classical"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  },
+  "aka": [
+    "High scissors",
+    "Scissors on the shoulders"
+  ],
+  "variations": [
+    {
+      "name": "On the back, hands by the hips",
+      "kind": "regression",
+      "note": "Single Straight Leg Stretch on the mat."
+    },
+    {
+      "name": "Bicycle",
+      "kind": "progression",
+      "note": "Bend the far leg and pedal."
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "alo34",
+    "basimat",
+    "opcmat"
+  ]
+}

@@ -5,7 +5,7 @@
   "section": "stretch",
   "level": "beginner",
   "levelTo": "beginner",
-  "pose": "mat-cat",
+  "pose": "cat-cow-mat",
   "position": "quadruped",
   "spine": [
     "flexion",

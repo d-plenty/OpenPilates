@@ -5,7 +5,7 @@
   "section": "core",
   "level": "beginner",
   "levelTo": "intermediate",
-  "pose": "kneel-side",
+  "pose": "kneeling-rotation",
   "position": "kneeling",
   "spine": [
     "rotation"

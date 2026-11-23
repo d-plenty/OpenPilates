@@ -1,0 +1,146 @@
+{
+  "slug": "mountain-climbers",
+  "name": "Mountain Climbers",
+  "apparatus": "reformer",
+  "section": "core",
+  "level": "intermediate",
+  "levelTo": "advanced",
+  "pose": "mountain-climbers",
+  "position": "plank",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "hip-dissociation",
+    "coordination"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "hip_flexors"
+    ],
+    "secondary": [
+      "deltoids",
+      "serratus",
+      "quadriceps"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium"
+    ],
+    "advance": [
+      "light"
+    ],
+    "lighterIsHarder": true,
+    "note": "A lighter spring makes the carriage harder to keep still."
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": true,
+  "role": "stability",
+  "stable": "Shoulders, spine and pelvis",
+  "mobile": "Hips and knees",
+  "categories": [
+    "quadruped",
+    "hip_flexion"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 3,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 7,
+  "duration": 60,
+  "reps": "20–30 seconds",
+  "summary": "Holding the plank with hands on the platform and feet on the carriage, one knee drives in under the chest, then the other, while the carriage stays still.",
+  "steps": [
+    "Set up the plank: hands on the platform, feet on the carriage, carriage pressed out.",
+    "Hold the carriage still.",
+    "Draw one knee in under the chest and place the foot back.",
+    "Change legs, slowly at first, then at pace."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Slow, one knee at a time",
+      "text": "Foot back down between each."
+    },
+    {
+      "tag": "L2",
+      "title": "Switch in the air",
+      "text": "Legs pass each other."
+    },
+    {
+      "tag": "L3",
+      "title": "Fast for 20 seconds",
+      "text": "The carriage still does not move."
+    }
+  ],
+  "uses": [
+    "peak"
+  ],
+  "cautions": [
+    {
+      "tag": "wrist",
+      "severity": "modify",
+      "note": "Forearms on the platform or fists."
+    },
+    {
+      "tag": "shoulder",
+      "severity": "avoid",
+      "note": "Body weight through the shoulders at pace.",
+      "swap": "kneeling-knee-pulls"
+    },
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Plank at pace.",
+      "swap": "bird-dog-carriage"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "modify",
+      "note": "Slow, and stop if the abdominals dome."
+    }
+  ],
+  "prep": [
+    "reformer-plank",
+    "plank-knee-tucks"
+  ],
+  "cues": "Hips level with the shoulders.\nThe carriage is glued in place.\nPush the platform away.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  },
+  "aka": [
+    "Plank knee drives",
+    "Running plank"
+  ],
+  "variations": [
+    {
+      "name": "Hold the plank only",
+      "kind": "regression"
+    },
+    {
+      "name": "Slow and stepped",
+      "kind": "regression"
+    },
+    {
+      "name": "Knee to the opposite elbow",
+      "kind": "progression"
+    }
+  ],
+  "sources": [
+    "onform"
+  ]
+}

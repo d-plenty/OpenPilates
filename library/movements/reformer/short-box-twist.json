@@ -5,7 +5,7 @@
   "section": "core",
   "level": "intermediate",
   "levelTo": "intermediate",
-  "pose": "short-box",
+  "pose": "short-box-twist",
   "position": "seated",
   "spine": [
     "rotation"

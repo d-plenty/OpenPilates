@@ -5,7 +5,7 @@
   "section": "core",
   "level": "intermediate",
   "levelTo": "intermediate",
-  "pose": "quadruped-carriage",
+  "pose": "knee-pulls",
   "position": "quadruped",
   "spine": [
     "flexion"

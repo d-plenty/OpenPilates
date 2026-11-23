@@ -1,0 +1,117 @@
+{
+  "slug": "chest-lift-rotation",
+  "name": "Chest Lift with Rotation",
+  "apparatus": "mat",
+  "section": "core",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "chest-lift-rotation",
+  "position": "supine",
+  "spine": [
+    "flexion",
+    "rotation"
+  ],
+  "plane": "transverse",
+  "patterns": [
+    "flexion",
+    "rotation"
+  ],
+  "muscles": {
+    "primary": [
+      "obliques",
+      "abdominals"
+    ],
+    "secondary": []
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "stability",
+  "stable": "Pelvis",
+  "mobile": "Upper spine",
+  "categories": [
+    "trunk_flexion",
+    "rotation"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 3,
+    "stability": 1,
+    "flexibility": 0,
+    "mobility": 1
+  },
+  "multiJoint": false,
+  "intensity": 4,
+  "duration": 90,
+  "reps": "5–8 each side",
+  "summary": "Hold the Abdominal Curl with the hands behind the head, turn the ribs to one side, come back to centre and turn to the other.",
+  "steps": [
+    "Lie on the back, knees bent, hands behind the head.",
+    "Curl the head and shoulders up.",
+    "Staying lifted, turn the ribs towards one knee.",
+    "Come through centre without lowering and turn to the other side."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Lower between sides",
+      "text": "Curl, turn, centre, lower."
+    },
+    {
+      "tag": "L2",
+      "title": "Stay up",
+      "text": "Side to side at the same height."
+    },
+    {
+      "tag": "L3",
+      "title": "Legs in tabletop",
+      "text": "The pelvis stays still under moving ribs."
+    }
+  ],
+  "uses": [],
+  "cautions": [
+    {
+      "tag": "neck",
+      "severity": "modify",
+      "note": "Support the head fully in the hands, or keep it down."
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Loaded flexion with rotation.",
+      "swap": "dead-bug"
+    },
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "bird-dog"
+    }
+  ],
+  "prep": [
+    "supine-curl"
+  ],
+  "cues": "Turn the ribs, not the elbows.\nBoth sides of the waist stay long.\nPelvis heavy and still.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  },
+  "aka": [
+    "Oblique curl",
+    "Ab curl with a twist"
+  ],
+  "variations": [
+    {
+      "name": "Lower the head between sides",
+      "kind": "regression"
+    },
+    {
+      "name": "Legs in tabletop",
+      "kind": "progression"
+    }
+  ],
+  "sources": [
+    "isacowitz"
+  ]
+}

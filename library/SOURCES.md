@@ -18,4 +18,12 @@ This is a cross-check of names and spring ranges, not a guarantee. Set-up, cues,
 | `pa` | [Pilates Anytime reformer exercise breakdowns](https://www.pilatesanytime.com/exercise-view/6270/video/Pilates-Jackknife-by-Meredith-Rogers) |
 | `matlists` | [General mat Pilates exercise lists (Complete Pilates, BetterMe, Marie Claire, Pulse)](https://complete-pilates.co.uk/pilates-mat-exercises/) |
 | `alo` | [Alo Moves: reformer exercises](https://blog.alomoves.com/movement/pilates-reformer-exercises) |
+| `alo34` | [Alo Moves: a guide to the original 34 Pilates exercises](https://blog.alomoves.com/movement/original-34-pilates-exercises) |
+| `basimat` | [BASI Pilates: the classical Pilates mat exercises listed](https://basipilates.com/?p=1033) |
+| `opcmat` | [Online Pilates Classes: complete classical mat exercise order](https://onlinepilatesclasses.com/blog/pilates-mat-exercise-order/) |
+| `isacowitz` | [Rael Isacowitz, *Pilates* (2nd ed.): the fundamental apparatus program (publisher's excerpt)](https://us.humankinetics.com/blogs/excerpt/the-fundamental-apparatus-program) |
+| `peak` | [Peak Pilates: Pilates fundamentals (pre-Pilates) workshop notes](https://www.peakpilates.com/blogs/theteaser/virtual-workshop-pilates-fundamentals-for-sound-movement) |
+| `ncsu` | [NC State University Pilates textbook: fundamentals](https://pilates.wordpress.ncsu.edu/?p=176) |
+| `edinburgh` | [University of Edinburgh Sport & Exercise: introduction to Pilates (leg slides, knee drops, arm raises)](https://sport-exercise.ed.ac.uk/keep-active/keep-active-from-home/introduction-to-pilates) |
+| `genesis` | [Genesis Health + Fitness (Australia): reformer Pilates movements](https://www.genesisfitness.com.au/reformer-pilates-movements) |
 | `manual` | The studio's own instructor training manuals (reformer and mat). Used for ideas only; nothing is reproduced. |

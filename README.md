@@ -4,7 +4,7 @@
 
 OpenPilates lets you build a class from a library of movements and shows you what the class actually does: which muscles it works, how the spine moves, how much time goes on spring and position changes, and whether it builds to a peak and winds down. It also checks every movement against the clients booked in. It runs on your own server with Docker. There's no subscription, and client details stay with you.
 
-> Version 0.5 — early release. The starter movement library is a draft and needs review by a qualified Pilates instructor before you teach from it (see [Movement library](#movement-library)).
+> Version 0.6 — early release. The starter movement library is a draft and needs review by a qualified Pilates instructor before you teach from it (see [Movement library](#movement-library)).
 
 ---
 
@@ -22,7 +22,8 @@ OpenPilates is a free class planner for mat and reformer instructors.
   - an effort curve that should build to a peak and then wind down
   - **a spring map**: which setting each stretch of the class runs on, where every change falls, and whether you're inside the limit set for that class type
   - **class balance**: time on lower body, upper body, core and stretch; how much is holding still against load versus moving; and which movement categories (trunk flexion, extension, side bend, rotation, hip work, hands-and-knees, standing) the class hasn't touched yet
-- **A picture for every movement.** Each movement has a drawn diagram of the start and finish position, with a face and feet so you can tell whether the body is on its back, front or side. Your studio can add its own photo to any movement.
+- **A picture for every movement, showing what it does.** Each movement has its own drawn frames: start and finish, a middle frame where the movement has three parts, or "one side, the other" for alternating movements like Running. Faces and feet show whether the body is on its back, front or side. Your studio can add its own photo to any movement.
+- **Light and dark.** Switch with the sun or moon at the top of any page, or follow the device. Printed run sheets are always light.
 - **Your level names.** A movement has a difficulty range, because springs and layers change how hard it is. Your studio's class levels (Beginner / Intermediate / Advanced, Beginner-Intermediate / Intermediate-Advanced, or your own names) each cover part of that range.
 - **Get checks before you teach.** The app flags a class that opens with something hard, a tough movement with no lead-in earlier in the plan, a long run of hard holds with no relief, a missing cool-down or no back extension. It also checks every movement against who's booked in. Each caution is either **adjust** (teach it with the noted change, like keeping time on the back short in pregnancy) or **avoid** (with a suggested swap). Pregnancy is split into the first 12 weeks and after.
 - **Short on time?** "Draft it for me" follows the class type: each phase gets its share of the class and a few blocks with room to build, warm-ups and cool-downs only use movements marked for them, the hardest work is kept for the peak, movements that share a spring setting sit together, and the plan is fitted to the class length. Then you change whatever you like.
@@ -100,7 +101,7 @@ Put OpenPilates behind your usual reverse proxy (Caddy, Nginx Proxy Manager, Tra
 
 The library is one JSON file per movement in [`library/movements/`](library/movements). Each file covers the name most teachers use and the other names it goes by, the part of the class it belongs to, the level range, which diagram to draw, starting position, spine movement, muscles, the usual spring setting and the one to advance to, headrest and straps, step-by-step set-up with the breath, teaching cues, layers, variations (regressions, progressions and other versions, with their own springs where needed), what stays still and what moves, a pregnancy note, lead-in movements, and cautions marked *adjust* or *avoid* with suggested swaps.
 
-**All 169 starter movements (100 reformer, 69 mat) and 18 series are drafts.** We wrote them for OpenPilates in our own words. For 0.4 every one was cross-checked against several published references for its name, other names and spring range, and the majority view won where they disagreed; movements no reference confirmed were retired. [`library/SOURCES.md`](library/SOURCES.md) lists the references, and each file's `sources` field says which ones name that movement. Set-up, cues, muscles, levels and timings still need checking by a qualified instructor: use **Review the library** in the app.
+**All 184 starter movements (105 reformer, 79 mat) and 18 series are drafts.** We wrote them for OpenPilates in our own words. For 0.4 every one was cross-checked against several published references for its name, other names and spring range, and the majority view won where they disagreed; movements no reference confirmed were retired. [`library/SOURCES.md`](library/SOURCES.md) lists the references, and each file's `sources` field says which ones name that movement. Set-up, cues, muscles, levels and timings still need checking by a qualified instructor: use **Review the library** in the app.
 
 Series live in [`library/series/`](library/series): a name and an ordered list of movements, each optionally with a variation.
 

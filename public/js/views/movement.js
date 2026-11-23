@@ -3,7 +3,7 @@ import { api, store } from '../store.js';
 import { go, render, backLink } from '../app.js';
 import { POSITIONS, SPINE, PATTERNS, PLANES, MUSCLES, EQUIPMENT, LEVELS, CAUTIONS, PURPOSES, LOAD_LEVELS, BRANDS, SECTIONS, CATEGORIES, ROLES, PREGNANCY, HEADREST, STRAPS, SEVERITIES, OPTION_KINDS, springFor, labelOf, sectionOf, categoriesOf, roleOf, levelLabel, variationsOf, USES, usesOf, levelsOf, classLevel } from '/shared/vocab.js';
 import { POSES, POSE_IDS, poseOf } from '/shared/poses.js';
-import { figure, figurePair } from '../figure.js';
+import { figure, figureFrames } from '../figure.js';
 import { bodyMap, bodyLegend, springDots, bar } from '../charts.js';
 import { posLabel, muscleLabel, pregnancyTag, variationList, repsLabel } from './common.js';
 import { fmtClock } from '/shared/analysis.js';
@@ -110,7 +110,7 @@ export async function movementView(slug) {
     h('div', { class: 'card', style: { marginBottom: '16px' } },
       h('div', { class: 'hero-figs' },
         mv.photo ? h('figure', { style: { flex: '2 1 300px', maxWidth: '460px', background: 'none', padding: 0 } }, h('img', { class: 'hero-photo', src: mv.photo, alt: `${mv.name}` }), mv.photoCredit ? h('figcaption', { style: { textTransform: 'none', letterSpacing: 0, fontWeight: 500 } }, `Photo: ${mv.photoCredit}`) : null) : null,
-        figurePair(mv, { width: 260 }).map((f, i, all) => h('figure', null, f, h('figcaption', null, all.length === 1 ? 'Position' : i === 0 ? 'Start' : 'Finish')))),
+        figureFrames(mv, { width: 340 }).map((f) => h('figure', null, f.svg, h('figcaption', null, f.label)))),
       h('div', { class: 'btn-row', style: { marginTop: '10px' } },
         h('span', { class: 'tiny muted', style: { flex: '1 1 260px' } }, `Diagram: ${POSES[poseOf(mv)].label.toLowerCase()}.`, canEdit ? ' Add your studio\'s own photo if you have one.' : ''),
         canEdit ? photoControls() : null)),

@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.6.0
+
+### Pictures that match the movement
+- **Every movement has its own frames.** Before, 138 movements shared 47 pictures, so Running, Footwork and Calf Raises all showed the Footwork drawing. Now 105 movements have frames drawn for what they do, and only one pair still shares a picture (Pelvic Curl and Bridge with Magic Circle, which move the same way).
+- **Running** shows the carriage pressed out with one heel under the bar and the other knee bent, then the legs swapped. **Calf Raises** shows straight legs with the heels lifting and lowering.
+- **Three frames where a movement has three parts**: Coordination, Backstroke, Breaststroke, Short Spine, Rowing Back, Draw a Sword, the arm circles, Inchworm, Boomerang, Jackknife, Crab and more. Alternating movements are labelled "One side" and "The other"; holds show a single position.
+- Later frames carry a faint print of the frame before, so you can see what moved. Frames are larger on the movement page.
+- Feet can now point or flex in a drawing, which is what lets a heel drop read.
+
+### More movements
+- **15 more**, each named in a published reference (listed in `library/SOURCES.md`), with springs, muscles, steps, layers, variations, cautions and its own frames.
+  - Reformer: Pelvic Lift, Supine Arms: Circles, Kneeling Side Splits, Mountain Climbers, and Curtsy Lunge (brought back now that a published class names it).
+  - Mat: Scissors and Bicycle (on the shoulders), Crab, Control Balance, Knee Folds, Supine Spine Twist, Chest Lift with Rotation, Leg Slides, Arm Arcs, Thigh Stretch.
+- 184 movements in all: 105 reformer, 79 mat.
+- "Pelvic lift" is no longer another name for Bridging, because it is its own movement now.
+
+### Light and dark mode
+- A sun or moon at the top of every page switches it. Account → Appearance offers Light, Dark or Follow this device. The choice is kept per browser.
+- Every screen, chart and diagram follows the theme. Printing is always light.
+
+### Under the hood
+- Poses can carry a middle frame (`m`), frame names, and a foot direction. A frame that gives a limb angles lets go of the point that limb was reaching for.
+- The stylesheet's fixed colours became theme variables.
+- 53 automated tests (the pose test now checks every limb in every frame) and a 22-step browser click-through.
+
 ## 0.5.0
 
 A rework around how classes are really planned: the studio is set up once, a class is built from blocks inside timed phases, and everything in the app can be edited, added, removed and moved between servers.

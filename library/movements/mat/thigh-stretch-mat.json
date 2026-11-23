@@ -1,0 +1,116 @@
+{
+  "slug": "thigh-stretch-mat",
+  "name": "Thigh Stretch",
+  "apparatus": "mat",
+  "section": "lower",
+  "level": "intermediate",
+  "levelTo": "advanced",
+  "pose": "thigh-stretch-mat",
+  "position": "kneeling",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "quadriceps",
+      "abdominals"
+    ],
+    "secondary": [
+      "glutes",
+      "hip_flexors"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "stability",
+  "stable": "Spine and pelvis, as one line",
+  "mobile": "Knees",
+  "categories": [
+    "hip_extension"
+  ],
+  "pregnancy": "ok",
+  "purpose": {
+    "strength": 3,
+    "stability": 2,
+    "flexibility": 2,
+    "mobility": 0
+  },
+  "multiJoint": false,
+  "intensity": 5,
+  "duration": 90,
+  "reps": "5–8",
+  "summary": "Kneeling upright with the arms forward, the body hinges back from the knees in one straight line and returns.",
+  "steps": [
+    "Kneel upright, knees hip-width, arms reaching forward at shoulder height.",
+    "Breathe in to hinge back from the knees: hips, ribs and head stay in one line.",
+    "Go only as far as you can hold the line.",
+    "Breathe out to press the shins down and come up."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Small hinge",
+      "text": "A few centimetres."
+    },
+    {
+      "tag": "L2",
+      "title": "Hold at the back",
+      "text": "Two counts."
+    },
+    {
+      "tag": "L3",
+      "title": "Hands behind the head",
+      "text": "A longer lever."
+    }
+  ],
+  "uses": [],
+  "cautions": [
+    {
+      "tag": "knee",
+      "severity": "avoid",
+      "note": "Body weight is taken through deeply loaded knees.",
+      "swap": "shoulder-bridge"
+    },
+    {
+      "tag": "extension_pain",
+      "severity": "modify",
+      "note": "Keep the ribs closed; no arch."
+    }
+  ],
+  "prep": [],
+  "cues": "One long line from knees to crown.\nThe seat stays switched on.\nNo sitting back into the hips.",
+  "labels": [
+    "classical"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  },
+  "aka": [
+    "Kneeling hinge",
+    "Kneeling thigh stretch"
+  ],
+  "variations": [
+    {
+      "name": "A cushion under the knees",
+      "kind": "variation"
+    },
+    {
+      "name": "Small range only",
+      "kind": "regression"
+    },
+    {
+      "name": "Hands behind the head",
+      "kind": "progression"
+    }
+  ],
+  "sources": [
+    "opcmat",
+    "pilatesology"
+  ]
+}

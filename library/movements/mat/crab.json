@@ -1,0 +1,135 @@
+{
+  "slug": "crab",
+  "name": "Crab",
+  "apparatus": "mat",
+  "section": "core",
+  "level": "advanced",
+  "levelTo": "advanced",
+  "pose": "crab",
+  "position": "seated",
+  "spine": [
+    "flexion",
+    "articulation"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "flexion",
+    "spinal-articulation",
+    "coordination"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals"
+    ],
+    "secondary": [
+      "hip_flexors",
+      "spinal_extensors"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "both",
+  "stable": "A tight tuck",
+  "mobile": "Spine",
+  "categories": [
+    "trunk_flexion"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 1,
+    "mobility": 2
+  },
+  "multiJoint": true,
+  "intensity": 7,
+  "duration": 90,
+  "reps": "6",
+  "summary": "A tucked ball with crossed ankles: roll back, switch the cross, then roll forward until the top of the head touches the mat.",
+  "steps": [
+    "Sit in a tuck with the ankles crossed, holding the feet.",
+    "Roll back to the shoulder blades and switch the cross of the legs.",
+    "Roll up and forward, lifting the hips, until the crown of the head rests lightly on the mat.",
+    "Roll back again without pushing off the head."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Roll back and up to balance",
+      "text": "No roll onto the head yet."
+    },
+    {
+      "tag": "L2",
+      "title": "Add the switch",
+      "text": "Change the cross at the back of the roll."
+    },
+    {
+      "tag": "L3",
+      "title": "Forward to the head",
+      "text": "The lightest touch, weight in the legs."
+    }
+  ],
+  "uses": [
+    "peak"
+  ],
+  "cautions": [
+    {
+      "tag": "neck",
+      "severity": "avoid",
+      "note": "The head touches the mat.",
+      "swap": "rolling-like-a-ball"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Rolling on a flexed spine.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Rolling in a tight tuck.",
+      "swap": "cat-cow"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Rolling in a tight tuck.",
+      "swap": "cat-cow"
+    },
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Deep knee bend with crossed ankles. Use Seal instead."
+    }
+  ],
+  "prep": [
+    "rolling-like-a-ball",
+    "seal"
+  ],
+  "cues": "The abdominals lift you forward, not momentum.\nNo weight drops onto the head.\nStay round the whole way.",
+  "labels": [
+    "classical"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  },
+  "aka": [
+    "The crab"
+  ],
+  "variations": [
+    {
+      "name": "Seal",
+      "kind": "regression",
+      "note": "Same roll without going onto the head."
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "alo34",
+    "basimat",
+    "opcmat"
+  ]
+}

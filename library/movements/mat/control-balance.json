@@ -1,0 +1,132 @@
+{
+  "slug": "control-balance",
+  "name": "Control Balance",
+  "apparatus": "mat",
+  "section": "core",
+  "level": "advanced",
+  "levelTo": "advanced",
+  "pose": "control-balance",
+  "position": "inverted",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "hip-dissociation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "glutes",
+      "hamstrings"
+    ],
+    "secondary": [
+      "spinal_extensors",
+      "hip_flexors"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": true,
+  "role": "stability",
+  "stable": "Spine, balanced on the shoulders",
+  "mobile": "Hips",
+  "categories": [
+    "hip_extension",
+    "trunk_flexion"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 2,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 8,
+  "duration": 90,
+  "reps": "3 each leg",
+  "summary": "From a roll over with the feet on the mat behind the head, the hands hold one ankle as the other leg reaches straight to the ceiling.",
+  "steps": [
+    "Roll over until the toes touch the mat behind the head.",
+    "Take hold of one ankle with both hands.",
+    "Reach the other leg straight up to the ceiling, hips over shoulders.",
+    "Switch legs with control, then roll down."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Roll over and hold",
+      "text": "Both feet stay down."
+    },
+    {
+      "tag": "L2",
+      "title": "One leg to the ceiling",
+      "text": "Hold for a breath."
+    },
+    {
+      "tag": "L3",
+      "title": "Switch without wobbling",
+      "text": "The legs pass each other slowly."
+    }
+  ],
+  "uses": [
+    "peak"
+  ],
+  "cautions": [
+    {
+      "tag": "neck",
+      "severity": "avoid",
+      "note": "Weight is on the shoulders and upper back.",
+      "swap": "side-kick-series"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Loaded flexion on the upper spine.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Inverted.",
+      "swap": "side-kick-series"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Inverted.",
+      "swap": "side-kick-series"
+    }
+  ],
+  "prep": [
+    "roll-over",
+    "jackknife-mat"
+  ],
+  "cues": "The top leg reaches up, the bottom leg reaches down.\nBalance on the shoulders, not the neck.",
+  "labels": [
+    "classical"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  },
+  "aka": [
+    "Balance control",
+    "Roll over balance control"
+  ],
+  "variations": [
+    {
+      "name": "Roll Over",
+      "kind": "regression",
+      "note": "Leave out the leg lift."
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "alo34",
+    "basimat",
+    "opcmat"
+  ]
+}

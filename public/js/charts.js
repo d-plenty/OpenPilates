@@ -2,8 +2,8 @@ import { h, s } from './ui.js';
 import { POSITIONS, springFor, springLabel, PURPOSES, fitSprings } from '/shared/vocab.js';
 import { fmtClock } from '/shared/analysis.js';
 
-const BASE = '#E2E7E4';
-const shade = (lvl) => (lvl == null || lvl <= 0 ? '#D3DAD7' : lvl > 0.66 ? '#0F6E62' : lvl > 0.33 ? '#4E9C8F' : '#A9D3CA');
+const BASE = 'var(--chart-track)';
+const shade = (lvl) => (lvl == null || lvl <= 0 ? 'var(--chart-grid)' : lvl > 0.66 ? 'var(--accent-fill)' : lvl > 0.33 ? '#4E9C8F' : '#A9D3CA');
 
 function silhouette() {
   return [
@@ -19,7 +19,7 @@ const pair = (tag, a, b, fill, extra = {}) => [s(tag, { ...a, fill, ...extra }),
 // levels: { muscleId: 0..1 }, gaps: Set of muscle ids to outline
 export function bodyMap(levels = {}, { size = 120, gaps = new Set() } = {}) {
   const f = (id) => shade(levels[id]);
-  const gap = (id) => (gaps.has(id) ? { stroke: '#C2571A', 'stroke-width': 1.6, 'stroke-dasharray': '3 2', fill: '#FFFFFF' } : {});
+  const gap = (id) => (gaps.has(id) ? { stroke: '#C2571A', 'stroke-width': 1.6, 'stroke-dasharray': '3 2', fill: 'var(--surface)' } : {});
   const hgt = Math.round(size * 250 / 120);
   const front = s('svg', { width: size, height: hgt, viewBox: '0 0 120 250', role: 'img', 'aria-label': 'Front of body: ' + describe(levels, 'F') },
     ...silhouette(),
@@ -56,7 +56,7 @@ function describe(levels, side) {
 
 export function bodyLegend() {
   return h('div', { class: 'legend' },
-    [['#0F6E62', 'High'], ['#4E9C8F', 'Medium'], ['#A9D3CA', 'Low'], ['#D3DAD7', 'None']].map(([c, l]) => h('span', null, h('i', { style: { background: c } }), l)));
+    [['var(--accent-fill)', 'High'], ['#4E9C8F', 'Medium'], ['#A9D3CA', 'Low'], ['var(--chart-grid)', 'None']].map(([c, l]) => h('span', null, h('i', { style: { background: c } }), l)));
 }
 
 // Spine radar. values/target: { flexion, extension, rotation, 'side-bend' } in %
@@ -67,10 +67,10 @@ export function radar(values, target, { size = 180 } = {}) {
   const poly = (vals) => Object.entries(angles).map(([k, a]) => pt(vals[k] || 0, a).map((n) => n.toFixed(1)).join(',')).join(' ');
   const desc = Object.keys(angles).map((k) => `${k.replace('-', ' ')} ${values[k] || 0}% (target ${target[k] || 0}%)`).join(', ');
   return s('svg', { width: size, height: size, viewBox: '0 0 180 180', role: 'img', 'aria-label': 'Spine movement: ' + desc, class: 'radar' },
-    s('circle', { cx: c, cy: c, r: R, fill: 'none', stroke: '#E2E7E4' }), s('circle', { cx: c, cy: c, r: R * 2 / 3, fill: 'none', stroke: '#E2E7E4' }), s('circle', { cx: c, cy: c, r: R / 3, fill: 'none', stroke: '#E2E7E4' }),
-    s('path', { d: `M${c} ${c - R}V${c + R}M${c - R} ${c}H${c + R}`, stroke: '#E2E7E4' }),
-    s('polygon', { points: poly(target), fill: 'none', stroke: '#56625C', 'stroke-width': 1.5, 'stroke-dasharray': '4 3' }),
-    s('polygon', { points: poly(values), fill: 'rgba(15,110,98,.22)', stroke: '#0F6E62', 'stroke-width': 2 }),
+    s('circle', { cx: c, cy: c, r: R, fill: 'none', stroke: 'var(--chart-track)' }), s('circle', { cx: c, cy: c, r: R * 2 / 3, fill: 'none', stroke: 'var(--chart-track)' }), s('circle', { cx: c, cy: c, r: R / 3, fill: 'none', stroke: 'var(--chart-track)' }),
+    s('path', { d: `M${c} ${c - R}V${c + R}M${c - R} ${c}H${c + R}`, stroke: 'var(--chart-track)' }),
+    s('polygon', { points: poly(target), fill: 'none', stroke: 'var(--muted)', 'stroke-width': 1.5, 'stroke-dasharray': '4 3' }),
+    s('polygon', { points: poly(values), fill: 'rgba(15,110,98,.22)', stroke: 'var(--accent-fill)', 'stroke-width': 2 }),
     s('text', { x: c, y: 12, 'text-anchor': 'middle', class: 'radar-label' }, 'Flexion'),
     s('text', { x: c, y: 177, 'text-anchor': 'middle', class: 'radar-label' }, 'Extension'),
     s('text', { x: 178, y: 94, 'text-anchor': 'end', class: 'radar-label' }, 'Rotation'),
@@ -83,10 +83,10 @@ export function intensityChart(a, flow, { height = 200 } = {}) {
   const total = a.totalSec || 1;
   const x = (t) => (t / total) * W;
   const y = (v) => bottom - ((v - 1) / 9) * (bottom - top);
-  const bands = a.segments.map((sg, i) => s('rect', { x: x(sg.start).toFixed(1), y: 0, width: Math.max(0, x(sg.sec)).toFixed(1), height: bottom, fill: i % 2 ? '#F6F8F7' : '#EAF4F1' }));
+  const bands = a.segments.map((sg, i) => s('rect', { x: x(sg.start).toFixed(1), y: 0, width: Math.max(0, x(sg.sec)).toFixed(1), height: bottom, fill: i % 2 ? 'var(--tint)' : 'var(--chart-fill)' }));
   const pts = a.intensity.flatMap((i) => [[x(i.at), y(i.value)], [x(i.end), y(i.value)]]);
-  const line = pts.length ? s('polyline', { points: pts.map((p) => p.map((n) => n.toFixed(1)).join(',')).join(' '), fill: 'none', stroke: '#0F6E62', 'stroke-width': 3, 'vector-effect': 'non-scaling-stroke', 'stroke-linejoin': 'round' }) : null;
-  const peak = a.peak ? s('circle', { cx: x(a.peak.at + (a.peak.end - a.peak.at) / 2).toFixed(1), cy: y(a.peak.value).toFixed(1), r: 6, fill: '#16201C' }) : null;
+  const line = pts.length ? s('polyline', { points: pts.map((p) => p.map((n) => n.toFixed(1)).join(',')).join(' '), fill: 'none', stroke: 'var(--accent-fill)', 'stroke-width': 3, 'vector-effect': 'non-scaling-stroke', 'stroke-linejoin': 'round' }) : null;
+  const peak = a.peak ? s('circle', { cx: x(a.peak.at + (a.peak.end - a.peak.at) / 2).toFixed(1), cy: y(a.peak.value).toFixed(1), r: 6, fill: 'var(--ink)' }) : null;
   // Segment names sit under the chart as ordinary text so they never stretch or overlap.
   const labels = h('div', { class: 'chart-labels', 'aria-hidden': 'true' }, a.segments.map((sg) => h('span', { style: { flex: `${Math.max(sg.sec, 1)} 1 0` }, title: sg.name }, sg.name)));
   const svg = s('svg', { width: '100%', height: height - 22, viewBox: `0 0 ${W} ${bottom}`, preserveAspectRatio: 'none', role: 'img', class: 'intensity-chart',

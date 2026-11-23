@@ -1,0 +1,141 @@
+{
+  "slug": "pelvic-lift",
+  "name": "Pelvic Lift",
+  "apparatus": "reformer",
+  "section": "pelvic",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "pelvic-lift",
+  "position": "supine",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "push"
+  ],
+  "muscles": {
+    "primary": [
+      "hamstrings",
+      "glutes"
+    ],
+    "secondary": [
+      "abdominals",
+      "adductors"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "medium"
+    ],
+    "advance": [
+      "medium",
+      "medium",
+      "medium"
+    ],
+    "note": "Heavier is steadier."
+  },
+  "setup": {
+    "headrest": "down",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Pelvis, held just off the carriage",
+  "mobile": "Hips and knees",
+  "categories": [
+    "hip_extension"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 3,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 5,
+  "duration": 120,
+  "reps": "8–10",
+  "summary": "Arches on the footbar, heels together or feet wide: the tail curls a little off the carriage and stays there while the legs press the carriage out and in.",
+  "steps": [
+    "Lie on the back, arches on the footbar, headrest down.",
+    "Curl the tail under to lift the pelvis a few centimetres.",
+    "Keeping that height, press the carriage out until the legs are almost straight.",
+    "Draw the carriage home without dropping the hips."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Hold the lift",
+      "text": "Carriage still."
+    },
+    {
+      "tag": "L2",
+      "title": "Press out and in",
+      "text": "Hips stay at one height."
+    },
+    {
+      "tag": "L3",
+      "title": "Pulses near home",
+      "text": "Small presses with the knees bent."
+    }
+  ],
+  "uses": [
+    "cooldown"
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not lying flat after the first 12 weeks.",
+      "swap": "donkey-kick-footbar"
+    },
+    {
+      "tag": "neck",
+      "severity": "modify",
+      "note": "Headrest down, and keep the lift low."
+    },
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Shorten the range."
+    }
+  ],
+  "prep": [
+    "bridging-reformer"
+  ],
+  "cues": "Hips the same height the whole way.\nHamstrings pull the carriage home.\nRibs soft.",
+  "labels": [
+    "classical"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  },
+  "aka": [
+    "Bottom lift",
+    "Bridge and press"
+  ],
+  "variations": [
+    {
+      "name": "Feet wide and turned out",
+      "kind": "variation"
+    },
+    {
+      "name": "Feet together, parallel",
+      "kind": "variation"
+    },
+    {
+      "name": "Single leg",
+      "kind": "progression"
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "opc"
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "slug": "high-bicycle",
+  "name": "Bicycle",
+  "apparatus": "mat",
+  "section": "core",
+  "level": "advanced",
+  "levelTo": "advanced",
+  "pose": "high-bicycle",
+  "position": "inverted",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "hip-dissociation",
+    "coordination"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "hip_flexors",
+      "hamstrings"
+    ],
+    "secondary": [
+      "glutes",
+      "quadriceps"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": true,
+  "role": "stability",
+  "stable": "Pelvis and spine, held up by the hands",
+  "mobile": "Hips and knees",
+  "categories": [
+    "hip_flexion",
+    "hip_extension"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 2,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 7,
+  "duration": 90,
+  "reps": "5 each way",
+  "summary": "From the Scissors position, the far leg bends and sweeps under as the other reaches over: a slow pedal, then reversed.",
+  "steps": [
+    "Prop the pelvis on the hands as for Scissors.",
+    "Reach one straight leg away, bend that knee and draw the heel towards the seat.",
+    "Bring the bent knee through to the chest as the other leg reaches away.",
+    "Pedal five times, then reverse the direction."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Slow pedal forward",
+      "text": "One full circle each breath."
+    },
+    {
+      "tag": "L2",
+      "title": "Reverse",
+      "text": "Lead with the knee to the chest, then reach away."
+    },
+    {
+      "tag": "L3",
+      "title": "Bigger circle",
+      "text": "The far foot aims for the mat."
+    }
+  ],
+  "uses": [
+    "peak"
+  ],
+  "cautions": [
+    {
+      "tag": "neck",
+      "severity": "avoid",
+      "note": "Weight is on the shoulders and upper back.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Inverted and loaded through the abdominals.",
+      "swap": "side-kick-series"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Inverted and loaded through the abdominals.",
+      "swap": "side-kick-series"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Loaded flexion on the upper spine.",
+      "swap": "bird-dog"
+    }
+  ],
+  "prep": [
+    "high-scissors"
+  ],
+  "cues": "Hips stay level in the hands.\nReach long before you bend.\nNo weight on the neck.",
+  "labels": [
+    "classical"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  },
+  "aka": [
+    "High bicycle",
+    "Bicycle on the shoulders"
+  ],
+  "variations": [
+    {
+      "name": "Scissors only",
+      "kind": "regression",
+      "note": "Keep both legs straight."
+    }
+  ],
+  "sources": [
+    "pilatesology",
+    "alo34",
+    "opcmat"
+  ]
+}

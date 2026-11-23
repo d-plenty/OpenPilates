@@ -5,7 +5,7 @@
   "section": "stretch",
   "level": "beginner",
   "levelTo": "beginner",
-  "pose": "cat-carriage",
+  "pose": "cat-cow-carriage",
   "position": "quadruped",
   "spine": [
     "flexion",

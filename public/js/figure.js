@@ -2,7 +2,8 @@
 import { s } from './ui.js';
 import { POSES, RIG, CANVAS, solve, poseOf } from '/shared/poses.js';
 
-const C = { body: '#23433A', far: '#7FA296', ghost: '#0F6E62', frame: '#C3CEC9', pad: '#9DB0A9', wood: '#D9C39A', strap: '#B4651F', skin: '#F0D9C6', mat: '#BFD5CE', floor: '#DDE3E0' };
+// Colours come from the theme, so the pictures read in light and dark.
+const C = { body: 'var(--fig-body)', far: 'var(--fig-far)', ghost: 'var(--fig-ghost)', frame: 'var(--fig-frame)', pad: 'var(--fig-pad)', wood: 'var(--fig-wood)', strap: '#C2742A', skin: 'var(--fig-skin)', mat: 'var(--fig-mat)', floor: 'var(--fig-floor)' };
 const P = (pt) => `${pt[0].toFixed(1)},${pt[1].toFixed(1)}`;
 const line = (a, b, w, color, extra = {}) => s('line', { x1: a[0].toFixed(1), y1: a[1].toFixed(1), x2: b[0].toFixed(1), y2: b[1].toFixed(1), stroke: color, 'stroke-width': w, 'stroke-linecap': 'round', ...extra });
 
@@ -14,7 +15,7 @@ function reformer(pose, car) {
   // platform and footbar (or jump board)
   out.push(s('rect', { x: p0, y: py, width: p1 - p0, height: RIG.railY - py + 2, rx: 2, fill: C.frame }));
   if (pose.board) out.push(s('rect', { x: bx + 1, y: 40, width: 6, height: py - 40, rx: 2, fill: C.wood }));
-  else out.push(s('path', { d: `M ${p0 + 2} ${py} Q ${p0 + 2} ${by} ${bx + 3} ${by}`, fill: 'none', stroke: '#7E8B85', 'stroke-width': 3.2, 'stroke-linecap': 'round' }));
+  else out.push(s('path', { d: `M ${p0 + 2} ${py} Q ${p0 + 2} ${by} ${bx + 3} ${by}`, fill: 'none', stroke: 'var(--fig-pad)', 'stroke-width': 3.2, 'stroke-linecap': 'round' }));
   // risers for the straps
   const [rx, ry] = RIG.riser;
   out.push(line([rx, RIG.railY], [rx, ry], 3, C.frame));
@@ -22,7 +23,7 @@ function reformer(pose, car) {
   const x = c0 - car;
   out.push(s('rect', { x, y: RIG.padY, width: c1 - c0, height: 9, rx: 3.5, fill: C.pad }));
   out.push(s('rect', { x: RIG.shoulderRest - car - 3, y: RIG.padY - 10, width: 5, height: 11, rx: 2, fill: C.pad }));
-  out.push(s('circle', { cx: x + 14, cy: RIG.railY - 0.5, r: 2.4, fill: '#7E8B85' }), s('circle', { cx: x + c1 - c0 - 14, cy: RIG.railY - 0.5, r: 2.4, fill: '#7E8B85' }));
+  out.push(s('circle', { cx: x + 14, cy: RIG.railY - 0.5, r: 2.4, fill: 'var(--fig-pad)' }), s('circle', { cx: x + c1 - c0 - 14, cy: RIG.railY - 0.5, r: 2.4, fill: 'var(--fig-pad)' }));
   if (pose.box === 'long') out.push(s('rect', { x: RIG.shoulderRest - car + 4, y: RIG.longBoxTop, width: 62, height: RIG.padY - RIG.longBoxTop, rx: 3, fill: C.wood }));
   if (pose.box === 'short') out.push(s('rect', { x: RIG.shoulderRest - car - 2, y: RIG.shortBoxTop, width: 26, height: RIG.padY - RIG.shortBoxTop, rx: 3, fill: C.wood }));
   return out;
@@ -50,7 +51,7 @@ function body(j, color, far, opacity) {
     const shin = dir(leg.knee, leg.foot);
     // Shin lying flat with the knee lower than the hip is kneeling: the foot points back along the shin.
     const kneeling = Math.abs(shin[1]) < 0.3 && leg.knee[1] - j.hip[1] > 4;
-    const toe = j.cam || kneeling ? shin : turn(shin, -j.faces);
+    const toe = leg.toe !== undefined ? [Math.cos((leg.toe * Math.PI) / 180), -Math.sin((leg.toe * Math.PI) / 180)] : j.cam || kneeling ? shin : turn(shin, -j.faces);
     g.push(line(leg.foot, add(leg.foot, toe, j.cam ? 4 : 6.5), w, col));
   };
   const limb = (a, b, c, w1, w2, col) => { if (!a) return; g.push(line(a, b, w1, col), line(b, c, w2, col)); };
@@ -66,7 +67,7 @@ function body(j, color, far, opacity) {
     if (!opacity) {
       dot(add(hc, spine, -0.8), 5.4, C.skin);
       const across = turn(spine, 1);
-      for (const k of [-2.3, 2.3]) dot(add(add(hc, across, k), spine, 0.2), 1.05, color);
+      for (const k of [-2.3, 2.3]) dot(add(add(hc, across, k), spine, 0.2), 1.05, '#1B2A25');
     }
   } else {
     dot(add(add(hc, front, -6.4), spine, 2.4), 3.8, color);
@@ -74,7 +75,7 @@ function body(j, color, far, opacity) {
     dot(add(add(hc, front, 7.6), spine, -0.8), 2.2, opacity ? color : C.skin);
     if (!opacity) {
       dot(add(add(hc, front, 2.9), spine, -0.6), 4.9, C.skin);
-      dot(add(add(hc, front, 4.4), spine, 0.9), 0.95, color);
+      dot(add(add(hc, front, 4.4), spine, 0.9), 0.95, '#1B2A25');
     }
   }
   if (j.leg) { limb(j.hip, j.leg.knee, j.leg.foot, 9, 7.2, color); foot(j.leg, color, 5); }
@@ -122,23 +123,32 @@ export function figure(mvOrPose, { width = 240, ghost = true, title } = {}) {
     body(a, C.body, C.far));
 }
 
-// Two frames side by side: start and finish.
-export function figurePair(mv, { width = 220 } = {}) {
+// The movement as frames side by side: start, a middle frame when the pose has one, and finish.
+// Each frame is { svg, label }.
+export function figureFrames(mv, { width = 220 } = {}) {
   const id = poseOf(mv);
   const pose = POSES[id] || POSES['mat-stand'];
-  if (!pose.b) return [figure(id, { width, ghost: false, title: `${mv.name}: start` })];
-  const end = { ...pose, a: { ...pose.a, ...pose.b }, car: pose.b.car !== undefined ? pose.b.car : pose.car, b: null };
-  const box = crop(pose, solve(pose, 'a'), solve(pose, 'b'));
-  return [figureFrom({ ...pose, b: null }, width, `${mv.name}: start`, box), figureFrom(end, width, `${mv.name}: finish`, box)];
+  if (!pose.b) return [{ svg: figure(id, { width, ghost: false, title: `${mv.name}: position` }), label: 'Position' }];
+  const keys = pose.m ? ['a', 'm', 'b'] : ['a', 'b'];
+  const solved = keys.map((k) => solve(pose, k));
+  let box = null;
+  for (let i = 1; i < solved.length; i++) { const c = crop(pose, solved[0], solved[i]); if (!box || c[0] < box[0]) box = c; }
+  const names = pose.frames || (pose.m ? ['Start', 'Then', 'Finish'] : ['Start', 'Finish']);
+  const frameOf = (k) => { const part = k === 'a' ? {} : pose[k]; return { ...pose, a: k === 'a' ? pose.a : mergeFrame(pose.a, part), car: part.car !== undefined ? part.car : pose.car, b: null, m: null }; };
+  // Each later frame carries a faint print of the one before, so the eye catches what moved.
+  return keys.map((k, i) => ({ svg: figureFrom(frameOf(k), width, `${mv.name}: ${names[i].toLowerCase()}`, box, i > 0 && width >= 150 ? frameOf(keys[i - 1]) : null), label: names[i] }));
 }
+const mergeFrame = (a, x) => { const f = { ...a, ...x }; for (const [ang, to] of [['thigh', 'legTo'], ['thigh2', 'leg2To'], ['uarm', 'armTo'], ['uarm2', 'arm2To']]) if (ang in x && !(to in x)) delete f[to]; return f; };
+export const figurePair = (mv, opts) => figureFrames(mv, opts).map((f) => f.svg);
 
-function figureFrom(pose, width, label, cropTo) {
+function figureFrom(pose, width, label, cropTo, before) {
   const a = solve(pose, 'a');
   const [vy, vh] = cropTo || crop(pose, a, null);
   return s('svg', { viewBox: `0 ${vy} ${CANVAS.w} ${vh}`, width, height: Math.round((width * vh) / CANVAS.w), role: 'img', 'aria-label': label, class: 'figure' },
     s('title', {}, label),
     line([14, RIG.floor], [226, RIG.floor], 1.5, C.floor),
     ...(pose.ctx === 'reformer' ? reformer(pose, a.car) : matFloor()),
+    before ? body(solve(before, 'a'), C.ghost, C.ghost, 0.2) : null,
     ...straps(pose, a),
     body(a, C.body, C.far));
 }

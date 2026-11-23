@@ -1,10 +1,10 @@
 import { h, icon, btn, modal } from '../ui.js';
 import { POSITIONS, labelOf, SPINE, MUSCLES, SECTIONS, OPTION_KINDS, springLabel, sectionOf, levelLabel, fitSprings, variationsOf } from '/shared/vocab.js';
-import { figure, figurePair } from '../figure.js';
+import { figure, figureFrames } from '../figure.js';
 import { fmtClock, fmtMin } from '/shared/analysis.js';
 import { bodyMap, bodyLegend, radar, intensityChart, positionStrip, positionKey, purposeBars, springDots } from '../charts.js';
 
-export const posColor = (id) => (POSITIONS.find((p) => p.id === id) || { color: '#56625C' }).color;
+export const posColor = (id) => (POSITIONS.find((p) => p.id === id) || { color: 'var(--muted)' }).color;
 export const posLabel = (id) => labelOf(POSITIONS, id);
 export const muscleLabel = (id) => labelOf(MUSCLES, id);
 
@@ -50,7 +50,7 @@ export function peekMovement(mv, room) {
   const body = (close) => h('div', { class: 'stack-sm peek' },
     (mv.aka || []).length ? h('p', { class: 'small muted', style: { margin: 0 } }, 'Also called: ', mv.aka.join(', ')) : null,
     h('div', { class: 'hero-figs' }, mv.photo ? h('figure', { style: { background: 'none', padding: 0 } }, h('img', { class: 'hero-photo', src: mv.photo, alt: mv.name, style: { maxHeight: '180px' } })) : null,
-      figurePair(mv, { width: 200 }).map((f, i, all) => h('figure', null, f, h('figcaption', null, all.length === 1 ? 'Position' : i === 0 ? 'Start' : 'Finish')))),
+      figureFrames(mv, { width: 180 }).map((f) => h('figure', null, f.svg, h('figcaption', null, f.label)))),
     mv.summary ? h('p', { style: { margin: 0 } }, mv.summary) : null,
     h('dl', { class: 'kv' },
       mv.apparatus === 'reformer' ? [h('dt', null, 'Springs'), h('dd', null, springDots(mv.load?.springs || [], room), mv.load?.advance?.length ? [h('span', { class: 'tiny muted' }, ' · to progress '), springDots(mv.load.advance, room)] : null)] : null,
@@ -113,7 +113,7 @@ export function radarCard(a) {
         h('thead', null, h('tr', null, h('th', { scope: 'col' }, 'Direction'), h('th', { scope: 'col', style: { textAlign: 'right' } }, 'Flow'), h('th', { scope: 'col', style: { textAlign: 'right' } }, 'Target'))),
         h('tbody', null, [['flexion', 'Flexion'], ['extension', 'Extension'], ['rotation', 'Rotation'], ['side-bend', 'Side bend']].map(([k, l]) => {
           const low = a.spine[k] - (a.target[k] || 0) <= -8;
-          return h('tr', null, h('td', null, l), h('td', { style: { textAlign: 'right', fontWeight: 700, color: low ? '#A9481A' : null } }, `${a.spine[k]}%`), h('td', { style: { textAlign: 'right' } }, `${a.target[k] || 0}%`));
+          return h('tr', null, h('td', null, l), h('td', { style: { textAlign: 'right', fontWeight: 700, color: low ? 'var(--warn)' : null } }, `${a.spine[k]}%`), h('td', { style: { textAlign: 'right' } }, `${a.target[k] || 0}%`));
         })))));
 }
 
@@ -142,7 +142,7 @@ export function positionsCard(a) {
     positionKey(a.positionMinutes),
     h('h3', { style: { margin: '14px 0 6px' } }, 'Time moving vs setting up'),
     h('div', { class: 'split' },
-      h('div', { style: { width: a.movingPct + '%', background: '#0F6E62', color: '#fff' } }, `Moving · ${fmtMin(a.movingSec)}`),
+      h('div', { style: { width: a.movingPct + '%', background: 'var(--accent-fill)', color: '#fff' } }, `Moving · ${fmtMin(a.movingSec)}`),
       h('div', { style: { width: (100 - a.movingPct) + '%', background: '#E3BC2C', color: '#16201C' } }, fmtMin(a.transitionSec))),
     h('p', { class: 'tiny muted', style: { marginTop: '6px' } }, `${a.springChanges} spring change${a.springChanges === 1 ? '' : 's'}, ${a.boxChanges} box/board change${a.boxChanges === 1 ? '' : 's'}, ${a.positionChanges} position change${a.positionChanges === 1 ? '' : 's'}. Estimated at 15 s, 45 s and 20 s each.`));
 }
@@ -185,7 +185,7 @@ export function balanceCard(a) {
     a.sections.map((s) => h('div', { style: { display: 'grid', gridTemplateColumns: '120px minmax(0,1fr) 84px', gap: '8px', alignItems: 'center', fontSize: '12px', marginBottom: '6px' } },
       h('span', { style: { fontWeight: 600 } }, s.label),
       h('div', { class: 'bar-track' }, h('div', { class: 'bar-fill', style: { width: s.pct + '%', background: s.color } })),
-      h('span', { style: { textAlign: 'right', color: s.sec ? null : '#A9481A', fontWeight: s.sec ? 400 : 700 } }, s.sec ? `${s.pct}% · ${fmtMin(s.sec)}` : 'none'))),
+      h('span', { style: { textAlign: 'right', color: s.sec ? null : 'var(--warn)', fontWeight: s.sec ? 400 : 700 } }, s.sec ? `${s.pct}% · ${fmtMin(s.sec)}` : 'none'))),
     h('h3', { style: { margin: '12px 0 6px' } }, 'Holding still vs moving'),
     h('div', { class: 'split' },
       h('div', { style: { width: Math.max(a.roles.stability, 8) + '%', background: '#3E6FA0', color: '#fff' } }, `Stability · ${a.roles.stability}%`),
@@ -212,7 +212,7 @@ export function muscleListCard(a) {
     h('h2', null, 'Muscle breakdown'),
     a.muscles.slice(0, 12).map((m) => h('div', { style: { display: 'grid', gridTemplateColumns: '130px minmax(0,1fr) 28px', gap: '8px', alignItems: 'center', fontSize: '12px', marginBottom: '6px' } },
       h('span', { style: { fontWeight: 600 } }, m.label),
-      h('div', { class: 'bar-track' }, h('div', { class: 'bar-fill', style: { width: Math.round(m.level * 100) + '%', background: m.side === 'B' ? '#2F4A3F' : '#0F6E62' } })),
+      h('div', { class: 'bar-track' }, h('div', { class: 'bar-fill', style: { width: Math.round(m.level * 100) + '%', background: m.side === 'B' ? 'var(--muted)' : 'var(--accent-fill)' } })),
       h('span', { style: { textAlign: 'right' } }, m.count))),
     h('p', { class: 'tiny muted' }, 'Number = movements that target it. Darker bars are back of body.'));
 }
@@ -221,12 +221,12 @@ export function clientsCard(a, { onSwap } = {}) {
   if (!a.clientChecks.length) return null;
   return h('div', { class: 'card' },
     h('h2', null, 'Client checks'),
-    a.clientChecks.map((c) => h('div', { style: { border: '1px solid #EBC9B1', background: '#FFFAF6', borderRadius: '12px', padding: '12px 14px', marginTop: '8px' } },
+    a.clientChecks.map((c) => h('div', { style: { border: '1px solid var(--warn-line)', background: 'var(--warn-bg)', borderRadius: '12px', padding: '12px 14px', marginTop: '8px' } },
       h('div', { style: { display: 'flex', justifyContent: 'space-between', gap: '8px', flexWrap: 'wrap' } }, h('b', null, c.client.name), c.client.spot ? h('span', { class: 'tiny muted' }, c.client.spot) : null),
       c.issues.map((i) => h('div', { class: 'swap-row' },
         h('span', { class: ['tag', i.severity === 'modify' ? '' : 'tag-warn'] }, i.tagLabel),
         h('b', null, i.name),
-        i.severity === 'modify' ? h('span', { class: 'tag' }, 'Adjust') : i.swap ? [icon('next', 14), h('span', { style: { color: '#0A5047', fontWeight: 600 } }, i.swap.name), onSwap ? btn('Swap', () => onSwap(i), { small: true }) : null] : h('span', { class: 'muted' }, 'no automatic swap'),
+        i.severity === 'modify' ? h('span', { class: 'tag' }, 'Adjust') : i.swap ? [icon('next', 14), h('span', { style: { color: 'var(--accent-dark)', fontWeight: 600 } }, i.swap.name), onSwap ? btn('Swap', () => onSwap(i), { small: true }) : null] : h('span', { class: 'muted' }, 'no automatic swap'),
         i.note ? h('div', { class: 'tiny muted', style: { flexBasis: '100%' } }, i.note) : null)))),
     h('p', { class: 'tiny muted', style: { marginTop: '8px' } }, '"Adjust" means teach it with the noted change; the rest are best swapped. Suggestions come from each movement\'s cautions. You decide what is right for the client, and refer on rather than diagnose.'));
 }

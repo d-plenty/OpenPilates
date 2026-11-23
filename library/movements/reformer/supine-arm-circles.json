@@ -1,0 +1,141 @@
+{
+  "slug": "supine-arm-circles",
+  "name": "Supine Arms: Circles",
+  "apparatus": "reformer",
+  "section": "back_shoulders",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "supine-arm-circles",
+  "position": "supine",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "frontal",
+  "patterns": [
+    "stabilisation",
+    "pull",
+    "adduction"
+  ],
+  "muscles": {
+    "primary": [
+      "lats",
+      "chest"
+    ],
+    "secondary": [
+      "abdominals",
+      "triceps",
+      "deltoids"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium"
+    ],
+    "advance": [
+      "medium",
+      "light"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Ribs, spine and pelvis",
+  "mobile": "Shoulders",
+  "categories": [
+    "upper_body"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 1
+  },
+  "multiJoint": false,
+  "intensity": 3,
+  "duration": 120,
+  "reps": "5–8 each way",
+  "summary": "On the back with hands in the straps and legs in tabletop: the arms press down to the hips, open out to the sides and return to the ceiling, then reverse.",
+  "steps": [
+    "Lie on the back, hands in the straps, arms to the ceiling, legs in tabletop.",
+    "Press the arms down beside the hips.",
+    "Open them out to the sides, level with the carriage.",
+    "Bring them back up over the shoulders. Reverse after a set."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Feet on the footbar",
+      "text": "Arms only."
+    },
+    {
+      "tag": "L2",
+      "title": "Legs in tabletop",
+      "text": "The trunk has to hold."
+    },
+    {
+      "tag": "L3",
+      "title": "Head and shoulders curled up",
+      "text": "Hold the curl for the whole set."
+    },
+    {
+      "tag": "L4",
+      "title": "Legs long on the diagonal",
+      "text": "The lower the legs, the harder."
+    }
+  ],
+  "uses": [
+    "warmup"
+  ],
+  "cautions": [
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Smaller circles, lighter spring."
+    },
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not lying flat after the first 12 weeks.",
+      "swap": "kneeling-arm-circles-front"
+    },
+    {
+      "tag": "neck",
+      "severity": "modify",
+      "note": "Head stays down."
+    }
+  ],
+  "prep": [
+    "supine-arm-pulls"
+  ],
+  "cues": "Ribs stay down as the arms rise.\nThe circle is the same size on both sides.\nWrists long.",
+  "labels": [
+    "fundamental"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  },
+  "aka": [
+    "Arm circles on the back",
+    "Supine arm circles"
+  ],
+  "variations": [
+    {
+      "name": "Feet on the footbar",
+      "kind": "regression"
+    },
+    {
+      "name": "Head and shoulders curled up",
+      "kind": "progression"
+    }
+  ],
+  "sources": [
+    "isacowitz",
+    "bbcards"
+  ]
+}

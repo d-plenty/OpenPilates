@@ -49,6 +49,7 @@ export async function guideView() {
       dl(['Edit anything', 'Every movement and series has an Edit page. Changing a built-in one makes it your studio\'s version; it survives updates and can be put back to how it shipped.'],
         ['Add your own', 'Movements → New movement builds one from scratch: names, picture, springs, muscles, layers, variations, cautions and cues.'],
         ['Take things out', 'Remove a movement or series from your library and it stops being offered. Flows that use it still open. Put it back from Movements → Removed.'],
+        ['Light or dark', 'The sun or moon at the top of the page, or Account → Appearance.'],
         ['Packs', 'Studio → Library & data exports everything you have changed as one file, and brings a pack in. Use it to copy your set-up to another server, or to send your corrections back so they go into the next version. Clients are never in a pack.'])),
 
     h('section', { class: 'card stack' }, h('h2', null, `Springs (${room.name || 'your reformers'}: ${brand.label})`),

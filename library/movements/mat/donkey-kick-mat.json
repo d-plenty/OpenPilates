@@ -5,7 +5,7 @@
   "section": "lower",
   "level": "beginner",
   "levelTo": "intermediate",
-  "pose": "mat-quadruped",
+  "pose": "donkey-kick",
   "position": "quadruped",
   "spine": [
     "neutral"

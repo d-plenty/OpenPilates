@@ -1,0 +1,130 @@
+{
+  "slug": "kneeling-side-splits",
+  "name": "Kneeling Side Splits",
+  "apparatus": "reformer",
+  "section": "lower",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "kneeling-side-splits",
+  "position": "kneeling",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "frontal",
+  "patterns": [
+    "abduction",
+    "adduction",
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "adductors",
+      "abductors"
+    ],
+    "secondary": [
+      "glutes",
+      "abdominals"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "light"
+    ],
+    "advance": [
+      "medium"
+    ],
+    "lighterIsHarder": false,
+    "note": "Light to feel the inner thighs pull home; heavier to work the outer hip pressing out."
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Spine and pelvis",
+  "mobile": "Hips",
+  "categories": [
+    "hip_abduction",
+    "hip_adduction"
+  ],
+  "pregnancy": "ok",
+  "purpose": {
+    "strength": 3,
+    "stability": 2,
+    "flexibility": 1,
+    "mobility": 0
+  },
+  "multiJoint": false,
+  "intensity": 4,
+  "duration": 120,
+  "reps": "10–15",
+  "summary": "Kneeling side-on with one knee on the platform and one on the carriage: the carriage knee slides out and the inner thighs draw it home.",
+  "steps": [
+    "Kneel side-on, one knee on the platform, the other on the carriage beside it, hips over knees.",
+    "Breathe in to slide the carriage knee away, keeping the hips level.",
+    "Breathe out to squeeze the inner thighs and bring the carriage home.",
+    "Change sides."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Out and in",
+      "text": "A small range."
+    },
+    {
+      "tag": "L2",
+      "title": "Hold out, small pulses",
+      "text": "Hips stay level."
+    },
+    {
+      "tag": "L3",
+      "title": "Hands free or holding a ring",
+      "text": "Arms forward at chest height."
+    }
+  ],
+  "uses": [],
+  "cautions": [
+    {
+      "tag": "knee",
+      "severity": "avoid",
+      "note": "Kneeling on a moving carriage.",
+      "swap": "side-splits"
+    },
+    {
+      "tag": "groin",
+      "severity": "modify",
+      "note": "Keep the range short and the spring light."
+    },
+    {
+      "tag": "si_joint",
+      "severity": "modify",
+      "note": "Small range, hips level."
+    }
+  ],
+  "prep": [],
+  "cues": "Hips stay level and facing forward.\nThe inner thighs zip the carriage home.\nTall through the crown.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  },
+  "aka": [
+    "Kneeling inner thighs",
+    "Kneeling adductors"
+  ],
+  "variations": [
+    {
+      "name": "A pad under the knees",
+      "kind": "variation"
+    },
+    {
+      "name": "Standing: Side Splits",
+      "kind": "progression"
+    }
+  ],
+  "sources": [
+    "genesis"
+  ]
+}

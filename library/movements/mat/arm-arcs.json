@@ -1,0 +1,117 @@
+{
+  "slug": "arm-arcs",
+  "name": "Arm Arcs",
+  "apparatus": "mat",
+  "section": "back_shoulders",
+  "level": "beginner",
+  "levelTo": "beginner",
+  "pose": "arm-arcs",
+  "position": "supine",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "serratus"
+    ],
+    "secondary": [
+      "lats",
+      "deltoids"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "stability",
+  "stable": "Ribs and spine",
+  "mobile": "Shoulders",
+  "categories": [
+    "upper_body"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 0,
+    "stability": 3,
+    "flexibility": 1,
+    "mobility": 2
+  },
+  "multiJoint": false,
+  "intensity": 1,
+  "duration": 90,
+  "reps": "6–8",
+  "summary": "Lying on the back with the arms reaching to the ceiling, both arms arc back overhead only as far as the ribs stay down, and return.",
+  "steps": [
+    "Lie on the back, knees bent, arms straight up over the shoulders.",
+    "Breathe in to reach the arms back towards the floor behind you.",
+    "Stop when the ribs want to lift.",
+    "Breathe out to bring the arms back over the shoulders."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Both arms together",
+      "text": "Small range."
+    },
+    {
+      "tag": "L2",
+      "title": "Alternate",
+      "text": "One arm back, one arm down by the hip."
+    },
+    {
+      "tag": "L3",
+      "title": "Add the Leg Slide",
+      "text": "Opposite leg slides away as the arm reaches back."
+    }
+  ],
+  "uses": [
+    "warmup"
+  ],
+  "cautions": [
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Stay in the range that is free of pain."
+    },
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not lying flat after the first 12 weeks.",
+      "swap": "scapular-isolations"
+    }
+  ],
+  "prep": [],
+  "cues": "Back ribs stay heavy on the mat.\nShoulders slide away from the ears as the arms go back.",
+  "labels": [
+    "fundamental",
+    "warm-up",
+    "rehab-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  },
+  "aka": [
+    "Arm raises",
+    "Ribcage arms",
+    "Arm reaches"
+  ],
+  "variations": [
+    {
+      "name": "One arm at a time",
+      "kind": "regression"
+    },
+    {
+      "name": "Hold light weights",
+      "kind": "progression"
+    }
+  ],
+  "sources": [
+    "edinburgh",
+    "matlists"
+  ]
+}

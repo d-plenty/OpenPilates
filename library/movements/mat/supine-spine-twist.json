@@ -1,0 +1,122 @@
+{
+  "slug": "supine-spine-twist",
+  "name": "Supine Spine Twist",
+  "apparatus": "mat",
+  "section": "stretch",
+  "level": "beginner",
+  "levelTo": "intermediate",
+  "pose": "supine-twist",
+  "position": "supine",
+  "spine": [
+    "rotation"
+  ],
+  "plane": "transverse",
+  "patterns": [
+    "rotation"
+  ],
+  "muscles": {
+    "primary": [
+      "obliques"
+    ],
+    "secondary": [
+      "abdominals"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "mobility",
+  "stable": "Shoulders and upper back",
+  "mobile": "Pelvis and lower spine",
+  "categories": [
+    "rotation"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 1,
+    "stability": 1,
+    "flexibility": 2,
+    "mobility": 3
+  },
+  "multiJoint": false,
+  "intensity": 2,
+  "duration": 90,
+  "reps": "5 each side",
+  "summary": "Lying on the back with the knees together, both knees sway to one side and the obliques draw them back to centre.",
+  "steps": [
+    "Lie on the back, arms wide, knees bent and squeezed together.",
+    "Breathe in to let both knees sway to one side; the far shoulder stays down.",
+    "Breathe out to bring them back through centre with the waist.",
+    "Repeat to the other side."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Feet on the mat",
+      "text": "A small sway."
+    },
+    {
+      "tag": "L2",
+      "title": "Legs in tabletop",
+      "text": "The knees stay level with each other."
+    },
+    {
+      "tag": "L3",
+      "title": "Straighten the legs at the side",
+      "text": "Only as far as the shoulder stays down."
+    }
+  ],
+  "uses": [
+    "warmup",
+    "cooldown"
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not lying flat after the first 12 weeks.",
+      "swap": "cat-cow"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "modify",
+      "note": "Keep the range small and the feet down."
+    },
+    {
+      "tag": "si_joint",
+      "severity": "modify",
+      "note": "Small range, knees glued together."
+    }
+  ],
+  "prep": [],
+  "cues": "Knees and ankles stay glued.\nThe waist brings the legs back, not the legs.\nOpposite shoulder heavy.",
+  "labels": [
+    "fundamental",
+    "warm-up",
+    "cool-down"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  },
+  "aka": [
+    "Knee sways",
+    "Knee drops",
+    "Spine twist supine",
+    "Windscreen wipers"
+  ],
+  "variations": [
+    {
+      "name": "Feet stay on the mat",
+      "kind": "regression"
+    },
+    {
+      "name": "Legs in tabletop",
+      "kind": "progression"
+    }
+  ],
+  "sources": [
+    "isacowitz",
+    "pa"
+  ]
+}

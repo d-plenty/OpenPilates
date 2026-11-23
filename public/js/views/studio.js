@@ -416,6 +416,9 @@ export async function accountView() {
   return { title: 'Account', node: [
     h('div', { class: 'page-head' }, h('div', { class: 'grow' }, h('h1', null, 'Your account'), h('p', { class: 'small muted' }, `Signed in as ${store.user.username} · ${store.user.role === 'admin' ? 'Admin' : 'Instructor'} · OpenPilates ${store.state.version}`))),
     h('div', { class: 'auto-grid', style: { maxWidth: '900px' } },
+      h('div', { class: 'card stack' }, h('h2', null, 'Appearance'),
+        chips([{ id: 'light', label: 'Light' }, { id: 'dark', label: 'Dark' }, { id: 'auto', label: 'Follow this device' }], window.opTheme.get(), (v) => { window.opTheme.set(v); location.reload(); }, { multi: false }),
+        h('p', { class: 'hint' }, 'Kept in this browser, so each device can have its own. The sun or moon at the top of every page switches it too.')),
       h('div', { class: 'card stack' }, h('h2', null, 'Name'), field('Display name', name),
         h('div', null, btn('Save name', async () => { try { await api('PUT', '/me', { displayName: name.value }); store.state = null; toast('Saved.'); location.reload(); } catch (e) { toast(e.message, { kind: 'error' }); } }, { kind: 'primary' }))),
       h('div', { class: 'card stack' }, h('h2', null, 'Password'), field('Current password', cur), field('New password', next, 'At least 10 characters.'),
