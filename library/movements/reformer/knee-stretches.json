@@ -2,6 +2,7 @@
   "slug": "knee-stretches",
   "name": "Knee Stretches — Round & Flat",
   "apparatus": "reformer",
+  "section": "lower",
   "level": "intermediate",
   "position": "kneeling",
   "spine": [
@@ -25,10 +26,28 @@
   "equipment": [],
   "load": {
     "springs": [
+      "medium"
+    ],
+    "advance": [
       "medium",
-      "light"
-    ]
+      "medium",
+      "xlight"
+    ],
+    "note": "One red makes it a core exercise; two or more shifts the work to the thighs and gets the heart rate up."
   },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Upper body and spine",
+  "mobile": "Hips and knees",
+  "categories": [
+    "hip_extension",
+    "quadruped"
+  ],
+  "pregnancy": "early_only",
   "purpose": {
     "strength": 2,
     "stability": 3,
@@ -38,28 +57,73 @@
   "multiJoint": true,
   "intensity": 7,
   "duration": 180,
-  "reps": "8 each",
+  "reps": "10–30",
   "summary": "Kneeling on the carriage with hands on the footbar, push the carriage back with the legs.",
-  "layers": [],
+  "steps": [
+    "Hands on the footbar shoulder-width apart, feet against the shoulder rests.",
+    "Knees hover just off the carriage; head and hips at the same height.",
+    "Breathe out to push the carriage back with the legs.",
+    "Breathe in to bring the knees back under the hips."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Round back",
+      "text": "Tail tucked, spine curved."
+    },
+    {
+      "tag": "L2",
+      "title": "Flat back",
+      "text": "Long spine."
+    },
+    {
+      "tag": "L3",
+      "title": "Knees hovering",
+      "text": "Knees off the carriage throughout."
+    },
+    {
+      "tag": "L4",
+      "title": "Bicycle",
+      "text": "One leg at a time."
+    },
+    {
+      "tag": "L5",
+      "title": "Speed",
+      "text": "Quicker out, controlled in."
+    }
+  ],
+  "modifications": [
+    "Knees resting on the carriage for sore backs or wrists.",
+    "Less spring spares the legs but asks more of the core."
+  ],
   "cautions": [
     {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks."
+    },
+    {
       "tag": "knee",
+      "severity": "avoid",
       "note": "Kneeling on the carriage; pad the knees or swap.",
       "swap": "long-stretch"
     },
     {
       "tag": "wrist",
+      "severity": "avoid",
       "note": "Weight through the hands."
     },
     {
       "tag": "low_bone_density",
+      "severity": "avoid",
       "note": "Round-back version is loaded flexion; teach flat back only."
     }
   ],
-  "cues": "",
+  "prep": [],
+  "cues": "From the waist up nothing moves.\nLook just ahead of the footbar.\nSoft elbows; shoulders don't round.\nStep the feet further down the carriage if you need more room.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

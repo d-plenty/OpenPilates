@@ -1,0 +1,114 @@
+{
+  "slug": "reverse-plank",
+  "name": "Reverse Plank",
+  "apparatus": "mat",
+  "section": "back_shoulders",
+  "level": "advanced",
+  "position": "plank",
+  "spine": [
+    "extension"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "extension"
+  ],
+  "muscles": {
+    "primary": [
+      "glutes",
+      "hamstrings",
+      "triceps"
+    ],
+    "secondary": [
+      "deltoids",
+      "spinal_extensors",
+      "upper_back"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "stability",
+  "stable": "Whole back line",
+  "mobile": "Shoulders open; hips lift",
+  "categories": [
+    "hip_extension",
+    "upper_body",
+    "trunk_extension"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 1,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 7,
+  "duration": 90,
+  "reps": "3–5",
+  "summary": "Sitting with legs long and hands behind, the hips lift until the body makes one line from shoulders to heels, facing the ceiling.",
+  "steps": [
+    "Sit with legs long and together, hands on the mat behind the hips, fingers forward.",
+    "Breathe in to press through hands and heels and lift the hips.",
+    "Breathe out to hold one long line.",
+    "Breathe in to lower with control."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Knees bent",
+      "text": "Tabletop."
+    },
+    {
+      "tag": "L2",
+      "title": "Legs long",
+      "text": "Full plank."
+    },
+    {
+      "tag": "L3",
+      "title": "Leg lifts",
+      "text": "Lift one straight leg at a time."
+    }
+  ],
+  "modifications": [
+    "Tabletop with knees bent.",
+    "Down on the forearms.",
+    "Turn the fingers out for tight wrists."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "wrist",
+      "severity": "avoid",
+      "note": "Body weight through bent-back wrists.",
+      "swap": "bridge-magic-circle"
+    },
+    {
+      "tag": "shoulder",
+      "severity": "avoid",
+      "note": "Loaded shoulder extension.",
+      "swap": "bridge-magic-circle"
+    },
+    {
+      "tag": "neck",
+      "severity": "modify",
+      "note": "Keep the chin slightly tucked."
+    }
+  ],
+  "prep": [
+    "pelvic-curl",
+    "front-support-plank"
+  ],
+  "cues": "Chest stays open; shoulders don't roll forward.\nLook ahead rather than dropping the head back.\nSqueeze the backs of the legs to keep the hips up.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

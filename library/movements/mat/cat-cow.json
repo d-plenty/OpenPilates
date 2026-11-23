@@ -2,6 +2,7 @@
   "slug": "cat-cow",
   "name": "Cat–Cow",
   "apparatus": "mat",
+  "section": "stretch",
   "level": "beginner",
   "position": "quadruped",
   "spine": [
@@ -21,6 +22,16 @@
   },
   "equipment": [],
   "load": null,
+  "perSide": false,
+  "role": "mobility",
+  "stable": "Hands and knees",
+  "mobile": "Whole spine",
+  "categories": [
+    "trunk_flexion",
+    "trunk_extension",
+    "quadruped"
+  ],
+  "pregnancy": "recommended",
   "purpose": {
     "strength": 0,
     "stability": 0,
@@ -32,20 +43,32 @@
   "duration": 60,
   "reps": "6",
   "summary": "On hands and knees, alternate rounding and arching the spine with the breath.",
+  "steps": [
+    "Start on hands and knees, hands under shoulders, knees under hips.",
+    "Breathe out to round the spine, tail under, head heavy.",
+    "Breathe in to lengthen through to a gentle arch, chest forward."
+  ],
   "layers": [],
+  "modifications": [
+    "Fists or forearms for sore wrists.",
+    "Smaller range for sore backs."
+  ],
   "cautions": [
     {
       "tag": "wrist",
+      "severity": "avoid",
       "note": "Fists or forearms."
     }
   ],
-  "cues": "",
+  "prep": [],
+  "cues": "Move one bone at a time.\nPush the floor away as you round.\nShoulders away from the ears as you arch.",
   "labels": [
     "warm-up",
+    "mobilisation",
     "pregnancy-friendly"
   ],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

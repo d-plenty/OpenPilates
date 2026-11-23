@@ -1,0 +1,122 @@
+{
+  "slug": "roll-over",
+  "name": "Roll Over",
+  "apparatus": "mat",
+  "section": "core",
+  "level": "advanced",
+  "position": "supine",
+  "spine": [
+    "flexion",
+    "articulation"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "spinal-articulation",
+    "flexion"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "hip_flexors"
+    ],
+    "secondary": [
+      "hamstrings",
+      "spinal_extensors",
+      "triceps"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "mobility",
+  "stable": "Shoulders and arms",
+  "mobile": "Whole spine and hips",
+  "categories": [
+    "trunk_flexion",
+    "hip_flexion"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 2,
+    "mobility": 2
+  },
+  "multiJoint": true,
+  "intensity": 8,
+  "duration": 120,
+  "reps": "3–5 each way",
+  "summary": "Lying on the back, straight legs lift up and over the head until they are level with the floor, then the spine rolls down bone by bone.",
+  "steps": [
+    "Lie on the back, arms pressing down by the sides, legs long at about 45°.",
+    "Breathe in to lift the legs to vertical.",
+    "Breathe out to peel the hips and spine up, legs reaching overhead until level with the floor.",
+    "Breathe in to open the legs hip-width and flex the feet.",
+    "Breathe out to roll down one bone at a time, then lower and close the legs."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Knees bent",
+      "text": "Shorter lever."
+    },
+    {
+      "tag": "L2",
+      "title": "Legs long",
+      "text": "Full version."
+    },
+    {
+      "tag": "L3",
+      "title": "Reverse the legs",
+      "text": "Open on the way over, close on the way down."
+    }
+  ],
+  "modifications": [
+    "Bend the knees.",
+    "Small cushion under the hips to start.",
+    "Stay with Pelvic Curl."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "cat-cow"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "pelvic-curl"
+    },
+    {
+      "tag": "neck",
+      "severity": "avoid",
+      "note": "Weight near the neck.",
+      "swap": "pelvic-curl"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Loaded spinal flexion.",
+      "swap": "pelvic-curl"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "Deep spinal flexion.",
+      "swap": "pelvic-curl"
+    }
+  ],
+  "prep": [
+    "pelvic-curl",
+    "roll-up",
+    "spine-stretch-forward"
+  ],
+  "cues": "Weight rests across the shoulder blades, never the neck.\nLift with the belly; no swinging.\nThe way down is the slow part.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

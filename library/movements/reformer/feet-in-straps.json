@@ -1,7 +1,8 @@
 {
   "slug": "feet-in-straps",
-  "name": "Feet in Straps — Frogs & Circles",
+  "name": "Feet in Straps — Lowers & Circles",
   "apparatus": "reformer",
+  "section": "pelvic",
   "level": "beginner",
   "position": "supine",
   "spine": [
@@ -26,9 +27,29 @@
   "load": {
     "springs": [
       "medium",
+      "medium",
+      "xlight"
+    ],
+    "advance": [
+      "medium",
+      "medium",
       "light"
     ]
   },
+  "setup": {
+    "headrest": "any",
+    "straps": "long"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Pelvis and spine",
+  "mobile": "Hips",
+  "categories": [
+    "hip_extension",
+    "hip_adduction",
+    "hip_abduction"
+  ],
+  "pregnancy": "supine",
   "purpose": {
     "strength": 1,
     "stability": 2,
@@ -38,19 +59,72 @@
   "multiJoint": true,
   "intensity": 4,
   "duration": 240,
-  "reps": "8 each pattern",
-  "summary": "Feet in the straps for frogs, circles and openings. Works the inner thighs and back of the legs while the pelvis stays still.",
-  "layers": [],
-  "cautions": [
+  "reps": "20–30",
+  "summary": "Feet in the long loops with straight legs: lower them towards the springs and lift, then circle them. Hamstrings, inner thighs and a steady pelvis.",
+  "steps": [
+    "Lie on the back with the long loops over the feet, tailbone heavy.",
+    "Legs straight up, just in front of the hips.",
+    "Lowers: breathe out to press the legs down towards the springs; breathe in to lift them over the hips.",
+    "Circles: breathe out to open, lower and join the legs; breathe in to squeeze them back up."
+  ],
+  "layers": [
     {
-      "tag": "hip_replacement",
-      "note": "Limit hip rotation and range as advised by the client's surgeon or physio."
+      "tag": "L1",
+      "title": "Lower and lift",
+      "text": "Legs together."
+    },
+    {
+      "tag": "L2",
+      "title": "Circles",
+      "text": "Both directions."
+    },
+    {
+      "tag": "L3",
+      "title": "Small circles in a straddle",
+      "text": "Legs stay wide."
+    },
+    {
+      "tag": "L4",
+      "title": "Single leg",
+      "text": "One strap at a time."
+    },
+    {
+      "tag": "L5",
+      "title": "Prop",
+      "text": "Ball or ring between the ankles."
     }
   ],
-  "cues": "",
+  "modifications": [
+    "Lighter spring if the pelvis rocks.",
+    "Smaller range."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "modify",
+      "note": "Lying flat on the back: keep it to a few minutes, raise the head end if you can, and stop if she feels dizzy."
+    },
+    {
+      "tag": "hip_replacement",
+      "severity": "modify",
+      "note": "Small circles; don't cross the midline or go past 90° of hip bend."
+    },
+    {
+      "tag": "groin",
+      "severity": "modify",
+      "note": "Keep the legs closer together."
+    },
+    {
+      "tag": "hip_pain",
+      "severity": "modify",
+      "note": "Small, comfortable range."
+    }
+  ],
+  "prep": [],
+  "cues": "Tailbone stays down.\nThe back doesn't arch as the legs lower.\nShoulders and neck relaxed.\nFeel the inner thighs as the legs meet.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

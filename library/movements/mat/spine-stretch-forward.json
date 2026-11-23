@@ -2,6 +2,7 @@
   "slug": "spine-stretch-forward",
   "name": "Spine Stretch Forward",
   "apparatus": "mat",
+  "section": "stretch",
   "level": "beginner",
   "position": "seated",
   "spine": [
@@ -23,6 +24,14 @@
   },
   "equipment": [],
   "load": null,
+  "perSide": false,
+  "role": "mobility",
+  "stable": "Pelvis and legs",
+  "mobile": "Spine",
+  "categories": [
+    "trunk_flexion"
+  ],
+  "pregnancy": "ok",
   "purpose": {
     "strength": 0,
     "stability": 1,
@@ -34,19 +43,26 @@
   "duration": 90,
   "reps": "4",
   "summary": "Seated tall with legs apart, curl forward over the legs and stack back up.",
+  "steps": [],
   "layers": [],
+  "modifications": [
+    "Sit on a block.",
+    "Bend the knees."
+  ],
   "cautions": [
     {
       "tag": "low_bone_density",
+      "severity": "avoid",
       "note": "Forward flexion; keep it small or hinge."
     }
   ],
-  "cues": "",
+  "prep": [],
+  "cues": "Sit tall first; curl forward from the head down.\nHips stay back as the hands reach.\nStack up from the tail.",
   "labels": [
     "cool-down"
   ],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

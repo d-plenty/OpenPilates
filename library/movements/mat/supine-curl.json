@@ -1,0 +1,111 @@
+{
+  "slug": "supine-curl",
+  "name": "Abdominal Curl",
+  "apparatus": "mat",
+  "section": "core",
+  "level": "beginner",
+  "position": "supine",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "flexion",
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals"
+    ],
+    "secondary": [
+      "obliques"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "both",
+  "stable": "Pelvis and legs",
+  "mobile": "Upper spine",
+  "categories": [
+    "trunk_flexion"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": false,
+  "intensity": 3,
+  "duration": 90,
+  "reps": "8–12",
+  "summary": "The basic curl-up: head, neck and shoulders lift as one from a neutral pelvis. The starting shape for most of the mat abdominal work.",
+  "steps": [
+    "Lie on the back, knees bent, feet hip-width; hands behind the head or reaching by the sides.",
+    "Breathe in to nod the chin slightly.",
+    "Breathe out to curl the head and shoulders up until the tips of the shoulder blades are just off the mat.",
+    "Breathe in to hold; breathe out to lower."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Feet down",
+      "text": "Start here."
+    },
+    {
+      "tag": "L2",
+      "title": "Legs in tabletop",
+      "text": "One, then both."
+    },
+    {
+      "tag": "L3",
+      "title": "Oblique curl",
+      "text": "Turn one shoulder towards the opposite knee."
+    },
+    {
+      "tag": "L4",
+      "title": "Prop",
+      "text": "Small ball behind the mid-back or between the knees."
+    }
+  ],
+  "modifications": [
+    "One hand behind the head, alternating.",
+    "Small ball or towel behind the shoulder blades."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "neck",
+      "severity": "modify",
+      "note": "Support the head with both hands or rest between each one."
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Loaded spinal flexion.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "Spinal flexion.",
+      "swap": "bird-dog"
+    }
+  ],
+  "prep": [],
+  "cues": "Curl from the breastbone; the hands only cradle the head.\nLeave a fist of space under the chin.\nPelvis stays where it started.\nBelly stays flat rather than doming.",
+  "labels": [
+    "fundamental"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

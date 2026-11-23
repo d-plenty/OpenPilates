@@ -1,0 +1,127 @@
+{
+  "slug": "side-bend-triceps",
+  "name": "Triceps Press in a Side Bend",
+  "apparatus": "reformer",
+  "section": "single_arm",
+  "level": "advanced",
+  "position": "kneeling",
+  "spine": [
+    "side-bend"
+  ],
+  "plane": "frontal",
+  "patterns": [
+    "lateral-flexion",
+    "stabilisation",
+    "push"
+  ],
+  "muscles": {
+    "primary": [
+      "triceps",
+      "obliques"
+    ],
+    "secondary": [
+      "deltoids",
+      "glutes",
+      "abductors"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "xlight"
+    ],
+    "advance": [
+      "light"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "short"
+  },
+  "perSide": true,
+  "role": "stability",
+  "stable": "Whole side line, upper arm",
+  "mobile": "Elbow",
+  "categories": [
+    "lateral_flexion",
+    "upper_body"
+  ],
+  "pregnancy": "ok",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 1,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 150,
+  "reps": "8–16 each arm",
+  "summary": "Kneeling side-on and tipped into a long side bend with the bottom hand on the shoulder rest, the top arm does an overhead triceps press.",
+  "steps": [
+    "Kneel side-on at the footbar end of the carriage.",
+    "Bottom hand on the shoulder rest, body tipped over in one long diagonal.",
+    "Top hand holds a short loop, elbow bent, arm by the ear.",
+    "Breathe out to straighten the elbow; breathe in to bend."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Both knees down",
+      "text": "Start here."
+    },
+    {
+      "tag": "L2",
+      "title": "Top leg long",
+      "text": "Extend the outside leg in line with the body."
+    },
+    {
+      "tag": "L3",
+      "title": "Hover the knee",
+      "text": "Lift the outside knee just off the carriage."
+    },
+    {
+      "tag": "L4",
+      "title": "Leg pulses",
+      "text": "Add lifts or pulses with the long leg."
+    }
+  ],
+  "modifications": [
+    "Sit back on the heels.",
+    "Long loop for less resistance."
+  ],
+  "cautions": [
+    {
+      "tag": "knee",
+      "severity": "avoid",
+      "note": "Kneeling with side load.",
+      "swap": "external-rotation"
+    },
+    {
+      "tag": "shoulder",
+      "severity": "avoid",
+      "note": "Supporting weight on one arm plus overhead load.",
+      "swap": "external-rotation"
+    },
+    {
+      "tag": "wrist",
+      "severity": "modify",
+      "note": "Make a fist on the shoulder rest."
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "modify",
+      "note": "Keep the side bend small."
+    }
+  ],
+  "prep": [
+    "mermaid",
+    "side-kneeling-arms"
+  ],
+  "cues": "Upper arm doesn't move.\nHips press forward — no folding at the hip.\nLift up out of the supporting shoulder.\nChest stays open to the side wall.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

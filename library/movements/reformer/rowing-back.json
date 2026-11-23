@@ -2,6 +2,7 @@
   "slug": "rowing-back",
   "name": "Rowing — Back Series",
   "apparatus": "reformer",
+  "section": "back_shoulders",
   "level": "intermediate",
   "position": "seated",
   "spine": [
@@ -29,6 +30,19 @@
       "light"
     ]
   },
+  "setup": {
+    "headrest": "any",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "both",
+  "stable": "Pelvis and legs",
+  "mobile": "Spine and shoulders",
+  "categories": [
+    "trunk_flexion",
+    "upper_body"
+  ],
+  "pregnancy": "early_only",
   "purpose": {
     "strength": 1,
     "stability": 2,
@@ -40,17 +54,26 @@
   "duration": 240,
   "reps": "4 each",
   "summary": "Seated facing the straps, roll back and reach the arms through several rowing patterns.",
+  "steps": [],
   "layers": [],
+  "modifications": [],
   "cautions": [
     {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks."
+    },
+    {
       "tag": "low_bone_density",
+      "severity": "avoid",
       "note": "Rounded spine under load; sit tall instead."
     }
   ],
-  "cues": "",
+  "prep": [],
+  "cues": "Sit tall before you start.\nShoulders stay wide.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

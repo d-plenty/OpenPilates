@@ -4,7 +4,7 @@
 
 OpenPilates lets you build a class from a library of movements and shows you what the class actually does: which muscles it works, how the spine moves, how much time goes on spring and position changes, and whether it builds to a peak and winds down. It also checks every movement against the clients booked in. It runs on your own server with Docker. There's no subscription, and client details stay with you.
 
-> Version 0.1 — early release. The starter movement library is a draft and needs review by a qualified Pilates instructor before you teach from it (see [Movement library](#movement-library)).
+> Version 0.2 — early release. The starter movement library is a draft and needs review by a qualified Pilates instructor before you teach from it (see [Movement library](#movement-library)).
 
 ---
 
@@ -12,15 +12,17 @@ OpenPilates lets you build a class from a library of movements and shows you wha
 
 OpenPilates is a free class planner for mat and reformer instructors.
 
-- **Build flows from segments.** Search the library by muscle, body position, spine movement, equipment or spring load, then drag movements into segments such as warm-up, build, peak and cool-down. You can add a song and BPM to each segment.
+- **Build flows from segments.** Search the library by part of the class (legs, hips, arms, back, core, stretch), muscle, body position, spine movement, equipment or spring load, then drag movements into segments such as warm-up, build, peak and cool-down. Tick **Repeat other side** on a block of one-sided work and the timing doubles for you. You can add a song and BPM to each segment.
 - **See what your class does as you build it.**
   - muscles worked, front and back
   - flexion, extension, rotation and side bend against a target
   - body-position and spring changes, and time spent setting up
   - an effort curve that should build to a peak and then wind down
-- **Get checks before you teach.** The app flags a missing cool-down or no back extension. It also flags movements that don't suit someone booked in, such as a pregnancy or a knee replacement, and suggests a swap.
-- **Short on time?** Pick a goal, length and level, and OpenPilates drafts a class for you to edit.
-- **Teach from Play mode** on your phone or tablet. It shows the current movement, springs, a countdown and what's next.
+  - **a spring map**: which setting each stretch of the class runs on, where every change falls, and whether you're inside your limit (Flow and Fit classes aim for three or fewer)
+  - **class balance**: time on lower body, upper body, core and stretch; how much is holding still against load versus moving; and which movement categories (trunk flexion, extension, side bend, rotation, hip work, hands-and-knees, standing) the class hasn't touched yet
+- **Get checks before you teach.** The app flags a class that opens with something hard, a tough movement with no lead-in earlier in the plan, a long run of hard holds with no relief, a missing cool-down or no back extension. It also checks every movement against who's booked in. Each caution is either **adjust** (teach it with the noted change, like keeping time on the back short in pregnancy) or **avoid** (with a suggested swap). Pregnancy is split into the first 12 weeks and after.
+- **Short on time?** Pick a goal, class style, length and level, and OpenPilates drafts a class for you to edit. Reformer drafts open with footwork, work through the body in blocks, keep movements that share a spring setting together and save the hardest core work for late in the class.
+- **Teach from Play mode** on your phone or tablet. It shows the current movement, the springs to be on, set-up steps, cues, easier options, a countdown and what's next, and warns you before a spring change.
 - **Springs in your studio's colours.** Movements store a load (light, medium, heavy) and show it in your machine's colours: Balanced Body, Merrithew/Stott, Peak, BASI, Align-Pilates, Flexia or classical.
 
 ## For studio owners
@@ -86,9 +88,9 @@ Put OpenPilates behind your usual reverse proxy (Caddy, Nginx Proxy Manager, Tra
 
 ## Movement library
 
-The library is one JSON file per movement in [`library/movements/`](library/movements). Each file covers the starting position, spine movement, muscles, spring load, purpose, layers, and cautions with suggested swaps.
+The library is one JSON file per movement in [`library/movements/`](library/movements). Each file covers the part of the class it belongs to, starting position, spine movement, muscles, the usual spring setting and the one to advance to, headrest and straps, step-by-step set-up with the breath, teaching cues, layers, easier options, what stays still and what moves, a pregnancy note, lead-in movements, and cautions marked *adjust* or *avoid* with suggested swaps.
 
-**All 58 starter movements are drafts.** We wrote them for OpenPilates in our own words, and they still need checking by a qualified instructor. Each file has a `review` field. When an instructor has checked a movement, set `status` to `reviewed` with their name and the date.
+**All 133 starter movements (82 reformer, 51 mat) are drafts.** We wrote them for OpenPilates in our own words, and they still need checking by a qualified instructor. Each file has a `review` field. When an instructor has checked a movement, set `status` to `reviewed` with their name and the date.
 
 You can contribute in two ways:
 - Fix or add a movement file and open a pull request. Run `npm run check:library` first to check the file.

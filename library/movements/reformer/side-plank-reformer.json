@@ -1,0 +1,138 @@
+{
+  "slug": "side-plank-reformer",
+  "name": "Side Plank on the Reformer",
+  "apparatus": "reformer",
+  "section": "core",
+  "level": "advanced",
+  "position": "plank",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "frontal",
+  "patterns": [
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "obliques",
+      "abdominals"
+    ],
+    "secondary": [
+      "deltoids",
+      "abductors",
+      "glutes",
+      "serratus"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "light"
+    ],
+    "advance": [
+      "xlight"
+    ],
+    "lighterIsHarder": true
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": true,
+  "role": "stability",
+  "stable": "Everything",
+  "mobile": "Nothing",
+  "categories": [
+    "lateral_flexion",
+    "quadruped"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 8,
+  "duration": 120,
+  "reps": "Hold 30–60 s each side",
+  "summary": "Forearm on the carriage behind the shoulder rests, feet on the platform with the top foot in front. Push the carriage away and hold a side plank.",
+  "steps": [
+    "Side-on to the reformer: forearm down on the carriage behind the shoulder rests.",
+    "Feet on the platform, top foot forward.",
+    "Push the carriage away until the body is one long line.",
+    "Hold, breathing steadily."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Hold",
+      "text": "Basic."
+    },
+    {
+      "tag": "L2",
+      "title": "Top arm up",
+      "text": "Reach to the ceiling."
+    },
+    {
+      "tag": "L3",
+      "title": "Hip dips",
+      "text": "Small lifts and lowers."
+    },
+    {
+      "tag": "L4",
+      "title": "Thread the needle",
+      "text": "Top arm sweeps under the body."
+    },
+    {
+      "tag": "L5",
+      "title": "Forearm on the short box",
+      "text": "Higher support."
+    }
+  ],
+  "modifications": [
+    "Top hand on the carriage for support.",
+    "A front-facing plank instead."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "side-lying-strap-series"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "side-lying-strap-series"
+    },
+    {
+      "tag": "shoulder",
+      "severity": "avoid",
+      "note": "Body weight on one shoulder.",
+      "swap": "rear-plank"
+    },
+    {
+      "tag": "wrist",
+      "severity": "modify",
+      "note": "Stay on the forearm."
+    },
+    {
+      "tag": "balance",
+      "severity": "avoid",
+      "note": "Narrow base on a moving carriage.",
+      "swap": "rear-plank"
+    }
+  ],
+  "prep": [
+    "rear-plank"
+  ],
+  "cues": "Hips stay high.\nElbow under the shoulder.\nChest open to the side wall.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

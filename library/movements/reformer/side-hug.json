@@ -1,0 +1,106 @@
+{
+  "slug": "side-hug",
+  "name": "Single-arm Hug",
+  "apparatus": "reformer",
+  "section": "single_arm",
+  "level": "beginner",
+  "position": "kneeling",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "transverse",
+  "patterns": [
+    "stabilisation",
+    "push"
+  ],
+  "muscles": {
+    "primary": [
+      "chest",
+      "deltoids"
+    ],
+    "secondary": [
+      "serratus",
+      "obliques",
+      "biceps"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "light"
+    ],
+    "advance": [
+      "light",
+      "xlight"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "short"
+  },
+  "perSide": true,
+  "role": "stability",
+  "stable": "Ribcage and pelvis",
+  "mobile": "Shoulder",
+  "categories": [
+    "upper_body"
+  ],
+  "pregnancy": "ok",
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": false,
+  "intensity": 4,
+  "duration": 150,
+  "reps": "10–30 each arm",
+  "summary": "Kneeling side-on, one arm sweeps from wide open to the centre line of the chest, as if wrapping round a tree trunk.",
+  "steps": [
+    "Kneel side-on beside the shoulder rests, sitting on the heels.",
+    "Short loop in the hand nearest the straps; arm out wide, elbow soft, palm forward.",
+    "Breathe out to sweep the hand in front of the breastbone.",
+    "Breathe in to open with control."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Sitting on heels",
+      "text": "Most stable."
+    },
+    {
+      "tag": "L2",
+      "title": "Kneeling upright",
+      "text": "Harder base."
+    },
+    {
+      "tag": "L3",
+      "title": "On the long box",
+      "text": "Seated, for beginners."
+    }
+  ],
+  "modifications": [
+    "Long loop for less resistance.",
+    "Sit on the long box for sore knees."
+  ],
+  "cautions": [
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Sit on the long box."
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Smaller range, lightest spring."
+    }
+  ],
+  "prep": [],
+  "cues": "The curve in the arm doesn't change.\nChest stays broad — the shoulder doesn't roll forward.\nRibs and hips face the side wall the whole time.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "slug": "internal-rotation",
+  "name": "Shoulder Internal Rotation",
+  "apparatus": "reformer",
+  "section": "single_arm",
+  "level": "beginner",
+  "position": "kneeling",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "transverse",
+  "patterns": [
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "chest",
+      "lats"
+    ],
+    "secondary": [
+      "deltoids",
+      "abdominals"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "light"
+    ],
+    "advance": [
+      "light",
+      "xlight"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "short"
+  },
+  "perSide": true,
+  "role": "stability",
+  "stable": "Trunk, shoulder blade and elbow",
+  "mobile": "Shoulder joint (rotation)",
+  "categories": [
+    "upper_body"
+  ],
+  "pregnancy": "ok",
+  "purpose": {
+    "strength": 1,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 1
+  },
+  "multiJoint": false,
+  "intensity": 3,
+  "duration": 150,
+  "reps": "10–30 each arm",
+  "summary": "The partner to external rotation: elbow at the waist, the forearm swings in across the stomach.",
+  "steps": [
+    "Kneel side-on beside the shoulder rests, sitting on the heels.",
+    "Hold a short loop in the hand nearest the straps, elbow bent at the waist, palm up.",
+    "Breathe out to bring the forearm across the stomach.",
+    "Breathe in to return."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Rotation only",
+      "text": "Small and slow."
+    },
+    {
+      "tag": "L2",
+      "title": "Rotate then reach",
+      "text": "Close, then straighten the arm across the body."
+    },
+    {
+      "tag": "L3",
+      "title": "Kneeling upright",
+      "text": "Harder base."
+    }
+  ],
+  "modifications": [
+    "Smaller range.",
+    "Long loop for less resistance.",
+    "Sit on the long box for sore knees."
+  ],
+  "cautions": [
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Sit on the long box."
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Lightest spring, pain-free range only."
+    }
+  ],
+  "prep": [],
+  "cues": "Elbow stays stitched to the side seam.\nWrist stays straight.\nShoulders level and back; neck long.",
+  "labels": [
+    "rehab-friendly",
+    "pregnancy-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

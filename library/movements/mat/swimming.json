@@ -2,6 +2,7 @@
   "slug": "swimming",
   "name": "Swimming",
   "apparatus": "mat",
+  "section": "back_shoulders",
   "level": "intermediate",
   "position": "prone",
   "spine": [
@@ -25,6 +26,16 @@
   },
   "equipment": [],
   "load": null,
+  "perSide": false,
+  "role": "stability",
+  "stable": "Trunk and pelvis",
+  "mobile": "Arms and legs",
+  "categories": [
+    "trunk_extension",
+    "upper_body",
+    "hip_extension"
+  ],
+  "pregnancy": "early_only",
   "purpose": {
     "strength": 2,
     "stability": 2,
@@ -36,23 +47,59 @@
   "duration": 60,
   "reps": "20 counts",
   "summary": "Face down with arms and legs long, lift and flutter opposite arm and leg.",
-  "layers": [],
+  "steps": [
+    "Lie face down with arms long in front and legs long behind.",
+    "Lift the chest, arms and legs a little off the mat.",
+    "Flutter opposite arm and leg up and down, breathing in for five and out for five."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Slow",
+      "text": "Opposite arm and leg, one at a time."
+    },
+    {
+      "tag": "L2",
+      "title": "Arms only or legs only",
+      "text": "Half version."
+    },
+    {
+      "tag": "L3",
+      "title": "Full flutter",
+      "text": "Basic."
+    },
+    {
+      "tag": "L4",
+      "title": "Hands and knees",
+      "text": "See Bird Dog."
+    }
+  ],
+  "modifications": [
+    "Lift only the arms or only the legs.",
+    "Forehead rests on a towel."
+  ],
   "cautions": [
     {
       "tag": "pregnancy",
-      "note": "Lying face down.",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
       "swap": "bird-dog"
     },
     {
       "tag": "extension_pain",
+      "severity": "avoid",
       "note": "Keep the lift small.",
       "swap": "bird-dog"
     }
   ],
-  "cues": "",
+  "prep": [
+    "swan-prep",
+    "bird-dog"
+  ],
+  "cues": "The trunk stays still while the limbs beat.\nReach long rather than high.\nLook at the mat; neck long.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

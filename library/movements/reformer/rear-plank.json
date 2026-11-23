@@ -1,0 +1,120 @@
+{
+  "slug": "rear-plank",
+  "name": "Plank Facing the Straps",
+  "apparatus": "reformer",
+  "section": "core",
+  "level": "intermediate",
+  "position": "plank",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "serratus"
+    ],
+    "secondary": [
+      "deltoids",
+      "glutes",
+      "quadriceps"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "light"
+    ],
+    "advance": [
+      "xlight"
+    ],
+    "lighterIsHarder": true
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Everything",
+  "mobile": "Nothing",
+  "categories": [
+    "quadruped"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 90,
+  "reps": "Hold 30–60 s",
+  "summary": "Turned round: hands on the carriage behind the shoulder rests, feet on the standing platform. Push the carriage away and hold the plank.",
+  "steps": [
+    "Face the back of the reformer. Hands on the carriage behind the shoulder rests, feet on the platform.",
+    "Push the carriage away until the body is one straight line.",
+    "Hold, breathing steadily."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Knees on the platform",
+      "text": "Half plank."
+    },
+    {
+      "tag": "L2",
+      "title": "Full plank",
+      "text": "Hold."
+    },
+    {
+      "tag": "L3",
+      "title": "Hands on shoulder rests",
+      "text": "Different grip."
+    },
+    {
+      "tag": "L4",
+      "title": "Feet on the footbar",
+      "text": "Hardest."
+    }
+  ],
+  "modifications": [
+    "Forearms on the carriage.",
+    "Knees down."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "shoulder-retraction"
+    },
+    {
+      "tag": "wrist",
+      "severity": "modify",
+      "note": "Forearm version."
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Knees down."
+    },
+    {
+      "tag": "extension_pain",
+      "severity": "modify",
+      "note": "Knees down, ribs in."
+    }
+  ],
+  "prep": [],
+  "cues": "Hips level with the shoulders.\nLook towards the headrest; neck long.\nElbows soft.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

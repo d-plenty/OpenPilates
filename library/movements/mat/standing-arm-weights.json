@@ -2,6 +2,7 @@
   "slug": "standing-arm-weights",
   "name": "Standing Arm Series with Weights",
   "apparatus": "mat",
+  "section": "chest_arms",
   "level": "beginner",
   "position": "standing",
   "spine": [
@@ -27,6 +28,15 @@
     "hand_weights"
   ],
   "load": null,
+  "perSide": false,
+  "role": "stability",
+  "stable": "Trunk",
+  "mobile": "Shoulders and elbows",
+  "categories": [
+    "upper_body",
+    "standing"
+  ],
+  "pregnancy": "ok",
   "purpose": {
     "strength": 2,
     "stability": 1,
@@ -38,17 +48,24 @@
   "duration": 180,
   "reps": "8 each",
   "summary": "Standing tall with light weights: curls, presses, chest expansion and arm circles.",
+  "steps": [],
   "layers": [],
+  "modifications": [
+    "Lighter or no weights.",
+    "Sit down."
+  ],
   "cautions": [
     {
       "tag": "shoulder",
+      "severity": "avoid",
       "note": "Keep loads light and below pain."
     }
   ],
-  "cues": "",
+  "prep": [],
+  "cues": "Ribs over hips; no leaning back.\nShoulders away from the ears.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

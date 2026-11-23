@@ -1,7 +1,7 @@
 import { h, icon, fill } from '../ui.js';
 import { store } from '../store.js';
 import { go } from '../app.js';
-import { itemDuration, fmtClock } from '/shared/analysis.js';
+import { itemDuration, fmtClock, analyze } from '/shared/analysis.js';
 import { CAUTIONS, labelOf } from '/shared/vocab.js';
 import { donut, springDots } from '../charts.js';
 import { posLabel } from './common.js';
@@ -9,10 +9,11 @@ import { posLabel } from './common.js';
 export function playView(flow) {
   const room = store.roomFor(flow);
   const steps = [];
-  flow.segments.forEach((seg, si) => seg.items.forEach((item) => {
+  const planOf = new Map(analyze(store.analysisContext(flow)).springPlan.map((p) => [`${p.itemId}:${p.pass}`, p]));
+  flow.segments.forEach((seg, si) => (seg.bothSides ? [1, 2] : [1]).forEach((pass) => seg.items.forEach((item) => {
     const mv = store.movements[item.slug];
-    if (mv) steps.push({ seg, si, item, mv, dur: itemDuration(item, mv) });
-  }));
+    if (mv) steps.push({ seg, si, item, mv, pass, dur: itemDuration(item, mv), plan: planOf.get(`${item.id}:${pass}`) });
+  })));
   const total = steps.reduce((a, s) => a + s.dur, 0);
   const clients = store.analysisContext(flow).clients;
 
@@ -69,8 +70,10 @@ export function playView(flow) {
     const st = steps[idx];
     const elapsedBefore = steps.slice(0, idx).reduce((a, s) => a + s.dur, 0) + (st.dur - left);
     const next = steps.slice(idx + 1, idx + 4);
-    const loadsOf = (s) => (s.item.load?.springs || s.mv.load?.springs || []);
-    const nextChange = next[0] && next[0].mv.apparatus === 'reformer' && loadsOf(next[0]).slice().sort().join() !== loadsOf(st).slice().sort().join();
+    const loadsOf = (s) => (s.plan ? s.plan.loads : (s.item.load?.springs || s.mv.load?.springs || []));
+    const nextChange = next[0] && next[0].plan && next[0].plan.changed;
+    const setup = st.mv.setup || {};
+    const setupBits = [setup.headrest && setup.headrest !== 'any' ? `Headrest ${setup.headrest}` : '', setup.straps && setup.straps !== 'none' ? `${setup.straps === 'long' ? 'Long' : 'Short'} loops` : '', ...(st.mv.equipment || []).map((e) => e.replace(/_/g, ' '))].filter(Boolean);
     const alerts = [];
     for (const c of clients) for (const ca of st.mv.cautions || []) if ((c.tags || []).includes(ca.tag)) alerts.push({ c, ca });
     const nextAlerts = [];
@@ -89,16 +92,19 @@ export function playView(flow) {
         clockEl,
         h('div', { class: 'stack' },
           h('div', null,
-            h('div', { class: 'now' }, 'NOW', st.seg.role === 'peak' ? ' · PEAK' : ''),
+            h('div', { class: 'now' }, 'NOW', st.seg.role === 'peak' ? ' · PEAK' : '', st.seg.bothSides ? (st.pass === 2 ? ' · SECOND SIDE' : ' · FIRST SIDE') : '', st.plan && st.plan.changed ? ' · SPRINGS CHANGED' : ''),
             h('h1', null, st.mv.name),
             h('div', { class: 'muted', style: { marginTop: '6px', display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' } },
               st.mv.apparatus === 'reformer' ? springDots(loadsOf(st), room) : h('span', null, 'Mat'),
               h('span', null, posLabel(st.mv.position)),
               st.item.reps || st.mv.reps ? h('span', null, st.item.reps || st.mv.reps) : null,
+              setupBits.length ? h('span', null, setupBits.join(' · ')) : null,
               layer ? h('span', null, `${layer.tag}: ${layer.title}`) : null)),
           st.item.note ? h('div', { class: 'panel' }, h('div', { class: 'tiny muted' }, 'Your note'), h('div', null, st.item.note)) : null,
           ...alerts.map(({ c, ca }) => h('div', { class: 'panel alert' }, h('b', null, `${c.name}${c.spot ? ' · ' + c.spot : ''}: ${labelOf(CAUTIONS, ca.tag)}`), h('div', { class: 'small' }, ca.note))),
-          st.mv.cues ? h('div', { class: 'panel' }, h('div', { class: 'tiny muted' }, 'Cues'), h('div', { class: 'small', style: { whiteSpace: 'pre-line' } }, st.mv.cues)) : null,
+          st.mv.steps?.length ? h('div', { class: 'panel' }, h('div', { class: 'tiny muted' }, 'Set-up'), h('ol', { class: 'small' }, st.mv.steps.map((s) => h('li', null, s)))) : null,
+          st.mv.cues ? h('div', { class: 'panel' }, h('div', { class: 'tiny muted' }, 'Cues'), h('ul', { class: 'small' }, st.mv.cues.split('\n').filter(Boolean).map((c) => h('li', null, c)))) : null,
+          st.mv.modifications?.length ? h('div', { class: 'panel' }, h('div', { class: 'tiny muted' }, 'If someone needs less'), h('ul', { class: 'small' }, st.mv.modifications.map((c) => h('li', null, c)))) : null,
           next.length ? h('div', { class: 'upnext' }, next.map((s, i) => h('div', null,
             h('span', { class: 'muted', style: { width: '44px' } }, i === 0 ? 'Next' : ''),
             h('span', { style: { flex: 1, fontWeight: 600 } }, s.mv.name, i === 0 && nextAlerts.length ? h('span', { style: { color: '#F2A979' } }, ` · check ${[...new Set(nextAlerts.map((x) => x.c.name))].join(', ')}`) : null),

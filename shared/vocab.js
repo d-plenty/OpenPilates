@@ -107,16 +107,90 @@ export const PURPOSES = [
 // Caution tags shared by movements and clients. A client tagged "knee" is checked
 // against every movement that carries a "knee" caution.
 export const CAUTIONS = [
-  { id: 'pregnancy', label: 'Pregnancy' },
+  { id: 'pregnancy', label: 'Pregnancy (after 12 weeks)' },
+  { id: 'pregnancy_early', label: 'Pregnancy (first 12 weeks)' },
   { id: 'knee', label: 'Knee pain / replacement' },
   { id: 'hip_replacement', label: 'Hip replacement' },
+  { id: 'hip_pain', label: 'Hip pain (arthritis, bursitis, labrum)' },
+  { id: 'groin', label: 'Groin / inner-thigh strain' },
+  { id: 'si_joint', label: 'SI joint / pelvic instability' },
   { id: 'wrist', label: 'Wrist pain' },
   { id: 'shoulder', label: 'Shoulder pain / instability' },
   { id: 'neck', label: 'Neck pain' },
   { id: 'low_bone_density', label: 'Low bone density' },
-  { id: 'extension_pain', label: 'Pain arching the back' },
-  { id: 'flexion_pain', label: 'Pain rounding the back' },
+  { id: 'extension_pain', label: 'Pain arching the back (stenosis, spondylolisthesis)' },
+  { id: 'flexion_pain', label: 'Pain rounding the back (disc issues)' },
   { id: 'balance', label: 'Balance concerns' }
+];
+
+// How strongly a caution applies. "modify" = teach it with the noted change; "avoid" = swap it out.
+export const SEVERITIES = [
+  { id: 'avoid', label: 'Avoid — swap it' },
+  { id: 'modify', label: 'Modify — adjust it' }
+];
+
+// Where a movement sits in a reformer class. Used to check the whole body gets worked.
+export const SECTIONS = [
+  { id: 'lower', label: 'Legs & glutes', group: 'lower' },
+  { id: 'pelvic', label: 'Hips & pelvic stability', group: 'lower' },
+  { id: 'cardio', label: 'Jump board', group: 'lower' },
+  { id: 'back_shoulders', label: 'Back & shoulders', group: 'upper' },
+  { id: 'single_arm', label: 'Single-arm work', group: 'upper' },
+  { id: 'chest_arms', label: 'Chest & arms', group: 'upper' },
+  { id: 'core', label: 'Core', group: 'core' },
+  { id: 'stretch', label: 'Stretch & mobility', group: 'stretch' }
+];
+
+export const SECTION_GROUPS = [
+  { id: 'lower', label: 'Lower body', color: '#0F6E62' },
+  { id: 'upper', label: 'Upper body', color: '#3E6FA0' },
+  { id: 'core', label: 'Core', color: '#B4651F' },
+  { id: 'stretch', label: 'Stretch & relief', color: '#7A4FA0' }
+];
+
+// Movement categories for the class-balance check: what the trunk and hips do, plus
+// a few whole-body positions. A rounded class touches most of them.
+export const CATEGORIES = [
+  { id: 'trunk_flexion', label: 'Trunk flexion' },
+  { id: 'trunk_extension', label: 'Trunk extension' },
+  { id: 'lateral_flexion', label: 'Side bend' },
+  { id: 'rotation', label: 'Rotation' },
+  { id: 'upper_body', label: 'Upper body' },
+  { id: 'hip_flexion', label: 'Hip flexion' },
+  { id: 'hip_extension', label: 'Hip extension' },
+  { id: 'hip_abduction', label: 'Hip abduction' },
+  { id: 'hip_adduction', label: 'Hip adduction' },
+  { id: 'quadruped', label: 'Hands & knees / plank' },
+  { id: 'standing', label: 'Standing' }
+];
+
+// Does the movement mainly ask the body to hold still against load, or to move through range?
+export const ROLES = [
+  { id: 'stability', label: 'Stability' },
+  { id: 'mobility', label: 'Mobility' },
+  { id: 'both', label: 'Both' }
+];
+
+export const PREGNANCY = [
+  { id: 'ok', label: 'No special note' },
+  { id: 'recommended', label: 'Good option in pregnancy' },
+  { id: 'supine', label: 'On the back — keep it short' },
+  { id: 'early_only', label: 'First 12 weeks only' },
+  { id: 'avoid', label: 'Not in pregnancy' }
+];
+
+export const HEADREST = [
+  { id: 'any', label: 'Either' }, { id: 'up', label: 'Up' }, { id: 'down', label: 'Down' }
+];
+
+export const STRAPS = [
+  { id: 'none', label: 'Not used' }, { id: 'short', label: 'Short loops' }, { id: 'long', label: 'Long loops' }
+];
+
+export const FORMATS = [
+  { id: 'flow', label: 'Flow', springBudget: 3, note: 'Movements run into each other with very few spring changes.' },
+  { id: 'fit', label: 'Fit / cardio', springBudget: 3, note: 'Faster, compound movements with jump-board intervals.' },
+  { id: 'open', label: 'Open', springBudget: 6, note: 'No particular format.' }
 ];
 
 export const SEGMENT_ROLES = [
@@ -195,3 +269,85 @@ export function springLabel(brandId, loads, overrides) {
 
 export const byId = (list) => Object.fromEntries(list.map((x) => [x.id, x]));
 export const labelOf = (list, id) => (list.find((x) => x.id === id) || { label: id }).label;
+
+const SECTION_IDS = new Set(SECTIONS.map((x) => x.id));
+
+// Section, categories and role fall back to a best guess when a movement doesn't state them
+// (older library files, mat work and custom movements).
+export function sectionOf(mv) {
+  if (!mv) return 'core';
+  if (SECTION_IDS.has(mv.section)) return mv.section;
+  const prim = mv.muscles?.primary || [];
+  const purpose = mv.purpose || {};
+  if ((mv.equipment || []).includes('jump_board')) return 'cardio';
+  if ((purpose.flexibility || 0) >= 2 && (purpose.strength || 0) <= 1) return 'stretch';
+  const hit = (ids) => prim.filter((m) => ids.includes(m)).length;
+  const core = hit(['abdominals', 'obliques']);
+  const lower = hit(['glutes', 'hamstrings', 'quadriceps', 'adductors', 'abductors', 'calves', 'hip_flexors']);
+  const back = hit(['upper_back', 'lats', 'spinal_extensors']);
+  const arms = hit(['chest', 'biceps', 'triceps', 'deltoids', 'serratus']);
+  const best = Math.max(core, lower, back, arms);
+  if (best === 0) return 'core';
+  if (core === best) return 'core';
+  if (lower === best) return 'lower';
+  if (back === best) return 'back_shoulders';
+  return 'chest_arms';
+}
+
+export const sectionGroupOf = (mv) => (SECTIONS.find((s) => s.id === sectionOf(mv)) || { group: 'core' }).group;
+
+const CATEGORY_IDS = new Set(CATEGORIES.map((x) => x.id));
+export function categoriesOf(mv) {
+  if (!mv) return [];
+  if (Array.isArray(mv.categories) && mv.categories.length) return mv.categories.filter((c) => CATEGORY_IDS.has(c));
+  const out = new Set();
+  const spine = mv.spine || [];
+  const pat = mv.patterns || [];
+  const prim = mv.muscles?.primary || [];
+  if (spine.includes('flexion') || spine.includes('articulation')) out.add('trunk_flexion');
+  if (spine.includes('extension')) out.add('trunk_extension');
+  if (spine.includes('side-bend')) out.add('lateral_flexion');
+  if (spine.includes('rotation')) out.add('rotation');
+  if (prim.some((m) => ['upper_back', 'lats', 'chest', 'biceps', 'triceps', 'deltoids', 'serratus'].includes(m))) out.add('upper_body');
+  if (prim.includes('hip_flexors')) out.add('hip_flexion');
+  if (prim.includes('glutes') || prim.includes('hamstrings')) out.add('hip_extension');
+  if (prim.includes('abductors') || pat.includes('abduction')) out.add('hip_abduction');
+  if (prim.includes('adductors') || pat.includes('adduction')) out.add('hip_adduction');
+  if (mv.position === 'quadruped' || mv.position === 'plank') out.add('quadruped');
+  if (mv.position === 'standing') out.add('standing');
+  return [...out];
+}
+
+export function roleOf(mv) {
+  if (!mv) return 'both';
+  if (['stability', 'mobility', 'both'].includes(mv.role)) return mv.role;
+  const p = mv.purpose || {};
+  const move = (p.flexibility || 0) + (p.mobility || 0);
+  const hold = (p.strength || 0) + (p.stability || 0);
+  if (move > hold) return 'mobility';
+  if (hold > move + 1) return 'stability';
+  return 'both';
+}
+
+// Spring settings a movement can be taught on without stopping to change: its usual
+// setting and its harder option.
+export function springOptions(mv, item) {
+  if (!mv || mv.apparatus !== 'reformer') return [];
+  const key = (l) => [...(l || [])].sort().join('+');
+  if (item && item.load && Array.isArray(item.load.springs)) return [key(item.load.springs)];
+  const out = [key(mv.load?.springs)];
+  if (mv.load?.advance && mv.load.advance.length) out.push(key(mv.load.advance));
+  return [...new Set(out)];
+}
+
+// Two spring settings count as the same working load when they match, or when the only
+// difference is one extra-light spring on or off — you'd teach through that without stopping.
+export function sameSetting(a, b) {
+  const x = [...(a || [])].sort(); const y = [...(b || [])].sort();
+  if (x.join('+') === y.join('+')) return true;
+  const [long, short] = x.length > y.length ? [x, y] : [y, x];
+  if (long.length !== short.length + 1) return false;
+  const rest = [...long];
+  for (const l of short) { const i = rest.indexOf(l); if (i < 0) return false; rest.splice(i, 1); }
+  return rest.length === 1 && rest[0] === 'xlight';
+}

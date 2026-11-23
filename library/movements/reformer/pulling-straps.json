@@ -2,6 +2,7 @@
   "slug": "pulling-straps",
   "name": "Pulling Straps",
   "apparatus": "reformer",
+  "section": "back_shoulders",
   "level": "intermediate",
   "position": "prone",
   "spine": [
@@ -29,8 +30,25 @@
   "load": {
     "springs": [
       "light"
+    ],
+    "advance": [
+      "light",
+      "xlight"
     ]
   },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "both",
+  "stable": "Pelvis and legs",
+  "mobile": "Shoulders; upper spine in the lifted layers",
+  "categories": [
+    "upper_body",
+    "trunk_extension"
+  ],
+  "pregnancy": "avoid",
   "purpose": {
     "strength": 2,
     "stability": 2,
@@ -40,24 +58,75 @@
   "multiJoint": true,
   "intensity": 5,
   "duration": 180,
-  "reps": "6",
+  "reps": "10–30",
   "summary": "Face down on the long box, pull the straps back alongside the body as the chest lifts.",
-  "layers": [],
+  "steps": [
+    "Long box in front of the shoulder rests. Lie face down with the chest at the front edge.",
+    "Hold the ropes above the loops, arms long down either side of the frame.",
+    "Tailbone long, belly lifted.",
+    "Breathe out to draw straight arms back beside the hips; breathe in to release."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Arms only",
+      "text": "Spine stays level."
+    },
+    {
+      "tag": "L2",
+      "title": "Add a chest lift",
+      "text": "Lift the chest as the arms pull."
+    },
+    {
+      "tag": "L3",
+      "title": "T pull",
+      "text": "Arms draw in from wide."
+    },
+    {
+      "tag": "L4",
+      "title": "Circles",
+      "text": "Small arm circles."
+    },
+    {
+      "tag": "L5",
+      "title": "Triceps",
+      "text": "Hold the arms back and bend and straighten the elbows."
+    },
+    {
+      "tag": "L6",
+      "title": "Lift and hold",
+      "text": "Stay up and add small leg beats."
+    }
+  ],
+  "modifications": [
+    "Stay level (no lift) for a tender lower back.",
+    "Bend the knees and cross the ankles.",
+    "Slide the hands down to the loops for less resistance."
+  ],
   "cautions": [
     {
       "tag": "pregnancy",
-      "note": "Lying face down on the box.",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "chest-expansion"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
       "swap": "chest-expansion"
     },
     {
       "tag": "shoulder",
+      "severity": "avoid",
       "note": "Keep the range below any shoulder pain."
     }
   ],
-  "cues": "",
+  "prep": [],
+  "cues": "Look at the headrest; chin slightly tucked.\nArms stop at hip height.\nElbows stay straight.\nBelly lifts so the lower back stays long.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

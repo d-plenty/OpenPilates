@@ -1,11 +1,13 @@
 import { h, icon, btn, toast, select, debounce, fill } from '../ui.js';
 import { api, store } from '../store.js';
 import { go } from '../app.js';
-import { POSITIONS, SPINE, PATTERNS, EQUIPMENT, APPARATUS, LEVELS, REGIONS, PURPOSES, LOAD_LEVELS, springFor, labelOf } from '/shared/vocab.js';
+import { POSITIONS, SPINE, PATTERNS, EQUIPMENT, APPARATUS, LEVELS, REGIONS, PURPOSES, LOAD_LEVELS, SECTIONS, CATEGORIES, ROLES, PREGNANCY, springFor, labelOf, sectionOf, categoriesOf, roleOf } from '/shared/vocab.js';
 import { newId } from '/shared/draft.js';
 import { movementCard } from './common.js';
 
 const FACETS = [
+  { id: 'section', label: 'By part of the class', values: (m) => [sectionOf(m)], names: SECTIONS },
+  { id: 'category', label: 'By movement category', values: (m) => categoriesOf(m), names: CATEGORIES },
   { id: 'position', label: 'By starting position', values: (m) => [m.position], names: POSITIONS },
   { id: 'region', label: 'By region', values: (m) => REGIONS.filter((r) => m.muscles.primary.some((x) => r.muscles.includes(x))).map((r) => r.id), names: REGIONS },
   { id: 'spine', label: 'By spine movement', values: (m) => m.spine || [], names: SPINE },
@@ -13,12 +15,14 @@ const FACETS = [
   { id: 'equipment', label: 'By equipment', values: (m) => (m.equipment && m.equipment.length ? m.equipment : [m.apparatus === 'mat' ? 'none-mat' : 'none-reformer']), names: [...EQUIPMENT, { id: 'none-mat', label: 'Mat only' }, { id: 'none-reformer', label: 'Reformer only' }] },
   { id: 'load', label: 'By spring load', values: (m) => (m.load ? [...new Set(m.load.springs)] : ['none']), names: null },
   { id: 'purpose', label: 'By purpose', values: (m) => PURPOSES.filter((p) => (m.purpose?.[p.id] || 0) >= 2).map((p) => p.id), names: PURPOSES },
-  { id: 'level', label: 'By level', values: (m) => [m.level], names: LEVELS }
+  { id: 'level', label: 'By level', values: (m) => [m.level], names: LEVELS },
+  { id: 'role', label: 'Stability or mobility', values: (m) => [roleOf(m)], names: ROLES },
+  { id: 'pregnancy', label: 'Pregnancy', values: (m) => [m.pregnancy || 'ok'], names: PREGNANCY }
 ];
 
 export async function exploreView(query) {
   const flows = (await api('GET', '/flows')).filter((f) => f.canEdit);
-  const st = { facet: 'position', cat: '', apparatus: 'all', q: '', flowId: query.get('flow') || flows[0]?.id || '', activeSeg: null };
+  const st = { facet: 'section', cat: '', apparatus: 'all', q: '', flowId: query.get('flow') || flows[0]?.id || '', activeSeg: null };
   let flow = flows.find((f) => f.id === st.flowId) || null;
   const room = () => store.roomFor(flow || { apparatus: st.apparatus === 'mat' ? 'mat' : 'reformer' });
 

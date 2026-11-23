@@ -2,6 +2,7 @@
   "slug": "roll-up",
   "name": "Roll Up",
   "apparatus": "mat",
+  "section": "core",
   "level": "intermediate",
   "position": "supine",
   "spine": [
@@ -24,6 +25,14 @@
   },
   "equipment": [],
   "load": null,
+  "perSide": false,
+  "role": "mobility",
+  "stable": "Legs",
+  "mobile": "Whole spine",
+  "categories": [
+    "trunk_flexion"
+  ],
+  "pregnancy": "early_only",
   "purpose": {
     "strength": 2,
     "stability": 2,
@@ -35,28 +44,66 @@
   "duration": 90,
   "reps": "5",
   "summary": "Roll the whole spine up from lying to a forward reach and back down with control.",
-  "layers": [],
+  "steps": [
+    "Lie on the back, legs long, arms overhead.",
+    "Breathe in to lift the arms and nod the chin.",
+    "Breathe out to peel up and reach forward over the legs.",
+    "Breathe in to start rolling back; breathe out to roll down bone by bone."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Half roll back",
+      "text": "Start there."
+    },
+    {
+      "tag": "L2",
+      "title": "Bent knees",
+      "text": "Feet down."
+    },
+    {
+      "tag": "L3",
+      "title": "Legs long",
+      "text": "Basic."
+    },
+    {
+      "tag": "L4",
+      "title": "Prop",
+      "text": "Hold a ball or pole."
+    }
+  ],
+  "modifications": [
+    "Bend the knees.",
+    "Hold behind the thighs through the sticking point."
+  ],
   "cautions": [
     {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "cat-cow"
+    },
+    {
       "tag": "low_bone_density",
+      "severity": "avoid",
       "note": "Loaded spinal flexion; avoid.",
       "swap": "pelvic-curl"
     },
     {
-      "tag": "pregnancy",
-      "note": "Strong abdominal load later in pregnancy.",
-      "swap": "cat-cow"
-    },
-    {
       "tag": "flexion_pain",
+      "severity": "avoid",
       "note": "Avoid full roll-up.",
       "swap": "pelvic-curl"
     }
   ],
-  "cues": "",
+  "prep": [
+    "half-roll-back",
+    "supine-curl"
+  ],
+  "cues": "Legs stay heavy on the mat.\nPeel and replace one bone at a time.\nReach forward, not down.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

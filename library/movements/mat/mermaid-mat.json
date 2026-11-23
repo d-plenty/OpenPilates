@@ -2,6 +2,7 @@
   "slug": "mermaid-mat",
   "name": "Mermaid (Mat)",
   "apparatus": "mat",
+  "section": "stretch",
   "level": "beginner",
   "position": "seated",
   "spine": [
@@ -20,6 +21,15 @@
   },
   "equipment": [],
   "load": null,
+  "perSide": true,
+  "role": "mobility",
+  "stable": "Pelvis",
+  "mobile": "Spine (side bend)",
+  "categories": [
+    "lateral_flexion",
+    "upper_body"
+  ],
+  "pregnancy": "recommended",
   "purpose": {
     "strength": 0,
     "stability": 0,
@@ -31,20 +41,48 @@
   "duration": 60,
   "reps": "3 each side",
   "summary": "Seated with legs folded to one side, reach up and over into a side stretch.",
-  "layers": [],
+  "steps": [
+    "Sit with both legs folded to one side, or cross-legged.",
+    "Breathe in to lift one arm up by the ear.",
+    "Breathe out to reach up and over to the side, the other hand resting on the mat.",
+    "Breathe in to return; change sides."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Side bend",
+      "text": "Over and back."
+    },
+    {
+      "tag": "L2",
+      "title": "Add a twist",
+      "text": "Turn the chest to the floor at the far point."
+    },
+    {
+      "tag": "L3",
+      "title": "Hold a ball",
+      "text": "Both hands overhead on a ball."
+    }
+  ],
+  "modifications": [
+    "Sit cross-legged or on a block."
+  ],
   "cautions": [
     {
       "tag": "knee",
+      "severity": "avoid",
       "note": "Sit cross-legged instead."
     }
   ],
-  "cues": "",
+  "prep": [],
+  "cues": "Both sit bones stay down.\nReach up before you go over.\nTop shoulder away from the ear.",
   "labels": [
     "cool-down",
+    "mobilisation",
     "pregnancy-friendly"
   ],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

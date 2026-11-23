@@ -2,6 +2,7 @@
   "slug": "side-splits",
   "name": "Side Splits",
   "apparatus": "reformer",
+  "section": "lower",
   "level": "intermediate",
   "position": "standing",
   "spine": [
@@ -26,8 +27,27 @@
   "load": {
     "springs": [
       "light"
-    ]
+    ],
+    "advance": [
+      "xlight"
+    ],
+    "lighterIsHarder": true,
+    "note": "Heavier works the outer hips on the way out; lighter makes the inner thighs work to close."
   },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "both",
+  "stable": "Ribcage over pelvis",
+  "mobile": "Both hips",
+  "categories": [
+    "hip_abduction",
+    "hip_adduction",
+    "standing"
+  ],
+  "pregnancy": "avoid",
   "purpose": {
     "strength": 1,
     "stability": 3,
@@ -37,29 +57,93 @@
   "multiJoint": true,
   "intensity": 6,
   "duration": 180,
-  "reps": "8",
+  "reps": "20–30",
   "summary": "Standing across the carriage and platform, open and close the legs against the springs.",
-  "layers": [],
+  "steps": [
+    "Stand side-on, one foot on the platform and one on the carriage, toes forward, arms by the sides.",
+    "Breathe out to press the carriage out with straight legs, arms floating out to the sides.",
+    "Breathe in to draw it home with the inner thighs, arms lowering."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Out and in",
+      "text": "Basic."
+    },
+    {
+      "tag": "L2",
+      "title": "End-range pulses and holds",
+      "text": "Stay wide."
+    },
+    {
+      "tag": "L3",
+      "title": "Bend one knee",
+      "text": "Bend the platform knee as the carriage opens, straighten to close."
+    },
+    {
+      "tag": "L4",
+      "title": "Turned out with pliés",
+      "text": "Hold the carriage open and bend both knees."
+    },
+    {
+      "tag": "L5",
+      "title": "Carriage foot further out",
+      "text": "Longer lever on a light spring."
+    },
+    {
+      "tag": "L6",
+      "title": "Hold a prop",
+      "text": "Hand weights, ring or ball."
+    }
+  ],
+  "modifications": [
+    "Keep the range small.",
+    "Use Side Squats with the carriage locked instead."
+  ],
   "cautions": [
     {
       "tag": "pregnancy",
-      "note": "Balance on a moving carriage; hold a frame or swap.",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "side-lying-leg-press"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
       "swap": "side-lying-leg-press"
     },
     {
       "tag": "hip_replacement",
-      "note": "Wide stance; follow surgeon or physio advice."
+      "severity": "avoid",
+      "note": "Wide stance under load.",
+      "swap": "side-lying-strap-series"
     },
     {
       "tag": "balance",
-      "note": "Standing on a moving carriage.",
-      "swap": "side-lying-leg-press"
+      "severity": "avoid",
+      "note": "Wide stance on a moving carriage.",
+      "swap": "side-lying-strap-series"
+    },
+    {
+      "tag": "groin",
+      "severity": "avoid",
+      "note": "Loaded inner-thigh stretch, especially on a light spring.",
+      "swap": "side-lying-strap-series"
+    },
+    {
+      "tag": "hip_pain",
+      "severity": "modify",
+      "note": "Small range."
     }
   ],
-  "cues": "",
+  "prep": [
+    "carriage-squats"
+  ],
+  "cues": "Ribs stay stacked over hips.\nKnees soft, not locked.\nSame control out and in.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

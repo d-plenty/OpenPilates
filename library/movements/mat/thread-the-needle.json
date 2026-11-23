@@ -2,6 +2,7 @@
   "slug": "thread-the-needle",
   "name": "Thread the Needle",
   "apparatus": "mat",
+  "section": "stretch",
   "level": "beginner",
   "position": "quadruped",
   "spine": [
@@ -20,6 +21,16 @@
   },
   "equipment": [],
   "load": null,
+  "perSide": true,
+  "role": "mobility",
+  "stable": "Pelvis and knees",
+  "mobile": "Upper spine (rotation)",
+  "categories": [
+    "rotation",
+    "upper_body",
+    "quadruped"
+  ],
+  "pregnancy": "recommended",
   "purpose": {
     "strength": 0,
     "stability": 1,
@@ -31,23 +42,38 @@
   "duration": 60,
   "reps": "4 each side",
   "summary": "On hands and knees, open one arm to the ceiling then thread it under the body.",
+  "steps": [
+    "Start on hands and knees.",
+    "Breathe in to reach one arm up to the ceiling, chest turning open.",
+    "Breathe out to thread that arm under the body, shoulder and ear lowering towards the mat.",
+    "Breathe in to unwind."
+  ],
   "layers": [],
+  "modifications": [
+    "Smaller range.",
+    "Forearm down on the supporting side."
+  ],
   "cautions": [
     {
       "tag": "wrist",
+      "severity": "avoid",
       "note": "Weight through one hand."
     },
     {
       "tag": "shoulder",
+      "severity": "avoid",
       "note": "Keep the range comfortable."
     }
   ],
-  "cues": "",
+  "prep": [],
+  "cues": "Hips stay over the knees.\nPush the floor away with the supporting hand.\nTurn from the ribs.",
   "labels": [
-    "cool-down"
+    "cool-down",
+    "mobilisation",
+    "pregnancy-friendly"
   ],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

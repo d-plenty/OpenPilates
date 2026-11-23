@@ -1,0 +1,120 @@
+{
+  "slug": "swan-dive",
+  "name": "Swan Dive",
+  "apparatus": "mat",
+  "section": "back_shoulders",
+  "level": "advanced",
+  "position": "prone",
+  "spine": [
+    "extension"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "extension",
+    "coordination"
+  ],
+  "muscles": {
+    "primary": [
+      "spinal_extensors",
+      "glutes",
+      "hamstrings"
+    ],
+    "secondary": [
+      "upper_back",
+      "triceps",
+      "deltoids"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "mobility",
+  "stable": "The curve itself",
+  "mobile": "Whole body rocks",
+  "categories": [
+    "trunk_extension",
+    "hip_extension"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 1,
+    "mobility": 2
+  },
+  "multiJoint": true,
+  "intensity": 8,
+  "duration": 90,
+  "reps": "4–6",
+  "summary": "From a high Swan, the arms release and the body rocks forward onto the chest and back again, holding one long arch.",
+  "steps": [
+    "Lie face down, hands under the shoulders.",
+    "Press up into a long back bend.",
+    "Release the hands forward and rock onto the chest as the legs lift.",
+    "Rock back onto the thighs as the chest rises; keep rocking.",
+    "Catch with the hands to finish and sit back to rest."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Swan prep",
+      "text": "Lift and lower, hands down."
+    },
+    {
+      "tag": "L2",
+      "title": "One rock with hands",
+      "text": "Rock forward, catch."
+    },
+    {
+      "tag": "L3",
+      "title": "Hands free",
+      "text": "Full dive, arms forward or wide."
+    }
+  ],
+  "modifications": [
+    "Stay with Swan Prep."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "extension_pain",
+      "severity": "avoid",
+      "note": "Strong loaded extension.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Keep the hands on the mat."
+    },
+    {
+      "tag": "neck",
+      "severity": "modify",
+      "note": "Keep the head in line; no throwing it back."
+    }
+  ],
+  "prep": [
+    "swan-prep",
+    "swimming",
+    "prone-arm-circles"
+  ],
+  "cues": "The shape doesn't change — you are a rocking chair.\nLegs together and reaching.\nBelly lifted to protect the lower back.",
+  "labels": [
+    "peak"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

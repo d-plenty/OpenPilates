@@ -1,0 +1,124 @@
+{
+  "slug": "frog-press",
+  "name": "Feet in Straps — Frog",
+  "apparatus": "reformer",
+  "section": "pelvic",
+  "level": "beginner",
+  "position": "supine",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "adduction"
+  ],
+  "muscles": {
+    "primary": [
+      "adductors",
+      "hamstrings"
+    ],
+    "secondary": [
+      "glutes",
+      "abdominals"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "medium",
+      "xlight"
+    ],
+    "advance": [
+      "medium",
+      "medium",
+      "light"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "long"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Pelvis and spine",
+  "mobile": "Hips and knees",
+  "categories": [
+    "hip_extension",
+    "hip_adduction"
+  ],
+  "pregnancy": "supine",
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 4,
+  "duration": 120,
+  "reps": "20–30",
+  "summary": "Feet in the long loops, heels together and knees open. Bend in to a diamond and press the legs out long on a diagonal.",
+  "steps": [
+    "Lie on the back with the long loops over the feet, tailbone heavy.",
+    "Legs long on a 45° line, slightly turned out, heels touching.",
+    "Breathe in to bend the knees open over the hips.",
+    "Breathe out to press out along the same diagonal, squeezing the inner thighs."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Heels together",
+      "text": "Standard frog."
+    },
+    {
+      "tag": "L2",
+      "title": "Heels apart",
+      "text": "Keep a small gap between the heels the whole time."
+    },
+    {
+      "tag": "L3",
+      "title": "Breaststroke legs",
+      "text": "Press out, open wide, circle back to the diamond."
+    },
+    {
+      "tag": "L4",
+      "title": "Open and bend",
+      "text": "From long legs, one leg opens straight to the side while the other bends to a frog; press both back together."
+    }
+  ],
+  "modifications": [
+    "Lighter spring if the pelvis rocks."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "modify",
+      "note": "Lying flat on the back: keep it to a few minutes, raise the head end if you can, and stop if she feels dizzy."
+    },
+    {
+      "tag": "hip_replacement",
+      "severity": "avoid",
+      "note": "Deep hip flexion with turnout.",
+      "swap": "feet-in-straps"
+    },
+    {
+      "tag": "groin",
+      "severity": "modify",
+      "note": "Smaller range, parallel legs."
+    },
+    {
+      "tag": "si_joint",
+      "severity": "modify",
+      "note": "Keep both legs moving together; skip the one-leg layer."
+    }
+  ],
+  "prep": [],
+  "cues": "Heels stay glued together.\nKnees stop above the hips — they don't fold into the chest.\nTailbone stays down; no arching as the legs go out.\nNeck and shoulders relaxed.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

@@ -1,10 +1,10 @@
 import { h, icon, btn, toast, select, field, chips, debounce, confirmDialog, modal, fill } from '../ui.js';
 import { api, store } from '../store.js';
 import { go } from '../app.js';
-import { analyze, itemDuration, fmtClock } from '/shared/analysis.js';
+import { analyze, itemDuration, fmtClock, avoids } from '/shared/analysis.js';
 import { newId } from '/shared/draft.js';
-import { POSITIONS, SPINE, MUSCLES, LEVELS, SEGMENT_ROLES, CAUTIONS, labelOf } from '/shared/vocab.js';
-import { movementCard, checksList, statTiles, radarCard, bodyCard, intensityCard, positionsCard, focusCard, muscleListCard, clientsCard, posLabel, muscleLabel, springDots, fmtMin } from './common.js';
+import { POSITIONS, SPINE, MUSCLES, LEVELS, SEGMENT_ROLES, CAUTIONS, SECTIONS, FORMATS, labelOf, sectionOf } from '/shared/vocab.js';
+import { movementCard, checksList, statTiles, radarCard, bodyCard, intensityCard, positionsCard, focusCard, muscleListCard, clientsCard, springsCard, balanceCard, posLabel, muscleLabel, springDots, fmtMin } from './common.js';
 import { playView } from './play.js';
 
 const ROLE_COLOR = { warmup: '#7FB8AD', build: '#4E9C8F', peak: '#0F6E62', cooldown: '#A9C7BF' };
@@ -61,7 +61,9 @@ export async function flowView(id, tab) {
     select(LEVELS.map((l) => ({ id: l.id, label: l.label })), flow.level, (v) => change(() => { flow.level = v; }), { 'aria-label': 'Level', disabled: !meta.canEdit, style: { width: 'auto' } }),
     select([30, 40, 45, 50, 55, 60, 75, 90].map((n) => ({ id: String(n), label: `${n} min class` })), String(flow.lengthMin), (v) => change(() => { flow.lengthMin = Number(v); }), { 'aria-label': 'Class length', disabled: !meta.canEdit, style: { width: 'auto' } }),
     store.studio.rooms.length > 1 ? select(store.studio.rooms.map((r) => ({ id: r.id, label: r.name })), room().id, (v) => change(() => { flow.room = v; }), { 'aria-label': 'Room', disabled: !meta.canEdit, style: { width: 'auto' } }) : null,
-    select(Object.entries(store.studio.targets || {}).map(([k, t]) => ({ id: k, label: `Target: ${t.label}` })), flow.target, (v) => change(() => { flow.target = v; }), { 'aria-label': 'Balance target', disabled: !meta.canEdit, style: { width: 'auto' } }));
+    select(Object.entries(store.studio.targets || {}).map(([k, t]) => ({ id: k, label: `Target: ${t.label}` })), flow.target, (v) => change(() => { flow.target = v; }), { 'aria-label': 'Balance target', disabled: !meta.canEdit, style: { width: 'auto' } }),
+    flow.apparatus !== 'mat' ? select(FORMATS.map((f) => ({ id: f.id, label: `Style: ${f.label}` })), flow.format || 'open', (v) => change(() => { flow.format = v; flow.springBudget = FORMATS.find((f) => f.id === v).springBudget; }), { 'aria-label': 'Class style', disabled: !meta.canEdit, style: { width: 'auto' }, title: 'Flow and Fit classes aim for very few spring changes' }) : null,
+    flow.apparatus !== 'mat' ? select([0, 1, 2, 3, 4, 5, 6, 8, 10].map((n) => ({ id: String(n), label: `Spring changes: up to ${n}` })), String(flow.springBudget ?? 6), (v) => change(() => { flow.springBudget = Number(v); }), { 'aria-label': 'Spring-change limit', disabled: !meta.canEdit, style: { width: 'auto' } }) : null);
 
   const tabs = (current) => h('div', { class: 'seg', role: 'tablist', 'aria-label': 'Flow views' },
     [['build', 'Build'], ['analysis', 'Analysis'], ['play', 'Play']].map(([t, l]) =>
@@ -77,7 +79,7 @@ export async function flowView(id, tab) {
     meta.canEdit ? btn('', async () => { if (await confirmDialog('Delete this flow?', `"${flow.title}" will be deleted for everyone.`)) { await api('DELETE', `/flows/${meta.id}`); toast('Flow deleted.'); go('/'); } }, { iconName: 'trash', title: 'Delete flow' }) : null);
 
   // ---------- library pane
-  const lib = { q: '', position: '', spine: '', muscle: '', ownedOnly: true, safe: true };
+  const lib = { q: '', section: '', position: '', spine: '', muscle: '', ownedOnly: true, safe: true };
   const libList = h('div', { class: 'lib-list' });
   const drawLibrary = () => {
     const tags = bookedTags();
@@ -85,17 +87,19 @@ export async function flowView(id, tab) {
     const list = store.movementList.filter((mv) =>
       (flow.apparatus === 'mixed' || mv.apparatus === flow.apparatus) &&
       (!lib.q || (mv.name + ' ' + mv.muscles.primary.join(' ') + ' ' + (mv.labels || []).join(' ')).toLowerCase().includes(lib.q)) &&
+      (!lib.section || sectionOf(mv) === lib.section) &&
       (!lib.position || mv.position === lib.position) &&
       (!lib.spine || (mv.spine || []).includes(lib.spine)) &&
       (!lib.muscle || mv.muscles.primary.includes(lib.muscle) || mv.muscles.secondary.includes(lib.muscle)) &&
       (!lib.ownedOnly || (mv.equipment || []).every((e) => Number(owned[e]) > 0)) &&
-      (!lib.safe || !(mv.cautions || []).some((c) => tags.has(c.tag))));
+      (!lib.safe || !avoids(mv, tags)));
     fill(libList, ...(list.length ? list.map((mv) => movementCard(mv, room(), { draggable: meta.canEdit, onAdd: meta.canEdit ? addMovement : null, addLabel: '' })) : [h('p', { class: 'muted small' }, 'No movements match.')]));
   };
   const libraryPane = () => h('aside', { class: 'col-side card', 'aria-label': 'Movement library' },
     h('div', { class: 'card-head' }, h('h2', null, 'Movements'), h('span', { class: 'tiny muted' }, `${store.movementList.length} in library`), h('div', { class: 'spacer' }), h('a', { class: 'small', href: '#/movements/new' }, '+ New')),
     h('input', { type: 'search', placeholder: 'Search name, muscle, label', 'aria-label': 'Search movements', oninput: (e) => { lib.q = e.target.value.toLowerCase(); drawLibrary(); } }),
     h('div', { class: 'grid-2', style: { margin: '8px 0' } },
+      select([{ id: '', label: 'Any part of the class' }, ...SECTIONS], '', (v) => { lib.section = v; drawLibrary(); }, { 'aria-label': 'Part of the class', style: { gridColumn: '1 / -1' } }),
       select([{ id: '', label: 'Any position' }, ...POSITIONS], '', (v) => { lib.position = v; drawLibrary(); }, { 'aria-label': 'Position' }),
       select([{ id: '', label: 'Any spine' }, ...SPINE], '', (v) => { lib.spine = v; drawLibrary(); }, { 'aria-label': 'Spine movement' }),
       select([{ id: '', label: 'Any muscle' }, ...MUSCLES], '', (v) => { lib.muscle = v; drawLibrary(); }, { 'aria-label': 'Muscle', style: { gridColumn: '1 / -1' } })),
@@ -151,20 +155,26 @@ export async function flowView(id, tab) {
     dragItemId = null;
   };
 
+  let plan = new Map();
   const itemRow = (seg, item) => {
     const mv = store.movements[item.slug];
     const tags = bookedTags();
-    const flags = mv ? (mv.cautions || []).filter((c) => tags.has(c.tag)) : [];
+    const all = mv ? (mv.cautions || []).filter((c) => tags.has(c.tag)) : [];
+    const flags = all.filter((c) => c.severity !== 'modify');
+    const adjust = all.filter((c) => c.severity === 'modify');
+    const planned = plan.get(item.id);
     const li = h('li', { class: 'item', draggable: meta.canEdit ? 'true' : null, 'data-id': item.id },
       meta.canEdit ? h('span', { 'aria-hidden': 'true' }, icon('grip')) : h('span'),
       h('div', { style: { minWidth: 0 } },
         h('div', { style: { display: 'flex', gap: '6px', alignItems: 'center', flexWrap: 'wrap' } },
           mv ? h('a', { class: 'name', href: `#/movements/${mv.slug}`, style: { color: 'inherit', textDecoration: 'none' } }, mv.name) : h('span', { class: 'name' }, `Missing: ${item.slug}`),
           flags.length ? h('span', { class: 'tag tag-warn', title: flags.map((f) => f.note).join(' ') }, icon('alert', 11), flags.map((f) => labelOf(CAUTIONS, f.tag)).join(', ')) : null,
+          adjust.length ? h('span', { class: 'tag', title: adjust.map((f) => `${labelOf(CAUTIONS, f.tag)}: ${f.note}`).join(' ') }, 'Adjust') : null,
+          planned && planned.advanced ? h('span', { class: 'tag', title: 'Taught on its "to advance" springs so the class doesn\'t stop for a change' }, 'On advance springs') : null,
           item.note ? h('span', { class: 'tag', title: item.note }, 'Note') : null),
-        mv ? h('div', { class: 'sub' }, mv.muscles.primary.slice(0, 3).map(muscleLabel).join(' · '), item.reps || mv.reps ? ` · ${item.reps || mv.reps}` : '') : null),
+        mv ? h('div', { class: 'sub' }, labelOf(SECTIONS, sectionOf(mv)), ' · ', mv.muscles.primary.slice(0, 3).map(muscleLabel).join(' · '), item.reps || mv.reps ? ` · ${item.reps || mv.reps}` : '') : null),
       h('span', { class: 'pos' }, mv ? posLabel(mv.position) : ''),
-      mv && mv.apparatus === 'reformer' ? springDots(item.load?.springs || mv.load?.springs || [], room()) : h('span', { class: 'tiny muted' }, mv ? 'Mat' : ''),
+      mv && mv.apparatus === 'reformer' ? springDots(planned ? planned.loads : (item.load?.springs || mv.load?.springs || []), room()) : h('span', { class: 'tiny muted' }, mv ? 'Mat' : ''),
       h('div', { style: { display: 'flex', alignItems: 'center', gap: '4px' } },
         h('input', { type: 'text', class: 'dur', value: fmtClock(itemDuration(item, mv)), 'aria-label': `Time for ${mv?.name || 'movement'} (minutes:seconds)`, disabled: !meta.canEdit,
           onchange: (e) => { const sec = parseClock(e.target.value); if (sec) change(() => { item.duration = sec; }); else e.target.value = fmtClock(itemDuration(item, mv)); } }),
@@ -180,6 +190,7 @@ export async function flowView(id, tab) {
       li.addEventListener('dragleave', () => li.classList.remove('drop-before'));
       li.addEventListener('drop', (e) => onDrop(e, seg.id, item.id));
     }
+    if (planned && planned.changed) return [h('li', { class: 'spring-change', 'aria-label': 'Spring change' }, 'Change springs', springDots(planned.loads, room())), li];
     return li;
   };
 
@@ -191,6 +202,7 @@ export async function flowView(id, tab) {
         h('input', { class: 'seg-name', type: 'text', value: seg.name, 'aria-label': 'Segment name', disabled: !meta.canEdit, oninput: (e) => change(() => { seg.name = e.target.value; }, { redraw: false }) }),
         select(SEGMENT_ROLES, seg.role, (v) => change(() => { seg.role = v; }), { 'aria-label': 'Segment role', disabled: !meta.canEdit }),
         h('span', { class: 'tiny muted' }, fmtMin(a)),
+        h('label', { class: 'both-sides', title: 'Teach the whole block on one side, then repeat it on the other. Doubles the block time.' }, h('input', { type: 'checkbox', checked: !!seg.bothSides, disabled: !meta.canEdit, onchange: (e) => change(() => { seg.bothSides = e.target.checked || undefined; }) }), 'Repeat other side'),
         h('span', { style: { display: 'inline-flex', alignItems: 'center', gap: '6px' } }, icon('music', 16),
           h('input', { class: 'song', type: 'text', placeholder: 'Song (optional)', value: seg.song || '', 'aria-label': 'Song', disabled: !meta.canEdit, oninput: (e) => change(() => { seg.song = e.target.value; }, { redraw: false }) }),
           h('input', { class: 'bpm', type: 'number', min: 30, max: 220, placeholder: 'BPM', value: seg.bpm ?? '', 'aria-label': 'Beats per minute', disabled: !meta.canEdit, onchange: (e) => change(() => { seg.bpm = e.target.value ? Number(e.target.value) : null; }, { redraw: false }) })),
@@ -199,6 +211,7 @@ export async function flowView(id, tab) {
           btn('', () => change(() => { if (si < flow.segments.length - 1) [flow.segments[si + 1], flow.segments[si]] = [flow.segments[si], flow.segments[si + 1]]; }), { iconName: 'down', small: true, kind: 'ghost', title: 'Move segment down' }),
           btn('', async () => { if (!seg.items.length || await confirmDialog('Delete segment?', `"${seg.name}" and its ${seg.items.length} movements will be removed.`)) change(() => { flow.segments = flow.segments.filter((s) => s.id !== seg.id); }); }, { iconName: 'trash', small: true, kind: 'ghost', title: 'Delete segment' })) : null),
       h('ol', { class: 'seg-items' }, seg.items.map((it) => itemRow(seg, it))),
+      seg.bothSides && seg.items.length ? h('div', { class: 'seg-repeat' }, `↻ Then repeat all ${seg.items.length} on the other side`) : null,
       !seg.items.length ? h('p', { class: 'small muted', style: { padding: '14px' } }, meta.canEdit ? 'Drop movements here.' : 'No movements.') : null);
     if (meta.canEdit) {
       el.addEventListener('dragover', (e) => { e.preventDefault(); el.classList.add('drop-target'); });
@@ -207,9 +220,10 @@ export async function flowView(id, tab) {
     }
     return el;
   };
-  const segSeconds = (seg) => seg.items.reduce((t, i) => t + itemDuration(i, store.movements[i.slug]), 0);
+  const segSeconds = (seg) => seg.items.reduce((t, i) => t + itemDuration(i, store.movements[i.slug]), 0) * (seg.bothSides ? 2 : 1);
 
   const drawSegments = () => {
+    plan = new Map(analysis().springPlan.filter((p) => p.pass === 1).map((p) => [p.itemId, p]));
     fill(segWrap, 
       ...flow.segments.map(segmentCard),
       meta.canEdit ? h('button', { type: 'button', class: 'add-seg', onclick: () => change(() => { const s = { id: newId('s'), name: 'New segment', role: 'build', bpm: null, song: '', items: [] }; flow.segments.push(s); activeSeg = s.id; }) }, '+ Add a segment') : null,
@@ -247,12 +261,14 @@ export async function flowView(id, tab) {
     const springsEl = h('div');
     const drawSprings = () => fill(springsEl, springDots(springs, room()), ' ',
       ['xlight', 'light', 'medium', 'heavy'].map((l) => btn(`+ ${l}`, () => { if (springs.length < 5) springs.push(l); drawSprings(); }, { small: true })),
+      btn('Usual', () => { springs = [...(mv.load?.springs || [])]; drawSprings(); }, { small: true, kind: 'ghost' }),
+      mv.load?.advance?.length ? btn('To advance', () => { springs = [...mv.load.advance]; drawSprings(); }, { small: true, kind: 'ghost' }) : null,
       btn('Clear', () => { springs = []; drawSprings(); }, { small: true, kind: 'ghost' }));
     drawSprings();
     const r = await modal(mv.name, h('div', { class: 'stack' },
       field('Reps', reps),
       mv.layers?.length ? field('Layer', select(layerOptions, layer, (v) => { layer = v; })) : null,
-      mv.apparatus === 'reformer' ? field('Springs for this class', springsEl, `Library default: ${mv.load?.springs?.join(' + ') || 'none'}`) : null,
+      mv.apparatus === 'reformer' ? field('Springs for this class', springsEl, `Leave on "Usual" and the plan keeps whichever of the usual or advance setting is already on the machine. Setting it here pins it.${mv.load?.note ? ' ' + mv.load.note : ''}`) : null,
       field('Note', note)), { actions: [{ label: 'Cancel', value: false }, { label: 'Save', value: true, kind: 'primary' }] });
     if (!r) return;
     change(() => {
@@ -271,6 +287,7 @@ export async function flowView(id, tab) {
     const a = analysis();
     fill(statsEl, statTiles(a));
     fill(asideEl, 
+      springsCard(a, room(), { compact: true }),
       radarCard(a),
       bodyCard(a, { size: 96 }),
       h('div', { class: 'card' }, h('div', { class: 'card-head' }, h('h2', null, 'Checks')), checksList(a.checks, { limit: 6 }),
@@ -287,7 +304,7 @@ export async function flowView(id, tab) {
     return h('div', { class: 'stack' },
       statTiles(a),
       intensityCard(a, flow),
-      h('div', { class: 'auto-grid' }, radarCard(a), positionsCard(a), bodyCard(a), muscleListCard(a), focusCard(a),
+      h('div', { class: 'auto-grid' }, springsCard(a, room()), balanceCard(a), radarCard(a), positionsCard(a), bodyCard(a), muscleListCard(a), focusCard(a),
         h('div', { class: 'card' }, h('h2', null, 'Class check'), checksList(a.checks))),
       clientsCard(a, { onSwap: meta.canEdit ? swap : null }));
   };
@@ -325,6 +342,6 @@ export async function flowView(id, tab) {
 }
 
 function pickFlow(d) {
-  const { title, apparatus, level, lengthMin, goal, target, room, when, notes, labels, booked, segments } = d;
-  return { title, apparatus, level, lengthMin, goal, target, room, when, notes, labels, booked: booked || [], segments: segments || [] };
+  const { title, apparatus, level, lengthMin, goal, target, format, springBudget, theme, room, when, notes, labels, booked, segments } = d;
+  return { title, apparatus, level, lengthMin, goal, target, format: format || 'open', springBudget: springBudget ?? 6, theme: theme || '', room, when, notes, labels, booked: booked || [], segments: segments || [] };
 }

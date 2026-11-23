@@ -1,0 +1,119 @@
+{
+  "slug": "long-spine",
+  "name": "Long Spine",
+  "apparatus": "reformer",
+  "section": "pelvic",
+  "level": "advanced",
+  "position": "supine",
+  "spine": [
+    "articulation"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "spinal-articulation",
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "hamstrings",
+      "glutes"
+    ],
+    "secondary": [
+      "adductors",
+      "spinal_extensors"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "medium",
+      "xlight"
+    ],
+    "lighterIsHarder": true
+  },
+  "setup": {
+    "headrest": "down",
+    "straps": "long"
+  },
+  "perSide": false,
+  "role": "mobility",
+  "stable": "Shoulders and neck",
+  "mobile": "Whole spine and hips",
+  "categories": [
+    "trunk_flexion",
+    "hip_extension"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 1,
+    "stability": 2,
+    "flexibility": 1,
+    "mobility": 3
+  },
+  "multiJoint": true,
+  "intensity": 7,
+  "duration": 150,
+  "reps": "6–12",
+  "summary": "Like Short Spine but the legs stay straight: roll up onto the upper back with long legs, then roll down bone by bone.",
+  "steps": [
+    "Headrest down. Feet in the long loops, legs straight up just in front of the hips.",
+    "Breathe out, tip the pelvis and peel the spine up until the weight rests across the upper back.",
+    "Breathe in to pause.",
+    "Breathe out to roll down one bone at a time, legs still long.",
+    "Finish by pressing the long legs down towards the springs and back up."
+  ],
+  "layers": [],
+  "modifications": [
+    "Use Short Spine or a bridge instead."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "side-lying-strap-series"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "side-lying-strap-series"
+    },
+    {
+      "tag": "neck",
+      "severity": "avoid",
+      "note": "Weight near the neck.",
+      "swap": "bridging-reformer"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Loaded spinal flexion.",
+      "swap": "bridging-reformer"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "Deep spinal flexion.",
+      "swap": "bridging-reformer"
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Check the shoulders are happy bearing weight."
+    }
+  ],
+  "prep": [
+    "feet-in-straps",
+    "short-spine",
+    "bridging-reformer"
+  ],
+  "cues": "Weight on the shoulders, never the neck.\nSlow on the way down — no dropping.\nLegs stay over the body; don't let them fall behind the head.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "slug": "front-splits",
+  "name": "Front Splits",
+  "apparatus": "reformer",
+  "section": "lower",
+  "level": "intermediate",
+  "position": "standing",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "hip-dissociation"
+  ],
+  "muscles": {
+    "primary": [
+      "hamstrings",
+      "hip_flexors"
+    ],
+    "secondary": [
+      "glutes",
+      "adductors",
+      "abdominals"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "xlight"
+    ],
+    "advance": [
+      "medium"
+    ],
+    "lighterIsHarder": true
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": true,
+  "role": "mobility",
+  "stable": "Pelvis square, spine long",
+  "mobile": "Both hips",
+  "categories": [
+    "hip_flexion",
+    "hip_extension",
+    "standing"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 1,
+    "stability": 2,
+    "flexibility": 3,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 150,
+  "reps": "6–12 each side",
+  "summary": "A moving split: front foot on the floor, platform or footbar, back foot against the shoulder rest, the carriage sliding the legs apart and together.",
+  "steps": [
+    "Basic: front foot on the floor beside the footbar, back foot on the shoulder rest, hands on the footbar.",
+    "Harder: front foot up on the platform or footbar, back heel against the shoulder rest, both legs long.",
+    "Breathe in to let the carriage travel back as you lower into the split.",
+    "Breathe out to draw it home with the inner thighs and core."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Bend and stretch",
+      "text": "Bend and straighten the front knee first to prepare."
+    },
+    {
+      "tag": "L2",
+      "title": "Hands on the footbar",
+      "text": "Split with support."
+    },
+    {
+      "tag": "L3",
+      "title": "Hands free",
+      "text": "Arms float out to the sides."
+    }
+  ],
+  "modifications": [
+    "Keep hands on the footbar, or hold a pole beside the carriage.",
+    "Front foot on the floor."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "kneeling-lunge-stretch"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "kneeling-lunge-stretch"
+    },
+    {
+      "tag": "balance",
+      "severity": "avoid",
+      "note": "Standing balance on a moving carriage.",
+      "swap": "kneeling-lunge-stretch"
+    },
+    {
+      "tag": "groin",
+      "severity": "avoid",
+      "note": "Deep stretch under load.",
+      "swap": "kneeling-lunge-stretch"
+    },
+    {
+      "tag": "hip_pain",
+      "severity": "avoid",
+      "note": "Large hip range.",
+      "swap": "kneeling-lunge-stretch"
+    },
+    {
+      "tag": "hip_replacement",
+      "severity": "avoid",
+      "note": "End-range hip positions.",
+      "swap": "kneeling-lunge-stretch"
+    }
+  ],
+  "prep": [
+    "standing-lunge",
+    "kneeling-lunge-stretch"
+  ],
+  "cues": "Hips face straight ahead.\nFront knee in line with the middle toes.\nOnly go as low as you can come back from.\nLift up out of the hips rather than sinking.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

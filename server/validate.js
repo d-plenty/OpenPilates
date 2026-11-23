@@ -1,8 +1,11 @@
-import { POSITIONS, SPINE, MUSCLES, EQUIPMENT, LEVELS, CAUTIONS, PATTERNS, PLANES, LOAD_LEVELS, SEGMENT_ROLES, BRANDS, DEFAULT_TARGETS } from '../shared/vocab.js';
+import { POSITIONS, SPINE, MUSCLES, EQUIPMENT, LEVELS, CAUTIONS, PATTERNS, PLANES, LOAD_LEVELS, SEGMENT_ROLES, BRANDS, DEFAULT_TARGETS, SECTIONS, CATEGORIES, ROLES, PREGNANCY, HEADREST, STRAPS, FORMATS } from '../shared/vocab.js';
 
 const ids = (list) => new Set(list.map((x) => x.id));
 const POS = ids(POSITIONS), SP = ids(SPINE), MU = ids(MUSCLES), EQ = ids(EQUIPMENT), LV = ids(LEVELS), CA = ids(CAUTIONS),
-  PA = ids(PATTERNS), PL = ids(PLANES), RO = ids(SEGMENT_ROLES), LOADS = new Set(LOAD_LEVELS);
+  PA = ids(PATTERNS), PL = ids(PLANES), RO = ids(SEGMENT_ROLES), LOADS = new Set(LOAD_LEVELS),
+  SEC = ids(SECTIONS), CAT = ids(CATEGORIES), ROLE = ids(ROLES), PREG = ids(PREGNANCY), HEAD = ids(HEADREST), STR = ids(STRAPS), FMT = ids(FORMATS);
+const lines = (v, max, len) => (Array.isArray(v) ? v : String(v ?? '').split('\n')).map((x) => str(x, len)).filter(Boolean).slice(0, max);
+const loads = (v) => (Array.isArray(v) ? v : []).filter((x) => LOADS.has(x)).slice(0, 5);
 
 export class Invalid extends Error {}
 
@@ -25,10 +28,12 @@ export function cleanMovement(input, { slug } = {}) {
   if (!primary.length) throw new Invalid('Choose at least one primary muscle.');
   const purpose = {};
   for (const k of ['strength', 'stability', 'flexibility', 'mobility']) purpose[k] = num(m.purpose?.[k], 0, 3, 0);
+  const advance = loads(m.load?.advance);
   return {
     slug: slug || slugify(m.slug || name),
     name,
     apparatus,
+    ...(SEC.has(m.section) ? { section: m.section } : {}),
     level: LV.has(m.level) ? m.level : 'beginner',
     position,
     spine: pick(m.spine, SP, 4).length ? pick(m.spine, SP, 4) : ['neutral'],
@@ -36,15 +41,31 @@ export function cleanMovement(input, { slug } = {}) {
     patterns: pick(m.patterns, PA, 6),
     muscles: { primary, secondary: pick(m.muscles?.secondary, MU, 8).filter((x) => !primary.includes(x)) },
     equipment: pick(m.equipment, EQ, 6),
-    load: apparatus === 'reformer' ? { springs: (Array.isArray(m.load?.springs) ? m.load.springs : []).filter((x) => LOADS.has(x)).slice(0, 5) } : null,
+    load: apparatus === 'reformer' ? {
+      springs: loads(m.load?.springs),
+      ...(advance.length ? { advance } : {}),
+      ...(m.load?.lighterIsHarder ? { lighterIsHarder: true } : {}),
+      ...(m.load?.flexible ? { flexible: true } : {}),
+      ...(str(m.load?.note, 300) ? { note: str(m.load.note, 300) } : {})
+    } : null,
+    ...(apparatus === 'reformer' ? { setup: { headrest: HEAD.has(m.setup?.headrest) ? m.setup.headrest : 'any', straps: STR.has(m.setup?.straps) ? m.setup.straps : 'none' } } : {}),
+    perSide: !!m.perSide,
+    ...(ROLE.has(m.role) ? { role: m.role } : {}),
+    stable: str(m.stable, 160),
+    mobile: str(m.mobile, 160),
+    categories: pick(m.categories, CAT, 11),
+    pregnancy: PREG.has(m.pregnancy) ? m.pregnancy : 'ok',
     purpose,
     multiJoint: m.multiJoint !== false,
     intensity: num(m.intensity, 1, 10, 4),
     duration: Math.round(num(m.duration, 15, 1800, 120)),
     reps: str(m.reps, 60),
     summary: str(m.summary, 600),
-    layers: (Array.isArray(m.layers) ? m.layers : []).slice(0, 6).map((l) => ({ tag: str(l.tag, 4) || 'L1', title: str(l.title, 80), text: str(l.text, 300) })).filter((l) => l.title),
-    cautions: (Array.isArray(m.cautions) ? m.cautions : []).slice(0, 12).filter((c) => CA.has(c.tag)).map((c) => ({ tag: c.tag, note: str(c.note, 300), ...(c.swap ? { swap: slugify(c.swap) } : {}) })),
+    steps: lines(m.steps, 10, 300),
+    modifications: lines(m.modifications, 10, 300),
+    prep: (Array.isArray(m.prep) ? m.prep : []).map((x) => slugify(x)).filter(Boolean).slice(0, 6),
+    layers: (Array.isArray(m.layers) ? m.layers : []).slice(0, 12).map((l) => ({ tag: str(l.tag, 4) || 'L1', title: str(l.title, 80), text: str(l.text, 300) })).filter((l) => l.title),
+    cautions: (Array.isArray(m.cautions) ? m.cautions : []).slice(0, 16).filter((c) => CA.has(c.tag)).map((c) => ({ tag: c.tag, severity: c.severity === 'modify' ? 'modify' : 'avoid', note: str(c.note, 300), ...(c.swap ? { swap: slugify(c.swap) } : {}) })),
     cues: str(m.cues, 2000),
     labels: (Array.isArray(m.labels) ? m.labels : []).map((x) => slugify(x)).filter(Boolean).slice(0, 12),
     review: m.review && typeof m.review === 'object' ? { status: str(m.review.status, 20) || 'draft', note: str(m.review.note, 300), by: str(m.review.by, 80), date: str(m.review.date, 20) } : { status: 'draft', note: '' }
@@ -59,6 +80,7 @@ export function cleanFlow(input) {
     name: str(s.name, 80) || 'Segment',
     role: RO.has(s.role) ? s.role : 'build',
     bpm: s.bpm === '' || s.bpm == null ? null : num(s.bpm, 30, 220, null),
+    ...(s.bothSides ? { bothSides: true } : {}),
     song: str(s.song, 160),
     notes: str(s.notes, 1000),
     items: (Array.isArray(s.items) ? s.items : []).slice(0, 60).map((i) => ({
@@ -77,6 +99,9 @@ export function cleanFlow(input) {
     level: LV.has(f.level) ? f.level : 'intermediate',
     lengthMin: Math.round(num(f.lengthMin, 10, 180, 50)),
     goal: str(f.goal, 40),
+    format: FMT.has(f.format) ? f.format : 'open',
+    springBudget: Math.round(num(f.springBudget, 0, 20, (FORMATS.find((x) => x.id === f.format) || FORMATS[2]).springBudget)),
+    theme: str(f.theme, 80),
     target: str(f.target, 40) || 'general',
     room: str(f.room, 40),
     when: str(f.when, 40),

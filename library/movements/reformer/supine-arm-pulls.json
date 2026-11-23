@@ -1,0 +1,119 @@
+{
+  "slug": "supine-arm-pulls",
+  "name": "Supine Arms in Straps — Pull Down",
+  "apparatus": "reformer",
+  "section": "core",
+  "level": "beginner",
+  "position": "supine",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "pull"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "lats"
+    ],
+    "secondary": [
+      "triceps",
+      "hip_flexors",
+      "chest"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "light"
+    ],
+    "advance": [
+      "medium",
+      "light",
+      "xlight"
+    ]
+  },
+  "setup": {
+    "headrest": "up",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Pelvis, spine and legs in tabletop",
+  "mobile": "Shoulders",
+  "categories": [
+    "upper_body",
+    "hip_flexion"
+  ],
+  "pregnancy": "supine",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 4,
+  "duration": 120,
+  "reps": "10–30",
+  "summary": "Lying on the back with legs in tabletop and hands in the straps, straight arms press from above the chest down to the carriage beside the hips.",
+  "steps": [
+    "Lie on the back, shoulders against the shoulder rests, legs lifted to tabletop.",
+    "Hands in the short loops, arms straight up just in front of the shoulders.",
+    "Breathe out to press the arms down to the carriage by the hips.",
+    "Breathe in to lift them back up."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Arms only",
+      "text": "Legs hold still."
+    },
+    {
+      "tag": "L2",
+      "title": "Add a leg reach",
+      "text": "One or both legs extend as the arms press."
+    },
+    {
+      "tag": "L3",
+      "title": "Bicycle or scissors",
+      "text": "Legs keep moving."
+    },
+    {
+      "tag": "L4",
+      "title": "Prop",
+      "text": "Ball or ring between the knees or ankles."
+    }
+  ],
+  "modifications": [
+    "Long loops for less resistance.",
+    "Feet down on the footbar if the back arches."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "modify",
+      "note": "Lying flat on the back: keep it to a few minutes, raise the head end if you can, and stop if she feels dizzy."
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Lighter spring, smaller range."
+    },
+    {
+      "tag": "neck",
+      "severity": "modify",
+      "note": "Head stays down, headrest up."
+    }
+  ],
+  "prep": [],
+  "cues": "Knees stay over the hips.\nNo arching — the back of the ribs stays heavy.\nArms long with soft elbows.\nStop the arms just short of vertical so the straps stay loaded.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

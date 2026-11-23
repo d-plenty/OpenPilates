@@ -3,7 +3,7 @@ import { api, store } from '../store.js';
 import { go } from '../app.js';
 import { analyze } from '/shared/analysis.js';
 import { draftFlow, GOALS, newId } from '/shared/draft.js';
-import { LEVELS, CAUTIONS, labelOf } from '/shared/vocab.js';
+import { LEVELS, CAUTIONS, labelOf, FORMATS } from '/shared/vocab.js';
 import { fmtMin } from './common.js';
 
 export async function flowsView() {
@@ -63,7 +63,7 @@ export async function flowsView() {
 }
 
 export async function newFlowView() {
-  const st = { goal: 'full_body', apparatus: 'reformer', lengthMin: 50, level: 'intermediate', adapt: true, booked: [], room: '' };
+  const st = { goal: 'full_body', apparatus: 'reformer', format: 'flow', lengthMin: 50, level: 'intermediate', adapt: true, booked: [], room: '' };
   const clients = store.clients.filter((c) => !c.archived);
   const wrap = h('div', { class: 'stack', style: { maxWidth: '760px' } });
 
@@ -76,6 +76,8 @@ export async function newFlowView() {
         h('h2', null, 'What kind of class?'),
         field('Goal', chips(GOALS.map((g) => ({ id: g.id, label: g.label })), st.goal, (v) => { st.goal = v; draw(); }, { multi: false })),
         field('Apparatus', chips([{ id: 'reformer', label: 'Reformer' }, { id: 'mat', label: 'Mat' }], st.apparatus, (v) => { st.apparatus = v; draw(); }, { multi: false })),
+        st.apparatus === 'reformer' ? field('Class style', chips(FORMATS.map((f) => ({ id: f.id, label: f.label })), st.format, (v) => { st.format = v; draw(); }, { multi: false }),
+          `${FORMATS.find((f) => f.id === st.format).note} Spring-change limit: ${FORMATS.find((f) => f.id === st.format).springBudget}.${st.format === 'fit' && !(Number(store.studio.props?.jump_board) > 0) ? ' No jump boards listed in Studio settings, so the draft will leave them out.' : ''}`) : null,
         field('Length', chips([30, 45, 50, 55, 60].map((n) => ({ id: n, label: `${n} min` })), st.lengthMin, (v) => { st.lengthMin = v; draw(); }, { multi: false })),
         field('Level', chips(LEVELS.map((l) => ({ id: l.id, label: l.label })), st.level, (v) => { st.level = v; draw(); }, { multi: false })),
         rooms.length > 1 ? field('Room', select(rooms.map((r) => ({ id: r.id, label: r.name })), st.room, (v) => { st.room = v; })) : null),
@@ -97,10 +99,10 @@ export async function newFlowView() {
     const bookedTags = st.adapt ? [...new Set(st.booked.flatMap((id) => clients.find((c) => c.id === id)?.tags || []))] : [];
     let flow;
     if (draft) {
-      flow = draftFlow({ movements: store.movements, goal: st.goal, apparatus: st.apparatus, lengthMin: st.lengthMin, level: st.level, props: store.studio.props, clientTags: bookedTags });
+      flow = draftFlow({ movements: store.movements, goal: st.goal, apparatus: st.apparatus, format: st.format, lengthMin: st.lengthMin, level: st.level, props: store.studio.props, clientTags: bookedTags });
       if (!flow.segments.length) { toast('Not enough movements match. Try another goal or level.', { kind: 'error' }); return; }
     } else {
-      flow = { title: 'New flow', apparatus: st.apparatus, level: st.level, lengthMin: st.lengthMin, goal: st.goal, target: 'general',
+      flow = { title: 'New flow', apparatus: st.apparatus, level: st.level, lengthMin: st.lengthMin, goal: st.goal, target: 'general', format: st.apparatus === 'reformer' ? st.format : 'open', springBudget: (FORMATS.find((f) => f.id === st.format) || FORMATS[2]).springBudget,
         segments: [{ id: newId('s'), name: 'Warm-up', role: 'warmup', bpm: 90, items: [] }, { id: newId('s'), name: 'Main', role: 'build', bpm: 104, items: [] }, { id: newId('s'), name: 'Cool-down', role: 'cooldown', bpm: 80, items: [] }] };
     }
     flow.room = st.room;

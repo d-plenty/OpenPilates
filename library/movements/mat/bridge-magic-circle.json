@@ -2,6 +2,7 @@
   "slug": "bridge-magic-circle",
   "name": "Bridge with Magic Circle",
   "apparatus": "mat",
+  "section": "pelvic",
   "level": "beginner",
   "position": "supine",
   "spine": [
@@ -26,6 +27,15 @@
     "magic_circle"
   ],
   "load": null,
+  "perSide": false,
+  "role": "both",
+  "stable": "Feet and shoulders",
+  "mobile": "Hips and spine",
+  "categories": [
+    "hip_extension",
+    "hip_adduction"
+  ],
+  "pregnancy": "early_only",
   "purpose": {
     "strength": 2,
     "stability": 2,
@@ -37,17 +47,24 @@
   "duration": 120,
   "reps": "8",
   "summary": "Bridge with a magic circle between the knees, squeezing at the top.",
+  "steps": [],
   "layers": [],
+  "modifications": [
+    "Use a small ball instead of the ring.",
+    "Lower bridge."
+  ],
   "cautions": [
     {
       "tag": "pregnancy",
-      "note": "Lying on the back later in pregnancy; keep sets short."
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks."
     }
   ],
-  "cues": "",
+  "prep": [],
+  "cues": "Squeeze the ring as you lift, not after.\nKnees stay in line with the hips.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

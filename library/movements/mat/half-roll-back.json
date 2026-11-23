@@ -1,0 +1,108 @@
+{
+  "slug": "half-roll-back",
+  "name": "Half Roll Back",
+  "apparatus": "mat",
+  "section": "core",
+  "level": "beginner",
+  "position": "seated",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "flexion",
+    "spinal-articulation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals"
+    ],
+    "secondary": [
+      "hip_flexors",
+      "obliques"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "both",
+  "stable": "Legs and feet",
+  "mobile": "Pelvis and lower spine",
+  "categories": [
+    "trunk_flexion",
+    "hip_flexion"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 4,
+  "duration": 90,
+  "reps": "6–10",
+  "summary": "Sitting tall with knees bent, curl the tail under and roll back halfway, then return. Builds the control needed for the Roll Up.",
+  "steps": [
+    "Sit tall, knees bent, feet flat, hands behind the thighs or reaching forward.",
+    "Breathe out to tuck the tail and roll back until the lower back is close to the mat.",
+    "Breathe in to hold the curve.",
+    "Breathe out to curl forward and stack back up to sitting."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Hands on thighs",
+      "text": "Supported."
+    },
+    {
+      "tag": "L2",
+      "title": "Arms reaching",
+      "text": "No hands."
+    },
+    {
+      "tag": "L3",
+      "title": "Hold and add arms",
+      "text": "Stay back and lift the arms or pulse."
+    },
+    {
+      "tag": "L4",
+      "title": "Prop",
+      "text": "Ball between the knees or behind the lower back."
+    }
+  ],
+  "modifications": [
+    "Smaller range.",
+    "Hold the thighs."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "cat-cow"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Loaded spinal flexion.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "Spinal flexion.",
+      "swap": "bird-dog"
+    }
+  ],
+  "prep": [
+    "imprint"
+  ],
+  "cues": "Start the roll from the pelvis, not by slumping the chest.\nFeet stay heavy.\nShoulders stay over the ribs — don't lean back flat.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

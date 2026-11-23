@@ -1,0 +1,91 @@
+{
+  "slug": "scapular-isolations",
+  "name": "Shoulder-blade Glides",
+  "apparatus": "mat",
+  "section": "back_shoulders",
+  "level": "beginner",
+  "position": "seated",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "upper_back",
+      "serratus"
+    ],
+    "secondary": [
+      "deltoids",
+      "chest"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "mobility",
+  "stable": "Spine and ribcage",
+  "mobile": "Shoulder blades",
+  "categories": [
+    "upper_body"
+  ],
+  "pregnancy": "recommended",
+  "purpose": {
+    "strength": 0,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 3
+  },
+  "multiJoint": false,
+  "intensity": 1,
+  "duration": 90,
+  "reps": "6–8 each direction",
+  "summary": "Small, isolated shoulder-blade movements — up and down, then forward and back — to find where \"shoulders set\" actually is.",
+  "steps": [
+    "Sit or stand tall with arms by the sides (or lie on the back with arms to the ceiling).",
+    "Up and down: shrug the shoulders towards the ears, then slide them down.",
+    "Forward and back: reach the arms forward to spread the shoulder blades, then draw them gently together.",
+    "Finish halfway between each pair."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Seated or standing",
+      "text": "Arms by the sides or forward."
+    },
+    {
+      "tag": "L2",
+      "title": "On the back",
+      "text": "Arms to the ceiling."
+    },
+    {
+      "tag": "L3",
+      "title": "Hands and knees",
+      "text": "Against body weight."
+    }
+  ],
+  "modifications": [
+    "Smaller range if anything clicks or pinches."
+  ],
+  "cautions": [
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Pain-free range only."
+    }
+  ],
+  "prep": [],
+  "cues": "Elbows stay straight; the blades move, not the arms.\nRibs and neck stay quiet.\nSmall and slow.",
+  "labels": [
+    "warm-up",
+    "fundamental",
+    "rehab-friendly",
+    "pregnancy-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

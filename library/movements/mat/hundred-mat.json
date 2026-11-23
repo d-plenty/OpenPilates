@@ -2,6 +2,7 @@
   "slug": "hundred-mat",
   "name": "The Hundred (Mat)",
   "apparatus": "mat",
+  "section": "core",
   "level": "intermediate",
   "position": "supine",
   "spine": [
@@ -22,6 +23,14 @@
   },
   "equipment": [],
   "load": null,
+  "perSide": false,
+  "role": "stability",
+  "stable": "Curl, pelvis and legs",
+  "mobile": "Shoulders (small pumps)",
+  "categories": [
+    "trunk_flexion"
+  ],
+  "pregnancy": "early_only",
   "purpose": {
     "strength": 1,
     "stability": 3,
@@ -33,25 +42,63 @@
   "duration": 90,
   "reps": "100 pumps",
   "summary": "Head and chest curled, arms pumping beside the body while the legs hold tabletop or extend.",
-  "layers": [],
+  "steps": [
+    "Curl up with legs in tabletop, arms long by the hips.",
+    "Pump the arms a few centimetres up and down.",
+    "Breathe in for five pumps and out for five, up to one hundred."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Feet down",
+      "text": "Start here."
+    },
+    {
+      "tag": "L2",
+      "title": "Tabletop",
+      "text": "Basic."
+    },
+    {
+      "tag": "L3",
+      "title": "Legs long",
+      "text": "To the ceiling, then lower."
+    },
+    {
+      "tag": "L4",
+      "title": "Prop",
+      "text": "Ball between the knees."
+    }
+  ],
+  "modifications": [
+    "Head down.",
+    "Feet on the floor.",
+    "Fewer counts."
+  ],
   "cautions": [
     {
       "tag": "pregnancy",
-      "note": "Curling up on the back later in pregnancy; offer head down or seated."
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "bird-dog"
     },
     {
       "tag": "neck",
+      "severity": "avoid",
       "note": "Head-down option."
     },
     {
       "tag": "low_bone_density",
+      "severity": "avoid",
       "note": "Loaded flexion; keep the head down."
     }
   ],
-  "cues": "",
+  "prep": [
+    "supine-curl"
+  ],
+  "cues": "Arms long and firm; the pump comes from the shoulders.\nA fist of space under the chin.\nBelly stays flat.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

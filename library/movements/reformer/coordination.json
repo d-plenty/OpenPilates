@@ -2,6 +2,7 @@
   "slug": "coordination",
   "name": "Coordination",
   "apparatus": "reformer",
+  "section": "core",
   "level": "intermediate",
   "position": "supine",
   "spine": [
@@ -26,8 +27,27 @@
     "springs": [
       "medium",
       "light"
+    ],
+    "advance": [
+      "medium",
+      "light",
+      "xlight"
     ]
   },
+  "setup": {
+    "headrest": "up",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Curl and pelvis",
+  "mobile": "Shoulders, elbows and hips",
+  "categories": [
+    "trunk_flexion",
+    "hip_flexion",
+    "hip_adduction"
+  ],
+  "pregnancy": "avoid",
   "purpose": {
     "strength": 1,
     "stability": 3,
@@ -39,25 +59,43 @@
   "duration": 120,
   "reps": "6",
   "summary": "From a chest curl, press arms and legs out, open and close the legs, then return in sequence.",
+  "steps": [],
   "layers": [],
+  "modifications": [
+    "Head down.",
+    "Leave out the open–close."
+  ],
   "cautions": [
     {
       "tag": "pregnancy",
-      "note": "Curling up on the back later in pregnancy; offer head down."
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "shoulder-retraction"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "shoulder-retraction"
     },
     {
       "tag": "neck",
+      "severity": "avoid",
       "note": "Head-down option."
     },
     {
       "tag": "low_bone_density",
+      "severity": "avoid",
       "note": "Loaded flexion; keep head down."
     }
   ],
-  "cues": "",
+  "prep": [
+    "ab-curl-in-straps"
+  ],
+  "cues": "Stay curled the whole time.\nKnees fold in before the elbows bend.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

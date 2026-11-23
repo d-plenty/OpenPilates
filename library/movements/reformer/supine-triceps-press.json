@@ -1,0 +1,111 @@
+{
+  "slug": "supine-triceps-press",
+  "name": "Supine Arms in Straps — Triceps Press",
+  "apparatus": "reformer",
+  "section": "core",
+  "level": "beginner",
+  "position": "supine",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "push"
+  ],
+  "muscles": {
+    "primary": [
+      "triceps",
+      "abdominals"
+    ],
+    "secondary": [
+      "lats",
+      "hip_flexors"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "light"
+    ],
+    "advance": [
+      "medium",
+      "light",
+      "xlight"
+    ]
+  },
+  "setup": {
+    "headrest": "up",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Pelvis, spine, legs and upper arms",
+  "mobile": "Elbows",
+  "categories": [
+    "upper_body",
+    "hip_flexion"
+  ],
+  "pregnancy": "supine",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": false,
+  "intensity": 4,
+  "duration": 120,
+  "reps": "10–30",
+  "summary": "Legs in tabletop, upper arms pinned to the carriage: the elbows bend to point the fingers at the ceiling and press down again.",
+  "steps": [
+    "Lie on the back, legs in tabletop, hands in the short loops, arms long beside the hips.",
+    "Breathe in to bend the elbows to a right angle, fingertips up.",
+    "Breathe out to press the hands down and straighten the arms."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Press",
+      "text": "Basic."
+    },
+    {
+      "tag": "L2",
+      "title": "Hover the elbows",
+      "text": "Lift the elbows a couple of centimetres and keep them there."
+    },
+    {
+      "tag": "L3",
+      "title": "Holds",
+      "text": "Pause halfway."
+    },
+    {
+      "tag": "L4",
+      "title": "Add legs",
+      "text": "Single or double leg reach, scissors."
+    }
+  ],
+  "modifications": [
+    "Long loops for less resistance."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "modify",
+      "note": "Lying flat on the back: keep it to a few minutes, raise the head end if you can, and stop if she feels dizzy."
+    },
+    {
+      "tag": "neck",
+      "severity": "modify",
+      "note": "Head stays down, headrest up."
+    }
+  ],
+  "prep": [],
+  "cues": "Upper arms stay on the carriage.\nKnees over hips; no arching.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

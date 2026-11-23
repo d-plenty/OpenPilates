@@ -1,0 +1,133 @@
+{
+  "slug": "back-splits",
+  "name": "Back Splits",
+  "apparatus": "reformer",
+  "section": "lower",
+  "level": "advanced",
+  "position": "standing",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "hip-dissociation"
+  ],
+  "muscles": {
+    "primary": [
+      "hamstrings",
+      "glutes"
+    ],
+    "secondary": [
+      "hip_flexors",
+      "adductors",
+      "abdominals"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium"
+    ],
+    "lighterIsHarder": true
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": true,
+  "role": "mobility",
+  "stable": "Pelvis square, spine long",
+  "mobile": "Both hips",
+  "categories": [
+    "hip_flexion",
+    "hip_extension",
+    "standing"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 1,
+    "stability": 2,
+    "flexibility": 3,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 7,
+  "duration": 150,
+  "reps": "6–12 each side",
+  "summary": "Standing on the carriage facing the headrest with one foot between the shoulder rests, the carriage slides the legs into a split and back.",
+  "steps": [
+    "Stand on the carriage facing the headrest; back foot between or behind the shoulder rests, both legs long.",
+    "Hands on the shoulder rests, on the hips, or out to the sides.",
+    "Breathe in to let the carriage move away as you lower.",
+    "Breathe out to bring it home with control."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Bend and stretch",
+      "text": "Bend and straighten the carriage leg to prepare."
+    },
+    {
+      "tag": "L2",
+      "title": "Hands on shoulder rests",
+      "text": "Supported split."
+    },
+    {
+      "tag": "L3",
+      "title": "Hands free",
+      "text": "Arms out to the sides."
+    }
+  ],
+  "modifications": [
+    "Hands on the shoulder rests.",
+    "Front foot only halfway down the carriage for a smaller split."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "kneeling-lunge-stretch"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "kneeling-lunge-stretch"
+    },
+    {
+      "tag": "balance",
+      "severity": "avoid",
+      "note": "Standing on a moving carriage.",
+      "swap": "kneeling-lunge-stretch"
+    },
+    {
+      "tag": "groin",
+      "severity": "avoid",
+      "note": "Deep stretch under load.",
+      "swap": "kneeling-lunge-stretch"
+    },
+    {
+      "tag": "hip_pain",
+      "severity": "avoid",
+      "note": "Large hip range.",
+      "swap": "kneeling-lunge-stretch"
+    },
+    {
+      "tag": "hip_replacement",
+      "severity": "avoid",
+      "note": "End-range hip positions.",
+      "swap": "kneeling-lunge-stretch"
+    }
+  ],
+  "prep": [
+    "front-splits"
+  ],
+  "cues": "Hips square, spine tall.\nStrong inner thighs to pull back up.\nStay inside a range you can control.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

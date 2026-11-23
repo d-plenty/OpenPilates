@@ -1,0 +1,125 @@
+{
+  "slug": "standing-lunge",
+  "name": "Standing Lunge",
+  "apparatus": "reformer",
+  "section": "lower",
+  "level": "beginner",
+  "position": "standing",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "hip-dissociation"
+  ],
+  "muscles": {
+    "primary": [
+      "glutes",
+      "quadriceps"
+    ],
+    "secondary": [
+      "hamstrings",
+      "hip_flexors",
+      "abdominals"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium"
+    ],
+    "advance": [
+      "medium",
+      "xlight"
+    ],
+    "note": "Blue or yellow turns it into a balance-and-control version: the carriage is harder to hold steady."
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": true,
+  "role": "both",
+  "stable": "Pelvis and spine",
+  "mobile": "Hips and knees",
+  "categories": [
+    "hip_extension",
+    "hip_flexion",
+    "standing"
+  ],
+  "pregnancy": "ok",
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 1,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 5,
+  "duration": 180,
+  "reps": "20–30 each side",
+  "summary": "One foot on the floor beside the footbar, the other against the shoulder rest. The floor leg bends and the carriage leg slides back into a lunge.",
+  "steps": [
+    "Stand beside the reformer near the footbar, inside foot on the floor next to the carriage.",
+    "Other foot on the carriage against the nearest shoulder rest; hands rest on the footbar.",
+    "Stand tall. Breathe out, bend the floor knee and let the carriage slide back.",
+    "Breathe in, straighten the floor leg to bring the carriage home."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Full range",
+      "text": "Slow, even lunges."
+    },
+    {
+      "tag": "L2",
+      "title": "Pulses and holds",
+      "text": "Small pulses at the bottom, then hold."
+    },
+    {
+      "tag": "L3",
+      "title": "Hands free",
+      "text": "Let go of the footbar; add arm work."
+    },
+    {
+      "tag": "L4",
+      "title": "Front heel lifted",
+      "text": "Lift the front heel, or put a small ball under it."
+    },
+    {
+      "tag": "L5",
+      "title": "Raised",
+      "text": "Standing foot on a box or platform for more depth."
+    }
+  ],
+  "modifications": [
+    "Lean the body slightly forward as the back leg goes out to ease the lower back.",
+    "Smaller range for knees.",
+    "Pregnancy and post-natal: use a lighter spring and keep the range small."
+  ],
+  "cautions": [
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Reduce the depth; keep the shin vertical."
+    },
+    {
+      "tag": "balance",
+      "severity": "modify",
+      "note": "Keep both hands on the footbar."
+    },
+    {
+      "tag": "hip_pain",
+      "severity": "modify",
+      "note": "Small range only."
+    }
+  ],
+  "prep": [],
+  "cues": "Front knee stacks over the ankle and points over the middle toes.\nStay tall — ribs over hips.\nBack knee stays off the carriage.\nControl the return; no crashing home.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

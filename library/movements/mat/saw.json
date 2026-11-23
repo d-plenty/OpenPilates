@@ -2,6 +2,7 @@
   "slug": "saw",
   "name": "Saw",
   "apparatus": "mat",
+  "section": "core",
   "level": "intermediate",
   "position": "seated",
   "spine": [
@@ -24,6 +25,15 @@
   },
   "equipment": [],
   "load": null,
+  "perSide": false,
+  "role": "mobility",
+  "stable": "Pelvis and legs",
+  "mobile": "Spine (rotation and flexion)",
+  "categories": [
+    "trunk_flexion",
+    "rotation"
+  ],
+  "pregnancy": "early_only",
   "purpose": {
     "strength": 0,
     "stability": 1,
@@ -35,18 +45,33 @@
   "duration": 90,
   "reps": "3 each side",
   "summary": "Seated with arms out, twist and reach the hand past the opposite little toe.",
+  "steps": [],
   "layers": [],
+  "modifications": [
+    "Sit on a block.",
+    "Bend the knees."
+  ],
   "cautions": [
     {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks."
+    },
+    {
       "tag": "low_bone_density",
+      "severity": "avoid",
       "note": "Flexion with rotation; keep it upright.",
       "swap": "spine-twist"
     }
   ],
-  "cues": "",
+  "prep": [
+    "spine-twist",
+    "spine-stretch-forward"
+  ],
+  "cues": "Turn first, then reach.\nOpposite hip stays down.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

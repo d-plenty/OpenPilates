@@ -1,0 +1,122 @@
+{
+  "slug": "side-twist",
+  "name": "Side Twist",
+  "apparatus": "mat",
+  "section": "core",
+  "level": "advanced",
+  "position": "plank",
+  "spine": [
+    "rotation",
+    "side-bend"
+  ],
+  "plane": "transverse",
+  "patterns": [
+    "rotation",
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "obliques",
+      "abdominals",
+      "serratus"
+    ],
+    "secondary": [
+      "deltoids",
+      "lats",
+      "abductors"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": true,
+  "role": "both",
+  "stable": "Supporting shoulder and feet",
+  "mobile": "Spine (rotation)",
+  "categories": [
+    "rotation",
+    "lateral_flexion",
+    "quadruped"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 8,
+  "duration": 120,
+  "reps": "3–5 each side",
+  "summary": "From the top of the Side Bend, open the chest to the ceiling, then thread the top arm under the body as the hips pike up.",
+  "steps": [
+    "Start in the lifted side plank from Side Bend.",
+    "Breathe out to turn the chest to the ceiling.",
+    "Breathe in to come back to the side plank.",
+    "Breathe out to thread the top arm under the body towards the feet, hips lifting.",
+    "Breathe in to return."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Bottom knee down",
+      "text": "Half version."
+    },
+    {
+      "tag": "L2",
+      "title": "Thread only",
+      "text": "Leave out the open."
+    },
+    {
+      "tag": "L3",
+      "title": "Full twist",
+      "text": "Open and thread."
+    }
+  ],
+  "modifications": [
+    "Go back to Side Bend."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "spine-twist"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "spine-twist"
+    },
+    {
+      "tag": "wrist",
+      "severity": "avoid",
+      "note": "Body weight on one wrist.",
+      "swap": "spine-twist"
+    },
+    {
+      "tag": "shoulder",
+      "severity": "avoid",
+      "note": "Body weight on one shoulder with rotation.",
+      "swap": "spine-twist"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Loaded rotation.",
+      "swap": "spine-twist"
+    }
+  ],
+  "prep": [
+    "side-bend-mat",
+    "side-plank",
+    "thread-the-needle"
+  ],
+  "cues": "Supporting hand a little forward of the shoulder.\nTail lifts to the ceiling as the arm threads.\nFeet stay planted.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

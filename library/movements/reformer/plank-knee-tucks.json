@@ -1,0 +1,132 @@
+{
+  "slug": "plank-knee-tucks",
+  "name": "Plank Knee Tucks",
+  "apparatus": "reformer",
+  "section": "core",
+  "level": "intermediate",
+  "position": "plank",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "flexion"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "hip_flexors"
+    ],
+    "secondary": [
+      "serratus",
+      "deltoids",
+      "obliques",
+      "quadriceps"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "light",
+      "xlight"
+    ],
+    "advance": [
+      "light"
+    ],
+    "lighterIsHarder": true
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Shoulders over wrists, spine long",
+  "mobile": "Hips and knees",
+  "categories": [
+    "quadruped",
+    "hip_flexion"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 7,
+  "duration": 90,
+  "reps": "10–20",
+  "summary": "From the plank with hands on the platform, the knees pull in under the hips and press back out.",
+  "steps": [
+    "Set up as for the plank with hands on the platform.",
+    "Breathe in to hold the plank.",
+    "Breathe out to draw the carriage in, knees under the hips.",
+    "Breathe in to press back out, shoulders staying over the wrists."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Knee tucks",
+      "text": "Basic."
+    },
+    {
+      "tag": "L2",
+      "title": "Single leg",
+      "text": "One foot hovers."
+    },
+    {
+      "tag": "L3",
+      "title": "Mountain climbers",
+      "text": "Alternate knees quickly."
+    },
+    {
+      "tag": "L4",
+      "title": "Twist",
+      "text": "Knees draw towards one elbow."
+    },
+    {
+      "tag": "L5",
+      "title": "Feet further down the carriage",
+      "text": "More range."
+    }
+  ],
+  "modifications": [
+    "Forearms down.",
+    "A heavier spring to steady the carriage."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "shoulder-retraction"
+    },
+    {
+      "tag": "wrist",
+      "severity": "modify",
+      "note": "Forearm version."
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Heavier spring, smaller range."
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "modify",
+      "note": "Keep the spine long rather than rounding."
+    }
+  ],
+  "prep": [
+    "reformer-plank"
+  ],
+  "cues": "Knees stop under the hips.\nShoulders don't rock back and forth.\nLower back stays lifted on the way out.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

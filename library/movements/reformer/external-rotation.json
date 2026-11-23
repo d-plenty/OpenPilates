@@ -1,0 +1,113 @@
+{
+  "slug": "external-rotation",
+  "name": "Shoulder External Rotation",
+  "apparatus": "reformer",
+  "section": "single_arm",
+  "level": "beginner",
+  "position": "kneeling",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "transverse",
+  "patterns": [
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "deltoids",
+      "upper_back"
+    ],
+    "secondary": [
+      "abdominals"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "light"
+    ],
+    "advance": [
+      "light",
+      "xlight"
+    ],
+    "note": "Yellow alone is plenty for most people to start."
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "short"
+  },
+  "perSide": true,
+  "role": "stability",
+  "stable": "Trunk, shoulder blade and elbow",
+  "mobile": "Shoulder joint (rotation)",
+  "categories": [
+    "upper_body"
+  ],
+  "pregnancy": "ok",
+  "purpose": {
+    "strength": 1,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 1
+  },
+  "multiJoint": false,
+  "intensity": 3,
+  "duration": 150,
+  "reps": "10–30 each arm",
+  "summary": "Kneeling side-on, elbow tucked into the waist, the forearm swings away from the body like a door on a hinge. Rotator-cuff work.",
+  "steps": [
+    "Kneel side-on to the straps beside the shoulder rests, sitting on the heels.",
+    "Hold a short loop in the hand nearest the footbar, elbow bent at the waist, palm up.",
+    "Breathe out to turn the forearm out away from the body.",
+    "Breathe in to return."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Rotation only",
+      "text": "Small and slow."
+    },
+    {
+      "tag": "L2",
+      "title": "Rotate then reach",
+      "text": "Open, then straighten the arm out to the side."
+    },
+    {
+      "tag": "L3",
+      "title": "Holds",
+      "text": "Pause at the open position."
+    },
+    {
+      "tag": "L4",
+      "title": "Kneeling upright",
+      "text": "Harder base."
+    }
+  ],
+  "modifications": [
+    "Smaller range.",
+    "Long loop for less resistance.",
+    "Sit on the long box for sore knees."
+  ],
+  "cautions": [
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Sit on the long box."
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Lightest spring, pain-free range only."
+    }
+  ],
+  "prep": [],
+  "cues": "Elbow stays stitched to the side seam of your top.\nWrist stays straight.\nIt's a small movement — don't lean or twist to make it bigger.\nShoulders level.",
+  "labels": [
+    "rehab-friendly",
+    "pregnancy-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

@@ -2,6 +2,7 @@
   "slug": "single-leg-stretch",
   "name": "Single Leg Stretch",
   "apparatus": "mat",
+  "section": "core",
   "level": "intermediate",
   "position": "supine",
   "spine": [
@@ -22,6 +23,14 @@
   },
   "equipment": [],
   "load": null,
+  "perSide": false,
+  "role": "stability",
+  "stable": "Curl and pelvis",
+  "mobile": "Hips and knees",
+  "categories": [
+    "trunk_flexion"
+  ],
+  "pregnancy": "early_only",
   "purpose": {
     "strength": 1,
     "stability": 3,
@@ -33,25 +42,62 @@
   "duration": 60,
   "reps": "8 each side",
   "summary": "Chest curled, switch the legs in and out while the trunk stays still.",
-  "layers": [],
+  "steps": [
+    "Curl up with both knees in tabletop.",
+    "Breathe out to stretch one leg away, hands on the bent knee.",
+    "Change legs with each breath."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Head down",
+      "text": "Legs only."
+    },
+    {
+      "tag": "L2",
+      "title": "Curled up",
+      "text": "Basic."
+    },
+    {
+      "tag": "L3",
+      "title": "Hands behind the head",
+      "text": "No help from the hands."
+    },
+    {
+      "tag": "L4",
+      "title": "Add a twist",
+      "text": "See Criss Cross."
+    }
+  ],
+  "modifications": [
+    "Head down.",
+    "Legs higher."
+  ],
   "cautions": [
     {
       "tag": "pregnancy",
-      "note": "Curling up on the back later in pregnancy."
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "bird-dog"
     },
     {
       "tag": "neck",
+      "severity": "avoid",
       "note": "Head-down option."
     },
     {
       "tag": "low_bone_density",
+      "severity": "avoid",
       "note": "Loaded flexion; head down."
     }
   ],
-  "cues": "",
+  "prep": [
+    "supine-curl"
+  ],
+  "cues": "The curl stays the same height.\nPelvis doesn't rock as the legs change.\nLeg only as low as the back stays quiet.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

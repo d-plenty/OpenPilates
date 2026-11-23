@@ -1,0 +1,114 @@
+{
+  "slug": "salute",
+  "name": "Salute",
+  "apparatus": "reformer",
+  "section": "chest_arms",
+  "level": "intermediate",
+  "position": "seated",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "push"
+  ],
+  "muscles": {
+    "primary": [
+      "triceps",
+      "deltoids"
+    ],
+    "secondary": [
+      "upper_back",
+      "abdominals"
+    ]
+  },
+  "equipment": [
+    "long_box"
+  ],
+  "load": {
+    "springs": [
+      "light"
+    ],
+    "advance": [
+      "light",
+      "xlight"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Trunk, pelvis and upper arms",
+  "mobile": "Elbows",
+  "categories": [
+    "upper_body"
+  ],
+  "pregnancy": "ok",
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": false,
+  "intensity": 5,
+  "duration": 120,
+  "reps": "10–30",
+  "summary": "Sitting on the long box facing the footbar, tipped forward on a flat diagonal, hands start at the forehead and the arms press out along that line.",
+  "steps": [
+    "Sit on the long box facing the footbar, body hinged forward with a straight spine.",
+    "Short loops in the hands, elbows bent wide, fingertips at the forehead.",
+    "Breathe out to straighten the elbows without moving the upper arms.",
+    "Breathe in to bend."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Seated on the box",
+      "text": "Start here."
+    },
+    {
+      "tag": "L2",
+      "title": "Kneeling",
+      "text": "Sit on the heels, then kneel upright (hard)."
+    },
+    {
+      "tag": "L3",
+      "title": "Elbows forward",
+      "text": "Point the elbows ahead for a straight triceps press."
+    },
+    {
+      "tag": "L4",
+      "title": "Single arm",
+      "text": "One at a time."
+    }
+  ],
+  "modifications": [
+    "Long loops for less tension."
+  ],
+  "cautions": [
+    {
+      "tag": "shoulder",
+      "severity": "avoid",
+      "note": "Loaded press above shoulder height.",
+      "swap": "kneeling-chest-press"
+    },
+    {
+      "tag": "neck",
+      "severity": "modify",
+      "note": "Keep the weight light and the gaze down."
+    }
+  ],
+  "prep": [
+    "kneeling-chest-press"
+  ],
+  "cues": "The forward tilt doesn't change.\nHead stays in line — don't let it drop.\nShoulders away from the ears.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

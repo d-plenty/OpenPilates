@@ -1,0 +1,156 @@
+{
+  "slug": "snake",
+  "name": "Snake",
+  "apparatus": "reformer",
+  "section": "core",
+  "level": "advanced",
+  "position": "plank",
+  "spine": [
+    "extension",
+    "rotation",
+    "flexion"
+  ],
+  "plane": "transverse",
+  "patterns": [
+    "stabilisation",
+    "rotation",
+    "extension"
+  ],
+  "muscles": {
+    "primary": [
+      "obliques",
+      "abdominals",
+      "serratus"
+    ],
+    "secondary": [
+      "deltoids",
+      "spinal_extensors",
+      "lats",
+      "glutes"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "light"
+    ],
+    "advance": [
+      "xlight"
+    ],
+    "lighterIsHarder": true
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": true,
+  "role": "both",
+  "stable": "Shoulder girdle",
+  "mobile": "Whole spine",
+  "categories": [
+    "rotation",
+    "trunk_extension",
+    "quadruped"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 1,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 9,
+  "duration": 150,
+  "reps": "8–10 each side",
+  "summary": "A twisted pike: one hand on the shoulder rest, the other on the carriage edge, feet on the footbar. Press out into a long arch, then lift back up to the pike.",
+  "steps": [
+    "Side-on: one hand on the shoulder rest, the other on the bottom corner of the carriage.",
+    "Front foot on the footbar, back foot tucked behind it; hips high in a pike.",
+    "Breathe in to press out through a plank into a long back bend.",
+    "Breathe out to lift the hips back up to the pike."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Plank and pike only",
+      "text": "Leave out the arch."
+    },
+    {
+      "tag": "L2",
+      "title": "Full snake",
+      "text": "Add the extension."
+    },
+    {
+      "tag": "L3",
+      "title": "Add a twist",
+      "text": "Turn the hips as you lower into the plank."
+    },
+    {
+      "tag": "L4",
+      "title": "Single leg",
+      "text": "Inside foot hovers."
+    }
+  ],
+  "modifications": [
+    "Start with the box across the carriage to shorten the lever.",
+    "Stay with side plank or Long Stretch."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "mermaid"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "mermaid"
+    },
+    {
+      "tag": "wrist",
+      "severity": "avoid",
+      "note": "Body weight through the wrists.",
+      "swap": "mermaid"
+    },
+    {
+      "tag": "shoulder",
+      "severity": "avoid",
+      "note": "High shoulder load with rotation.",
+      "swap": "mermaid"
+    },
+    {
+      "tag": "extension_pain",
+      "severity": "avoid",
+      "note": "Loaded extension.",
+      "swap": "long-stretch"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Loaded flexion and rotation.",
+      "swap": "long-stretch"
+    },
+    {
+      "tag": "balance",
+      "severity": "avoid",
+      "note": "Feet on the footbar.",
+      "swap": "long-stretch"
+    }
+  ],
+  "prep": [
+    "long-stretch",
+    "up-stretch",
+    "side-plank-reformer"
+  ],
+  "cues": "Move the carriage slowly — you set the pace, not the spring.\nLift out of the lower back in the arch.\nLong neck all the way.",
+  "labels": [
+    "peak"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

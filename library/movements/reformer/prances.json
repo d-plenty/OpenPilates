@@ -1,0 +1,98 @@
+{
+  "slug": "prances",
+  "name": "Prances",
+  "apparatus": "reformer",
+  "section": "lower",
+  "level": "beginner",
+  "position": "supine",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "coordination"
+  ],
+  "muscles": {
+    "primary": [
+      "calves"
+    ],
+    "secondary": [
+      "quadriceps",
+      "hamstrings"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "medium",
+      "medium",
+      "xlight"
+    ],
+    "advance": [
+      "medium",
+      "medium",
+      "medium",
+      "light"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "both",
+  "stable": "Pelvis and spine",
+  "mobile": "Ankles and knees, alternating",
+  "categories": [],
+  "pregnancy": "supine",
+  "purpose": {
+    "strength": 1,
+    "stability": 1,
+    "flexibility": 1,
+    "mobility": 2
+  },
+  "multiJoint": true,
+  "intensity": 3,
+  "duration": 90,
+  "reps": "20–30",
+  "summary": "Walking on the spot with the carriage pressed out: one knee bends as the other heel drops under the bar.",
+  "steps": [
+    "Start as for heel raises, legs pressed out straight and heels lifted.",
+    "Breathe in, bend one knee and let the opposite heel drop under the bar.",
+    "Breathe out, rise through both feet until both legs are straight.",
+    "Swap sides and keep alternating."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Steady pace",
+      "text": "One breath per side."
+    },
+    {
+      "tag": "L2",
+      "title": "Quicker",
+      "text": "Two changes per breath, still controlled."
+    }
+  ],
+  "modifications": [
+    "Take a spring off if needed."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "modify",
+      "note": "Lying flat on the back: keep it to a few minutes, raise the head end if you can, and stop if she feels dizzy."
+    }
+  ],
+  "prep": [],
+  "cues": "Pass through two straight legs each time — a tiny pause at the top.\nHips stay level; no rocking side to side.\nKnees track over the second toe.\nStraight legs, not locked knees.",
+  "labels": [
+    "warm-up"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

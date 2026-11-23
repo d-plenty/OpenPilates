@@ -2,6 +2,7 @@
   "slug": "swan-long-box",
   "name": "Swan on the Long Box",
   "apparatus": "reformer",
+  "section": "back_shoulders",
   "level": "intermediate",
   "position": "prone",
   "spine": [
@@ -30,8 +31,22 @@
   "load": {
     "springs": [
       "medium"
-    ]
+    ],
+    "lighterIsHarder": true
   },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "mobility",
+  "stable": "Arms",
+  "mobile": "Whole spine and hips",
+  "categories": [
+    "trunk_extension",
+    "hip_extension"
+  ],
+  "pregnancy": "avoid",
   "purpose": {
     "strength": 2,
     "stability": 1,
@@ -41,8 +56,9 @@
   "multiJoint": true,
   "intensity": 6,
   "duration": 240,
-  "reps": "5–6",
+  "reps": "10–15",
   "summary": "Lying face down on the long box with hands on the footbar, press the carriage away as the chest lifts.",
+  "steps": [],
   "layers": [
     {
       "tag": "L1",
@@ -55,27 +71,41 @@
       "text": "Push the footbar away as the chest lifts."
     }
   ],
+  "modifications": [
+    "Keep the spine level for a sore lower back.",
+    "Make sure the hips are right at the front edge of the box before you start."
+  ],
   "cautions": [
     {
       "tag": "pregnancy",
-      "note": "Lying face down on the box.",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "chest-expansion"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
       "swap": "chest-expansion"
     },
     {
       "tag": "extension_pain",
+      "severity": "avoid",
       "note": "Keep the range small or skip.",
       "swap": "pulling-straps"
     },
     {
       "tag": "wrist",
+      "severity": "avoid",
       "note": "Hands on the footbar take weight.",
       "swap": "pulling-straps"
     }
   ],
-  "cues": "",
+  "prep": [],
+  "cues": "The body moves as one long curve.\nElbows don't lock.\nHead stays in line — don't throw it back or drop it.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

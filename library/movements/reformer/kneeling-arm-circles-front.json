@@ -1,0 +1,111 @@
+{
+  "slug": "kneeling-arm-circles-front",
+  "name": "Arm Circles (Back to Straps)",
+  "apparatus": "reformer",
+  "section": "chest_arms",
+  "level": "intermediate",
+  "position": "kneeling",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "push"
+  ],
+  "muscles": {
+    "primary": [
+      "deltoids",
+      "chest"
+    ],
+    "secondary": [
+      "serratus",
+      "biceps",
+      "abdominals"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "light"
+    ],
+    "advance": [
+      "light",
+      "xlight"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "both",
+  "stable": "Trunk and pelvis",
+  "mobile": "Shoulders",
+  "categories": [
+    "upper_body"
+  ],
+  "pregnancy": "ok",
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 1
+  },
+  "multiJoint": false,
+  "intensity": 5,
+  "duration": 120,
+  "reps": "10–20",
+  "summary": "Kneeling with your back to the straps, long arms draw circles from the hips forward and round.",
+  "steps": [
+    "Kneel facing the footbar, sitting on the heels; short loops, arms long by the sides, palms forward.",
+    "Breathe out to circle the arms forward and up in front of the body.",
+    "Breathe in to open and circle them back to the start."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Small circles",
+      "text": "Start small."
+    },
+    {
+      "tag": "L2",
+      "title": "Bigger circles",
+      "text": "More range."
+    },
+    {
+      "tag": "L3",
+      "title": "Reverse",
+      "text": "Other direction."
+    },
+    {
+      "tag": "L4",
+      "title": "Kneeling upright",
+      "text": "Harder base."
+    }
+  ],
+  "modifications": [
+    "Long loops for less tension.",
+    "Sit on the long box for sore knees."
+  ],
+  "cautions": [
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Sit on the long box."
+    },
+    {
+      "tag": "shoulder",
+      "severity": "avoid",
+      "note": "Loaded circling.",
+      "swap": "kneeling-chest-press"
+    }
+  ],
+  "prep": [],
+  "cues": "Arms stay in front of the body line on the way back.\nBody still; wrists straight.\nShoulders stay relaxed.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

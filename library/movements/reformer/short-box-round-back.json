@@ -2,6 +2,7 @@
   "slug": "short-box-round-back",
   "name": "Short Box — Round Back",
   "apparatus": "reformer",
+  "section": "core",
   "level": "intermediate",
   "position": "seated",
   "spine": [
@@ -28,8 +29,22 @@
       "medium",
       "medium",
       "medium"
-    ]
+    ],
+    "note": "All springs on so the carriage can't move."
   },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "both",
+  "stable": "Pelvis and legs",
+  "mobile": "Spine",
+  "categories": [
+    "trunk_flexion",
+    "hip_flexion"
+  ],
+  "pregnancy": "avoid",
   "purpose": {
     "strength": 2,
     "stability": 2,
@@ -39,30 +54,75 @@
   "multiJoint": true,
   "intensity": 6,
   "duration": 180,
-  "reps": "6",
+  "reps": "10–20",
   "summary": "Seated on the short box with feet under the strap, curve the spine and roll back and up.",
-  "layers": [],
+  "steps": [
+    "Short box across the carriage in front of the shoulder rests; sit in the middle facing the footbar.",
+    "Feet under the strap, legs long with soft knees.",
+    "Sit tall. Breathe out to curl the tail under and roll back over the box.",
+    "Breathe in to pause; breathe out to curl back up."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Hands across the chest",
+      "text": "Shortest lever."
+    },
+    {
+      "tag": "L2",
+      "title": "Hands behind the head",
+      "text": "Longer lever."
+    },
+    {
+      "tag": "L3",
+      "title": "Tempo and holds",
+      "text": "Pause at the back."
+    },
+    {
+      "tag": "L4",
+      "title": "Prop",
+      "text": "Ball, ring or pole."
+    },
+    {
+      "tag": "L5",
+      "title": "Add a twist",
+      "text": "Turn at the back of the movement."
+    }
+  ],
+  "modifications": [
+    "Smaller range for sensitive backs."
+  ],
   "cautions": [
     {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "mermaid"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "mermaid"
+    },
+    {
       "tag": "low_bone_density",
+      "severity": "avoid",
       "note": "Loaded spinal flexion; teach flat back instead.",
       "swap": "short-box-flat-back"
     },
     {
-      "tag": "pregnancy",
-      "note": "Heavy abdominal load later in pregnancy.",
-      "swap": "mermaid"
-    },
-    {
       "tag": "flexion_pain",
+      "severity": "avoid",
       "note": "Rounding under load.",
       "swap": "short-box-flat-back"
     }
   ],
-  "cues": "",
+  "prep": [],
+  "cues": "The abdominals lower and lift you — not the feet in the strap.\nSlow and even.\nOnly go back as far as you can return from.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

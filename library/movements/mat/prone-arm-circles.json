@@ -1,0 +1,107 @@
+{
+  "slug": "prone-arm-circles",
+  "name": "Breaststroke (Mat)",
+  "apparatus": "mat",
+  "section": "back_shoulders",
+  "level": "beginner",
+  "position": "prone",
+  "spine": [
+    "extension"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "extension",
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "spinal_extensors",
+      "upper_back"
+    ],
+    "secondary": [
+      "lats",
+      "deltoids",
+      "glutes"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "both",
+  "stable": "Pelvis",
+  "mobile": "Upper spine and arms",
+  "categories": [
+    "trunk_extension",
+    "upper_body"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 2,
+    "stability": 1,
+    "flexibility": 0,
+    "mobility": 2
+  },
+  "multiJoint": true,
+  "intensity": 4,
+  "duration": 120,
+  "reps": "6–10",
+  "summary": "Lying face down, the arms reach forward, then sweep wide to the hips as the chest lifts — a swimmer's stroke for the upper back.",
+  "steps": [
+    "Lie face down, legs long and together, arms by the sides.",
+    "Breathe out to reach the arms forward and lift the chest a little.",
+    "Breathe in to circle the arms wide and back to the hips, palms in.",
+    "Breathe out to lower."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Hands stay on the floor",
+      "text": "Slide them."
+    },
+    {
+      "tag": "L2",
+      "title": "Hover the arms",
+      "text": "Full stroke."
+    },
+    {
+      "tag": "L3",
+      "title": "Hold",
+      "text": "Pause in the lift."
+    },
+    {
+      "tag": "L4",
+      "title": "Add legs",
+      "text": "Hover both legs."
+    }
+  ],
+  "modifications": [
+    "Smaller lift.",
+    "Folded towel under the forehead between strokes."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "extension_pain",
+      "severity": "avoid",
+      "note": "Spinal extension.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Keep the hands low and the range small."
+    }
+  ],
+  "prep": [],
+  "cues": "Look at the top edge of the mat; neck long.\nBelly lifts away from the mat.\nLegs reach long without clenching.\nOpen across the collarbones as the arms sweep.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

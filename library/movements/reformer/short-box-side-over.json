@@ -2,6 +2,7 @@
   "slug": "short-box-side-over",
   "name": "Short Box — Side Over",
   "apparatus": "reformer",
+  "section": "core",
   "level": "advanced",
   "position": "seated",
   "spine": [
@@ -28,8 +29,21 @@
       "medium",
       "medium",
       "medium"
-    ]
+    ],
+    "note": "All springs on so the carriage can't move."
   },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": true,
+  "role": "both",
+  "stable": "Pelvis and legs",
+  "mobile": "Spine (side bend)",
+  "categories": [
+    "lateral_flexion"
+  ],
+  "pregnancy": "avoid",
   "purpose": {
     "strength": 2,
     "stability": 2,
@@ -39,23 +53,87 @@
   "multiJoint": true,
   "intensity": 7,
   "duration": 150,
-  "reps": "4 each side",
+  "reps": "10–20 each side",
   "summary": "Side-on to the short box with feet under the strap, side bend over the box and lift back up.",
-  "layers": [],
+  "steps": [
+    "Sit side-on in the middle of the short box, outside foot hooked under the strap with a soft knee, inside knee bent on the box.",
+    "Sit tall. Breathe out to lift up and over the box towards the headrest.",
+    "Breathe in to pause; breathe out to lift back to upright using the waist."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Hands across the chest",
+      "text": "Shortest lever."
+    },
+    {
+      "tag": "L2",
+      "title": "Hands behind the ears",
+      "text": "Longer lever."
+    },
+    {
+      "tag": "L3",
+      "title": "Twist at the bottom",
+      "text": "Turn the chest to the carriage and back."
+    },
+    {
+      "tag": "L4",
+      "title": "Tempo and holds",
+      "text": "Pause at the bottom."
+    }
+  ],
+  "modifications": [
+    "Smaller range."
+  ],
   "cautions": [
     {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy."
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy."
+    },
+    {
       "tag": "low_bone_density",
-      "note": "Loaded side bending."
+      "severity": "avoid",
+      "note": "Loaded side bend.",
+      "swap": "mermaid"
     },
     {
       "tag": "balance",
-      "note": "Hold the frame for support."
+      "severity": "avoid",
+      "note": "Unsupported side lean.",
+      "swap": "mermaid"
+    },
+    {
+      "tag": "extension_pain",
+      "severity": "avoid",
+      "note": "Loaded side bend.",
+      "swap": "mermaid"
+    },
+    {
+      "tag": "hip_pain",
+      "severity": "modify",
+      "note": "Avoid if the hooked hip is sore."
+    },
+    {
+      "tag": "si_joint",
+      "severity": "avoid",
+      "note": "One-sided loading through the pelvis.",
+      "swap": "mermaid"
     }
   ],
-  "cues": "",
+  "prep": [
+    "mermaid",
+    "short-box-flat-back"
+  ],
+  "cues": "Up and over, as if bending over a barrel.\nDon't pull up with the strap foot.\nStay in one flat plane — no rolling forward or back.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

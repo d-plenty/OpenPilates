@@ -2,6 +2,7 @@
   "slug": "criss-cross",
   "name": "Criss Cross",
   "apparatus": "mat",
+  "section": "core",
   "level": "intermediate",
   "position": "supine",
   "spine": [
@@ -24,6 +25,15 @@
   },
   "equipment": [],
   "load": null,
+  "perSide": false,
+  "role": "both",
+  "stable": "Pelvis",
+  "mobile": "Spine (rotation), hips",
+  "categories": [
+    "trunk_flexion",
+    "rotation"
+  ],
+  "pregnancy": "early_only",
   "purpose": {
     "strength": 1,
     "stability": 3,
@@ -35,27 +45,39 @@
   "duration": 60,
   "reps": "8 each side",
   "summary": "Hands behind the head, rotate the chest towards the opposite knee as the legs switch.",
+  "steps": [],
   "layers": [],
+  "modifications": [
+    "Feet down.",
+    "Head down between sides."
+  ],
   "cautions": [
     {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "spine-twist"
+    },
+    {
       "tag": "low_bone_density",
+      "severity": "avoid",
       "note": "Flexion with rotation; avoid.",
       "swap": "spine-twist"
     },
     {
-      "tag": "pregnancy",
-      "note": "Curling and twisting on the back.",
-      "swap": "spine-twist"
-    },
-    {
       "tag": "neck",
+      "severity": "avoid",
       "note": "Support the head; keep it small."
     }
   ],
-  "cues": "",
+  "prep": [
+    "supine-curl",
+    "single-leg-stretch"
+  ],
+  "cues": "Turn the ribs — don't just wave the elbows.\nElbows stay wide.\nPelvis stays level.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

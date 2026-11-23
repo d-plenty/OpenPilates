@@ -2,6 +2,7 @@
   "slug": "elephant",
   "name": "Elephant",
   "apparatus": "reformer",
+  "section": "lower",
   "level": "beginner",
   "position": "standing",
   "spine": [
@@ -25,10 +26,24 @@
   "equipment": [],
   "load": {
     "springs": [
-      "medium",
-      "light"
-    ]
+      "medium"
+    ],
+    "lighterIsHarder": true
   },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "both",
+  "stable": "Shoulders and trunk",
+  "mobile": "Hips",
+  "categories": [
+    "hip_extension",
+    "trunk_flexion",
+    "standing"
+  ],
+  "pregnancy": "avoid",
   "purpose": {
     "strength": 1,
     "stability": 2,
@@ -38,27 +53,69 @@
   "multiJoint": true,
   "intensity": 5,
   "duration": 180,
-  "reps": "8",
+  "reps": "10–20",
   "summary": "Standing on the carriage with hands on the footbar, move the carriage with the legs while the upper body stays still.",
-  "layers": [],
+  "steps": [
+    "Stand on the carriage, hands on the footbar with the shoulders over it.",
+    "Both feet flat against the shoulder rests, legs straight.",
+    "Breathe in to push the carriage back with the legs, upper body still.",
+    "Breathe out to pull it home using the abdominals."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Round back",
+      "text": "Spine curved, tail under."
+    },
+    {
+      "tag": "L2",
+      "title": "Flat back",
+      "text": "Long spine."
+    },
+    {
+      "tag": "L3",
+      "title": "Single leg",
+      "text": "See Arabesque."
+    }
+  ],
+  "modifications": [
+    "Bend the knees or lift the heels for tight hamstrings or calves.",
+    "Take spring off only once it is steady."
+  ],
   "cautions": [
     {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "standing-lunge"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "standing-lunge"
+    },
+    {
       "tag": "wrist",
+      "severity": "avoid",
       "note": "Hands on the footbar take some weight."
     },
     {
       "tag": "low_bone_density",
+      "severity": "avoid",
       "note": "Rounded spine under load; teach the flat-back version."
     },
     {
       "tag": "flexion_pain",
+      "severity": "avoid",
       "note": "Use the flat-back version."
     }
   ],
-  "cues": "",
+  "prep": [],
+  "cues": "Heels stay heavy on the carriage.\nGo as far as you can without the shoulders moving.\nSoft elbows and knees.\nChin off the chest.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

@@ -1,0 +1,124 @@
+{
+  "slug": "carriage-squats",
+  "name": "Side Squats",
+  "apparatus": "reformer",
+  "section": "lower",
+  "level": "beginner",
+  "position": "standing",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "frontal",
+  "patterns": [
+    "stabilisation",
+    "abduction"
+  ],
+  "muscles": {
+    "primary": [
+      "glutes",
+      "quadriceps"
+    ],
+    "secondary": [
+      "abductors",
+      "adductors",
+      "abdominals"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium"
+    ],
+    "advance": [
+      "medium",
+      "xlight"
+    ],
+    "note": "Lighter springs make it harder to hold the carriage still."
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": true,
+  "role": "stability",
+  "stable": "Carriage, pelvis and spine",
+  "mobile": "Hips, knees and ankles",
+  "categories": [
+    "hip_extension",
+    "hip_abduction",
+    "standing"
+  ],
+  "pregnancy": "ok",
+  "purpose": {
+    "strength": 3,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 5,
+  "duration": 150,
+  "reps": "20–30",
+  "summary": "Standing side-on with one foot on the platform and one on the carriage. The carriage is pressed open and held there while you squat.",
+  "steps": [
+    "Stand side-on: one foot on the standing platform, the other on the edge of the carriage, toes forward.",
+    "Breathe out to press the carriage out until the feet are a little wider than the hips.",
+    "Breathe in, sit the hips back and down, arms reaching forward.",
+    "Breathe out, press through the heels to stand, arms lowering."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Squat",
+      "text": "Slow and even."
+    },
+    {
+      "tag": "L2",
+      "title": "Pulses and holds",
+      "text": "Stay low."
+    },
+    {
+      "tag": "L3",
+      "title": "Knee presses",
+      "text": "Hold the squat and open and close the carriage knee."
+    },
+    {
+      "tag": "L4",
+      "title": "Add arms",
+      "text": "Hand weights or a ring."
+    },
+    {
+      "tag": "L5",
+      "title": "Loop band",
+      "text": "Band above the knees."
+    }
+  ],
+  "modifications": [
+    "Put all the springs on to lock the carriage and step the feet wider.",
+    "Half-depth squats for knees."
+  ],
+  "cautions": [
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Half range, carriage locked."
+    },
+    {
+      "tag": "balance",
+      "severity": "modify",
+      "note": "Lock the carriage with all springs."
+    },
+    {
+      "tag": "groin",
+      "severity": "modify",
+      "note": "Keep the stance narrow and the carriage locked."
+    }
+  ],
+  "prep": [],
+  "cues": "The carriage does not move during the squat.\nWeight in the heels; knees over the middle toes.\nChest tips forward a little, spine long.\nAim to bring the hips level with the knees.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

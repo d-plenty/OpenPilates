@@ -1,0 +1,138 @@
+{
+  "slug": "reverse-long-stretch",
+  "name": "Plank with Feet on the Footbar",
+  "apparatus": "reformer",
+  "section": "core",
+  "level": "advanced",
+  "position": "plank",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "push"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "serratus",
+      "deltoids"
+    ],
+    "secondary": [
+      "triceps",
+      "glutes",
+      "quadriceps"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "light"
+    ],
+    "advance": [
+      "xlight"
+    ],
+    "lighterIsHarder": true,
+    "note": "No springs is the hardest version."
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Trunk, pelvis and legs",
+  "mobile": "Shoulders",
+  "categories": [
+    "quadruped",
+    "upper_body"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 9,
+  "duration": 90,
+  "reps": "8–16",
+  "summary": "Hands on the shoulder rests, feet on the footbar. From this high plank the arms reach forward to send the carriage out and pull it back.",
+  "steps": [
+    "Hands on the shoulder rests, palms wrapped over the front edge; feet on the footbar, heels together and toes apart.",
+    "Press out to a straight plank.",
+    "Breathe in to reach the arms forward, moving the carriage away.",
+    "Breathe out to draw it back."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Hold",
+      "text": "Plank only."
+    },
+    {
+      "tag": "L2",
+      "title": "Out and in",
+      "text": "Basic."
+    },
+    {
+      "tag": "L3",
+      "title": "Leg lift",
+      "text": "Lift one leg as the carriage goes out."
+    },
+    {
+      "tag": "L4",
+      "title": "Triceps press",
+      "text": "Bend and straighten the elbows."
+    }
+  ],
+  "modifications": [
+    "Feet on the platform, or knees on the platform."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "shoulder-retraction"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "shoulder-retraction"
+    },
+    {
+      "tag": "wrist",
+      "severity": "avoid",
+      "note": "Body weight through the wrists.",
+      "swap": "rear-plank"
+    },
+    {
+      "tag": "shoulder",
+      "severity": "avoid",
+      "note": "High shoulder load.",
+      "swap": "rear-plank"
+    },
+    {
+      "tag": "balance",
+      "severity": "avoid",
+      "note": "Feet on the footbar.",
+      "swap": "rear-plank"
+    }
+  ],
+  "prep": [
+    "rear-plank",
+    "long-stretch"
+  ],
+  "cues": "Only go as far as the line holds.\nElbows and knees soft, never locked.\nShoulders away from the ears.\nWrap the hands so the wrists aren't bent back.",
+  "labels": [
+    "peak"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

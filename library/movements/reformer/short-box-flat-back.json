@@ -2,6 +2,7 @@
   "slug": "short-box-flat-back",
   "name": "Short Box — Flat Back",
   "apparatus": "reformer",
+  "section": "core",
   "level": "intermediate",
   "position": "seated",
   "spine": [
@@ -28,8 +29,22 @@
       "medium",
       "medium",
       "medium"
-    ]
+    ],
+    "note": "All springs on so the carriage can't move."
   },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Spine (held long) and legs",
+  "mobile": "Hips (hinge)",
+  "categories": [
+    "hip_flexion",
+    "trunk_extension"
+  ],
+  "pregnancy": "early_only",
   "purpose": {
     "strength": 2,
     "stability": 3,
@@ -39,14 +54,61 @@
   "multiJoint": true,
   "intensity": 6,
   "duration": 150,
-  "reps": "6",
+  "reps": "10–20",
   "summary": "Seated on the short box, hinge back with a long, neutral spine and return.",
-  "layers": [],
-  "cautions": [],
-  "cues": "",
+  "steps": [
+    "Set up as for the round-back version: seated on the short box, feet under the strap.",
+    "Sit tall. Breathe out to hinge back from the hips with a straight spine.",
+    "Breathe in to pause; breathe out to hinge back up."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Hands across the chest",
+      "text": "Shortest lever."
+    },
+    {
+      "tag": "L2",
+      "title": "Arms overhead or a pole",
+      "text": "Longer lever."
+    },
+    {
+      "tag": "L3",
+      "title": "Tempo and holds",
+      "text": "Pause at the back."
+    },
+    {
+      "tag": "L4",
+      "title": "Add a twist",
+      "text": "Turn at the back of the movement."
+    }
+  ],
+  "modifications": [
+    "Smaller lean.",
+    "Hands across the chest."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks."
+    },
+    {
+      "tag": "extension_pain",
+      "severity": "modify",
+      "note": "Small lean; keep the ribs in."
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "modify",
+      "note": "Usually the friendlier short-box option; keep the range small."
+    }
+  ],
+  "prep": [],
+  "cues": "It's a hinge at the hips; the spine doesn't change shape.\nShoulders down and back.\nDon't rush.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

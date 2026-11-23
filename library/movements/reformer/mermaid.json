@@ -2,10 +2,12 @@
   "slug": "mermaid",
   "name": "Mermaid",
   "apparatus": "reformer",
+  "section": "stretch",
   "level": "beginner",
   "position": "seated",
   "spine": [
-    "side-bend"
+    "side-bend",
+    "rotation"
   ],
   "plane": "frontal",
   "patterns": [
@@ -24,8 +26,23 @@
   "load": {
     "springs": [
       "xlight"
-    ]
+    ],
+    "flexible": true,
+    "note": "Any light setting works — stay on whatever is already on if it feels supportive."
   },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "mobility",
+  "stable": "Pelvis",
+  "mobile": "Spine (side bend), shoulder",
+  "categories": [
+    "lateral_flexion",
+    "rotation"
+  ],
+  "pregnancy": "recommended",
   "purpose": {
     "strength": 0,
     "stability": 1,
@@ -37,19 +54,42 @@
   "duration": 180,
   "reps": "3 each side",
   "summary": "Seated side-on with a hand on the footbar, push the carriage away into a long side stretch.",
-  "layers": [],
+  "steps": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Side bend",
+      "text": "Over the footbar and back."
+    },
+    {
+      "tag": "L2",
+      "title": "Add a twist",
+      "text": "At the far point, turn the chest to the floor and thread the top arm under."
+    },
+    {
+      "tag": "L3",
+      "title": "Away from the bar",
+      "text": "Finish with a side bend the other way."
+    }
+  ],
+  "modifications": [
+    "Sit cross-legged or on the box for sore knees or hips."
+  ],
   "cautions": [
     {
       "tag": "knee",
+      "severity": "avoid",
       "note": "Folded-leg sitting; sit cross-legged or on a box."
     }
   ],
-  "cues": "",
+  "prep": [],
+  "cues": "Both sit bones stay down.\nReach up before you go over.\nTop shoulder away from the ear.",
   "labels": [
-    "cool-down"
+    "cool-down",
+    "pregnancy-friendly"
   ],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

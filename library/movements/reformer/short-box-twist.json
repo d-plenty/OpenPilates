@@ -2,6 +2,7 @@
   "slug": "short-box-twist",
   "name": "Short Box — Twist & Reach",
   "apparatus": "reformer",
+  "section": "core",
   "level": "intermediate",
   "position": "seated",
   "spine": [
@@ -28,8 +29,22 @@
       "medium",
       "medium",
       "medium"
-    ]
+    ],
+    "note": "All springs on so the carriage can't move."
   },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "both",
+  "stable": "Pelvis and legs",
+  "mobile": "Spine (rotation)",
+  "categories": [
+    "rotation",
+    "hip_flexion"
+  ],
+  "pregnancy": "early_only",
   "purpose": {
     "strength": 1,
     "stability": 2,
@@ -41,17 +56,30 @@
   "duration": 180,
   "reps": "4 each side",
   "summary": "Seated tall on the short box, rotate, then hinge and reach on the diagonal.",
+  "steps": [],
   "layers": [],
+  "modifications": [
+    "Smaller twist and lean."
+  ],
   "cautions": [
     {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks."
+    },
+    {
       "tag": "low_bone_density",
+      "severity": "avoid",
       "note": "Twisting under load; stay upright with a small range."
     }
   ],
-  "cues": "",
+  "prep": [
+    "short-box-flat-back"
+  ],
+  "cues": "Grow taller as you turn.\nBoth sit bones stay heavy.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

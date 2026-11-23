@@ -1,0 +1,108 @@
+{
+  "slug": "shoulder-retraction",
+  "name": "Kneeling Shoulder Retraction",
+  "apparatus": "reformer",
+  "section": "back_shoulders",
+  "level": "beginner",
+  "position": "kneeling",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "pull"
+  ],
+  "muscles": {
+    "primary": [
+      "upper_back",
+      "lats"
+    ],
+    "secondary": [
+      "triceps",
+      "abdominals",
+      "deltoids"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "light"
+    ],
+    "advance": [
+      "light",
+      "xlight"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Trunk and pelvis",
+  "mobile": "Shoulder blades and shoulders",
+  "categories": [
+    "upper_body"
+  ],
+  "pregnancy": "ok",
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": false,
+  "intensity": 4,
+  "duration": 120,
+  "reps": "15–30",
+  "summary": "Kneeling facing the straps with long arms by the hips, the arms press a little behind the body as the shoulder blades draw together.",
+  "steps": [
+    "Kneel facing the straps, knees behind the shoulder rests, sitting on the heels, spine tall.",
+    "Hold the short loops, arms straight beside the hips.",
+    "Breathe out to take the arms just behind the hips, shoulder blades gliding in.",
+    "Breathe in to return to the hip line."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Sitting on heels",
+      "text": "Most stable."
+    },
+    {
+      "tag": "L2",
+      "title": "Kneeling upright",
+      "text": "More core and glutes."
+    },
+    {
+      "tag": "L3",
+      "title": "Palm direction",
+      "text": "Palms forward, in or back."
+    },
+    {
+      "tag": "L4",
+      "title": "Lunge or standing",
+      "text": "Hardest base."
+    }
+  ],
+  "modifications": [
+    "Sit on the long box, or sit cross-legged, for sore knees.",
+    "Hold the long loops for less resistance."
+  ],
+  "cautions": [
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Sit on the long box or with legs through the shoulder rests."
+    }
+  ],
+  "prep": [],
+  "cues": "Hands never drift in front of the hips, so the ropes stay taut.\nGlide the shoulder blades — don't pinch them.\nLong neck, soft shoulders.\nNo rocking the body for momentum.",
+  "labels": [
+    "pregnancy-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

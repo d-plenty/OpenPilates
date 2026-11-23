@@ -1,0 +1,132 @@
+{
+  "slug": "side-lying-strap-series",
+  "name": "Side-lying Leg in Strap",
+  "apparatus": "reformer",
+  "section": "pelvic",
+  "level": "beginner",
+  "position": "side-lying",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "frontal",
+  "patterns": [
+    "stabilisation",
+    "hip-dissociation",
+    "abduction"
+  ],
+  "muscles": {
+    "primary": [
+      "glutes",
+      "abductors"
+    ],
+    "secondary": [
+      "hamstrings",
+      "adductors",
+      "obliques"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium"
+    ],
+    "advance": [
+      "medium",
+      "xlight"
+    ],
+    "note": "A single light spring is also an option when the aim is control."
+  },
+  "setup": {
+    "headrest": "up",
+    "straps": "long"
+  },
+  "perSide": true,
+  "role": "stability",
+  "stable": "Pelvis, waist and shoulders",
+  "mobile": "Top hip",
+  "categories": [
+    "hip_extension",
+    "hip_abduction"
+  ],
+  "pregnancy": "recommended",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 4,
+  "duration": 240,
+  "reps": "20–30 of each variation",
+  "summary": "Lying on one side with the top foot in a long loop. A family of leg presses, sweeps and circles for the glutes and outer hip.",
+  "steps": [
+    "Headrest up. Lie on one side, head on the headrest, hips towards the back edge and knees bent towards the front.",
+    "Long loop over the top foot; stack hips and shoulders.",
+    "Lift the underneath waist off the carriage.",
+    "Breathe out to press the top leg towards the footbar; breathe in to bend it back to hip height."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Bent-leg press",
+      "text": "Bend and straighten."
+    },
+    {
+      "tag": "L2",
+      "title": "Straight-leg sweep",
+      "text": "Long leg sweeps forward and back."
+    },
+    {
+      "tag": "L3",
+      "title": "Hip opener",
+      "text": "Long leg lifts up and lowers."
+    },
+    {
+      "tag": "L4",
+      "title": "Single-leg frog",
+      "text": "Turn out, bend and press."
+    },
+    {
+      "tag": "L5",
+      "title": "Clams",
+      "text": "Knees bent, open and close the top knee; hold the carriage still."
+    },
+    {
+      "tag": "L6",
+      "title": "Circles",
+      "text": "Both directions."
+    },
+    {
+      "tag": "L7",
+      "title": "Propped",
+      "text": "Up on the forearm for more waist work."
+    }
+  ],
+  "modifications": [
+    "Take spring off if the pelvis rocks.",
+    "Small ball or cushion under the head."
+  ],
+  "cautions": [
+    {
+      "tag": "hip_replacement",
+      "severity": "modify",
+      "note": "Stay in a small, mid range; no crossing the midline."
+    },
+    {
+      "tag": "hip_pain",
+      "severity": "modify",
+      "note": "Avoid lying on a sore hip; small range."
+    }
+  ],
+  "prep": [],
+  "cues": "Top hip reaches away from the ribs so both sides of the waist stay long.\nHips stay back and stacked — the top one doesn't roll.\nKnee comes back level with the hip, not into the chest.\nDon't tuck the tail.",
+  "labels": [
+    "pregnancy-friendly",
+    "rehab-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

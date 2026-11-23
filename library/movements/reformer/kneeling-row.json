@@ -1,0 +1,118 @@
+{
+  "slug": "kneeling-row",
+  "name": "Kneeling Row",
+  "apparatus": "reformer",
+  "section": "back_shoulders",
+  "level": "beginner",
+  "position": "kneeling",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "pull"
+  ],
+  "muscles": {
+    "primary": [
+      "upper_back",
+      "lats",
+      "biceps"
+    ],
+    "secondary": [
+      "deltoids",
+      "abdominals"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium"
+    ],
+    "advance": [
+      "medium",
+      "xlight"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Trunk and pelvis",
+  "mobile": "Shoulders and elbows",
+  "categories": [
+    "upper_body"
+  ],
+  "pregnancy": "ok",
+  "purpose": {
+    "strength": 3,
+    "stability": 1,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 4,
+  "duration": 120,
+  "reps": "15–30",
+  "summary": "Kneeling facing the straps, holding the ropes above the loops, elbows bend back beside the waist in a row.",
+  "steps": [
+    "Kneel facing the straps, sitting on the heels, spine tall.",
+    "Grip the ropes just above the loops, arms straight, palms facing in.",
+    "Breathe out to bend the elbows back beside the waist.",
+    "Breathe in to lengthen the arms with control."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Narrow row",
+      "text": "Elbows brush the ribs."
+    },
+    {
+      "tag": "L2",
+      "title": "Wide row",
+      "text": "Elbows out level with the shoulders."
+    },
+    {
+      "tag": "L3",
+      "title": "Row into triceps",
+      "text": "Hold the row, then straighten the arms back."
+    },
+    {
+      "tag": "L4",
+      "title": "Palms up",
+      "text": "Underhand grip for more biceps."
+    },
+    {
+      "tag": "L5",
+      "title": "Crossed ropes",
+      "text": "Cross the ropes for a wider pull."
+    },
+    {
+      "tag": "L6",
+      "title": "Kneeling upright or straddling the carriage",
+      "text": "Harder base."
+    }
+  ],
+  "modifications": [
+    "Long box or cross-legged for sore knees.",
+    "Long loops for less resistance."
+  ],
+  "cautions": [
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Sit on the long box or with legs through the shoulder rests."
+    }
+  ],
+  "prep": [],
+  "cues": "Feel it between and below the shoulder blades.\nShoulders stay away from the ears.\nBody stays upright — no leaning back to help.",
+  "labels": [
+    "pregnancy-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

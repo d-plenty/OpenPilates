@@ -1,0 +1,133 @@
+{
+  "slug": "arabesque",
+  "name": "Arabesque",
+  "apparatus": "reformer",
+  "section": "lower",
+  "level": "intermediate",
+  "position": "standing",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "hip-dissociation"
+  ],
+  "muscles": {
+    "primary": [
+      "hamstrings",
+      "glutes"
+    ],
+    "secondary": [
+      "abdominals",
+      "calves",
+      "deltoids"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium"
+    ],
+    "lighterIsHarder": true,
+    "note": "Lighter makes the standing leg and trunk work harder."
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": true,
+  "role": "both",
+  "stable": "Shoulders, trunk and pelvis",
+  "mobile": "Standing hip",
+  "categories": [
+    "hip_extension",
+    "standing"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 1,
+    "stability": 2,
+    "flexibility": 2,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 150,
+  "reps": "10–20 each side",
+  "summary": "Elephant on one leg. Hands on the footbar, one foot flat on the carriage, the other leg lifted long behind while the standing leg slides the carriage out and back.",
+  "steps": [
+    "Stand on the carriage with hands on the footbar, shoulders over the bar.",
+    "Place one foot flat in front of the shoulder rest; lift the other leg behind, slightly turned out.",
+    "Breathe in to press the carriage back with the standing leg.",
+    "Breathe out to draw it home with control."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Foot in front of the shoulder rest",
+      "text": "Most stable."
+    },
+    {
+      "tag": "L2",
+      "title": "Heel lifted against the shoulder rest",
+      "text": "More calf and balance."
+    },
+    {
+      "tag": "L3",
+      "title": "Foot on top of the shoulder rest",
+      "text": "Hardest balance."
+    }
+  ],
+  "modifications": [
+    "Go back to Elephant on two feet.",
+    "Take spring off only once the movement is steady."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "side-lying-strap-series"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "side-lying-strap-series"
+    },
+    {
+      "tag": "wrist",
+      "severity": "modify",
+      "note": "Weight is through the hands — try fists or forearms on the bar, or swap.",
+      "swap": "scooter"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "Loaded forward bend.",
+      "swap": "scooter"
+    },
+    {
+      "tag": "balance",
+      "severity": "avoid",
+      "note": "Single-leg balance on a moving carriage.",
+      "swap": "elephant"
+    },
+    {
+      "tag": "si_joint",
+      "severity": "avoid",
+      "note": "One-sided, asymmetrical loading.",
+      "swap": "elephant"
+    }
+  ],
+  "prep": [
+    "elephant"
+  ],
+  "cues": "Upper body is a statue; the leg does the travelling.\nHips and shoulders square to the footbar.\nSoft elbows and a soft standing knee.\nKeep the back leg lifting the whole time.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

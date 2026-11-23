@@ -1,0 +1,129 @@
+{
+  "slug": "boomerang",
+  "name": "Boomerang",
+  "apparatus": "mat",
+  "section": "core",
+  "level": "advanced",
+  "position": "seated",
+  "spine": [
+    "flexion",
+    "articulation"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "spinal-articulation",
+    "coordination",
+    "flexion"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "hip_flexors"
+    ],
+    "secondary": [
+      "hamstrings",
+      "upper_back",
+      "deltoids"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "both",
+  "stable": "Balance point",
+  "mobile": "Whole spine, hips and shoulders",
+  "categories": [
+    "trunk_flexion",
+    "hip_flexion"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 2,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 9,
+  "duration": 150,
+  "reps": "3–6",
+  "summary": "A flowing chain: roll over with crossed ankles, switch the cross, roll up to a balanced V, sweep the arms behind and fold forward over the legs.",
+  "steps": [
+    "Sit tall with legs long and one ankle crossed over the other, hands by the hips.",
+    "Roll back, taking the legs overhead; uncross and recross the ankles the other way.",
+    "Roll up to balance in a V, arms reaching forward.",
+    "Sweep the arms behind, clasp the hands and lift them as the legs lower and the body folds forward.",
+    "Circle the arms round to the feet and roll up to sitting."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Rolling like a ball",
+      "text": "Find the rhythm."
+    },
+    {
+      "tag": "L2",
+      "title": "Roll over and teaser separately",
+      "text": "Practise the parts."
+    },
+    {
+      "tag": "L3",
+      "title": "Full boomerang",
+      "text": "Join them."
+    }
+  ],
+  "modifications": [
+    "Bend the knees in the V.",
+    "Leave out the arm clasp."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "spine-stretch-forward"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "spine-stretch-forward"
+    },
+    {
+      "tag": "neck",
+      "severity": "avoid",
+      "note": "Weight near the neck.",
+      "swap": "spine-stretch-forward"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Loaded spinal flexion.",
+      "swap": "spine-twist"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "Deep spinal flexion.",
+      "swap": "spine-stretch-forward"
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Skip the arm clasp behind the back."
+    }
+  ],
+  "prep": [
+    "roll-over",
+    "teaser",
+    "spine-stretch-forward"
+  ],
+  "cues": "Each part needs to be steady alone before you join them.\nFind the balance before the arms move.\nLower the legs with control, no dropping.",
+  "labels": [
+    "peak"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

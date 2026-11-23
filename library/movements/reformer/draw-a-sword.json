@@ -1,0 +1,106 @@
+{
+  "slug": "draw-a-sword",
+  "name": "Draw a Sword",
+  "apparatus": "reformer",
+  "section": "single_arm",
+  "level": "intermediate",
+  "position": "kneeling",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "transverse",
+  "patterns": [
+    "stabilisation",
+    "pull",
+    "coordination"
+  ],
+  "muscles": {
+    "primary": [
+      "deltoids",
+      "triceps"
+    ],
+    "secondary": [
+      "upper_back",
+      "obliques"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "xlight"
+    ],
+    "advance": [
+      "light"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "short"
+  },
+  "perSide": true,
+  "role": "stability",
+  "stable": "Ribcage and pelvis",
+  "mobile": "Shoulder and elbow",
+  "categories": [
+    "upper_body"
+  ],
+  "pregnancy": "ok",
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 5,
+  "duration": 150,
+  "reps": "10–30 each arm",
+  "summary": "Kneeling side-on, the outside hand starts at the opposite hip, pulls up across the body with a bent elbow and extends on a high diagonal.",
+  "steps": [
+    "Kneel side-on, sitting on the heels; the arm furthest from the straps reaches across to hold a short loop.",
+    "Breathe in to draw the elbow up and across on a diagonal above the shoulder.",
+    "Breathe out to straighten the arm along that line.",
+    "Breathe in to bend; breathe out to return the hand across the body."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Sitting on heels",
+      "text": "Most stable."
+    },
+    {
+      "tag": "L2",
+      "title": "Kneeling upright",
+      "text": "Harder base."
+    },
+    {
+      "tag": "L3",
+      "title": "With rotation",
+      "text": "Let the chest follow the hand."
+    }
+  ],
+  "modifications": [
+    "Long loop for less resistance.",
+    "Sit on the long box for sore knees."
+  ],
+  "cautions": [
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Sit on the long box."
+    },
+    {
+      "tag": "shoulder",
+      "severity": "avoid",
+      "note": "Loaded reach above shoulder height.",
+      "swap": "external-rotation"
+    }
+  ],
+  "prep": [],
+  "cues": "Shoulders and hips stay square.\nNo twisting to help — unless you choose the rotation layer.\nLong neck, relaxed shoulders.\nCarriage moves smoothly, no jerks.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

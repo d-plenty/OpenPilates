@@ -2,6 +2,7 @@
   "slug": "side-kick-series",
   "name": "Side Kick Series",
   "apparatus": "mat",
+  "section": "pelvic",
   "level": "beginner",
   "position": "side-lying",
   "spine": [
@@ -24,6 +25,17 @@
   },
   "equipment": [],
   "load": null,
+  "perSide": true,
+  "role": "stability",
+  "stable": "Trunk and pelvis",
+  "mobile": "Top hip",
+  "categories": [
+    "hip_abduction",
+    "hip_flexion",
+    "hip_extension",
+    "hip_adduction"
+  ],
+  "pregnancy": "recommended",
   "purpose": {
     "strength": 2,
     "stability": 2,
@@ -35,12 +47,51 @@
   "duration": 180,
   "reps": "8 each kick, each side",
   "summary": "Lying on the side, kick front and back, lift and lower, and circle the top leg.",
-  "layers": [],
+  "steps": [
+    "Lie on one side in a long line, legs slightly forward of the body, head on the arm.",
+    "Lift the top leg to hip height.",
+    "Kick it forward, then sweep it back, without the trunk moving.",
+    "Add lifts, circles and inner-thigh lifts."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Front and back",
+      "text": "Kicks."
+    },
+    {
+      "tag": "L2",
+      "title": "Up and down",
+      "text": "Lifts."
+    },
+    {
+      "tag": "L3",
+      "title": "Circles",
+      "text": "Both ways."
+    },
+    {
+      "tag": "L4",
+      "title": "Inner-thigh lifts",
+      "text": "Top leg crossed over, bottom leg lifts."
+    },
+    {
+      "tag": "L5",
+      "title": "Propped on the elbow",
+      "text": "More waist work."
+    }
+  ],
+  "modifications": [
+    "Bend the bottom knee for balance.",
+    "Top hand on the mat in front."
+  ],
   "cautions": [],
-  "cues": "",
-  "labels": [],
+  "prep": [],
+  "cues": "The waist stays still while the leg moves.\nHips stacked.\nLeg long, reaching out of the hip.",
+  "labels": [
+    "pregnancy-friendly"
+  ],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

@@ -2,6 +2,7 @@
   "slug": "double-leg-stretch",
   "name": "Double Leg Stretch",
   "apparatus": "mat",
+  "section": "core",
   "level": "intermediate",
   "position": "supine",
   "spine": [
@@ -23,6 +24,14 @@
   },
   "equipment": [],
   "load": null,
+  "perSide": false,
+  "role": "stability",
+  "stable": "Curl and pelvis",
+  "mobile": "Shoulders and hips",
+  "categories": [
+    "trunk_flexion"
+  ],
+  "pregnancy": "early_only",
   "purpose": {
     "strength": 1,
     "stability": 3,
@@ -34,25 +43,58 @@
   "duration": 60,
   "reps": "6",
   "summary": "From a tight curl, reach arms and legs long, circle the arms and hug back in.",
-  "layers": [],
+  "steps": [
+    "Curl up with both knees in, hands on the shins.",
+    "Breathe in to reach the arms back by the ears and the legs away.",
+    "Breathe out to circle the arms round and hug the knees in."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Arms only",
+      "text": "Legs stay in tabletop."
+    },
+    {
+      "tag": "L2",
+      "title": "Legs only",
+      "text": "Arms stay forward."
+    },
+    {
+      "tag": "L3",
+      "title": "Both",
+      "text": "Basic."
+    }
+  ],
+  "modifications": [
+    "Head down.",
+    "Legs to the ceiling."
+  ],
   "cautions": [
     {
       "tag": "pregnancy",
-      "note": "Curling up on the back later in pregnancy."
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "bird-dog"
     },
     {
       "tag": "neck",
+      "severity": "avoid",
       "note": "Head-down option."
     },
     {
       "tag": "low_bone_density",
+      "severity": "avoid",
       "note": "Loaded flexion."
     }
   ],
-  "cues": "",
+  "prep": [
+    "supine-curl",
+    "single-leg-stretch"
+  ],
+  "cues": "The curl doesn't drop when the arms go back.\nLegs only as low as the back stays quiet.\nReach in two directions at once.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

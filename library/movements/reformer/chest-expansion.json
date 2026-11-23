@@ -2,6 +2,7 @@
   "slug": "chest-expansion",
   "name": "Chest Expansion",
   "apparatus": "reformer",
+  "section": "back_shoulders",
   "level": "beginner",
   "position": "kneeling",
   "spine": [
@@ -26,8 +27,24 @@
   "load": {
     "springs": [
       "light"
+    ],
+    "advance": [
+      "light",
+      "xlight"
     ]
   },
+  "setup": {
+    "headrest": "any",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Trunk and pelvis",
+  "mobile": "Shoulders",
+  "categories": [
+    "upper_body"
+  ],
+  "pregnancy": "recommended",
   "purpose": {
     "strength": 1,
     "stability": 2,
@@ -37,21 +54,28 @@
   "multiJoint": true,
   "intensity": 4,
   "duration": 120,
-  "reps": "6",
+  "reps": "8–10",
   "summary": "Kneeling tall facing the straps, pull the arms back, turn the head side to side and return.",
+  "steps": [],
   "layers": [],
+  "modifications": [
+    "Sit on the long box for sore knees.",
+    "Long loops for less resistance."
+  ],
   "cautions": [
     {
       "tag": "knee",
+      "severity": "avoid",
       "note": "Kneeling on the carriage; pad the knees."
     }
   ],
-  "cues": "",
+  "prep": [],
+  "cues": "Stay tall — no leaning back as the arms pull.\nCollarbones wide.\nRopes stay tight.",
   "labels": [
     "pregnancy-friendly"
   ],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

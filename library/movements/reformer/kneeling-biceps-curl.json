@@ -1,0 +1,112 @@
+{
+  "slug": "kneeling-biceps-curl",
+  "name": "Kneeling Biceps Curl",
+  "apparatus": "reformer",
+  "section": "chest_arms",
+  "level": "beginner",
+  "position": "kneeling",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "pull"
+  ],
+  "muscles": {
+    "primary": [
+      "biceps"
+    ],
+    "secondary": [
+      "deltoids",
+      "upper_back",
+      "abdominals"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "light"
+    ],
+    "advance": [
+      "light",
+      "xlight"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Trunk, pelvis and upper arms",
+  "mobile": "Elbows",
+  "categories": [
+    "upper_body"
+  ],
+  "pregnancy": "ok",
+  "purpose": {
+    "strength": 2,
+    "stability": 1,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": false,
+  "intensity": 4,
+  "duration": 120,
+  "reps": "10–30",
+  "summary": "Kneeling facing the straps with arms out at shoulder height, palms up; the elbows bend to bring the little fingers towards the eyebrows.",
+  "steps": [
+    "Kneel facing the straps, sitting on the heels, spine tall.",
+    "Hold the short loops, arms straight at shoulder height, palms up.",
+    "Breathe out to bend the elbows, hands towards the forehead.",
+    "Breathe in to straighten."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Sitting on heels",
+      "text": "Most stable."
+    },
+    {
+      "tag": "L2",
+      "title": "Kneeling upright",
+      "text": "Harder base."
+    },
+    {
+      "tag": "L3",
+      "title": "Seated, legs through the shoulder rests",
+      "text": "Long sitting."
+    },
+    {
+      "tag": "L4",
+      "title": "Boat",
+      "text": "Lean back with feet down or lifted."
+    },
+    {
+      "tag": "L5",
+      "title": "Curl and roll back",
+      "text": "Add a half roll-back with each curl."
+    }
+  ],
+  "modifications": [
+    "Long loops for less resistance.",
+    "Sit on the long box for sore knees."
+  ],
+  "cautions": [
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Sit on the long box."
+    }
+  ],
+  "prep": [],
+  "cues": "Elbows stay up level with the shoulders.\nRopes stay tight all the way.\nShoulders soft, neck long.",
+  "labels": [
+    "pregnancy-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

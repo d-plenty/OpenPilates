@@ -1,0 +1,128 @@
+{
+  "slug": "reformer-plank",
+  "name": "Plank (Hands on the Platform)",
+  "apparatus": "reformer",
+  "section": "core",
+  "level": "intermediate",
+  "position": "plank",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "serratus"
+    ],
+    "secondary": [
+      "deltoids",
+      "glutes",
+      "quadriceps",
+      "obliques"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "light",
+      "xlight"
+    ],
+    "advance": [
+      "light"
+    ],
+    "lighterIsHarder": true
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Everything — trunk, shoulders, pelvis",
+  "mobile": "Nothing",
+  "categories": [
+    "quadruped"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 90,
+  "reps": "Hold 30–60 s",
+  "summary": "Hands on the standing platform, feet against the shoulder rests, carriage pressed out and held still in a straight plank.",
+  "steps": [
+    "Footbar down. Hands on the platform under the shoulders, feet against the shoulder rests, knees down.",
+    "Draw the belly in, then press the carriage out and lift the knees into a plank.",
+    "Hold, breathing steadily."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Knees down",
+      "text": "Half plank."
+    },
+    {
+      "tag": "L2",
+      "title": "Full plank",
+      "text": "Hold."
+    },
+    {
+      "tag": "L3",
+      "title": "Feet on shoulder rests",
+      "text": "Higher feet."
+    },
+    {
+      "tag": "L4",
+      "title": "Single leg",
+      "text": "Lift one foot."
+    },
+    {
+      "tag": "L5",
+      "title": "Hands on the box",
+      "text": "Change the angle."
+    }
+  ],
+  "modifications": [
+    "Forearms down to spare the wrists and shoulders.",
+    "Knees on the carriage.",
+    "A heavier spring makes the carriage steadier."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "shoulder-retraction"
+    },
+    {
+      "tag": "wrist",
+      "severity": "modify",
+      "note": "Forearm plank."
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Knees down, heavier spring."
+    },
+    {
+      "tag": "extension_pain",
+      "severity": "modify",
+      "note": "Knees down; keep the ribs drawn in."
+    }
+  ],
+  "prep": [],
+  "cues": "One line from head to heels.\nHips don't sag and don't pike.\nLook just ahead of the hands; neck long.\nElbows soft.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "slug": "side-lying-chest-opening",
+  "name": "Side-lying Chest Opening",
+  "apparatus": "mat",
+  "section": "stretch",
+  "level": "beginner",
+  "position": "side-lying",
+  "spine": [
+    "rotation"
+  ],
+  "plane": "transverse",
+  "patterns": [
+    "rotation"
+  ],
+  "muscles": {
+    "primary": [
+      "obliques",
+      "upper_back"
+    ],
+    "secondary": [
+      "chest",
+      "deltoids"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": true,
+  "role": "mobility",
+  "stable": "Pelvis and knees",
+  "mobile": "Upper spine and shoulder",
+  "categories": [
+    "rotation"
+  ],
+  "pregnancy": "recommended",
+  "purpose": {
+    "strength": 0,
+    "stability": 1,
+    "flexibility": 2,
+    "mobility": 3
+  },
+  "multiJoint": false,
+  "intensity": 1,
+  "duration": 120,
+  "reps": "5–8 each side",
+  "summary": "Lying on one side with knees bent and arms together in front, the top arm opens like the cover of a book while the chest turns to the ceiling.",
+  "steps": [
+    "Lie on one side, knees bent up level with the hips, head supported, arms long in front with palms together.",
+    "Breathe in to lift the top arm to the ceiling.",
+    "Breathe out to keep opening, letting the head and chest follow the hand.",
+    "Breathe in to pause; breathe out to close."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Bent elbow",
+      "text": "Hand slides along the chest for a shorter lever."
+    },
+    {
+      "tag": "L2",
+      "title": "Long arm",
+      "text": "Full reach."
+    },
+    {
+      "tag": "L3",
+      "title": "Arm circle",
+      "text": "Sweep the arm overhead and round."
+    }
+  ],
+  "modifications": [
+    "Cushion under the head.",
+    "Smaller range for sore shoulders."
+  ],
+  "cautions": [
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Keep the elbow bent and the range small."
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "modify",
+      "note": "Gentle, unforced range only."
+    }
+  ],
+  "prep": [],
+  "cues": "Knees stay stacked — that is what keeps the twist in the upper back.\nEyes follow the moving hand.\nLet the breath out soften the ribs open.",
+  "labels": [
+    "warm-up",
+    "cool-down",
+    "mobilisation",
+    "pregnancy-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

@@ -2,6 +2,7 @@
   "slug": "long-stretch",
   "name": "Long Stretch",
   "apparatus": "reformer",
+  "section": "core",
   "level": "intermediate",
   "position": "plank",
   "spine": [
@@ -28,9 +29,27 @@
   "load": {
     "springs": [
       "medium",
-      "light"
-    ]
+      "xlight"
+    ],
+    "advance": [
+      "medium"
+    ],
+    "lighterIsHarder": true,
+    "note": "A heavier spring gives more support."
   },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Trunk, pelvis and legs",
+  "mobile": "Shoulders",
+  "categories": [
+    "quadruped",
+    "upper_body"
+  ],
+  "pregnancy": "avoid",
   "purpose": {
     "strength": 2,
     "stability": 3,
@@ -40,40 +59,84 @@
   "multiJoint": true,
   "intensity": 7,
   "duration": 180,
-  "reps": "5–8",
+  "reps": "10–20",
   "summary": "Plank with hands on the footbar and feet against the shoulder blocks, moving the carriage from the shoulders.",
+  "steps": [
+    "Hands on the footbar shoulder-width apart.",
+    "Feet against the shoulder rests; press up into a plank.",
+    "Breathe in to push away from the bar with straight arms; the carriage travels back.",
+    "Breathe out to draw the shoulders back over the wrists."
+  ],
   "layers": [
     {
       "tag": "L1",
-      "title": "Knee plank",
-      "text": "Knees down on the carriage, small range."
+      "title": "Small range",
+      "text": "Start here."
     },
     {
       "tag": "L2",
-      "title": "Full plank",
-      "text": "Move the carriage out and in from the shoulders."
+      "title": "Bigger range",
+      "text": "Travel further."
+    },
+    {
+      "tag": "L3",
+      "title": "Pulses",
+      "text": "Small pulses at the far point."
+    },
+    {
+      "tag": "L4",
+      "title": "Single leg",
+      "text": "Lift one leg."
+    },
+    {
+      "tag": "L5",
+      "title": "With push-ups",
+      "text": "Add a push-up at the bar."
+    },
+    {
+      "tag": "L6",
+      "title": "Hold and bend",
+      "text": "Hold out and bend and straighten the knees."
     }
+  ],
+  "modifications": [
+    "Knees down on the carriage (see Kneeling Long Stretch).",
+    "Heavier spring.",
+    "Smaller range."
   ],
   "cautions": [
     {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "shoulder-retraction"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "shoulder-retraction"
+    },
+    {
       "tag": "wrist",
+      "severity": "avoid",
       "note": "Weight through the hands; offer forearms or swap.",
-      "swap": "elephant"
+      "swap": "supine-arm-pulls"
     },
     {
       "tag": "shoulder",
+      "severity": "avoid",
       "note": "Keep the range small; skip if painful."
-    },
-    {
-      "tag": "pregnancy",
-      "note": "Plank loads the abdominals later in pregnancy; offer knee plank or swap.",
-      "swap": "elephant"
     }
   ],
-  "cues": "",
+  "prep": [
+    "kneeling-long-stretch",
+    "knee-stretches"
+  ],
+  "cues": "The movement comes from the shoulders; the body is a plank being carried.\nHips don't lift on the way in or sag on the way out.\nArms straight, elbows soft.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

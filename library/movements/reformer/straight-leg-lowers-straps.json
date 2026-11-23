@@ -1,0 +1,133 @@
+{
+  "slug": "straight-leg-lowers-straps",
+  "name": "Straight-leg Lowers with Arms in Straps",
+  "apparatus": "reformer",
+  "section": "core",
+  "level": "intermediate",
+  "position": "supine",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "hip-dissociation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "hip_flexors"
+    ],
+    "secondary": [
+      "lats",
+      "adductors",
+      "quadriceps"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "light"
+    ],
+    "advance": [
+      "medium",
+      "light",
+      "xlight"
+    ]
+  },
+  "setup": {
+    "headrest": "up",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Pelvis and spine",
+  "mobile": "Hips and shoulders",
+  "categories": [
+    "hip_flexion",
+    "upper_body"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 7,
+  "duration": 120,
+  "reps": "10–20",
+  "summary": "Arms pressed down in the straps, both straight legs lower away from the ceiling to about 45° and lift back.",
+  "steps": [
+    "Lie on the back, legs straight up, hands in the short loops with arms long beside the hips.",
+    "Breathe in to lower the legs to about 45° while the arms lift a little.",
+    "Breathe out to press the arms down and bring the legs back up."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Both legs",
+      "text": "Basic."
+    },
+    {
+      "tag": "L2",
+      "title": "Single-leg lowers",
+      "text": "Alternate."
+    },
+    {
+      "tag": "L3",
+      "title": "With a curl",
+      "text": "Add the abdominal curl."
+    },
+    {
+      "tag": "L4",
+      "title": "Prop",
+      "text": "Ball or ring between the ankles."
+    }
+  ],
+  "modifications": [
+    "Smaller range, or bend the knees.",
+    "Long loops for less resistance."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "side-lying-strap-series"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "side-lying-strap-series"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "modify",
+      "note": "Bend the knees and keep the range small."
+    },
+    {
+      "tag": "neck",
+      "severity": "modify",
+      "note": "Head stays down."
+    },
+    {
+      "tag": "si_joint",
+      "severity": "modify",
+      "note": "Keep both legs together and the range small."
+    }
+  ],
+  "prep": [
+    "supine-arm-pulls",
+    "ab-curl-in-straps"
+  ],
+  "cues": "Legs only go as low as the back stays quiet.\nRibs stay closed as the legs lower.\nNeck long and relaxed.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

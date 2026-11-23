@@ -2,6 +2,7 @@
   "slug": "thigh-stretch",
   "name": "Thigh Stretch",
   "apparatus": "reformer",
+  "section": "stretch",
   "level": "intermediate",
   "position": "kneeling",
   "spine": [
@@ -27,6 +28,18 @@
       "light"
     ]
   },
+  "setup": {
+    "headrest": "any",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "both",
+  "stable": "Knees to shoulders in one line",
+  "mobile": "Knees (hinge)",
+  "categories": [
+    "hip_extension"
+  ],
+  "pregnancy": "ok",
   "purpose": {
     "strength": 2,
     "stability": 2,
@@ -38,17 +51,24 @@
   "duration": 120,
   "reps": "6",
   "summary": "Kneeling tall holding the straps, hinge back from the knees in a straight line.",
+  "steps": [],
   "layers": [],
+  "modifications": [
+    "Smaller lean.",
+    "Pad under the knees."
+  ],
   "cautions": [
     {
       "tag": "knee",
+      "severity": "avoid",
       "note": "Deep knee load; keep the hinge small or skip."
     }
   ],
-  "cues": "",
+  "prep": [],
+  "cues": "One straight line from knees to head.\nDon't break at the hips.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

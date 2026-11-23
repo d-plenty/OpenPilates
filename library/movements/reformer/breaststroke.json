@@ -2,6 +2,7 @@
   "slug": "breaststroke",
   "name": "Breaststroke (Long Box)",
   "apparatus": "reformer",
+  "section": "back_shoulders",
   "level": "advanced",
   "position": "prone",
   "spine": [
@@ -28,8 +29,25 @@
   "load": {
     "springs": [
       "light"
+    ],
+    "advance": [
+      "light",
+      "xlight"
     ]
   },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "both",
+  "stable": "Pelvis and legs",
+  "mobile": "Shoulders and upper spine",
+  "categories": [
+    "upper_body",
+    "trunk_extension"
+  ],
+  "pregnancy": "avoid",
   "purpose": {
     "strength": 2,
     "stability": 2,
@@ -39,29 +57,49 @@
   "multiJoint": true,
   "intensity": 7,
   "duration": 150,
-  "reps": "4",
+  "reps": "10–30",
   "summary": "Face down on the long box, reach the arms forward and circle them back while extending the spine.",
+  "steps": [
+    "Long box over the shoulder rests. Lie face down facing the footbar, chest at the front edge, straps in the hands by the shoulders.",
+    "Breathe out to reach the arms straight ahead; the carriage moves back.",
+    "Lift the chest and sweep the arms wide and round to the hips.",
+    "Breathe in to lengthen, bend the elbows and return to the start."
+  ],
   "layers": [],
+  "modifications": [
+    "Bend the knees for a tender lower back.",
+    "Light springs, or no straps, for sore shoulders."
+  ],
   "cautions": [
     {
       "tag": "pregnancy",
-      "note": "Lying face down on the box.",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "chest-expansion"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
       "swap": "chest-expansion"
     },
     {
       "tag": "shoulder",
+      "severity": "avoid",
       "note": "Overhead reach; small range."
     },
     {
       "tag": "extension_pain",
+      "severity": "avoid",
       "note": "Keep the lift small.",
       "swap": "pulling-straps"
     }
   ],
-  "cues": "",
+  "prep": [],
+  "cues": "Pelvis and thighs stay heavy.\nUpper arms by the ears on the reach.\nHead stays down until the arms begin to circle.\nLegs long and awake.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

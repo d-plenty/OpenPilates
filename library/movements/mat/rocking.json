@@ -1,0 +1,122 @@
+{
+  "slug": "rocking",
+  "name": "Rocking",
+  "apparatus": "mat",
+  "section": "back_shoulders",
+  "level": "advanced",
+  "position": "prone",
+  "spine": [
+    "extension"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "extension",
+    "coordination"
+  ],
+  "muscles": {
+    "primary": [
+      "spinal_extensors",
+      "glutes"
+    ],
+    "secondary": [
+      "quadriceps",
+      "hip_flexors",
+      "chest",
+      "deltoids"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "mobility",
+  "stable": "The bow shape",
+  "mobile": "Whole body rocks",
+  "categories": [
+    "trunk_extension",
+    "hip_extension"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 1,
+    "stability": 2,
+    "flexibility": 3,
+    "mobility": 2
+  },
+  "multiJoint": true,
+  "intensity": 8,
+  "duration": 90,
+  "reps": "4–6",
+  "summary": "Face down, holding the ankles, the chest and thighs lift into a bow and the body rocks forward and back.",
+  "steps": [
+    "Lie face down, bend the knees and take hold of the ankles.",
+    "Breathe in to press the feet into the hands and lift the chest and thighs.",
+    "Breathe out to rock forward onto the chest.",
+    "Breathe in to rock back onto the thighs."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "One leg at a time",
+      "text": "Hold one ankle and lift."
+    },
+    {
+      "tag": "L2",
+      "title": "Bow, no rock",
+      "text": "Lift and hold."
+    },
+    {
+      "tag": "L3",
+      "title": "Rocking",
+      "text": "Full version."
+    }
+  ],
+  "modifications": [
+    "Hold a band looped round the ankles.",
+    "Bow without the rock."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "extension_pain",
+      "severity": "avoid",
+      "note": "Strong loaded extension.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "knee",
+      "severity": "avoid",
+      "note": "Deep knee bend under load.",
+      "swap": "swan-prep"
+    },
+    {
+      "tag": "shoulder",
+      "severity": "avoid",
+      "note": "Arms pulled behind under load.",
+      "swap": "swan-prep"
+    }
+  ],
+  "prep": [
+    "swan-prep",
+    "single-leg-kick",
+    "swan-dive"
+  ],
+  "cues": "Keep pressing the feet into the hands — that is what holds the bow.\nKnees no wider than the hips.\nHead stays in line.",
+  "labels": [
+    "peak"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

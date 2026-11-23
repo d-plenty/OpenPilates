@@ -1,0 +1,144 @@
+{
+  "slug": "teaser-long-box",
+  "name": "Teaser on the Long Box",
+  "apparatus": "reformer",
+  "section": "core",
+  "level": "advanced",
+  "position": "supine",
+  "spine": [
+    "flexion",
+    "articulation"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "flexion",
+    "spinal-articulation",
+    "coordination"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "hip_flexors"
+    ],
+    "secondary": [
+      "deltoids",
+      "quadriceps",
+      "lats"
+    ]
+  },
+  "equipment": [
+    "long_box"
+  ],
+  "load": {
+    "springs": [
+      "light"
+    ],
+    "lighterIsHarder": true
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "both",
+  "stable": "Balance point on the box",
+  "mobile": "Spine and hips",
+  "categories": [
+    "trunk_flexion",
+    "hip_flexion"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 9,
+  "duration": 150,
+  "reps": "6–10",
+  "summary": "Lying on the long box with the head off the end and the straps in the hands, chest and legs lift together into a V and roll back down.",
+  "steps": [
+    "Long box lengthways over the shoulder rests. Lie on the back, head just off the end, legs long, a short loop in each hand with arms hanging by the sides.",
+    "Breathe out to lift the chest and legs at the same time, arms sweeping forward into a V.",
+    "Breathe in to roll down bone by bone as the legs lower."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Boat",
+      "text": "Lift to bent knees."
+    },
+    {
+      "tag": "L2",
+      "title": "Legs stay on the box",
+      "text": "Just the upper body rolls up."
+    },
+    {
+      "tag": "L3",
+      "title": "Full teaser",
+      "text": "Legs and chest together."
+    },
+    {
+      "tag": "L4",
+      "title": "Hold and add arms",
+      "text": "Stay in the V for small flies or circles."
+    }
+  ],
+  "modifications": [
+    "Start sitting in the boat and practise the balance.",
+    "No straps."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "kneeling-biceps-curl"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "kneeling-biceps-curl"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Loaded flexion.",
+      "swap": "kneeling-biceps-curl"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "Loaded flexion.",
+      "swap": "kneeling-biceps-curl"
+    },
+    {
+      "tag": "neck",
+      "severity": "avoid",
+      "note": "Head unsupported.",
+      "swap": "kneeling-biceps-curl"
+    },
+    {
+      "tag": "balance",
+      "severity": "avoid",
+      "note": "Balancing on the box.",
+      "swap": "kneeling-biceps-curl"
+    }
+  ],
+  "prep": [
+    "ab-curl-in-straps",
+    "short-box-round-back",
+    "hundred-reformer"
+  ],
+  "cues": "Roll through the spine — no flinging.\nGrow tall at the top of the V.\nControl the way down more than the way up.",
+  "labels": [
+    "peak"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

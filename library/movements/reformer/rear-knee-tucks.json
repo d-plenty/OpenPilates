@@ -1,0 +1,121 @@
+{
+  "slug": "rear-knee-tucks",
+  "name": "Knee Tucks Facing the Straps",
+  "apparatus": "reformer",
+  "section": "core",
+  "level": "intermediate",
+  "position": "plank",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "flexion"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "serratus"
+    ],
+    "secondary": [
+      "hip_flexors",
+      "deltoids",
+      "obliques"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "light"
+    ],
+    "advance": [
+      "xlight"
+    ],
+    "lighterIsHarder": true,
+    "note": "No springs at all is the hardest version."
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Legs and pelvis",
+  "mobile": "Shoulders and hips",
+  "categories": [
+    "quadruped",
+    "hip_flexion"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 7,
+  "duration": 90,
+  "reps": "10–20",
+  "summary": "Hands on the carriage, feet on the platform: from the plank, pull the carriage in until the knees are under the hips and push it away again.",
+  "steps": [
+    "Set up in the plank facing the straps.",
+    "Breathe in to hold.",
+    "Breathe out to pull the carriage in with the abdominals, knees bending under the hips.",
+    "Breathe in to push it away, shoulders over wrists."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Knee tucks",
+      "text": "Basic."
+    },
+    {
+      "tag": "L2",
+      "title": "Single leg",
+      "text": "One foot lifted."
+    },
+    {
+      "tag": "L3",
+      "title": "Mountain climbers",
+      "text": "Alternate knees."
+    },
+    {
+      "tag": "L4",
+      "title": "Push from the shoulders",
+      "text": "Stay in the plank and move the carriage out and in with the arms only."
+    }
+  ],
+  "modifications": [
+    "Forearms on the carriage.",
+    "Knees on the platform."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "shoulder-retraction"
+    },
+    {
+      "tag": "wrist",
+      "severity": "modify",
+      "note": "Forearm version."
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Smaller range."
+    }
+  ],
+  "prep": [
+    "rear-plank"
+  ],
+  "cues": "The belly does the pulling, not the arms.\nLower back stays lifted.\nSmooth both ways.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

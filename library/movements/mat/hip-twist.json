@@ -1,0 +1,131 @@
+{
+  "slug": "hip-twist",
+  "name": "Hip Twist",
+  "apparatus": "mat",
+  "section": "core",
+  "level": "advanced",
+  "position": "seated",
+  "spine": [
+    "rotation"
+  ],
+  "plane": "transverse",
+  "patterns": [
+    "rotation",
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "obliques",
+      "hip_flexors"
+    ],
+    "secondary": [
+      "quadriceps",
+      "deltoids",
+      "adductors"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "stability",
+  "stable": "Chest and shoulders",
+  "mobile": "Pelvis and legs, in a circle",
+  "categories": [
+    "rotation",
+    "hip_flexion",
+    "trunk_flexion"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 8,
+  "duration": 120,
+  "reps": "3–5 each way",
+  "summary": "Leaning back on straight arms with the legs lifted in a V, the legs draw a circle — down to one side, round and up the other — while the chest stays lifted.",
+  "steps": [
+    "Sit leaning back on the hands, fingers pointing away, chest lifted.",
+    "Lift both legs together into a V.",
+    "Breathe in to take the legs to one side and down.",
+    "Breathe out to bring them round and up the other side. Reverse."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "On the forearms",
+      "text": "Lower, more supported."
+    },
+    {
+      "tag": "L2",
+      "title": "Knees bent",
+      "text": "Shorter lever."
+    },
+    {
+      "tag": "L3",
+      "title": "Legs long",
+      "text": "Full version."
+    }
+  ],
+  "modifications": [
+    "Forearms down.",
+    "Bend the knees.",
+    "One leg at a time."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "spine-twist"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "spine-twist"
+    },
+    {
+      "tag": "wrist",
+      "severity": "modify",
+      "note": "Forearms down."
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Forearms down."
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Loaded flexion with rotation.",
+      "swap": "spine-twist"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "Loaded flexion with rotation.",
+      "swap": "spine-twist"
+    },
+    {
+      "tag": "si_joint",
+      "severity": "avoid",
+      "note": "Twisting load through the pelvis.",
+      "swap": "spine-twist"
+    }
+  ],
+  "prep": [
+    "teaser",
+    "criss-cross"
+  ],
+  "cues": "Chest stays open and still; the pelvis does the turning.\nLegs glued together.\nKeep the circle small enough that the back doesn't arch.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

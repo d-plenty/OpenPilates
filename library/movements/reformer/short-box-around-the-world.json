@@ -1,0 +1,142 @@
+{
+  "slug": "short-box-around-the-world",
+  "name": "Short Box — Around the World",
+  "apparatus": "reformer",
+  "section": "core",
+  "level": "advanced",
+  "position": "seated",
+  "spine": [
+    "rotation",
+    "side-bend",
+    "extension"
+  ],
+  "plane": "transverse",
+  "patterns": [
+    "rotation",
+    "lateral-flexion",
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "obliques",
+      "abdominals"
+    ],
+    "secondary": [
+      "hip_flexors",
+      "spinal_extensors"
+    ]
+  },
+  "equipment": [
+    "short_box"
+  ],
+  "load": {
+    "springs": [
+      "medium",
+      "medium",
+      "medium"
+    ],
+    "note": "All springs on so the carriage can't move."
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "both",
+  "stable": "Pelvis and legs",
+  "mobile": "Trunk, in a circle",
+  "categories": [
+    "rotation",
+    "lateral_flexion",
+    "hip_flexion"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 8,
+  "duration": 150,
+  "reps": "4–6 each way",
+  "summary": "Sitting on the short box with feet under the strap and arms overhead: turn to one side, lean back, travel round through the back to the other side and come up.",
+  "steps": [
+    "Short box across the carriage in front of the shoulder rests; sit in the middle facing the footbar, feet under the strap, knees soft.",
+    "Arms overhead, sitting tall.",
+    "Breathe in to turn the chest to one side, hips facing front.",
+    "Lean back on that diagonal, circle round behind to the other side.",
+    "Breathe out to lift back to sitting. Repeat the other way."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Hands across the chest",
+      "text": "Shorter lever."
+    },
+    {
+      "tag": "L2",
+      "title": "Arms overhead",
+      "text": "Full version."
+    },
+    {
+      "tag": "L3",
+      "title": "Hold a prop",
+      "text": "Ball, ring or pole."
+    }
+  ],
+  "modifications": [
+    "Smaller circle.",
+    "Stay with the twist or the flat-back lean."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "mermaid"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "mermaid"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Loaded rotation and side bend.",
+      "swap": "short-box-flat-back"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "Loaded rotation.",
+      "swap": "short-box-flat-back"
+    },
+    {
+      "tag": "extension_pain",
+      "severity": "avoid",
+      "note": "Leaning back unsupported.",
+      "swap": "short-box-flat-back"
+    },
+    {
+      "tag": "si_joint",
+      "severity": "avoid",
+      "note": "Asymmetrical loading through the pelvis.",
+      "swap": "short-box-flat-back"
+    }
+  ],
+  "prep": [
+    "short-box-flat-back",
+    "short-box-twist",
+    "short-box-side-over"
+  ],
+  "cues": "It's a long-spine lean, not a slump.\nDon't haul yourself up with the feet.\nSlow all the way round.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

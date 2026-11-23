@@ -1,0 +1,114 @@
+{
+  "slug": "side-kneeling-series",
+  "name": "Side Kneeling Leg Series",
+  "apparatus": "mat",
+  "section": "pelvic",
+  "level": "intermediate",
+  "position": "kneeling",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "frontal",
+  "patterns": [
+    "stabilisation",
+    "abduction",
+    "hip-dissociation"
+  ],
+  "muscles": {
+    "primary": [
+      "abductors",
+      "glutes",
+      "obliques"
+    ],
+    "secondary": [
+      "deltoids",
+      "adductors"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": true,
+  "role": "stability",
+  "stable": "Trunk, supporting arm and knee",
+  "mobile": "Top hip",
+  "categories": [
+    "hip_abduction",
+    "lateral_flexion"
+  ],
+  "pregnancy": "ok",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 180,
+  "reps": "8–10 of each, each side",
+  "summary": "Propped on one hand and one knee with the top leg long at hip height: lifts, kicks and circles that load the outer hip and the waist together.",
+  "steps": [
+    "Kneel, then tip to one side: hand under the shoulder, top leg long in line with the body.",
+    "Top hand behind the head or on the hip.",
+    "Lift the leg to hip height and hold the trunk still.",
+    "Work through lifts, front-and-back kicks and small circles."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Lifts",
+      "text": "Up and down."
+    },
+    {
+      "tag": "L2",
+      "title": "Kicks",
+      "text": "Forward and back."
+    },
+    {
+      "tag": "L3",
+      "title": "Circles",
+      "text": "Both ways."
+    },
+    {
+      "tag": "L4",
+      "title": "Bend and stretch",
+      "text": "Knee in, leg out."
+    }
+  ],
+  "modifications": [
+    "Down on the forearm.",
+    "Lie on the side instead (see Side Kick Series)."
+  ],
+  "cautions": [
+    {
+      "tag": "wrist",
+      "severity": "modify",
+      "note": "Forearm down."
+    },
+    {
+      "tag": "knee",
+      "severity": "avoid",
+      "note": "Weight on one knee.",
+      "swap": "side-kick-series"
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Forearm down."
+    },
+    {
+      "tag": "si_joint",
+      "severity": "modify",
+      "note": "Smaller range."
+    }
+  ],
+  "prep": [
+    "side-kick-series"
+  ],
+  "cues": "Hips stacked and facing forward.\nPush the floor away with the supporting hand.\nThe leg moves; the waist doesn't.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

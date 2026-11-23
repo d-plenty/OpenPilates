@@ -28,8 +28,15 @@ for (const app of readdirSync(dir)) {
     } catch (e) { console.error(`✗ ${app}/${f}: ${e.message}`); problems++; }
   }
 }
-for (const mv of all.values()) for (const c of mv.cautions || []) {
-  if (c.swap && !all.has(c.swap)) { console.error(`✗ ${mv.slug}: swap "${c.swap}" doesn't exist`); problems++; }
+for (const mv of all.values()) {
+  for (const c of mv.cautions || []) {
+    if (c.swap && !all.has(c.swap)) { console.error(`✗ ${mv.slug}: swap "${c.swap}" doesn't exist`); problems++; }
+    if (c.swap && all.has(c.swap) && (all.get(c.swap).cautions || []).some((x) => x.tag === c.tag && x.severity !== 'modify')) { console.error(`✗ ${mv.slug}: swap "${c.swap}" carries the same "${c.tag}" caution`); problems++; }
+  }
+  for (const p of mv.prep || []) if (!all.has(p)) { console.error(`✗ ${mv.slug}: lead-in "${p}" doesn't exist`); problems++; }
+  for (const k of ['section', 'role', 'pregnancy']) if (!mv[k]) { console.error(`✗ ${mv.slug}: missing ${k}`); problems++; }
+  if (!mv.summary) { console.error(`✗ ${mv.slug}: no description`); problems++; }
+  if ((mv.pregnancy === 'avoid' || mv.pregnancy === 'early_only') && !(mv.cautions || []).some((c) => c.tag === 'pregnancy')) { console.error(`✗ ${mv.slug}: pregnancy is "${mv.pregnancy}" but there is no pregnancy caution`); problems++; }
 }
 console.log(problems ? `${problems} problem(s) in ${all.size} movements` : `✓ ${all.size} movements look good`);
 process.exit(problems ? 1 : 0);

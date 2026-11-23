@@ -2,6 +2,7 @@
   "slug": "pelvic-curl",
   "name": "Pelvic Curl",
   "apparatus": "mat",
+  "section": "pelvic",
   "level": "beginner",
   "position": "supine",
   "spine": [
@@ -22,6 +23,15 @@
   },
   "equipment": [],
   "load": null,
+  "perSide": false,
+  "role": "mobility",
+  "stable": "Feet, knees and shoulders",
+  "mobile": "Spine and hips",
+  "categories": [
+    "hip_extension",
+    "trunk_flexion"
+  ],
+  "pregnancy": "early_only",
   "purpose": {
     "strength": 1,
     "stability": 2,
@@ -33,20 +43,59 @@
   "duration": 90,
   "reps": "6–8",
   "summary": "Lying on the back with knees bent, peel the pelvis and spine up from the mat and roll back down.",
-  "layers": [],
+  "steps": [
+    "Lie on the back, knees bent, feet hip-width, arms by the sides.",
+    "Breathe out to tip the pelvis and peel the spine up to a bridge.",
+    "Breathe in to hold.",
+    "Breathe out to roll down from the breastbone to the tail."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Roll up and down",
+      "text": "Basic."
+    },
+    {
+      "tag": "L2",
+      "title": "Hip dips",
+      "text": "Small lowers and lifts at the top."
+    },
+    {
+      "tag": "L3",
+      "title": "Marching",
+      "text": "Alternate knees to tabletop."
+    },
+    {
+      "tag": "L4",
+      "title": "Single leg",
+      "text": "One leg long."
+    },
+    {
+      "tag": "L5",
+      "title": "Prop",
+      "text": "Ball or ring between the knees."
+    }
+  ],
+  "modifications": [
+    "Lift with a long spine instead of rolling.",
+    "Lower bridge."
+  ],
   "cautions": [
     {
       "tag": "pregnancy",
-      "note": "Lying on the back later in pregnancy; keep it short or incline."
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks."
     }
   ],
-  "cues": "",
+  "prep": [],
+  "cues": "One line from knees to shoulders at the top.\nKnees point straight ahead.\nWeight on the shoulder blades, not the neck.",
   "labels": [
     "warm-up",
+    "fundamental",
     "rehab-friendly"
   ],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

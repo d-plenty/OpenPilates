@@ -1,0 +1,105 @@
+{
+  "slug": "standing-hinge",
+  "name": "Standing Single-leg Hinge",
+  "apparatus": "mat",
+  "section": "lower",
+  "level": "intermediate",
+  "position": "standing",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "hip-dissociation"
+  ],
+  "muscles": {
+    "primary": [
+      "glutes",
+      "hamstrings"
+    ],
+    "secondary": [
+      "spinal_extensors",
+      "abdominals",
+      "abductors"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": true,
+  "role": "stability",
+  "stable": "Spine and standing leg",
+  "mobile": "Standing hip",
+  "categories": [
+    "hip_extension",
+    "standing"
+  ],
+  "pregnancy": "ok",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 1,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 5,
+  "duration": 150,
+  "reps": "6–10 each side",
+  "summary": "Balancing on one leg, the body tips forward as one long line while the free leg lifts behind. Three versions: straight forward, tipped to the side, and with a twist.",
+  "steps": [
+    "Stand tall on one leg, the other toe resting behind.",
+    "Breathe in to tip forward from the hip, the back leg lifting as the chest lowers.",
+    "Breathe out to return to upright."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Front",
+      "text": "Tip straight forward."
+    },
+    {
+      "tag": "L2",
+      "title": "Side",
+      "text": "Tip sideways, lifting the leg out to the side."
+    },
+    {
+      "tag": "L3",
+      "title": "With rotation",
+      "text": "At the bottom, turn the chest open and closed."
+    },
+    {
+      "tag": "L4",
+      "title": "Add arms or weights",
+      "text": "Reach forward or hold hand weights."
+    }
+  ],
+  "modifications": [
+    "Fingertips on a wall or chair.",
+    "Smaller tip."
+  ],
+  "cautions": [
+    {
+      "tag": "balance",
+      "severity": "modify",
+      "note": "Hold a wall or chair."
+    },
+    {
+      "tag": "si_joint",
+      "severity": "avoid",
+      "note": "One-leg loading.",
+      "swap": "bridge-magic-circle"
+    },
+    {
+      "tag": "hip_pain",
+      "severity": "modify",
+      "note": "Small range, hold on."
+    }
+  ],
+  "prep": [],
+  "cues": "Head to heel stays one line, like a seesaw.\nHips stay level and square.\nSoft standing knee.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

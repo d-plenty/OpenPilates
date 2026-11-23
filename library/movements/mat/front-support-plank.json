@@ -2,6 +2,7 @@
   "slug": "front-support-plank",
   "name": "Plank (Front Support)",
   "apparatus": "mat",
+  "section": "core",
   "level": "intermediate",
   "position": "plank",
   "spine": [
@@ -24,6 +25,15 @@
   },
   "equipment": [],
   "load": null,
+  "perSide": false,
+  "role": "stability",
+  "stable": "Everything",
+  "mobile": "Nothing",
+  "categories": [
+    "upper_body",
+    "quadruped"
+  ],
+  "pregnancy": "early_only",
   "purpose": {
     "strength": 2,
     "stability": 3,
@@ -35,22 +45,51 @@
   "duration": 60,
   "reps": "3 × 20 s",
   "summary": "Hold a long plank on the hands or forearms.",
-  "layers": [],
-  "cautions": [
+  "steps": [],
+  "layers": [
     {
-      "tag": "wrist",
-      "note": "Forearms down."
+      "tag": "L1",
+      "title": "Knees down",
+      "text": "Half plank."
     },
     {
-      "tag": "pregnancy",
-      "note": "Abdominal load; offer knees down or swap.",
-      "swap": "bird-dog"
+      "tag": "L2",
+      "title": "Full plank",
+      "text": "Basic."
+    },
+    {
+      "tag": "L3",
+      "title": "Leg lifts",
+      "text": "See Leg Pull Front."
+    },
+    {
+      "tag": "L4",
+      "title": "Forearms",
+      "text": "Different load."
     }
   ],
-  "cues": "",
+  "modifications": [
+    "Knees down.",
+    "Forearms for sore wrists."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "wrist",
+      "severity": "avoid",
+      "note": "Forearms down."
+    }
+  ],
+  "prep": [],
+  "cues": "One line from head to heels.\nPush the floor away.\nHips don't sag or pike.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

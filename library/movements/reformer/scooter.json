@@ -2,6 +2,7 @@
   "slug": "scooter",
   "name": "Scooter",
   "apparatus": "reformer",
+  "section": "lower",
   "level": "intermediate",
   "position": "standing",
   "spine": [
@@ -26,8 +27,25 @@
   "load": {
     "springs": [
       "medium"
+    ],
+    "advance": [
+      "medium",
+      "xlight"
     ]
   },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": true,
+  "role": "stability",
+  "stable": "Pelvis, spine and standing leg",
+  "mobile": "Carriage-leg hip and knee",
+  "categories": [
+    "hip_extension",
+    "standing"
+  ],
+  "pregnancy": "ok",
   "purpose": {
     "strength": 2,
     "stability": 2,
@@ -37,23 +55,67 @@
   "multiJoint": true,
   "intensity": 6,
   "duration": 180,
-  "reps": "10 each side",
+  "reps": "20–30 each side",
   "summary": "One foot on the platform, the other on the carriage. Push the carriage back from the hip.",
-  "layers": [],
+  "steps": [
+    "Stand beside the reformer near the footbar, inside foot on the floor next to the carriage.",
+    "Other foot against the nearest shoulder rest; standing knee bent, chest tipped slightly forward.",
+    "Breathe out to push the carriage back by straightening the carriage leg.",
+    "Breathe in to bend it back in."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Hands on the footbar",
+      "text": "Start here."
+    },
+    {
+      "tag": "L2",
+      "title": "One or both hands behind the back",
+      "text": "Balance."
+    },
+    {
+      "tag": "L3",
+      "title": "Pulses and holds",
+      "text": "Stay out."
+    },
+    {
+      "tag": "L4",
+      "title": "Add arms",
+      "text": "Weights or reaches."
+    },
+    {
+      "tag": "L5",
+      "title": "Front heel lifted",
+      "text": "Lift the standing heel, or put a small ball under it."
+    },
+    {
+      "tag": "L6",
+      "title": "Raised",
+      "text": "Standing foot on a box or platform."
+    }
+  ],
+  "modifications": [
+    "Pregnancy: a lighter spring and both hands on the bar.",
+    "Smaller range for knees."
+  ],
   "cautions": [
     {
       "tag": "knee",
+      "severity": "avoid",
       "note": "Bent-knee weight bearing; keep range small."
     },
     {
       "tag": "balance",
+      "severity": "avoid",
       "note": "Single-leg balance; keep a hand on the footbar."
     }
   ],
-  "cues": "",
+  "prep": [],
+  "cues": "Hips stay square to the footbar.\nWeight back in the standing heel, shin upright.\nStanding knee over the middle toes.\nThe standing leg doesn't bob up and down.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

@@ -1,0 +1,119 @@
+{
+  "slug": "supine-arm-openings",
+  "name": "Supine Arms in Straps — Out & In",
+  "apparatus": "reformer",
+  "section": "core",
+  "level": "beginner",
+  "position": "supine",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "frontal",
+  "patterns": [
+    "stabilisation",
+    "pull",
+    "adduction"
+  ],
+  "muscles": {
+    "primary": [
+      "lats",
+      "abdominals"
+    ],
+    "secondary": [
+      "chest",
+      "deltoids",
+      "hip_flexors"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "light"
+    ],
+    "advance": [
+      "medium",
+      "light",
+      "xlight"
+    ]
+  },
+  "setup": {
+    "headrest": "up",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Pelvis, spine and legs in tabletop",
+  "mobile": "Shoulders",
+  "categories": [
+    "upper_body",
+    "hip_flexion"
+  ],
+  "pregnancy": "supine",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 4,
+  "duration": 120,
+  "reps": "10–30",
+  "summary": "Legs in tabletop, hands in the straps: arms open out to the sides and press back in to the hips.",
+  "steps": [
+    "Lie on the back, legs in tabletop, hands in the short loops, arms long beside the hips.",
+    "Breathe in to open the arms out towards shoulder height.",
+    "Breathe out to press the palms back to the hips."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Out and in",
+      "text": "Basic."
+    },
+    {
+      "tag": "L2",
+      "title": "Circles",
+      "text": "Small or large, both directions."
+    },
+    {
+      "tag": "L3",
+      "title": "Hold the arms out",
+      "text": "Hold wide and extend the legs."
+    },
+    {
+      "tag": "L4",
+      "title": "Scissors or leg splits",
+      "text": "Legs move while the arms work."
+    }
+  ],
+  "modifications": [
+    "Long loops for less resistance.",
+    "Feet down on the footbar if the back arches."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "modify",
+      "note": "Lying flat on the back: keep it to a few minutes, raise the head end if you can, and stop if she feels dizzy."
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Lighter spring, smaller range."
+    },
+    {
+      "tag": "neck",
+      "severity": "modify",
+      "note": "Head stays down, headrest up."
+    }
+  ],
+  "prep": [],
+  "cues": "Arms stop just below shoulder height.\nKnees over hips; lower back quiet.\nSoft elbows.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

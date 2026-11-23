@@ -2,6 +2,7 @@
   "slug": "rowing-front",
   "name": "Rowing — Front Series",
   "apparatus": "reformer",
+  "section": "chest_arms",
   "level": "intermediate",
   "position": "seated",
   "spine": [
@@ -29,6 +30,20 @@
       "xlight"
     ]
   },
+  "setup": {
+    "headrest": "any",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "both",
+  "stable": "Pelvis and legs",
+  "mobile": "Spine and shoulders",
+  "categories": [
+    "trunk_flexion",
+    "trunk_extension",
+    "upper_body"
+  ],
+  "pregnancy": "early_only",
   "purpose": {
     "strength": 1,
     "stability": 2,
@@ -40,21 +55,31 @@
   "duration": 180,
   "reps": "4 each",
   "summary": "Seated facing the footbar, press the straps forward and up through a series of arm patterns.",
+  "steps": [],
   "layers": [],
+  "modifications": [],
   "cautions": [
     {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks."
+    },
+    {
       "tag": "shoulder",
+      "severity": "avoid",
       "note": "Overhead arm work; keep below pain."
     },
     {
       "tag": "low_bone_density",
+      "severity": "avoid",
       "note": "Forward fold under load; keep it small."
     }
   ],
-  "cues": "",
+  "prep": [],
+  "cues": "Sit tall on the sit bones.\nReach out of the crown of the head.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

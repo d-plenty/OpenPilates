@@ -1,0 +1,130 @@
+{
+  "slug": "footbar-press-up",
+  "name": "Shoulder Press & Push-up at the Footbar",
+  "apparatus": "reformer",
+  "section": "chest_arms",
+  "level": "intermediate",
+  "position": "plank",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "push"
+  ],
+  "muscles": {
+    "primary": [
+      "chest",
+      "triceps",
+      "deltoids"
+    ],
+    "secondary": [
+      "serratus",
+      "abdominals"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium"
+    ],
+    "advance": [
+      "medium",
+      "xlight"
+    ],
+    "note": "Shoulder press (carriage moves): R, RY to advance. Push-up (carriage still): B, or Y for more core."
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Trunk and pelvis",
+  "mobile": "Shoulders and elbows",
+  "categories": [
+    "upper_body",
+    "quadruped"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 3,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 120,
+  "reps": "10–20",
+  "summary": "Kneeling on the carriage in a half plank with hands on the footbar. Either press the carriage away with the arms, or hold it still and do push-ups.",
+  "steps": [
+    "Kneel on the carriage, hands on the footbar a little wider than the shoulders, feet against the shoulder rests.",
+    "Press the carriage out slightly into a half plank, chest over the bar.",
+    "Shoulder press: stay low; breathe out to push the carriage away by straightening the arms, breathe in to bend.",
+    "Push-up: hold the carriage still; bend the elbows wide to lower the chest to the bar and press up."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Shoulder press",
+      "text": "Carriage moves."
+    },
+    {
+      "tag": "L2",
+      "title": "Push-up",
+      "text": "Carriage still."
+    },
+    {
+      "tag": "L3",
+      "title": "Combo",
+      "text": "One of each."
+    },
+    {
+      "tag": "L4",
+      "title": "Pulses and tempo",
+      "text": "Low, middle or top range."
+    },
+    {
+      "tag": "L5",
+      "title": "Full plank",
+      "text": "Knees off the carriage."
+    },
+    {
+      "tag": "L6",
+      "title": "Hands and knees",
+      "text": "Knees under the hips for the easiest version."
+    }
+  ],
+  "modifications": [
+    "Less spring is easier on the shoulders but harder on the core — pick what the person needs."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "kneeling-chest-press"
+    },
+    {
+      "tag": "wrist",
+      "severity": "avoid",
+      "note": "Weight through extended wrists.",
+      "swap": "kneeling-chest-press"
+    },
+    {
+      "tag": "shoulder",
+      "severity": "avoid",
+      "note": "Loaded press through the shoulders.",
+      "swap": "kneeling-chest-press"
+    }
+  ],
+  "prep": [],
+  "cues": "Head, ribs and hips move as one piece.\nElbows track out to the sides.\nChin stays off the chest; shoulders don't round.\nElbows never lock.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

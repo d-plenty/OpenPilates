@@ -1,0 +1,96 @@
+{
+  "slug": "imprint",
+  "name": "Pelvic Tilt & Imprint",
+  "apparatus": "mat",
+  "section": "core",
+  "level": "beginner",
+  "position": "supine",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "spinal-articulation",
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals"
+    ],
+    "secondary": [
+      "obliques",
+      "glutes"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "mobility",
+  "stable": "Ribcage and legs",
+  "mobile": "Pelvis and lower spine",
+  "categories": [
+    "trunk_flexion"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 0,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 2
+  },
+  "multiJoint": false,
+  "intensity": 1,
+  "duration": 90,
+  "reps": "6–10",
+  "summary": "Lying on the back with knees bent, the pelvis rocks gently between neutral and a small tuck that eases the lower back towards the mat.",
+  "steps": [
+    "Lie on the back, knees bent, feet hip-width, arms by the sides, spine in neutral.",
+    "Breathe in to prepare.",
+    "Breathe out to draw the lower belly in and tip the pelvis so the lower back softens towards the mat.",
+    "Breathe in to return to neutral."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Tilt and release",
+      "text": "Basic."
+    },
+    {
+      "tag": "L2",
+      "title": "Hold and breathe",
+      "text": "Stay tilted for a breath."
+    },
+    {
+      "tag": "L3",
+      "title": "Add a knee lift",
+      "text": "Float one leg to tabletop without the pelvis moving."
+    }
+  ],
+  "modifications": [
+    "Small cushion under the head."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "cat-cow"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "modify",
+      "note": "Stay near neutral; skip the tuck if it aggravates."
+    }
+  ],
+  "prep": [],
+  "cues": "The belly does the work; the glutes and legs stay soft.\nRibs stay heavy.\nA small movement — no pressing or gripping.",
+  "labels": [
+    "warm-up",
+    "fundamental",
+    "rehab-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

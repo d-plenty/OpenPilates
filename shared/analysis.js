@@ -1,7 +1,9 @@
 // OpenPilates flow analysis. Pure functions, no DOM — runs in the browser and in Node tests.
 // Measures follow Kaleen Canevari's class-design metrics: spine movement against a target,
-// body-position changes, time moving vs setting up, and muscle balance.
-import { MUSCLES, SPINE_DIRECTIONS, DEFAULT_TARGETS, PURPOSES, LEVELS, CAUTIONS, labelOf, byId } from './vocab.js';
+// body-position changes, time moving vs setting up, and muscle balance. On top of that it checks
+// the things a reformer class is usually planned around: how often the springs change, whether
+// every part of the body gets a turn, and whether stabilising work is balanced with movement.
+import { MUSCLES, SPINE_DIRECTIONS, DEFAULT_TARGETS, PURPOSES, LEVELS, CAUTIONS, SECTION_GROUPS, CATEGORIES, labelOf, byId, sectionOf, sectionGroupOf, categoriesOf, roleOf, sameSetting } from './vocab.js';
 
 const MUSCLE = byId(MUSCLES);
 const LEVEL_RANK = Object.fromEntries(LEVELS.map((l) => [l.id, l.rank]));
@@ -17,10 +19,17 @@ export function itemDuration(item, mv) {
   return (mv && mv.duration) || 120;
 }
 
-function loadKey(item, mv) {
-  if (!mv || mv.apparatus !== 'reformer') return null;
-  const loads = (item.load && item.load.springs) || (mv.load && mv.load.springs) || [];
-  return [...loads].sort().join('+');
+const keyOf = (loads) => [...(loads || [])].sort().join('+');
+const LOAD_WEIGHT = { xlight: 1, light: 2, medium: 3, heavy: 4, xheavy: 5 };
+const weightOf = (loads) => (loads || []).reduce((a, l) => a + (LOAD_WEIGHT[l] || 0), 0);
+
+// Spring settings this movement can be taught on: the class override if there is one,
+// otherwise the usual setting and the "to advance" setting.
+function loadOptions(item, mv) {
+  if (item.load && Array.isArray(item.load.springs)) return [item.load.springs];
+  const out = [(mv.load && mv.load.springs) || []];
+  if (mv.load && mv.load.advance && mv.load.advance.length && keyOf(mv.load.advance) !== keyOf(out[0])) out.push(mv.load.advance);
+  return out;
 }
 
 function boxKey(mv) {
@@ -64,12 +73,23 @@ export function analyze({ flow, movements, studio = {}, clients = [] }) {
   const unknown = [];
   const segInfo = [];
   let prev = null;
+  let currentLoad = null;
+  const springPlan = [];
+  const springStops = [];
+  const groupSec = Object.fromEntries(SECTION_GROUPS.map((g) => [g.id, 0]));
+  const sectionSec = {};
+  const categoryCount = Object.fromEntries(CATEGORIES.map((c) => [c.id, 0]));
+  const roleSec = { stability: 0, mobility: 0 };
+  const sequence = [];
+  const positionsUsed = new Set();
+  let hasReformer = false;
 
   for (const seg of flow.segments || []) {
     const segStart = t;
-    for (const item of seg.items || []) {
+    const passes = seg.bothSides ? [1, 2] : [1];
+    for (const pass of passes) for (const item of seg.items || []) {
       const mv = mvOf(item.slug);
-      if (!mv) { unknown.push(item.slug); continue; }
+      if (!mv) { if (pass === 1) unknown.push(item.slug); continue; }
       const dur = itemDuration(item, mv);
 
       // transitions from the previous movement
@@ -77,9 +97,23 @@ export function analyze({ flow, movements, studio = {}, clients = [] }) {
         let cost = 0;
         if (prev.mv.position !== mv.position) { positionChanges++; cost += TRANSITION_COST.position; }
         if (prev.mv.apparatus !== mv.apparatus) { apparatusChanges++; cost += TRANSITION_COST.apparatus; }
-        else if (mv.apparatus === 'reformer' && loadKey(prev.item, prev.mv) !== loadKey(item, mv)) { springChanges++; cost += TRANSITION_COST.spring; }
         if (boxKey(prev.mv) !== boxKey(mv)) { boxChanges++; cost += TRANSITION_COST.box; }
         t += cost;
+      }
+
+      // springs: stay on the current setting whenever this movement can be taught on it
+      if (mv.apparatus === 'reformer') {
+        hasReformer = true;
+        const options = loadOptions(item, mv);
+        // "flexible" movements (most stretches) work on whatever light setting is already on
+        const flexible = !item.load && mv.load && mv.load.flexible && currentLoad && weightOf(currentLoad) <= 5;
+        const stay = currentLoad && (flexible ? currentLoad : options.find((o) => keyOf(o) === keyOf(currentLoad)) || (options.some((o) => sameSetting(o, currentLoad)) ? currentLoad : null));
+        let changed = false;
+        if (!stay) {
+          if (currentLoad) { springChanges++; t += TRANSITION_COST.spring; changed = true; springStops.push({ before: mv.name, loads: options[0] }); }
+          currentLoad = options[0];
+        }
+        springPlan.push({ itemId: item.id, pass, slug: mv.slug, name: mv.name, loads: currentLoad, changed, advanced: !!stay && !flexible && options.length > 1 && keyOf(options[1]) === keyOf(currentLoad) });
       }
 
       const last = timeline[timeline.length - 1];
@@ -103,6 +137,16 @@ export function analyze({ flow, movements, studio = {}, clients = [] }) {
 
       if (mv.multiJoint === false) isolated++; else multi++;
 
+      const group = sectionGroupOf(mv);
+      groupSec[group] += dur;
+      const sec = sectionOf(mv);
+      sectionSec[sec] = (sectionSec[sec] || 0) + dur;
+      if (pass === 1) for (const c of categoriesOf(mv)) if (c in categoryCount) categoryCount[c]++;
+      const role = roleOf(mv);
+      if (role === 'both') { roleSec.stability += dur / 2; roleSec.mobility += dur / 2; } else roleSec[role] += dur;
+      positionsUsed.add(mv.position);
+      sequence.push({ mv, role, pass });
+
       for (const e of mv.equipment || []) {
         if (!(Number(owned[e]) > 0)) {
           if (!missingEquip.has(e)) missingEquip.set(e, []);
@@ -119,6 +163,13 @@ export function analyze({ flow, movements, studio = {}, clients = [] }) {
   const totalSec = t;
   const transitionSec = totalSec - movingSec;
   const count = rows.length - unknown.length;
+
+  const groupTotal = Object.values(groupSec).reduce((a, b) => a + b, 0) || 1;
+  const sections = SECTION_GROUPS.map((g) => ({ id: g.id, label: g.label, color: g.color, sec: groupSec[g.id], pct: Math.round((groupSec[g.id] / groupTotal) * 100) }));
+  const roleTotal = roleSec.stability + roleSec.mobility || 1;
+  const roles = { stability: Math.round((roleSec.stability / roleTotal) * 100), mobility: Math.round((roleSec.mobility / roleTotal) * 100) };
+  const categories = CATEGORIES.map((c) => ({ id: c.id, label: c.label, count: categoryCount[c.id] }));
+  const springBudget = Number.isFinite(Number(flow.springBudget)) && flow.springBudget !== null && flow.springBudget !== undefined ? Number(flow.springBudget) : 6;
 
   const spineTotal = SPINE_DIRECTIONS.reduce((a, d) => a + spineSec[d], 0);
   const spine = Object.fromEntries(SPINE_DIRECTIONS.map((d) => [d, spineTotal ? Math.round((spineSec[d] / spineTotal) * 100) : 0]));
@@ -145,13 +196,13 @@ export function analyze({ flow, movements, studio = {}, clients = [] }) {
   // ---- checks
   const checks = [];
   const add = (level, id, title, body) => checks.push({ level, id, title, body });
-  const roles = new Set((flow.segments || []).filter((s) => (s.items || []).length).map((s) => s.role));
+  const segRoles = new Set((flow.segments || []).filter((s) => (s.items || []).length).map((s) => s.role));
   if (count === 0) {
     add('info', 'empty', 'Add some movements', 'Drag movements into a segment to see the analysis.');
   } else {
-    if (!roles.has('warmup')) add('warn', 'warmup', 'No warm-up', 'Mark a segment as Warm-up and start with lower-effort movements.');
+    if (!segRoles.has("warmup")) add('warn', 'warmup', 'No warm-up', 'Mark a segment as Warm-up and start with lower-effort movements.');
     else add('ok', 'warmup', 'Warm-up in place', `${fmtMin(segSec(segInfo, 'warmup'))} to start.`);
-    if (!roles.has('cooldown')) add('warn', 'cooldown', 'No cool-down', 'Finish with a stretch segment marked Cool-down.');
+    if (!segRoles.has("cooldown")) add('warn', 'cooldown', 'No cool-down', 'Finish with a stretch segment marked Cool-down.');
     else add('ok', 'cooldown', 'Cool-down in place', `${fmtMin(segSec(segInfo, 'cooldown'))} to finish.`);
 
     const missingDirs = SPINE_DIRECTIONS.filter((d) => spine[d] === 0);
@@ -162,6 +213,47 @@ export function analyze({ flow, movements, studio = {}, clients = [] }) {
       const diff = spine[d] - (target[d] || 0);
       if (spine[d] > 0 && diff <= -8) add('warn', 'spine-low-' + d, `${cap(dirLabel(d))} below target`, `${spine[d]}% vs ${target[d]}% for "${target.label || targetKey}".`);
       if (diff >= 12) add('info', 'spine-high-' + d, `${cap(dirLabel(d))} above target`, `${spine[d]}% vs ${target[d]}%.`);
+    }
+
+    // ---- reformer class design
+    if (hasReformer) {
+      if (springChanges > springBudget) add('warn', 'springs', `${springChanges} spring changes (aiming for ${springBudget} or fewer)`, `Changes come before: ${springStops.map((s) => s.before).join(', ')}. Group movements that share a setting, or use a movement's "to advance" spring to stay put. Settings one extra-light spring apart aren't counted.`);
+      else add('ok', 'springs', springChanges === 0 ? 'One spring setting all class' : `${springChanges} spring change${springChanges === 1 ? '' : 's'}`, `Within the limit of ${springBudget}.`);
+    }
+    if (count >= 6) {
+      const missing = sections.filter((s) => s.id !== 'stretch' && s.sec === 0);
+      if (missing.length) add('warn', 'sections', `No ${missing.map((s) => s.label.toLowerCase()).join(' or ')} work`, 'Pick something from each part of the body so the whole body feels worked.');
+      else add('ok', 'sections', 'Whole body covered', sections.filter((s) => s.sec).map((s) => `${s.label} ${s.pct}%`).join(' · '));
+      if (groupSec.stretch === 0) add('info', 'relief', 'No stretch or relief', 'Add a stretch or a mobility movement between hard blocks or at the end.');
+
+      if (roles.mobility < 15 && !['mobility', 'rehab'].includes(flow.goal)) add('info', 'roles', 'Mostly stabilising work', `${roles.stability}% of the class holds the body still against load. Pair hard holds with something that moves the spine or opens the hips.`);
+      let run = 0; let runEnd = null; let worst = 0; let worstEnd = null;
+      for (const s of sequence) {
+        if (s.role === 'stability' && (s.mv.intensity || 3) >= 5) { run++; runEnd = s.mv.name; if (run > worst) { worst = run; worstEnd = runEnd; } } else run = 0;
+      }
+      if (worst >= 6) add('info', 'run', `${worst} hard stability movements in a row`, `Slot a stretch or mobility movement in before ${worstEnd}.`);
+
+      const uncovered = categories.filter((c) => c.count === 0);
+      if (count >= 8 && uncovered.length) add('info', 'categories', `Not covered: ${uncovered.map((c) => c.label.toLowerCase()).join(', ')}`, 'A rounded class usually touches every movement category at least once.');
+      else if (count >= 8) add('ok', 'categories', 'Every movement category covered', 'Trunk, hips, upper body, hands-and-knees and standing work are all here.');
+
+      if (positionsUsed.size < 3) add('info', 'positions', 'Not much change of position', 'Vary the orientation: lying on the back, side or front, kneeling, standing, facing the front or back.');
+    }
+    if (sequence.length >= 4) {
+      const first = sequence[0].mv;
+      if ((first.intensity || 3) >= 6 || first.level === 'advanced') add('warn', 'starts-hard', 'Starts with a hard movement', `${first.name} is first. Open with simple, big-range movements that warm up what's coming.`);
+      const last = sequence[sequence.length - 1].mv;
+      if ((last.intensity || 3) >= 6) add('info', 'ends-hard', 'Ends on a hard movement', `${last.name} is last. Leave room to wind down.`);
+    }
+    {
+      const seen = new Set();
+      const noLeadIn = [];
+      for (const s of sequence) {
+        const prep = (s.mv.prep || []).filter((p) => movements[p]);
+        if (s.pass === 1 && prep.length && !prep.some((p) => seen.has(p)) && !noLeadIn.some((n) => n.slug === s.mv.slug)) noLeadIn.push({ slug: s.mv.slug, name: s.mv.name, try: prep.slice(0, 2).map((p) => movements[p].name) });
+        seen.add(s.mv.slug);
+      }
+      if (noLeadIn.length) add('info', 'lead-in', `No lead-in for ${noLeadIn.length === 1 ? noLeadIn[0].name : noLeadIn.length + ' harder movements'}`, noLeadIn.map((n) => `${n.name}: build up with ${n.try.join(' or ')}`).join('. ') + '.');
     }
 
     if (frontBack.B < 35) add('warn', 'back-body', 'Light on the back body', `Back of the body gets ${frontBack.B}% of the work. Add prone or posterior-chain work.`);
@@ -192,15 +284,17 @@ export function analyze({ flow, movements, studio = {}, clients = [] }) {
       if (!mv) continue;
       for (const caution of mv.cautions || []) {
         if (!tags.has(caution.tag)) continue;
-        const swap = caution.swap && movements[caution.swap] && !(movements[caution.swap].cautions || []).some((x) => tags.has(x.tag))
+        const modify = caution.severity === 'modify';
+        const swap = modify ? null : caution.swap && movements[caution.swap] && !avoids(movements[caution.swap], tags)
           ? { slug: caution.swap, name: movements[caution.swap].name }
           : suggestSwap(mv, tags, movements);
-        issues.push({ itemId: item.id, slug: mv.slug, name: mv.name, tag: caution.tag, tagLabel: labelOf(CAUTIONS, caution.tag), note: caution.note, swap });
+        issues.push({ itemId: item.id, slug: mv.slug, name: mv.name, tag: caution.tag, tagLabel: labelOf(CAUTIONS, caution.tag), note: caution.note, severity: modify ? 'modify' : 'avoid', swap });
       }
     }
+    issues.sort((a, b) => (a.severity === 'modify') - (b.severity === 'modify'));
     if (issues.length) clientChecks.push({ client: { id: c.id, name: c.name, spot: c.spot || '' }, issues });
   }
-  if (clientChecks.length) add('action', 'clients', `Changes for ${clientChecks.length} client${clientChecks.length > 1 ? 's' : ''}`, clientChecks.map((c) => `${c.client.name}: ${c.issues.length} movement${c.issues.length > 1 ? 's' : ''}`).join(' · '));
+  if (clientChecks.length) add('action', 'clients', `Changes for ${clientChecks.length} client${clientChecks.length > 1 ? 's' : ''}`, clientChecks.map((c) => { const sw = c.issues.filter((i) => i.severity !== 'modify').length; const md = c.issues.length - sw; return `${c.client.name}: ${[sw ? `${sw} to swap` : '', md ? `${md} to adjust` : ''].filter(Boolean).join(', ')}`; }).join(' · '));
 
   const order = { action: 0, warn: 1, info: 2, ok: 3 };
   checks.sort((a, b) => order[a.level] - order[b.level]);
@@ -210,6 +304,7 @@ export function analyze({ flow, movements, studio = {}, clients = [] }) {
     movingPct: totalSec ? Math.round((movingSec / totalSec) * 100) : 0,
     springChanges, boxChanges, positionChanges, apparatusChanges,
     timeline, positionMinutes, spine, target: { key: targetKey, ...target },
+    springPlan, springBudget, springStops, sections, sectionSec, roles, categories, hasReformer,
     muscles, frontBack, purpose, multiJoint: { multi, isolated },
     intensity, peak, checks, clientChecks
   };
@@ -221,8 +316,9 @@ export function suggestSwap(mv, tags, movements) {
   let bestScore = -1;
   for (const cand of Object.values(movements)) {
     if (cand.slug === mv.slug || cand.apparatus !== mv.apparatus) continue;
-    if ((cand.cautions || []).some((c) => tags.has(c.tag))) continue;
+    if (avoids(cand, tags)) continue;
     let s = 0;
+    if (sectionOf(cand) === sectionOf(mv)) s += 2;
     if (cand.position === mv.position) s += 2;
     if ((cand.spine || []).some((x) => (mv.spine || []).includes(x))) s += 2;
     const prim = new Set(mv.muscles.primary);
@@ -231,6 +327,11 @@ export function suggestSwap(mv, tags, movements) {
     if (s > bestScore) { bestScore = s; best = cand; }
   }
   return best && bestScore >= 3 ? { slug: best.slug, name: best.name } : null;
+}
+
+// True when the movement carries an "avoid" caution for any of these tags.
+export function avoids(mv, tags) {
+  return (mv.cautions || []).some((c) => tags.has(c.tag) && c.severity !== 'modify');
 }
 
 function segSec(segInfo, role) { return segInfo.filter((s) => s.role === role).reduce((a, s) => a + s.sec, 0); }

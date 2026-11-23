@@ -1,0 +1,120 @@
+{
+  "slug": "leg-pull-front",
+  "name": "Leg Pull Front",
+  "apparatus": "mat",
+  "section": "core",
+  "level": "intermediate",
+  "position": "plank",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "hip-dissociation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "glutes",
+      "serratus"
+    ],
+    "secondary": [
+      "deltoids",
+      "hamstrings",
+      "calves"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "stability",
+  "stable": "Trunk and pelvis",
+  "mobile": "Hip and ankle",
+  "categories": [
+    "quadruped",
+    "hip_extension"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 90,
+  "reps": "4–6 each leg",
+  "summary": "A plank with one leg lifted: rock back through the supporting foot and forward again, then change legs.",
+  "steps": [
+    "Press up to a full plank.",
+    "Breathe in to lift one leg, foot flexed.",
+    "Breathe out to shift back through the supporting foot, pointing the lifted foot.",
+    "Breathe in to shift forward; breathe out to lower the leg. Change sides."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Both feet down",
+      "text": "Plank with the rock only."
+    },
+    {
+      "tag": "L2",
+      "title": "Alternate legs",
+      "text": "Basic."
+    },
+    {
+      "tag": "L3",
+      "title": "Several on one side",
+      "text": "Three to five before changing."
+    },
+    {
+      "tag": "L4",
+      "title": "Knee pull",
+      "text": "Draw the lifted knee to the chest."
+    }
+  ],
+  "modifications": [
+    "Knees down, or on hands and knees.",
+    "Forearms down for sore wrists."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "wrist",
+      "severity": "modify",
+      "note": "Forearm plank."
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Knees down."
+    },
+    {
+      "tag": "extension_pain",
+      "severity": "modify",
+      "note": "Knees down, ribs in."
+    },
+    {
+      "tag": "si_joint",
+      "severity": "modify",
+      "note": "Keep both feet down."
+    }
+  ],
+  "prep": [
+    "front-support-plank",
+    "bird-dog"
+  ],
+  "cues": "The leg lifts only as high as the pelvis stays level.\nNo rocking through the hips.\nPush the floor away — wide across the shoulder blades.\nHead in line.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

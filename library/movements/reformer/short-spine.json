@@ -2,6 +2,7 @@
   "slug": "short-spine",
   "name": "Short Spine Massage",
   "apparatus": "reformer",
+  "section": "pelvic",
   "level": "advanced",
   "position": "supine",
   "spine": [
@@ -27,9 +28,24 @@
   "load": {
     "springs": [
       "medium",
-      "medium"
-    ]
+      "medium",
+      "xlight"
+    ],
+    "lighterIsHarder": true
   },
+  "setup": {
+    "headrest": "down",
+    "straps": "long"
+  },
+  "perSide": false,
+  "role": "mobility",
+  "stable": "Shoulders and neck",
+  "mobile": "Whole spine and hips",
+  "categories": [
+    "trunk_flexion",
+    "hip_extension"
+  ],
+  "pregnancy": "avoid",
   "purpose": {
     "strength": 1,
     "stability": 2,
@@ -39,30 +55,54 @@
   "multiJoint": true,
   "intensity": 7,
   "duration": 150,
-  "reps": "4",
+  "reps": "6–12",
   "summary": "Feet in straps, legs lift overhead and the spine rolls down one bone at a time.",
+  "steps": [
+    "Headrest down. Feet in the long loops, legs straight up just in front of the hips.",
+    "Breathe out, tip the pelvis and peel the spine up until the weight rests across the upper back.",
+    "Breathe in to turn the legs out and bend the knees into a diamond, heels together.",
+    "Breathe out to keep the diamond as the spine rolls down one bone at a time.",
+    "Finish with one frog press towards the footbar."
+  ],
   "layers": [],
+  "modifications": [
+    "Bridge or frog instead."
+  ],
   "cautions": [
     {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "side-lying-strap-series"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "side-lying-strap-series"
+    },
+    {
       "tag": "neck",
+      "severity": "avoid",
       "note": "Weight passes onto the shoulders; avoid with neck problems.",
       "swap": "bridging-reformer"
     },
     {
       "tag": "low_bone_density",
+      "severity": "avoid",
       "note": "Loaded spinal flexion; avoid.",
-      "swap": "bridging-reformer"
-    },
-    {
-      "tag": "pregnancy",
-      "note": "Inverted; avoid.",
       "swap": "bridging-reformer"
     }
   ],
-  "cues": "",
+  "prep": [
+    "feet-in-straps",
+    "frog-press",
+    "bridging-reformer"
+  ],
+  "cues": "Weight on the shoulders, never the neck.\nKnees stay shoulder-width on the way down — not folded into the chest.\nSlow down; no dropping.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

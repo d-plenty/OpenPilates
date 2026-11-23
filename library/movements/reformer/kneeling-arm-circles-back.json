@@ -1,0 +1,116 @@
+{
+  "slug": "kneeling-arm-circles-back",
+  "name": "Front Raise & Arm Circles (Facing Straps)",
+  "apparatus": "reformer",
+  "section": "back_shoulders",
+  "level": "intermediate",
+  "position": "kneeling",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "pull"
+  ],
+  "muscles": {
+    "primary": [
+      "deltoids",
+      "upper_back"
+    ],
+    "secondary": [
+      "lats",
+      "biceps",
+      "abdominals"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "light"
+    ],
+    "advance": [
+      "light",
+      "xlight"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Trunk, pelvis and carriage",
+  "mobile": "Shoulders",
+  "categories": [
+    "upper_body"
+  ],
+  "pregnancy": "ok",
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 1
+  },
+  "multiJoint": false,
+  "intensity": 5,
+  "duration": 120,
+  "reps": "15–30",
+  "summary": "Kneeling facing the straps with straight arms: lift them forward and up, or open them wide and draw them down to the hips.",
+  "steps": [
+    "Kneel facing the straps, sitting on the heels; short loops, arms straight in front, palms down.",
+    "Front raise: breathe out to lift the arms up beside the ears; breathe in to lower.",
+    "Circles: breathe out to open the arms wide at shoulder height, then draw them down to the hips; breathe in to return."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Front raise",
+      "text": "Up and down."
+    },
+    {
+      "tag": "L2",
+      "title": "Half circles",
+      "text": "Open, down to hips, return."
+    },
+    {
+      "tag": "L3",
+      "title": "Reverse circles",
+      "text": "Go the other way."
+    },
+    {
+      "tag": "L4",
+      "title": "Full circles",
+      "text": "Add the overhead reach."
+    },
+    {
+      "tag": "L5",
+      "title": "Kneeling upright",
+      "text": "Harder base."
+    }
+  ],
+  "modifications": [
+    "Long box or cross-legged for sore knees.",
+    "Long loops for less resistance.",
+    "Stay below shoulder height for sore shoulders."
+  ],
+  "cautions": [
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Sit on the long box."
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Small range below shoulder height, lightest spring."
+    }
+  ],
+  "prep": [],
+  "cues": "The carriage stays as still as you can keep it.\nArms long, elbows not locked.\nRibs stay closed as the arms lift.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

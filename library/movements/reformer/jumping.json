@@ -2,6 +2,7 @@
   "slug": "jumping",
   "name": "Jump Board — Jumping",
   "apparatus": "reformer",
+  "section": "cardio",
   "level": "intermediate",
   "position": "supine",
   "spine": [
@@ -28,9 +29,25 @@
   "load": {
     "springs": [
       "medium",
+      "light"
+    ],
+    "advance": [
+      "medium",
       "medium"
     ]
   },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "both",
+  "stable": "Pelvis and spine",
+  "mobile": "Hips, knees and ankles",
+  "categories": [
+    "hip_extension"
+  ],
+  "pregnancy": "avoid",
   "purpose": {
     "strength": 2,
     "stability": 1,
@@ -40,29 +57,102 @@
   "multiJoint": true,
   "intensity": 7,
   "duration": 180,
-  "reps": "30–60 s sets",
+  "reps": "30 s per foot pattern",
   "summary": "Low-impact jumping on the jump board for cardio and leg power.",
-  "layers": [],
+  "steps": [
+    "Lie on the back with the feet on the jump board, hip-width.",
+    "Do a few slow presses and heel raises first to warm up the ankles.",
+    "Push off, straighten the legs in the air, and land through toes, ball, heel, then knees."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Parallel",
+      "text": "Feet together or hip-width."
+    },
+    {
+      "tag": "L2",
+      "title": "Small V",
+      "text": "Heels together."
+    },
+    {
+      "tag": "L3",
+      "title": "Wide and turned out",
+      "text": "Second position."
+    },
+    {
+      "tag": "L4",
+      "title": "Change jumps",
+      "text": "Alternate between two positions."
+    },
+    {
+      "tag": "L5",
+      "title": "Single leg",
+      "text": "One leg in tabletop."
+    },
+    {
+      "tag": "L6",
+      "title": "Scissors and splits",
+      "text": "Change the legs in the air."
+    },
+    {
+      "tag": "L7",
+      "title": "Knee tucks",
+      "text": "Pull the knees in mid-air."
+    },
+    {
+      "tag": "L8",
+      "title": "Ski",
+      "text": "Land side to side."
+    },
+    {
+      "tag": "L9",
+      "title": "Heel beats",
+      "text": "Beat the heels in the air."
+    },
+    {
+      "tag": "L10",
+      "title": "Running",
+      "text": "Carriage stays in; run on the board."
+    }
+  ],
+  "modifications": [
+    "Press and heel raises without leaving the board.",
+    "Add a spring to slow the jumps down."
+  ],
   "cautions": [
     {
       "tag": "pregnancy",
-      "note": "Impact; keep it light or swap.",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "footwork-series"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
       "swap": "footwork-series"
     },
     {
       "tag": "knee",
+      "severity": "avoid",
       "note": "Impact through the knees.",
       "swap": "footwork-series"
     },
     {
       "tag": "low_bone_density",
+      "severity": "avoid",
       "note": "Check impact is appropriate for the client."
     }
   ],
-  "cues": "",
+  "prep": [
+    "footwork-series",
+    "heel-raises"
+  ],
+  "cues": "Land in the upper middle of the board — landing low strains the ankles.\nQuiet landings.\nPelvis and ribs stay heavy.\nChange the footwork about every 30 seconds.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

@@ -1,0 +1,134 @@
+{
+  "slug": "kneeling-knee-pulls",
+  "name": "Kneeling Knee Pulls on the Rails",
+  "apparatus": "reformer",
+  "section": "core",
+  "level": "intermediate",
+  "position": "quadruped",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "flexion"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals"
+    ],
+    "secondary": [
+      "hip_flexors",
+      "serratus",
+      "deltoids",
+      "obliques"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium"
+    ],
+    "advance": [
+      "medium",
+      "xlight"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Shoulders over wrists",
+  "mobile": "Hips; lower spine a little",
+  "categories": [
+    "quadruped",
+    "hip_flexion",
+    "trunk_flexion"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 90,
+  "reps": "10–20",
+  "summary": "On hands and knees with the hands on the frame rails ahead of the carriage. The abdominals pull the knees — and the carriage — towards the wrists.",
+  "steps": [
+    "Kneel on the carriage with the knees behind the shoulder rests, hands on the metal rails.",
+    "Walk the hands along the rails until the carriage has moved away from its stopper and you are on hands and knees.",
+    "Breathe out to draw the knees and carriage towards the wrists.",
+    "Breathe in to let the knees return under the hips."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Pulls",
+      "text": "Basic."
+    },
+    {
+      "tag": "L2",
+      "title": "Hold",
+      "text": "Hold the knees in."
+    },
+    {
+      "tag": "L3",
+      "title": "Pulses",
+      "text": "Small pulses at the closed end."
+    },
+    {
+      "tag": "L4",
+      "title": "Hands further up the rails",
+      "text": "Longer lever."
+    },
+    {
+      "tag": "L5",
+      "title": "Both hands to one side",
+      "text": "More waist."
+    },
+    {
+      "tag": "L6",
+      "title": "Single leg",
+      "text": "One knee hovers."
+    }
+  ],
+  "modifications": [
+    "Hands closer in.",
+    "Lighter spring."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "shoulder-retraction"
+    },
+    {
+      "tag": "wrist",
+      "severity": "modify",
+      "note": "Fists on the rails or skip."
+    },
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Pad under the knees."
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "modify",
+      "note": "Keep the spine long."
+    }
+  ],
+  "prep": [],
+  "cues": "Pull from the belly, not the arms.\nLower back doesn't dip.\nShoulders stay over the wrists.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

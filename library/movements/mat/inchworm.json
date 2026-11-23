@@ -1,0 +1,118 @@
+{
+  "slug": "inchworm",
+  "name": "Inchworm",
+  "apparatus": "mat",
+  "section": "core",
+  "level": "beginner",
+  "position": "standing",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "spinal-articulation",
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "hamstrings",
+      "deltoids"
+    ],
+    "secondary": [
+      "serratus",
+      "calves",
+      "spinal_extensors"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "mobility",
+  "stable": "Nothing held — it travels",
+  "mobile": "Spine, arms and legs",
+  "categories": [
+    "trunk_flexion",
+    "standing",
+    "quadruped"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 1,
+    "stability": 2,
+    "flexibility": 2,
+    "mobility": 2
+  },
+  "multiJoint": true,
+  "intensity": 4,
+  "duration": 90,
+  "reps": "4–6",
+  "summary": "Roll down from standing, walk the hands out to a plank, walk them back and roll up. A whole-body warm-up.",
+  "steps": [
+    "Stand tall. Breathe out to roll down, knees soft, until the hands reach the mat.",
+    "Walk the hands forward to a plank.",
+    "Pause for a breath, then walk the hands back to the feet.",
+    "Breathe out to roll up to standing."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Bent knees",
+      "text": "Easier fold."
+    },
+    {
+      "tag": "L2",
+      "title": "Add a push-up",
+      "text": "One push-up at the plank."
+    },
+    {
+      "tag": "L3",
+      "title": "Add a pike",
+      "text": "Lift the hips before walking back."
+    }
+  ],
+  "modifications": [
+    "Bend the knees generously.",
+    "Walk out to hands and knees instead of a plank."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "cat-cow"
+    },
+    {
+      "tag": "wrist",
+      "severity": "modify",
+      "note": "Walk out to the forearms, or skip the plank."
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Repeated loaded forward bending.",
+      "swap": "cat-cow"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "Repeated forward bending.",
+      "swap": "cat-cow"
+    },
+    {
+      "tag": "balance",
+      "severity": "modify",
+      "note": "Go slowly; widen the feet."
+    }
+  ],
+  "prep": [],
+  "cues": "Hips stay square as the hands walk.\nArrive in a straight plank, not a sag.\nRoll up from the tail.",
+  "labels": [
+    "warm-up",
+    "mobilisation"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

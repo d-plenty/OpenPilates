@@ -2,6 +2,7 @@
   "slug": "side-plank",
   "name": "Side Plank",
   "apparatus": "mat",
+  "section": "core",
   "level": "intermediate",
   "position": "plank",
   "spine": [
@@ -23,6 +24,15 @@
   },
   "equipment": [],
   "load": null,
+  "perSide": true,
+  "role": "stability",
+  "stable": "Everything",
+  "mobile": "Nothing",
+  "categories": [
+    "lateral_flexion",
+    "quadruped"
+  ],
+  "pregnancy": "early_only",
   "purpose": {
     "strength": 2,
     "stability": 3,
@@ -34,25 +44,64 @@
   "duration": 60,
   "reps": "2 × 20 s each side",
   "summary": "On one hand or forearm, lift the hips into a straight side line and hold or lower and lift.",
-  "layers": [],
+  "steps": [
+    "Lie on one side propped on the forearm or hand, legs long, feet stacked or staggered.",
+    "Breathe out to lift the hips until the body is one line.",
+    "Hold, breathing steadily."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Bottom knee down",
+      "text": "Half version."
+    },
+    {
+      "tag": "L2",
+      "title": "Forearm",
+      "text": "Basic."
+    },
+    {
+      "tag": "L3",
+      "title": "Straight arm",
+      "text": "Hand under the shoulder."
+    },
+    {
+      "tag": "L4",
+      "title": "Top leg lift",
+      "text": "Lift the top leg."
+    },
+    {
+      "tag": "L5",
+      "title": "Hip dips",
+      "text": "Lower and lift."
+    }
+  ],
+  "modifications": [
+    "Bottom knee down.",
+    "Top foot on the floor in front."
+  ],
   "cautions": [
     {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks."
+    },
+    {
       "tag": "wrist",
+      "severity": "avoid",
       "note": "Use the forearm."
     },
     {
       "tag": "shoulder",
+      "severity": "avoid",
       "note": "Weight through one shoulder."
-    },
-    {
-      "tag": "pregnancy",
-      "note": "Offer knees-down side plank."
     }
   ],
-  "cues": "",
+  "prep": [],
+  "cues": "Hips high.\nSupport under the shoulder.\nChest open to the side wall.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

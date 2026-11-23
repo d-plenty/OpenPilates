@@ -1,0 +1,103 @@
+{
+  "slug": "cat-cow-reformer",
+  "name": "Cat–Cow on the Carriage",
+  "apparatus": "reformer",
+  "section": "stretch",
+  "level": "beginner",
+  "position": "quadruped",
+  "spine": [
+    "flexion",
+    "extension"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "spinal-articulation"
+  ],
+  "muscles": {
+    "primary": [
+      "spinal_extensors",
+      "abdominals"
+    ],
+    "secondary": [
+      "serratus",
+      "lats"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "light"
+    ],
+    "flexible": true,
+    "note": "Any light setting works — stay on whatever is already on if it feels supportive."
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "mobility",
+  "stable": "Hands and knees",
+  "mobile": "Whole spine",
+  "categories": [
+    "trunk_flexion",
+    "trunk_extension",
+    "quadruped"
+  ],
+  "pregnancy": "recommended",
+  "purpose": {
+    "strength": 0,
+    "stability": 1,
+    "flexibility": 1,
+    "mobility": 3
+  },
+  "multiJoint": false,
+  "intensity": 2,
+  "duration": 90,
+  "reps": "6–10",
+  "summary": "On hands and knees on the carriage with the hands on the footbar or shoulder rests, round and arch the spine. A reset between harder blocks.",
+  "steps": [
+    "Kneel on the carriage, hands on the footbar, knees under the hips.",
+    "Breathe out to round the spine, tail under, head heavy.",
+    "Breathe in to lengthen through to a gentle arch, chest forward."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Carriage still",
+      "text": "Spine only."
+    },
+    {
+      "tag": "L2",
+      "title": "Glide",
+      "text": "Let the carriage slide back as you arch and in as you round."
+    }
+  ],
+  "modifications": [
+    "Fists or forearms for sore wrists.",
+    "Smaller range for sore backs."
+  ],
+  "cautions": [
+    {
+      "tag": "wrist",
+      "severity": "modify",
+      "note": "Fists or forearms."
+    },
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Pad under the knees."
+    }
+  ],
+  "prep": [],
+  "cues": "Move one bone at a time.\nCarriage stays still, or let it glide a little as you arch.\nShoulders away from the ears.",
+  "labels": [
+    "warm-up",
+    "cool-down",
+    "pregnancy-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

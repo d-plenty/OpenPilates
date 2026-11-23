@@ -1,0 +1,106 @@
+{
+  "slug": "hip-hike",
+  "name": "Standing Hip Hike",
+  "apparatus": "mat",
+  "section": "pelvic",
+  "level": "beginner",
+  "position": "standing",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "frontal",
+  "patterns": [
+    "stabilisation",
+    "abduction"
+  ],
+  "muscles": {
+    "primary": [
+      "abductors",
+      "glutes"
+    ],
+    "secondary": [
+      "obliques",
+      "adductors"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": true,
+  "role": "stability",
+  "stable": "Standing leg",
+  "mobile": "Pelvis (side tilt)",
+  "categories": [
+    "hip_abduction",
+    "standing"
+  ],
+  "pregnancy": "ok",
+  "purpose": {
+    "strength": 1,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 1
+  },
+  "multiJoint": false,
+  "intensity": 3,
+  "duration": 120,
+  "reps": "10–15 each side",
+  "summary": "Standing with one foot on a low step and the other hanging free, the pelvis drops on the free side and the standing hip lifts it level again.",
+  "steps": [
+    "Stand with one foot on a block or step, the other foot off the edge.",
+    "Breathe in to let the free side of the pelvis drop, foot sinking towards the floor.",
+    "Breathe out to lift it back to level using the standing-side hip."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Holding on",
+      "text": "Hand on a wall or chair."
+    },
+    {
+      "tag": "L2",
+      "title": "Hands free",
+      "text": "Balance."
+    },
+    {
+      "tag": "L3",
+      "title": "Holds and tempo",
+      "text": "Pause level."
+    },
+    {
+      "tag": "L4",
+      "title": "Add arms",
+      "text": "Reach or lift the arms."
+    }
+  ],
+  "modifications": [
+    "Smaller range.",
+    "Hold on."
+  ],
+  "cautions": [
+    {
+      "tag": "balance",
+      "severity": "modify",
+      "note": "Hold a wall or chair."
+    },
+    {
+      "tag": "hip_pain",
+      "severity": "modify",
+      "note": "Small, pain-free range."
+    },
+    {
+      "tag": "si_joint",
+      "severity": "avoid",
+      "note": "One-leg stance with pelvic tilting.",
+      "swap": "clam-loop-band"
+    }
+  ],
+  "prep": [],
+  "cues": "All the attention goes to the standing hip.\nBoth knees stay straight; the movement is in the pelvis.\nIt is small — a couple of centimetres.\nPut a hand on the standing hip to feel it work.",
+  "labels": [
+    "rehab-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

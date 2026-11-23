@@ -1,0 +1,123 @@
+{
+  "slug": "side-bend-mat",
+  "name": "Side Bend",
+  "apparatus": "mat",
+  "section": "core",
+  "level": "intermediate",
+  "position": "plank",
+  "spine": [
+    "side-bend"
+  ],
+  "plane": "frontal",
+  "patterns": [
+    "lateral-flexion",
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "obliques",
+      "abdominals"
+    ],
+    "secondary": [
+      "deltoids",
+      "abductors",
+      "serratus",
+      "lats"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": true,
+  "role": "both",
+  "stable": "Supporting shoulder",
+  "mobile": "Spine (side bend) and hips",
+  "categories": [
+    "lateral_flexion",
+    "quadruped"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 1,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 7,
+  "duration": 120,
+  "reps": "3–5 each side",
+  "summary": "From sitting on one hip, press up into a side plank with the top arm arching overhead, then lower with control.",
+  "steps": [
+    "Sit on one hip, knees bent, top foot in front of the bottom foot, hand on the mat a little out from the hip.",
+    "Breathe in to press up, straightening the legs, top arm lifting.",
+    "Breathe out to arc the top arm overhead and lift the hips higher.",
+    "Breathe in to return to the side plank; breathe out to lower."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Bottom knee down",
+      "text": "Half version."
+    },
+    {
+      "tag": "L2",
+      "title": "Full side bend",
+      "text": "Both legs long."
+    },
+    {
+      "tag": "L3",
+      "title": "Hip dips",
+      "text": "Lower and lift the hips in the plank."
+    },
+    {
+      "tag": "L4",
+      "title": "Into the twist",
+      "text": "Carry on into Side Twist."
+    }
+  ],
+  "modifications": [
+    "Bottom knee down.",
+    "Forearm down."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "mermaid-mat"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "mermaid-mat"
+    },
+    {
+      "tag": "wrist",
+      "severity": "avoid",
+      "note": "Body weight on one wrist.",
+      "swap": "mermaid-mat"
+    },
+    {
+      "tag": "shoulder",
+      "severity": "avoid",
+      "note": "Body weight on one shoulder.",
+      "swap": "mermaid-mat"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "modify",
+      "note": "Keep the side bend small."
+    }
+  ],
+  "prep": [
+    "side-plank",
+    "mermaid-mat"
+  ],
+  "cues": "Supporting hand slightly forward of the shoulder.\nLift from the underneath waist.\nStay in one flat plane.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

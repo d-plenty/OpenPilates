@@ -1,0 +1,130 @@
+{
+  "slug": "kneeling-long-stretch",
+  "name": "Kneeling Long Stretch",
+  "apparatus": "reformer",
+  "section": "core",
+  "level": "beginner",
+  "position": "kneeling",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "serratus"
+    ],
+    "secondary": [
+      "deltoids",
+      "lats",
+      "glutes"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "light",
+      "xlight"
+    ],
+    "advance": [
+      "light"
+    ],
+    "lighterIsHarder": true,
+    "note": "A heavier spring gives more support."
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Trunk and pelvis",
+  "mobile": "Shoulders",
+  "categories": [
+    "quadruped",
+    "upper_body"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 5,
+  "duration": 90,
+  "reps": "10–20",
+  "summary": "A half-plank Long Stretch: knees stay on the carriage while straight arms push the body away from the footbar and pull it back.",
+  "steps": [
+    "Footbar low. Hands on the bar, feet against the shoulder rests, knees down and the carriage pressed out a little.",
+    "Breathe in to push away with straight arms; the carriage travels back.",
+    "Breathe out to draw the shoulders back over the wrists."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Small range",
+      "text": "Start here."
+    },
+    {
+      "tag": "L2",
+      "title": "Bigger range",
+      "text": "Travel further."
+    },
+    {
+      "tag": "L3",
+      "title": "Holds",
+      "text": "Pause at the far point."
+    },
+    {
+      "tag": "L4",
+      "title": "Both hands to one side",
+      "text": "More waist."
+    },
+    {
+      "tag": "L5",
+      "title": "Lift the knees",
+      "text": "Becomes Long Stretch."
+    }
+  ],
+  "modifications": [
+    "Heavier spring.",
+    "Smaller range."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "shoulder-retraction"
+    },
+    {
+      "tag": "wrist",
+      "severity": "modify",
+      "note": "Fists or forearms on the bar."
+    },
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Heavier spring, small range."
+    },
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Pad under the knees."
+    }
+  ],
+  "prep": [
+    "knee-stretches"
+  ],
+  "cues": "Shoulders-to-knees stays one straight line.\nHips don't pop up on the way in.\nThe further you go, the harder it is — earn the range.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

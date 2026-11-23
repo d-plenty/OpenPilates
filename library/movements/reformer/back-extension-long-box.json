@@ -1,0 +1,120 @@
+{
+  "slug": "back-extension-long-box",
+  "name": "Back Extension on the Long Box",
+  "apparatus": "reformer",
+  "section": "back_shoulders",
+  "level": "beginner",
+  "position": "prone",
+  "spine": [
+    "extension"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "extension",
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "spinal_extensors",
+      "upper_back"
+    ],
+    "secondary": [
+      "glutes",
+      "hamstrings"
+    ]
+  },
+  "equipment": [
+    "long_box"
+  ],
+  "load": {
+    "springs": [
+      "light"
+    ],
+    "advance": [
+      "light",
+      "xlight"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "mobility",
+  "stable": "Pelvis and legs",
+  "mobile": "Upper and mid spine",
+  "categories": [
+    "trunk_extension"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 1,
+    "flexibility": 0,
+    "mobility": 2
+  },
+  "multiJoint": false,
+  "intensity": 4,
+  "duration": 120,
+  "reps": "15–30",
+  "summary": "Lying face down on the long box with fingertips by the ears, the chest lifts using the mid-back. No straps — a gentler stand-in for Pulling Straps.",
+  "steps": [
+    "Long box in front of the shoulder rests. Lie face down with the chest at the front edge.",
+    "Elbows bent, fingertips by the ears; tailbone long, belly lifted.",
+    "Breathe out to lift the chest from the mid-back.",
+    "Breathe in to lower."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Lift and lower",
+      "text": "Small range."
+    },
+    {
+      "tag": "L2",
+      "title": "Add a twist",
+      "text": "Lift, turn the chest a little to one side, centre, lower."
+    },
+    {
+      "tag": "L3",
+      "title": "Arm reaches",
+      "text": "Reach the arms long in front or to a T."
+    },
+    {
+      "tag": "L4",
+      "title": "Leg lifts",
+      "text": "Add alternate leg lifts."
+    }
+  ],
+  "modifications": [
+    "Bend the knees and cross the ankles if the lower back is tender.",
+    "Stay level instead of lifting."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "shoulder-retraction"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "shoulder-retraction"
+    },
+    {
+      "tag": "extension_pain",
+      "severity": "avoid",
+      "note": "Spinal extension.",
+      "swap": "shoulder-retraction"
+    }
+  ],
+  "prep": [],
+  "cues": "Look at the headrest, not the wall — neck stays long.\nBelly lifts away from the box so the lower back doesn't pinch.\nLegs long and active.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

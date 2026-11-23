@@ -2,6 +2,7 @@
   "slug": "backstroke",
   "name": "Backstroke",
   "apparatus": "reformer",
+  "section": "core",
   "level": "intermediate",
   "position": "supine",
   "spine": [
@@ -29,6 +30,19 @@
       "medium"
     ]
   },
+  "setup": {
+    "headrest": "up",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Curl and pelvis",
+  "mobile": "Shoulders and hips",
+  "categories": [
+    "trunk_flexion",
+    "hip_flexion"
+  ],
+  "pregnancy": "avoid",
   "purpose": {
     "strength": 1,
     "stability": 3,
@@ -40,25 +54,43 @@
   "duration": 120,
   "reps": "5",
   "summary": "Curled up with knees in, reach arms and legs to the ceiling, open, circle and return.",
+  "steps": [],
   "layers": [],
+  "modifications": [
+    "Head down, arms only."
+  ],
   "cautions": [
     {
       "tag": "pregnancy",
-      "note": "Curling up on the back later in pregnancy."
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "shoulder-retraction"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "shoulder-retraction"
     },
     {
       "tag": "neck",
+      "severity": "avoid",
       "note": "Head-down option."
     },
     {
       "tag": "low_bone_density",
+      "severity": "avoid",
       "note": "Loaded flexion."
     }
   ],
-  "cues": "",
+  "prep": [
+    "ab-curl-in-straps",
+    "coordination"
+  ],
+  "cues": "Stay curled as the arms and legs travel.\nReach long before you circle.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

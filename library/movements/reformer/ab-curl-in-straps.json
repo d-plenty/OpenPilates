@@ -1,0 +1,140 @@
+{
+  "slug": "ab-curl-in-straps",
+  "name": "Abdominal Curl in Straps",
+  "apparatus": "reformer",
+  "section": "core",
+  "level": "intermediate",
+  "position": "supine",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "flexion",
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals"
+    ],
+    "secondary": [
+      "obliques",
+      "lats",
+      "hip_flexors"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "light"
+    ],
+    "advance": [
+      "medium",
+      "light",
+      "xlight"
+    ]
+  },
+  "setup": {
+    "headrest": "up",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "both",
+  "stable": "Pelvis and legs",
+  "mobile": "Upper spine and shoulders",
+  "categories": [
+    "trunk_flexion",
+    "hip_flexion"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 6,
+  "duration": 120,
+  "reps": "10–30",
+  "summary": "Legs in tabletop and hands in the straps: as the arms press down to the hips, the head and shoulders curl up.",
+  "steps": [
+    "Lie on the back, legs in tabletop, hands in the short loops with arms straight above the shoulders.",
+    "Breathe in to prepare.",
+    "Breathe out to press the arms to the carriage and curl the head and shoulders up.",
+    "Breathe in to lower."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Curl",
+      "text": "Basic."
+    },
+    {
+      "tag": "L2",
+      "title": "Hold and pump",
+      "text": "Stay curled for the Hundred."
+    },
+    {
+      "tag": "L3",
+      "title": "Oblique curl",
+      "text": "Reach both hands past one thigh."
+    },
+    {
+      "tag": "L4",
+      "title": "Add legs",
+      "text": "Single or double leg reach, scissors."
+    },
+    {
+      "tag": "L5",
+      "title": "Prop",
+      "text": "Ball or ring between the legs."
+    }
+  ],
+  "modifications": [
+    "Long loops for less resistance.",
+    "Keep the head down and do the arm press only."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "side-lying-strap-series"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "side-lying-strap-series"
+    },
+    {
+      "tag": "neck",
+      "severity": "avoid",
+      "note": "Sustained head lift.",
+      "swap": "supine-arm-pulls"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Loaded spinal flexion.",
+      "swap": "supine-arm-pulls"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "Spinal flexion.",
+      "swap": "supine-arm-pulls"
+    }
+  ],
+  "prep": [
+    "supine-arm-pulls"
+  ],
+  "cues": "Curl from the ribs, not by pulling the chin in.\nKeep a fist-sized gap between chin and chest.\nKnees stay over the hips; lower back quiet.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

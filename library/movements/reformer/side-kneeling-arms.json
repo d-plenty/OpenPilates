@@ -2,6 +2,7 @@
   "slug": "side-kneeling-arms",
   "name": "Side Kneeling Arms",
   "apparatus": "reformer",
+  "section": "single_arm",
   "level": "intermediate",
   "position": "kneeling",
   "spine": [
@@ -25,8 +26,23 @@
   "load": {
     "springs": [
       "xlight"
+    ],
+    "advance": [
+      "light"
     ]
   },
+  "setup": {
+    "headrest": "any",
+    "straps": "short"
+  },
+  "perSide": true,
+  "role": "stability",
+  "stable": "Ribcage and pelvis",
+  "mobile": "Shoulder",
+  "categories": [
+    "upper_body"
+  ],
+  "pregnancy": "ok",
   "purpose": {
     "strength": 1,
     "stability": 2,
@@ -38,21 +54,29 @@
   "duration": 180,
   "reps": "6 each side",
   "summary": "Kneeling side-on, one hand in a strap; lift the arm and side bend away from the springs.",
+  "steps": [],
   "layers": [],
+  "modifications": [
+    "Sit on the long box for sore knees.",
+    "Long loop for less resistance."
+  ],
   "cautions": [
     {
       "tag": "knee",
+      "severity": "avoid",
       "note": "Kneeling; pad the knees."
     },
     {
       "tag": "shoulder",
+      "severity": "avoid",
       "note": "Overhead pull; small range."
     }
   ],
-  "cues": "",
+  "prep": [],
+  "cues": "Stay side-on; don't turn to help.\nShoulders level.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

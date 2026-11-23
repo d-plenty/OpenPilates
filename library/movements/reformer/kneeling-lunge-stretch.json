@@ -2,6 +2,7 @@
   "slug": "kneeling-lunge-stretch",
   "name": "Kneeling Lunge Stretch",
   "apparatus": "reformer",
+  "section": "stretch",
   "level": "beginner",
   "position": "kneeling",
   "spine": [
@@ -24,8 +25,23 @@
   "load": {
     "springs": [
       "light"
-    ]
+    ],
+    "flexible": true,
+    "note": "Any light setting works — stay on whatever is already on if it feels supportive."
   },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": true,
+  "role": "mobility",
+  "stable": "Pelvis square",
+  "mobile": "Hips",
+  "categories": [
+    "hip_extension",
+    "hip_flexion"
+  ],
+  "pregnancy": "ok",
   "purpose": {
     "strength": 0,
     "stability": 1,
@@ -37,20 +53,43 @@
   "duration": 120,
   "reps": "3 each side",
   "summary": "One foot forward on the platform, back knee on the carriage; slide back to open the front of the hip.",
-  "layers": [],
+  "steps": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Hip flexor",
+      "text": "Back knee down, carriage slides back."
+    },
+    {
+      "tag": "L2",
+      "title": "Hamstring",
+      "text": "Straighten the front leg and fold over it."
+    },
+    {
+      "tag": "L3",
+      "title": "Arms up",
+      "text": "Hands off the bar, reach up."
+    }
+  ],
+  "modifications": [
+    "Pad under the back knee.",
+    "Keep hands on the footbar."
+  ],
   "cautions": [
     {
       "tag": "knee",
+      "severity": "avoid",
       "note": "Back knee on the carriage; pad it or stand.",
       "swap": "standing-hip-flexor-stretch"
     }
   ],
-  "cues": "",
+  "prep": [],
+  "cues": "Tail heavy, pubic bone lifting.\nHips square to the footbar.",
   "labels": [
     "cool-down"
   ],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

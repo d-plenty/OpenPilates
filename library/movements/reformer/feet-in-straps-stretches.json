@@ -1,0 +1,126 @@
+{
+  "slug": "feet-in-straps-stretches",
+  "name": "Feet in Straps — Hip Stretches",
+  "apparatus": "reformer",
+  "section": "stretch",
+  "level": "beginner",
+  "position": "supine",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "hip-dissociation"
+  ],
+  "muscles": {
+    "primary": [
+      "hamstrings",
+      "adductors"
+    ],
+    "secondary": [
+      "glutes",
+      "abductors"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "light"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "long"
+  },
+  "perSide": false,
+  "role": "mobility",
+  "stable": "Pelvis and spine",
+  "mobile": "Hips",
+  "categories": [
+    "hip_flexion",
+    "hip_abduction",
+    "hip_adduction"
+  ],
+  "pregnancy": "supine",
+  "purpose": {
+    "strength": 0,
+    "stability": 1,
+    "flexibility": 3,
+    "mobility": 2
+  },
+  "multiJoint": false,
+  "intensity": 2,
+  "duration": 180,
+  "reps": "5–8 breaths each",
+  "summary": "With the feet in the long loops, let the springs help the legs into easy hamstring, inner-thigh, outer-thigh and glute stretches.",
+  "steps": [
+    "Lie on the back with the long loops over the feet.",
+    "Hamstrings: both legs long towards the face, tailbone heavy.",
+    "Inner thighs: open the legs wide and breathe.",
+    "Outer thigh: both straps in one hand, cross one leg over the midline.",
+    "Glute: cross one ankle over the other knee and let the strap leg bend in."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Hamstrings",
+      "text": "Legs to the face."
+    },
+    {
+      "tag": "L2",
+      "title": "Straddle",
+      "text": "Legs wide."
+    },
+    {
+      "tag": "L3",
+      "title": "Slow circles",
+      "text": "Large, lazy circles both ways."
+    },
+    {
+      "tag": "L4",
+      "title": "Cross-body",
+      "text": "Outer hip."
+    },
+    {
+      "tag": "L5",
+      "title": "Figure four",
+      "text": "Glutes."
+    }
+  ],
+  "modifications": [
+    "Bend the knees a little for tight hamstrings."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "modify",
+      "note": "Lying flat on the back: keep it to a few minutes, raise the head end if you can, and stop if she feels dizzy."
+    },
+    {
+      "tag": "hip_replacement",
+      "severity": "avoid",
+      "note": "End-range and cross-body hip positions.",
+      "swap": "kneeling-lunge-stretch"
+    },
+    {
+      "tag": "groin",
+      "severity": "modify",
+      "note": "Keep the straddle small."
+    },
+    {
+      "tag": "hip_pain",
+      "severity": "modify",
+      "note": "Small, comfortable range; skip the cross-body stretch."
+    }
+  ],
+  "prep": [],
+  "cues": "Tailbone stays on the carriage.\nLet the springs do the work; no forcing.\nStay long enough to breathe out fully a few times.",
+  "labels": [
+    "cool-down"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

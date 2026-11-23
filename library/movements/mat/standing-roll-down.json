@@ -2,6 +2,7 @@
   "slug": "standing-roll-down",
   "name": "Roll Down (Standing)",
   "apparatus": "mat",
+  "section": "stretch",
   "level": "beginner",
   "position": "standing",
   "spine": [
@@ -23,6 +24,15 @@
   },
   "equipment": [],
   "load": null,
+  "perSide": false,
+  "role": "mobility",
+  "stable": "Feet and legs",
+  "mobile": "Whole spine",
+  "categories": [
+    "trunk_flexion",
+    "standing"
+  ],
+  "pregnancy": "early_only",
   "purpose": {
     "strength": 0,
     "stability": 1,
@@ -34,19 +44,59 @@
   "duration": 60,
   "reps": "3",
   "summary": "Standing tall, roll the spine down towards the floor one segment at a time and roll back up.",
-  "layers": [],
+  "steps": [
+    "Stand tall, feet hip-width, knees soft.",
+    "Breathe out to nod the chin and roll down one bone at a time, arms hanging.",
+    "Breathe in at the bottom.",
+    "Breathe out to roll up from the tail, head last."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Against a wall",
+      "text": "Peel away from the wall and back."
+    },
+    {
+      "tag": "L2",
+      "title": "Free standing",
+      "text": "Basic."
+    },
+    {
+      "tag": "L3",
+      "title": "Hands by the shoulders",
+      "text": "Elbows wide for more upper-back load."
+    },
+    {
+      "tag": "L4",
+      "title": "Into a walk-out",
+      "text": "See Inchworm."
+    }
+  ],
+  "modifications": [
+    "Bend the knees.",
+    "Go halfway."
+  ],
   "cautions": [
     {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "cat-cow"
+    },
+    {
       "tag": "low_bone_density",
+      "severity": "avoid",
       "note": "Forward flexion; keep it small or hinge with a flat back."
     }
   ],
-  "cues": "",
+  "prep": [],
+  "cues": "Weight stays over the middle of the feet.\nLet the head and arms hang.\nStack up from the bottom.",
   "labels": [
-    "warm-up"
+    "warm-up",
+    "mobilisation"
   ],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

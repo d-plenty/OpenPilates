@@ -1,0 +1,96 @@
+{
+  "slug": "band-external-rotation",
+  "name": "Rotator Cuff Pull with Band",
+  "apparatus": "mat",
+  "section": "back_shoulders",
+  "level": "beginner",
+  "position": "kneeling",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "transverse",
+  "patterns": [
+    "stabilisation"
+  ],
+  "muscles": {
+    "primary": [
+      "upper_back",
+      "deltoids"
+    ],
+    "secondary": [
+      "abdominals"
+    ]
+  },
+  "equipment": [
+    "resistance_band"
+  ],
+  "load": null,
+  "perSide": false,
+  "role": "stability",
+  "stable": "Trunk and elbows",
+  "mobile": "Shoulders (rotation)",
+  "categories": [
+    "upper_body"
+  ],
+  "pregnancy": "recommended",
+  "purpose": {
+    "strength": 1,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 1
+  },
+  "multiJoint": false,
+  "intensity": 2,
+  "duration": 90,
+  "reps": "10–15",
+  "summary": "Elbows tucked at the waist and a band held across upturned palms: the hands press apart, turning the forearms out.",
+  "steps": [
+    "Kneel, sit or stand tall with elbows bent by the waist, palms up.",
+    "Lay the band across the palms and take hold.",
+    "Breathe out to press the hands apart, elbows staying put.",
+    "Breathe in to return slowly."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Out and in",
+      "text": "Basic."
+    },
+    {
+      "tag": "L2",
+      "title": "Pulses",
+      "text": "Small pulses at the open position."
+    },
+    {
+      "tag": "L3",
+      "title": "Tempo",
+      "text": "Three counts to return."
+    },
+    {
+      "tag": "L4",
+      "title": "Change the base",
+      "text": "Kneeling up, a lunge, or standing on one leg."
+    }
+  ],
+  "modifications": [
+    "Slack in the band for less resistance.",
+    "No band."
+  ],
+  "cautions": [
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Lightest band, pain-free range."
+    }
+  ],
+  "prep": [],
+  "cues": "Elbows stay close to the ribs.\nChest open and lifted.\nSlow out, slower in.",
+  "labels": [
+    "rehab-friendly",
+    "pregnancy-friendly"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

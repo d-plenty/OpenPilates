@@ -1,0 +1,103 @@
+{
+  "slug": "oblique-roll-back",
+  "name": "Oblique Roll Back",
+  "apparatus": "mat",
+  "section": "core",
+  "level": "beginner",
+  "position": "seated",
+  "spine": [
+    "flexion",
+    "rotation"
+  ],
+  "plane": "transverse",
+  "patterns": [
+    "flexion",
+    "rotation"
+  ],
+  "muscles": {
+    "primary": [
+      "obliques",
+      "abdominals"
+    ],
+    "secondary": [
+      "hip_flexors"
+    ]
+  },
+  "equipment": [],
+  "load": null,
+  "perSide": false,
+  "role": "both",
+  "stable": "Legs and pelvis",
+  "mobile": "Spine",
+  "categories": [
+    "trunk_flexion",
+    "rotation"
+  ],
+  "pregnancy": "early_only",
+  "purpose": {
+    "strength": 2,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 1
+  },
+  "multiJoint": true,
+  "intensity": 5,
+  "duration": 120,
+  "reps": "4–6 each side",
+  "summary": "A Half Roll Back with a twist: roll back, turn the ribs to one side, return to centre and curl up.",
+  "steps": [
+    "Sit tall, knees bent, arms reaching forward.",
+    "Breathe out to roll back halfway.",
+    "Breathe in to turn the ribs to one side, the same-side arm sweeping back.",
+    "Breathe out to return to centre and curl up."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Small twist",
+      "text": "Hands crossed on the chest."
+    },
+    {
+      "tag": "L2",
+      "title": "Arm sweep",
+      "text": "Full reach."
+    },
+    {
+      "tag": "L3",
+      "title": "Hold a ball or weight",
+      "text": "More load."
+    }
+  ],
+  "modifications": [
+    "Smaller roll back."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
+      "swap": "spine-twist"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Flexion with rotation.",
+      "swap": "spine-twist"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "Flexion with rotation.",
+      "swap": "spine-twist"
+    }
+  ],
+  "prep": [
+    "half-roll-back"
+  ],
+  "cues": "Keep the curve in the lower back as you turn.\nBoth sit bones stay equally weighted.\nTurn from the ribs, not just the arm.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

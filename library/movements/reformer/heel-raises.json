@@ -1,0 +1,104 @@
+{
+  "slug": "heel-raises",
+  "name": "Heel Raises",
+  "apparatus": "reformer",
+  "section": "lower",
+  "level": "beginner",
+  "position": "supine",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "push"
+  ],
+  "muscles": {
+    "primary": [
+      "calves"
+    ],
+    "secondary": [
+      "quadriceps",
+      "glutes"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "medium",
+      "medium",
+      "medium",
+      "xlight"
+    ],
+    "advance": [
+      "medium",
+      "medium",
+      "medium",
+      "light"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "both",
+  "stable": "Pelvis, spine and knees",
+  "mobile": "Ankles",
+  "categories": [],
+  "pregnancy": "supine",
+  "purpose": {
+    "strength": 2,
+    "stability": 1,
+    "flexibility": 1,
+    "mobility": 1
+  },
+  "multiJoint": false,
+  "intensity": 3,
+  "duration": 90,
+  "reps": "20–30",
+  "summary": "Legs stay long while the heels lower under the footbar and lift again. Works and lengthens the calves.",
+  "steps": [
+    "Lie on the back, balls of the feet on the footbar hip-width apart, arms long by the sides.",
+    "Breathe out to press the carriage away until the legs are straight.",
+    "Breathe in to let both heels sink under the bar.",
+    "Breathe out to rise as high onto the toes as you can, legs still long."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Both heels together",
+      "text": "Lower and lift evenly."
+    },
+    {
+      "tag": "L2",
+      "title": "Slow lower",
+      "text": "Three counts down, one count up."
+    },
+    {
+      "tag": "L3",
+      "title": "Single leg",
+      "text": "One foot on the bar, the other leg in tabletop."
+    }
+  ],
+  "modifications": [
+    "Take a spring off if the legs can't straighten with control.",
+    "Smaller range for sore ankles or Achilles."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "modify",
+      "note": "Lying flat on the back: keep it to a few minutes, raise the head end if you can, and stop if she feels dizzy."
+    }
+  ],
+  "prep": [],
+  "cues": "Only the ankles move.\nSmooth and steady — no bouncing at the bottom.\nPress through the big-toe side so the feet don't roll outwards.\nPelvis and spine stay in neutral.",
+  "labels": [
+    "warm-up"
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

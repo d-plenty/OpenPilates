@@ -2,6 +2,7 @@
   "slug": "teaser",
   "name": "Teaser",
   "apparatus": "mat",
+  "section": "core",
   "level": "advanced",
   "position": "seated",
   "spine": [
@@ -23,6 +24,15 @@
   },
   "equipment": [],
   "load": null,
+  "perSide": false,
+  "role": "both",
+  "stable": "Balance point",
+  "mobile": "Spine and hips",
+  "categories": [
+    "trunk_flexion",
+    "hip_flexion"
+  ],
+  "pregnancy": "avoid",
   "purpose": {
     "strength": 2,
     "stability": 3,
@@ -34,27 +44,68 @@
   "duration": 60,
   "reps": "3",
   "summary": "Balance on the sit bones in a V shape, rolling up and down through the spine.",
-  "layers": [],
+  "steps": [],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "One leg",
+      "text": "One foot stays down."
+    },
+    {
+      "tag": "L2",
+      "title": "Bent knees",
+      "text": "Tabletop legs."
+    },
+    {
+      "tag": "L3",
+      "title": "Full teaser",
+      "text": "Legs long."
+    },
+    {
+      "tag": "L4",
+      "title": "Lower and lift the legs",
+      "text": "Hold the top and move the legs."
+    }
+  ],
+  "modifications": [
+    "Hands behind the thighs.",
+    "One foot down."
+  ],
   "cautions": [
     {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "bird-dog"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "bird-dog"
+    },
+    {
       "tag": "low_bone_density",
+      "severity": "avoid",
       "note": "Loaded flexion; avoid."
     },
     {
-      "tag": "pregnancy",
-      "note": "Strong abdominal load."
-    },
-    {
       "tag": "flexion_pain",
+      "severity": "avoid",
       "note": "Avoid."
     }
   ],
-  "cues": "",
+  "prep": [
+    "roll-up",
+    "half-roll-back",
+    "hundred-mat"
+  ],
+  "cues": "Roll through the spine; no flinging.\nGrow tall at the top.\nLower with as much control as you lift.",
   "labels": [
     "peak"
   ],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

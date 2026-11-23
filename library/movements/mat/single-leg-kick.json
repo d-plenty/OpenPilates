@@ -2,6 +2,7 @@
   "slug": "single-leg-kick",
   "name": "Single Leg Kick",
   "apparatus": "mat",
+  "section": "back_shoulders",
   "level": "beginner",
   "position": "prone",
   "spine": [
@@ -22,6 +23,15 @@
   },
   "equipment": [],
   "load": null,
+  "perSide": false,
+  "role": "stability",
+  "stable": "Trunk, pelvis and shoulders",
+  "mobile": "Knees",
+  "categories": [
+    "trunk_extension",
+    "hip_extension"
+  ],
+  "pregnancy": "early_only",
   "purpose": {
     "strength": 1,
     "stability": 2,
@@ -33,22 +43,29 @@
   "duration": 60,
   "reps": "8 each side",
   "summary": "Propped on the forearms, kick each heel towards the seat with a double pulse.",
+  "steps": [],
   "layers": [],
+  "modifications": [
+    "Lie flat with the forehead on the hands."
+  ],
   "cautions": [
     {
       "tag": "pregnancy",
-      "note": "Lying face down.",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks.",
       "swap": "bird-dog"
     },
     {
       "tag": "knee",
+      "severity": "avoid",
       "note": "Deep knee bend; keep it smaller."
     }
   ],
-  "cues": "",
+  "prep": [],
+  "cues": "Chest stays lifted off the forearms.\nPubic bone stays on the mat.\nThighs stay together.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

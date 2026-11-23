@@ -2,6 +2,7 @@
   "slug": "spine-twist",
   "name": "Spine Twist",
   "apparatus": "mat",
+  "section": "core",
   "level": "beginner",
   "position": "seated",
   "spine": [
@@ -20,6 +21,14 @@
   },
   "equipment": [],
   "load": null,
+  "perSide": false,
+  "role": "mobility",
+  "stable": "Pelvis and legs",
+  "mobile": "Spine (rotation)",
+  "categories": [
+    "rotation"
+  ],
+  "pregnancy": "recommended",
   "purpose": {
     "strength": 0,
     "stability": 2,
@@ -31,12 +40,20 @@
   "duration": 60,
   "reps": "3 each side",
   "summary": "Seated tall, legs together, rotate the upper body while the pelvis stays still.",
+  "steps": [],
   "layers": [],
+  "modifications": [
+    "Sit on a block or cross-legged.",
+    "Hands on the shoulders."
+  ],
   "cautions": [],
-  "cues": "",
-  "labels": [],
+  "prep": [],
+  "cues": "Grow taller as you turn.\nBoth sit bones stay heavy.\nArms move with the ribs, not ahead of them.",
+  "labels": [
+    "pregnancy-friendly"
+  ],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

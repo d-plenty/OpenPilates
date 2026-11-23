@@ -1,0 +1,141 @@
+{
+  "slug": "rear-pike",
+  "name": "Pike Facing the Straps",
+  "apparatus": "reformer",
+  "section": "core",
+  "level": "advanced",
+  "position": "plank",
+  "spine": [
+    "flexion"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "flexion"
+  ],
+  "muscles": {
+    "primary": [
+      "abdominals",
+      "serratus",
+      "deltoids"
+    ],
+    "secondary": [
+      "hip_flexors",
+      "hamstrings"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "light"
+    ],
+    "advance": [
+      "xlight"
+    ],
+    "lighterIsHarder": true
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Legs",
+  "mobile": "Shoulders and hips",
+  "categories": [
+    "quadruped",
+    "hip_flexion",
+    "trunk_flexion"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 1,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 8,
+  "duration": 90,
+  "reps": "10–20",
+  "summary": "Hands on the carriage, feet on the platform: pull the carriage in with straight legs so the hips rise into an upside-down V.",
+  "steps": [
+    "Set up in the plank facing the straps.",
+    "Breathe out to draw the carriage in, hips lifting high, head between the arms.",
+    "Breathe in to push out to the plank."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Pike",
+      "text": "Basic."
+    },
+    {
+      "tag": "L2",
+      "title": "Tuck–pike combo",
+      "text": "Alternate."
+    },
+    {
+      "tag": "L3",
+      "title": "Single leg",
+      "text": "One leg lifted."
+    },
+    {
+      "tag": "L4",
+      "title": "Feet on the footbar",
+      "text": "Hardest."
+    }
+  ],
+  "modifications": [
+    "Forearms on the carriage.",
+    "Knee tucks instead."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "shoulder-retraction"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "shoulder-retraction"
+    },
+    {
+      "tag": "wrist",
+      "severity": "avoid",
+      "note": "Body weight through the wrists.",
+      "swap": "rear-knee-tucks"
+    },
+    {
+      "tag": "shoulder",
+      "severity": "avoid",
+      "note": "Loaded overhead position.",
+      "swap": "rear-knee-tucks"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "avoid",
+      "note": "Loaded flexion.",
+      "swap": "rear-plank"
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "avoid",
+      "note": "Loaded flexion.",
+      "swap": "rear-plank"
+    }
+  ],
+  "prep": [
+    "rear-plank",
+    "rear-knee-tucks"
+  ],
+  "cues": "Legs stay straight; fold at the hips.\nLook at the knees in the pike.\nReturn to a flat plank, not a sag.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

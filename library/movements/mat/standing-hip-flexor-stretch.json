@@ -2,6 +2,7 @@
   "slug": "standing-hip-flexor-stretch",
   "name": "Standing Hip Flexor Stretch",
   "apparatus": "mat",
+  "section": "stretch",
   "level": "beginner",
   "position": "standing",
   "spine": [
@@ -20,6 +21,15 @@
   },
   "equipment": [],
   "load": null,
+  "perSide": true,
+  "role": "mobility",
+  "stable": "Front leg",
+  "mobile": "Back hip",
+  "categories": [
+    "hip_flexion",
+    "standing"
+  ],
+  "pregnancy": "recommended",
   "purpose": {
     "strength": 0,
     "stability": 1,
@@ -31,15 +41,20 @@
   "duration": 60,
   "reps": "Hold each side",
   "summary": "In a split stance, tuck the pelvis and shift forward to stretch the front of the back hip.",
+  "steps": [],
   "layers": [],
+  "modifications": [
+    "Hold a wall or chair."
+  ],
   "cautions": [],
-  "cues": "",
+  "prep": [],
+  "cues": "Tail heavy, pubic bone lifting.\nHips face forward.",
   "labels": [
     "cool-down",
     "pregnancy-friendly"
   ],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

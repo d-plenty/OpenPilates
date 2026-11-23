@@ -1,0 +1,149 @@
+{
+  "slug": "side-lying-jumps",
+  "name": "Side-lying Jumps",
+  "apparatus": "reformer",
+  "section": "cardio",
+  "level": "intermediate",
+  "position": "side-lying",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "frontal",
+  "patterns": [
+    "stabilisation",
+    "push",
+    "coordination"
+  ],
+  "muscles": {
+    "primary": [
+      "glutes",
+      "quadriceps",
+      "calves"
+    ],
+    "secondary": [
+      "abductors",
+      "hamstrings",
+      "obliques"
+    ]
+  },
+  "equipment": [
+    "jump_board"
+  ],
+  "load": {
+    "springs": [
+      "medium"
+    ],
+    "advance": [
+      "medium",
+      "xlight"
+    ]
+  },
+  "setup": {
+    "headrest": "up",
+    "straps": "none"
+  },
+  "perSide": true,
+  "role": "stability",
+  "stable": "Pelvis, waist and shoulders",
+  "mobile": "Top hip, knee and ankle",
+  "categories": [
+    "hip_extension",
+    "hip_abduction"
+  ],
+  "pregnancy": "avoid",
+  "purpose": {
+    "strength": 3,
+    "stability": 2,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 7,
+  "duration": 150,
+  "reps": "30–60 s each side",
+  "summary": "Lying on one side with the top foot on the jump board, the top leg jumps and lands. One-leg cardio that also loads the glutes.",
+  "steps": [
+    "Headrest up, or a small block under the head. Lie on one side, hips and shoulders stacked.",
+    "Top foot on the board at hip height; bottom leg bent out of the way.",
+    "Press off, straighten the leg in the air, and land softly through toes, ball, heel, then knee."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Parallel",
+      "text": "Toes forward."
+    },
+    {
+      "tag": "L2",
+      "title": "Turned out",
+      "text": "Knee and toes to the ceiling."
+    },
+    {
+      "tag": "L3",
+      "title": "Sweep",
+      "text": "Jump, sweep the leg forward and up, land."
+    },
+    {
+      "tag": "L4",
+      "title": "Heel beats",
+      "text": "Add a beat in the air on two legs."
+    }
+  ],
+  "modifications": [
+    "Press out and in without leaving the board.",
+    "Add a spring to slow it down."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "side-lying-strap-series"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "side-lying-strap-series"
+    },
+    {
+      "tag": "knee",
+      "severity": "avoid",
+      "note": "Impact.",
+      "swap": "side-lying-strap-series"
+    },
+    {
+      "tag": "low_bone_density",
+      "severity": "modify",
+      "note": "Low, soft jumps only if cleared for impact."
+    },
+    {
+      "tag": "hip_pain",
+      "severity": "avoid",
+      "note": "Impact and lying on the hip.",
+      "swap": "side-lying-strap-series"
+    },
+    {
+      "tag": "hip_replacement",
+      "severity": "avoid",
+      "note": "Impact.",
+      "swap": "side-lying-strap-series"
+    },
+    {
+      "tag": "si_joint",
+      "severity": "avoid",
+      "note": "One-sided impact.",
+      "swap": "footwork-series"
+    }
+  ],
+  "prep": [
+    "footwork-series",
+    "jumping"
+  ],
+  "cues": "Land in the upper middle of the board.\nQuiet landings.\nHips stay stacked — no rolling back.\nWaist stays lifted off the carriage.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

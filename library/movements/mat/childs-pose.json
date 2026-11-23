@@ -2,6 +2,7 @@
   "slug": "childs-pose",
   "name": "Rest Position (Child's Pose)",
   "apparatus": "mat",
+  "section": "stretch",
   "level": "beginner",
   "position": "kneeling",
   "spine": [
@@ -20,6 +21,15 @@
   },
   "equipment": [],
   "load": null,
+  "perSide": false,
+  "role": "mobility",
+  "stable": "Shins",
+  "mobile": "Spine, hips and shoulders",
+  "categories": [
+    "trunk_flexion",
+    "upper_body"
+  ],
+  "pregnancy": "early_only",
   "purpose": {
     "strength": 0,
     "stability": 0,
@@ -31,23 +41,52 @@
   "duration": 60,
   "reps": "Hold 5 breaths",
   "summary": "Sit back towards the heels with the arms long in front and breathe into the back.",
-  "layers": [],
-  "cautions": [
+  "steps": [
+    "Kneel and sit back towards the heels.",
+    "Fold forward, arms long in front or resting by the sides.",
+    "Breathe into the back of the ribs."
+  ],
+  "layers": [
     {
-      "tag": "knee",
-      "note": "Deep knee bend; pad behind the knees or skip."
+      "tag": "L1",
+      "title": "Arms forward",
+      "text": "Lengthen the sides."
     },
     {
-      "tag": "pregnancy",
-      "note": "Widen the knees."
+      "tag": "L2",
+      "title": "Arms back",
+      "text": "Rest."
+    },
+    {
+      "tag": "L3",
+      "title": "Side reach",
+      "text": "Walk both hands to one side."
     }
   ],
-  "cues": "",
+  "modifications": [
+    "Knees wide to make room for the belly or hips.",
+    "Cushion between heels and hips, or under the forehead."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks."
+    },
+    {
+      "tag": "knee",
+      "severity": "avoid",
+      "note": "Deep knee bend; pad behind the knees or skip."
+    }
+  ],
+  "prep": [],
+  "cues": "Heavy hips.\nLet the forehead rest.",
   "labels": [
-    "cool-down"
+    "cool-down",
+    "mobilisation"
   ],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

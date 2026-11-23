@@ -2,6 +2,7 @@
   "slug": "single-leg-press",
   "name": "Single Leg Press",
   "apparatus": "reformer",
+  "section": "lower",
   "level": "beginner",
   "position": "supine",
   "spine": [
@@ -26,9 +27,27 @@
   "load": {
     "springs": [
       "medium",
-      "medium"
+      "medium",
+      "xlight"
+    ],
+    "advance": [
+      "medium",
+      "medium",
+      "light"
     ]
   },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": true,
+  "role": "stability",
+  "stable": "Pelvis level, spine neutral",
+  "mobile": "Working hip and knee",
+  "categories": [
+    "hip_extension"
+  ],
+  "pregnancy": "supine",
   "purpose": {
     "strength": 2,
     "stability": 2,
@@ -38,21 +57,73 @@
   "multiJoint": true,
   "intensity": 4,
   "duration": 180,
-  "reps": "10 each side",
+  "reps": "15–30 each side",
   "summary": "One foot on the footbar, the other leg in tabletop. Builds even leg strength and pelvic control.",
-  "layers": [],
-  "cautions": [
+  "steps": [
+    "Lie on the back with one heel on the footbar in line with the hip.",
+    "Lift the other leg to tabletop, knee over hip.",
+    "Breathe out to press out until the leg is straight; breathe in to bend."
+  ],
+  "layers": [
     {
-      "tag": "knee",
-      "note": "Keep range comfortable on the working knee."
+      "tag": "L1",
+      "title": "Heel on the bar",
+      "text": "Start here."
+    },
+    {
+      "tag": "L2",
+      "title": "Ball of the foot",
+      "text": "Heel lifted."
+    },
+    {
+      "tag": "L3",
+      "title": "Pulses and holds",
+      "text": "Low, middle or top range."
+    },
+    {
+      "tag": "L4",
+      "title": "Tempo",
+      "text": "Slow out, quick in."
+    },
+    {
+      "tag": "L5",
+      "title": "Bicycle",
+      "text": "The free leg cycles."
+    },
+    {
+      "tag": "L6",
+      "title": "Single-leg heel raise",
+      "text": "Leg long, lower and lift the heel."
     }
   ],
-  "cues": "",
+  "modifications": [
+    "Take a spring off.",
+    "Heel on the bar for ankle or knee trouble."
+  ],
+  "cautions": [
+    {
+      "tag": "pregnancy",
+      "severity": "modify",
+      "note": "Lying flat on the back: keep it to a few minutes, raise the head end if you can, and stop if she feels dizzy."
+    },
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Heel on the bar, smaller bend."
+    },
+    {
+      "tag": "si_joint",
+      "severity": "modify",
+      "note": "Keep the load light or go back to two legs."
+    }
+  ],
+  "prep": [],
+  "cues": "Both hip bones stay level.\nThe tabletop knee stays over its hip.\nSoft knee at the top.\nNo momentum.",
   "labels": [
     "rehab-friendly"
   ],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

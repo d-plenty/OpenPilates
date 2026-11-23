@@ -2,6 +2,7 @@
   "slug": "bridging-reformer",
   "name": "Bridging (Reformer)",
   "apparatus": "reformer",
+  "section": "pelvic",
   "level": "beginner",
   "position": "supine",
   "spine": [
@@ -26,10 +27,26 @@
   "load": {
     "springs": [
       "medium",
-      "medium",
-      "light"
-    ]
+      "xlight"
+    ],
+    "advance": [
+      "medium"
+    ],
+    "lighterIsHarder": true
   },
+  "setup": {
+    "headrest": "down",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "both",
+  "stable": "Carriage, knees and feet",
+  "mobile": "Spine and hips",
+  "categories": [
+    "hip_extension",
+    "trunk_flexion"
+  ],
+  "pregnancy": "early_only",
   "purpose": {
     "strength": 2,
     "stability": 2,
@@ -39,34 +56,87 @@
   "multiJoint": true,
   "intensity": 4,
   "duration": 120,
-  "reps": "8",
-  "summary": "Roll the pelvis and spine up from the carriage with feet on the footbar, then press the carriage out and in.",
+  "reps": "10–20",
+  "summary": "Heels on the footbar, hips lift into a bridge. Three versions: carriage held still, carriage pressed out and in with the hips up, and starting with the hips dropped low.",
+  "steps": [
+    "Headrest down. Lie on the back with the heels on the footbar hip-width apart, arms long.",
+    "Breathe out to lift the hips, peeling the spine off the carriage.",
+    "Breathe in to hold.",
+    "Breathe out to lower the spine and pelvis back down."
+  ],
   "layers": [
     {
       "tag": "L1",
-      "title": "Pelvic curl",
-      "text": "Articulate up and down without moving the carriage."
+      "title": "Bridge, carriage still",
+      "text": "Lift and lower."
     },
     {
       "tag": "L2",
       "title": "Bridge and press",
-      "text": "Hold the bridge and press the carriage out and in."
+      "text": "Hips up; press the carriage out and in without dropping them."
+    },
+    {
+      "tag": "L3",
+      "title": "Low start",
+      "text": "Hands on the shoulder rests, hips dropped towards the springs; press out, lift, return, lower."
+    },
+    {
+      "tag": "L4",
+      "title": "Hip dips and pulses",
+      "text": "Small lowers and lifts at the top."
+    },
+    {
+      "tag": "L5",
+      "title": "Marching",
+      "text": "Alternate knees to tabletop."
+    },
+    {
+      "tag": "L6",
+      "title": "Single leg",
+      "text": "One leg long or in tabletop."
+    },
+    {
+      "tag": "L7",
+      "title": "Prop",
+      "text": "Loop band, ring or ball."
+    },
+    {
+      "tag": "L8",
+      "title": "Foot position",
+      "text": "Toes, turned out, or wide."
     }
+  ],
+  "modifications": [
+    "All springs on to lock the carriage for tight or cramping hamstrings.",
+    "Feet on the platform instead of the bar."
   ],
   "cautions": [
     {
       "tag": "pregnancy",
-      "note": "Long periods lying on the back later in pregnancy; keep sets short."
+      "severity": "avoid",
+      "note": "Not after the first 12 weeks."
     },
     {
       "tag": "low_bone_density",
-      "note": "Keep to a low pelvic curl rather than a high bridge onto the neck."
+      "severity": "modify",
+      "note": "Lift with a long spine instead of rolling."
+    },
+    {
+      "tag": "flexion_pain",
+      "severity": "modify",
+      "note": "Hinge up with a neutral spine."
+    },
+    {
+      "tag": "neck",
+      "severity": "modify",
+      "note": "Keep the bridge lower."
     }
   ],
-  "cues": "",
+  "prep": [],
+  "cues": "One line from knees to shoulders at the top.\nWeight on the shoulder blades, never the neck.\nKnees and feet stay hip-width — no rolling in or out.\nThe carriage stays parked unless the layer says otherwise.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

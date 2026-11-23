@@ -1,0 +1,112 @@
+{
+  "slug": "quadruped-leg-sweep",
+  "name": "Hands-and-knees Leg Sweep with Strap",
+  "apparatus": "reformer",
+  "section": "core",
+  "level": "intermediate",
+  "position": "quadruped",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "frontal",
+  "patterns": [
+    "stabilisation",
+    "abduction",
+    "hip-dissociation"
+  ],
+  "muscles": {
+    "primary": [
+      "glutes",
+      "abductors",
+      "abdominals"
+    ],
+    "secondary": [
+      "obliques",
+      "spinal_extensors",
+      "deltoids"
+    ]
+  },
+  "equipment": [],
+  "load": {
+    "springs": [
+      "xlight"
+    ]
+  },
+  "setup": {
+    "headrest": "any",
+    "straps": "long"
+  },
+  "perSide": true,
+  "role": "stability",
+  "stable": "Trunk, pelvis and shoulders",
+  "mobile": "Working hip",
+  "categories": [
+    "quadruped",
+    "hip_abduction",
+    "hip_extension"
+  ],
+  "pregnancy": "ok",
+  "purpose": {
+    "strength": 2,
+    "stability": 3,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": true,
+  "intensity": 5,
+  "duration": 150,
+  "reps": "8–12 each side",
+  "summary": "On hands and knees on the carriage with a long loop on one foot. The long leg sweeps out to the side and back behind you while the trunk stays square.",
+  "steps": [
+    "Hands behind the shoulder rests, knees under the hips.",
+    "Long loop over one foot; stretch that leg straight behind at hip height.",
+    "Breathe out to take the leg out to the side, still level with the body.",
+    "Breathe in to press it back behind you against the strap."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Sweep",
+      "text": "Basic."
+    },
+    {
+      "tag": "L2",
+      "title": "Bend and stretch",
+      "text": "Bend and straighten the knee."
+    },
+    {
+      "tag": "L3",
+      "title": "Opposite arm reach",
+      "text": "Lift the opposite arm forward."
+    }
+  ],
+  "modifications": [
+    "Down on the forearms.",
+    "Smaller sweep.",
+    "No strap."
+  ],
+  "cautions": [
+    {
+      "tag": "wrist",
+      "severity": "modify",
+      "note": "Forearms down."
+    },
+    {
+      "tag": "knee",
+      "severity": "modify",
+      "note": "Pad under the knee."
+    },
+    {
+      "tag": "si_joint",
+      "severity": "modify",
+      "note": "Keep the range small or do it without the strap."
+    }
+  ],
+  "prep": [],
+  "cues": "Hips and shoulders stay square to the carriage.\nBoth sides of the waist stay long.\nLeg stays at hip height.\nUpper body quiet.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

@@ -2,6 +2,7 @@
   "slug": "footwork-series",
   "name": "Footwork Series",
   "apparatus": "reformer",
+  "section": "lower",
   "level": "beginner",
   "position": "supine",
   "spine": [
@@ -28,9 +29,28 @@
     "springs": [
       "medium",
       "medium",
-      "medium"
+      "medium",
+      "xlight"
+    ],
+    "advance": [
+      "medium",
+      "medium",
+      "medium",
+      "light"
     ]
   },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "both",
+  "stable": "Pelvis and spine",
+  "mobile": "Hips, knees and ankles",
+  "categories": [
+    "hip_extension"
+  ],
+  "pregnancy": "supine",
   "purpose": {
     "strength": 2,
     "stability": 1,
@@ -40,32 +60,84 @@
   "multiJoint": true,
   "intensity": 3,
   "duration": 180,
-  "reps": "10 each foot position",
-  "summary": "Leg presses from the footbar through several foot positions. A steady way to start a reformer class and check alignment.",
+  "reps": "20–30, or 10 in each foot position",
+  "summary": "Double-leg presses from the footbar through a run of foot positions. Big, simple movement that warms up the legs and lets you check everyone's alignment.",
+  "steps": [
+    "Lie on the back with the heels on the footbar hip-width apart, arms long by the sides.",
+    "Breathe out to press the carriage away until the legs are straight.",
+    "Breathe in to bend the knees and bring the carriage home quietly."
+  ],
   "layers": [
     {
       "tag": "L1",
-      "title": "Parallel heels and toes",
-      "text": "Press out and return with control."
+      "title": "Heels, parallel",
+      "text": "Hip-width, feet flexed."
     },
     {
       "tag": "L2",
-      "title": "Add tendon stretch",
-      "text": "Lower and lift the heels at full extension."
+      "title": "Toes, parallel",
+      "text": "Balls of the feet on the bar, heels lifted and still."
+    },
+    {
+      "tag": "L3",
+      "title": "Small V",
+      "text": "Heels together, toes apart."
+    },
+    {
+      "tag": "L4",
+      "title": "Wide and turned out",
+      "text": "Feet wide on the bar, knees over toes."
+    },
+    {
+      "tag": "L5",
+      "title": "Feet and knees together",
+      "text": "Inner-thigh bias."
+    },
+    {
+      "tag": "L6",
+      "title": "Pulses and holds",
+      "text": "Low, middle or top of the range."
+    },
+    {
+      "tag": "L7",
+      "title": "Tempo",
+      "text": "Three counts out, one count in."
+    },
+    {
+      "tag": "L8",
+      "title": "Add arms or a prop",
+      "text": "Arms off the carriage, ring or ball between the knees."
     }
+  ],
+  "modifications": [
+    "Take a spring off if the legs can't press with control.",
+    "Heels on the bar for sore ankles or knees.",
+    "Too heavy a spring can aggravate the shoulders against the shoulder rests."
   ],
   "cautions": [
     {
+      "tag": "pregnancy",
+      "severity": "modify",
+      "note": "Lying flat on the back: keep it to a few minutes, raise the head end if you can, and stop if she feels dizzy."
+    },
+    {
       "tag": "knee",
-      "note": "Keep the knees soft at full extension; reduce range if painful."
+      "severity": "modify",
+      "note": "Heels on the bar, smaller bend, soft knees at the top."
+    },
+    {
+      "tag": "hip_pain",
+      "severity": "modify",
+      "note": "Stay in a comfortable range."
     }
   ],
-  "cues": "",
+  "prep": [],
+  "cues": "Pelvis and spine stay in neutral — nothing rocks.\nStraight legs, not locked knees.\nKnees track over the second toes.\nMove the carriage with muscle, not momentum.",
   "labels": [
     "warm-up"
   ],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

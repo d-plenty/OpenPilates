@@ -2,6 +2,7 @@
   "slug": "kneeling-arm-series",
   "name": "Kneeling Arm Series",
   "apparatus": "reformer",
+  "section": "chest_arms",
   "level": "intermediate",
   "position": "kneeling",
   "spine": [
@@ -27,8 +28,23 @@
   "load": {
     "springs": [
       "xlight"
+    ],
+    "advance": [
+      "light"
     ]
   },
+  "setup": {
+    "headrest": "any",
+    "straps": "short"
+  },
+  "perSide": false,
+  "role": "stability",
+  "stable": "Trunk and pelvis",
+  "mobile": "Shoulders and elbows",
+  "categories": [
+    "upper_body"
+  ],
+  "pregnancy": "ok",
   "purpose": {
     "strength": 2,
     "stability": 2,
@@ -40,21 +56,29 @@
   "duration": 240,
   "reps": "8 each",
   "summary": "Kneeling tall on the carriage, arm work with the straps: biceps, triceps, hug and salute.",
+  "steps": [],
   "layers": [],
+  "modifications": [
+    "Sit on the heels or the long box.",
+    "Long loops for less resistance."
+  ],
   "cautions": [
     {
       "tag": "knee",
+      "severity": "avoid",
       "note": "Kneeling; pad the knees."
     },
     {
       "tag": "shoulder",
+      "severity": "avoid",
       "note": "Keep loads light and below pain."
     }
   ],
-  "cues": "",
+  "prep": [],
+  "cues": "Hips stay over the knees.\nRopes stay tight.\nRibs closed.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }

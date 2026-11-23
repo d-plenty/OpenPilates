@@ -1,0 +1,96 @@
+{
+  "slug": "band-curl-and-press",
+  "name": "Band Biceps Curl & Overhead Press",
+  "apparatus": "mat",
+  "section": "chest_arms",
+  "level": "beginner",
+  "position": "standing",
+  "spine": [
+    "neutral"
+  ],
+  "plane": "sagittal",
+  "patterns": [
+    "stabilisation",
+    "pull",
+    "push"
+  ],
+  "muscles": {
+    "primary": [
+      "biceps",
+      "deltoids"
+    ],
+    "secondary": [
+      "triceps",
+      "abdominals"
+    ]
+  },
+  "equipment": [
+    "resistance_band"
+  ],
+  "load": null,
+  "perSide": true,
+  "role": "stability",
+  "stable": "Trunk",
+  "mobile": "Arm",
+  "categories": [
+    "upper_body",
+    "standing"
+  ],
+  "pregnancy": "ok",
+  "purpose": {
+    "strength": 2,
+    "stability": 1,
+    "flexibility": 0,
+    "mobility": 0
+  },
+  "multiJoint": false,
+  "intensity": 3,
+  "duration": 150,
+  "reps": "10–15 each arm",
+  "summary": "Standing on one end of a band: curl the hand to the shoulder, then press it overhead.",
+  "steps": [
+    "Stand on one end of the band and hold the other.",
+    "Curl: breathe out to bend the elbow; breathe in to lower slowly.",
+    "Press: with the elbow out to the side and the hand by the shoulder, breathe out to press up; breathe in to bend."
+  ],
+  "layers": [
+    {
+      "tag": "L1",
+      "title": "Curl only",
+      "text": "Start here."
+    },
+    {
+      "tag": "L2",
+      "title": "Press only",
+      "text": "Overhead."
+    },
+    {
+      "tag": "L3",
+      "title": "Curl to press",
+      "text": "Join them."
+    },
+    {
+      "tag": "L4",
+      "title": "Pulses or half range",
+      "text": "Stay in the middle."
+    }
+  ],
+  "modifications": [
+    "Less tension, or no band.",
+    "Smaller range."
+  ],
+  "cautions": [
+    {
+      "tag": "shoulder",
+      "severity": "modify",
+      "note": "Curl only; skip the overhead press."
+    }
+  ],
+  "prep": [],
+  "cues": "Don't lean away from the working arm — a hand on the waist helps.\nShoulder stays down as the arm goes up.\nThe lowering is half the work.",
+  "labels": [],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+  }
+}

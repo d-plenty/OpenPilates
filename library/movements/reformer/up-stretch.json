@@ -2,6 +2,7 @@
   "slug": "up-stretch",
   "name": "Up Stretch",
   "apparatus": "reformer",
+  "section": "core",
   "level": "advanced",
   "position": "plank",
   "spine": [
@@ -28,8 +29,23 @@
     "springs": [
       "medium",
       "light"
-    ]
+    ],
+    "lighterIsHarder": true
   },
+  "setup": {
+    "headrest": "any",
+    "straps": "none"
+  },
+  "perSide": false,
+  "role": "both",
+  "stable": "Shoulders",
+  "mobile": "Hips and spine",
+  "categories": [
+    "quadruped",
+    "hip_flexion",
+    "trunk_flexion"
+  ],
+  "pregnancy": "avoid",
   "purpose": {
     "strength": 2,
     "stability": 3,
@@ -41,27 +57,44 @@
   "duration": 180,
   "reps": "5",
   "summary": "From a pike over the footbar, travel into plank and back while keeping the carriage controlled.",
+  "steps": [],
   "layers": [],
+  "modifications": [
+    "Elephant or Long Stretch instead."
+  ],
   "cautions": [
     {
+      "tag": "pregnancy",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "shoulder-retraction"
+    },
+    {
+      "tag": "pregnancy_early",
+      "severity": "avoid",
+      "note": "Not suitable during pregnancy.",
+      "swap": "shoulder-retraction"
+    },
+    {
       "tag": "wrist",
+      "severity": "avoid",
       "note": "Weight through the hands.",
-      "swap": "elephant"
+      "swap": "supine-arm-pulls"
     },
     {
       "tag": "shoulder",
+      "severity": "avoid",
       "note": "Overhead loading; small range."
-    },
-    {
-      "tag": "pregnancy",
-      "note": "Plank and pike under load.",
-      "swap": "elephant"
     }
   ],
-  "cues": "",
+  "prep": [
+    "elephant",
+    "long-stretch"
+  ],
+  "cues": "Lift the hips with the belly, not by pushing with the arms.\nHeels reach back.",
   "labels": [],
   "review": {
     "status": "draft",
-    "note": "Starter entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
+    "note": "Draft entry written for OpenPilates. Needs review by a qualified Pilates instructor before teaching from it."
   }
 }
