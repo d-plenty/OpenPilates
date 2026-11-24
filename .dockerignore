@@ -3,6 +3,5 @@
 data
 node_modules
 test
-tools
 *.md
 !README.md

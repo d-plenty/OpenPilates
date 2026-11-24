@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readdirSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { readdirSync, readFileSync, existsSync } from 'node:fs';
+import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { analyze } from '../shared/analysis.js';
 import { draftFlow } from '../shared/draft.js';
@@ -359,4 +359,19 @@ test('suggesting blocks for one phase follows the same rules and never repeats w
   const slugs = f.segments.flatMap((s) => s.items.map((i) => i.slug));
   assert.equal(new Set(slugs).size, slugs.length, 'a movement was suggested twice');
   assert.equal(fillPhase({ movements, flow: f, seg: f.segments[2], phase: type.phases[2], props, count: 1 }).length, 1);
+});
+
+// The image build cannot be run here, so this guards the mistake that is easy to make: copying
+// something into the image that .dockerignore leaves out of the build, which stops the build.
+test('everything the Dockerfile copies exists and is not left out by .dockerignore', () => {
+  const root = join(dirname(fileURLToPath(import.meta.url)), '..');
+  const ignored = readFileSync(join(root, '.dockerignore'), 'utf8').split('\n').map((l) => l.trim()).filter((l) => l && !l.startsWith('#') && !l.startsWith('!'));
+  const sources = readFileSync(join(root, 'Dockerfile'), 'utf8').split('\n').filter((l) => /^COPY\s/.test(l) && !l.includes('--from=')).map((l) => l.trim().split(/\s+/).slice(1, -1)).flat();
+  assert.ok(sources.length >= 6);
+  for (const src of sources) {
+    const top = src.replace(/^\.\//, '').split('/')[0];
+    assert.ok(existsSync(join(root, src)), `Dockerfile copies ${src}, which does not exist`);
+    assert.ok(!ignored.includes(top) && !ignored.includes(src), `Dockerfile copies ${src}, but .dockerignore leaves it out of the build`);
+    if (/\.md$/.test(src)) assert.equal(src, 'README.md');
+  }
 });

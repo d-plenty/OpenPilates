@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.2
+
+- **Fixes the Docker image build, which 0.6.1 broke.** 0.6.1 told Docker to copy the `tools` folder into the image while `.dockerignore` still left that folder out, so the build stopped and no new image was published. Servers stayed on the last image that did build. Nothing in the app itself changes.
+- A test now checks that everything the Dockerfile copies exists and is not left out by `.dockerignore`.
+
 ## 0.6.1
 
 - **Show password.** Every password box (sign in, first set-up, account) has an eye beside it to show what you are typing.
