@@ -2,7 +2,7 @@
 import { h, icon, btn } from '../ui.js';
 import { store } from '../store.js';
 import { analyze, itemDuration, fmtClock } from '/shared/analysis.js';
-import { variationOf, classLevel, classTypesOf } from '/shared/vocab.js';
+import { variationOf, classLevel, classTypesOf, focusOf } from '/shared/vocab.js';
 import { springDots, fmtMin, setOutCard, thumb, posLabel, repsLabel } from './common.js';
 import { itemExtras } from './options.js';
 
@@ -10,6 +10,7 @@ export function sheetView(flow) {
   const room = store.roomFor(flow);
   const a = analyze(store.analysisContext(flow));
   const plan = new Map(a.springPlan.filter((p) => p.pass === 1).map((p) => [p.itemId, p]));
+  const tm = store.timingFor(flow);
   let showCues = true;
   let n = 0;
   const cuesOf = (mv) => (mv.cues || '').split('\n').filter(Boolean).slice(0, 3);
@@ -18,12 +19,13 @@ export function sheetView(flow) {
   const draw = () => {
     n = 0;
     body.replaceChildren(...flow.segments.filter((s) => s.items.length).map((seg) => {
-      const sec = seg.items.reduce((t, i) => t + itemDuration(i, store.movements[i.slug]), 0) * (seg.bothSides ? 2 : 1);
+      const sec = seg.items.reduce((t, i) => t + itemDuration(i, store.movements[i.slug], tm), 0) * (seg.bothSides ? 2 : 1);
       return h('section', null,
-        h('h2', null, seg.name, h('span', { class: 'tiny muted' }, `${fmtMin(sec)}${seg.song ? ` · ${seg.song}` : ''}${seg.bothSides ? ' · teach one side, then repeat on the other' : ''}`)),
+        flow.noPhases ? null : h('h2', null, seg.name, h('span', { class: 'tiny muted' }, `${fmtMin(sec)}${seg.song ? ` · ${seg.song}` : ''}${seg.bothSides ? ' · teach one side, then repeat on the other' : ''}`)),
         h('table', null,
           h('thead', null, h('tr', null, h('th', { class: 'n' }, '#'), h('th', null, 'Movement'), h('th', null, 'Springs'), h('th', null, 'Reps / time'), showCues ? h('th', null, 'Cues') : null)),
           h('tbody', null, seg.items.map((item) => {
+            if (item.pause) return h('tr', { class: 'chg pause' }, h('td', { class: 'n' }), h('td', { colspan: 2 }, h('b', null, item.label), item.note ? h('span', { class: 'tiny muted' }, ` · ${item.note}`) : null), h('td', { colspan: showCues ? 2 : 1 }, fmtClock(item.duration)));
             const mv = store.movements[item.slug];
             if (!mv) return h('tr', null, h('td', { class: 'n' }, ++n), h('td', { colspan: 4 }, `Missing movement: ${item.slug}`));
             const p = plan.get(item.id);
@@ -34,7 +36,7 @@ export function sheetView(flow) {
                   itemExtras(item, mv, room),
                   item.note ? h('div', { class: 'tiny', style: { marginTop: '4px' } }, h('b', null, 'Note: '), item.note) : null))),
               h('td', null, mv.apparatus === 'reformer' ? springDots(p ? p.loads : (item.load?.springs || mv.load?.springs || []), room) : 'Mat'),
-              h('td', null, repsLabel(item.reps || mv.reps || ''), h('div', { class: 'tiny muted' }, fmtClock(itemDuration(item, mv)))),
+              h('td', null, repsLabel(item.reps || mv.reps || ''), h('div', { class: 'tiny muted' }, fmtClock(itemDuration(item, mv, tm)))),
               showCues ? h('td', { class: 'small' }, cuesOf(mv).map((c) => h('div', null, '• ', c))) : null);
             return p && p.changed ? [h('tr', { class: 'chg' }, h('td', { colspan: showCues ? 5 : 4 }, 'Change springs → ', springDots(p.loads, room))), row] : row;
           }))));
@@ -46,7 +48,7 @@ export function sheetView(flow) {
     h('div', { class: 'page-head' },
       h('div', { class: 'grow' }, h('a', { href: `#/flows/${flow.id}`, class: 'small no-print' }, '← Back to the builder'),
         h('h1', null, flow.title),
-        h('p', { class: 'small muted' }, [flow.apparatus === 'mat' ? 'Mat' : flow.apparatus === 'mixed' ? 'Mixed' : 'Reformer', (classTypesOf(store.studio).find((c) => c.id === flow.classType) || {}).name, classLevel(flow.level).label, fmtMin(a.totalSec), `${a.count} block${a.count === 1 ? '' : 's'}`, a.hasReformer ? `${a.springChanges} spring change${a.springChanges === 1 ? '' : 's'}` : ''].filter(Boolean).join(' · '))),
+        h('p', { class: 'small muted' }, [flow.apparatus === 'mat' ? 'Mat' : flow.apparatus === 'mixed' ? 'Mixed' : 'Reformer', (classTypesOf(store.studio).find((c) => c.id === flow.classType) || {}).name, classLevel(flow.level).label, focusOf(flow), fmtMin(a.totalSec), `${a.count} block${a.count === 1 ? '' : 's'}`, a.hasReformer ? `${a.springChanges} spring change${a.springChanges === 1 ? '' : 's'}` : ''].filter(Boolean).join(' · '))),
       h('div', { class: 'btn-row no-print' },
         h('label', { class: 'btn' }, h('input', { type: 'checkbox', checked: showCues, onchange: (e) => { showCues = e.target.checked; draw(); } }), 'Show cues'),
         btn('Print', () => window.print(), { iconName: 'print', kind: 'primary' }),

@@ -3,19 +3,11 @@
 // a few blocks: one movement each, with time to build it up through layers. Warm-ups and cool-downs only
 // use movements marked for them, the hardest work is kept for the peak, and movements that share a
 // spring setting sit together. Everything is a starting point the teacher edits.
-import { sectionOf, sameSetting, levelRange, classLevel, usesOf, variationsOf, DEFAULT_CLASS_TYPES, DEFAULT_TARGETS, TIMING } from './vocab.js';
+import { sectionOf, sameSetting, levelRange, classLevel, usesOf, variationsOf, DEFAULT_CLASS_TYPES, DEFAULT_TARGETS, TIMING, FOCUSES } from './vocab.js';
 import { analyze } from './analysis.js';
 
-export const GOALS = [
-  { id: 'full_body', label: 'Full body', muscles: [] },
-  { id: 'posterior_chain', label: 'Posterior chain', muscles: ['glutes', 'hamstrings', 'spinal_extensors', 'upper_back'] },
-  { id: 'core', label: 'Core', muscles: ['abdominals', 'obliques'] },
-  { id: 'upper_body', label: 'Upper body', muscles: ['shoulders', 'upper_back', 'chest', 'triceps', 'biceps', 'lats'] },
-  { id: 'lower_body', label: 'Legs & glutes', muscles: ['glutes', 'quadriceps', 'hamstrings', 'calves', 'hip_abductors', 'adductors'] },
-  { id: 'mobility', label: 'Mobility', muscles: [], purpose: ['flexibility', 'mobility'], maxIntensity: 5 },
-  { id: 'prenatal', label: 'Prenatal', muscles: ['glutes', 'upper_back'], avoid: ['pregnancy', 'pregnancy_early'], maxIntensity: 6 },
-  { id: 'rehab', label: 'Rehab-friendly', muscles: [], purpose: ['mobility', 'stability'], maxIntensity: 5, label_pref: 'rehab-friendly' }
-];
+// Focuses are the studio's list now (shared/vocab.js). Kept under this name for the code that reads it.
+export const GOALS = FOCUSES;
 
 // How long one block is aimed at, in seconds, by where it sits in the class.
 const BLOCK_SEC = { warmup: 180, build: 270, peak: 240, cooldown: 150 };
@@ -59,14 +51,18 @@ export function phasesFor(type, lengthMin, { props } = {}) {
   return phases.map((p) => ({ ...p, sec: p.minutes * 60 * scale }));
 }
 export function blankSegments(type, lengthMin, opts) {
+  if (type.noPhases || !(type.phases || []).some((p) => p && p.minutes > 0)) return [{ id: newId('s'), name: 'Class', role: 'build', song: '', items: [] }];
   return phasesFor(type, lengthMin, opts).map((p) => ({ id: newId('s'), name: p.name, role: p.role, minutes: Math.max(1, Math.round(p.sec / 60)), song: '', items: [] }));
 }
 
-function draftOnce({ movements, classType, classTypes, goal = 'full_body', apparatus, format, lengthMin, level, props = {}, clientTags = [], seed = 1, timing = TIMING, targets }) {
+function draftOnce({ movements, classType, classTypes, goal = 'full_body', focusText = '', apparatus, format, lengthMin, level, props = {}, clientTags = [], seed = 1, timing: studioTiming = TIMING, targets }) {
   const g = GOALS.find((x) => x.id === goal) || GOALS[0];
   const rand = rng(seed);
-  const type = pickClassType({ classType, classTypes, apparatus, format });
-  const app = type.apparatus === 'mat' ? 'mat' : 'reformer';
+  const asked = pickClassType({ classType, classTypes, apparatus, format });
+  const app = asked.apparatus === 'mat' ? 'mat' : 'reformer';
+  const plain = !!asked.noPhases || !(asked.phases || []).some((p) => p && p.minutes > 0);
+  const type = plain ? { ...asked, phases: DEFAULT_CLASS_TYPES.find((c) => c.apparatus === app).phases } : asked;
+  const timing = { ...studioTiming, ...(asked.timing || {}) };
   const length = lengthMin || type.lengthMin || 50;
   const lv = classLevel(level);
   const top = goal === 'rehab' ? 1 : goal === 'prenatal' ? Math.min(2, lv.to) : lv.to;
@@ -87,7 +83,7 @@ function draftOnce({ movements, classType, classTypes, goal = 'full_body', appar
   const builds = phases.filter((p) => p.role === 'build').length || 1;
   let buildIndex = 0;
   // Spine balance is steered as the class is filled: a direction that is behind its target share gets a push.
-  const targetKey = goal === 'prenatal' ? 'prenatal' : goal === 'core' ? 'core-glutes' : 'general';
+  const targetKey = (asked.target && ((targets && targets[asked.target]) || DEFAULT_TARGETS[asked.target]) && asked.target) || (goal === 'prenatal' ? 'prenatal' : goal === 'core' ? 'core-glutes' : 'general');
   const tgt = (targets && targets[targetKey]) || DEFAULT_TARGETS[targetKey] || DEFAULT_TARGETS.general;
   const dirSec = { flexion: 0, extension: 0, rotation: 0, 'side-bend': 0 };
   const balance = (mv) => {
@@ -200,11 +196,12 @@ function draftOnce({ movements, classType, classTypes, goal = 'full_body', appar
   }
 
   const flow = {
-    title: `${g.label} · ${type.name} ${length} min`,
+    title: `${focusText || g.label} · ${type.name} ${length} min`,
     apparatus: app, level: lv.id, lengthMin: length, goal, classType: type.id,
     format: app === 'mat' ? 'open' : type.id === 'reformer_fit' ? 'fit' : 'flow',
-    springBudget: app === 'mat' ? 6 : (type.springBudget ?? 3),
+    springBudget: app === 'mat' ? 0 : (type.springBudget ?? 0),
     target: targetKey,
+    ...(focusText ? { focusText } : {}),
     segments
   };
 
@@ -219,6 +216,7 @@ function draftOnce({ movements, classType, classTypes, goal = 'full_body', appar
     for (const seg of segments) for (const it of seg.items) it.duration = Math.max(MIN_BLOCK[seg.role], Math.round((it.duration * f) / 15) * 15);
   }
   for (const seg of segments) delete seg._p;
+  if (plain) { flow.segments = [{ id: newId('s'), name: 'Class', role: 'build', song: '', items: segments.flatMap((s) => s.items) }]; flow.noPhases = true; }
   return flow;
 }
 
@@ -286,9 +284,13 @@ export function tidySprings(flow, movements) {
       for (const it of seg.items || []) { const mv = movements[it.slug]; if (mv && mv.load && !mv.load.flexible && !shares(mv, keys)) keys = optionKeys(mv).slice(0, 1); }
       return seg;
     }
-    const r = orderBySprings(seg.items || [], movements, keys);
-    keys = r.keys;
-    return { ...seg, items: r.ordered };
+    // timed lines (a water break, a change of set-up) stay exactly where they are; the blocks between them are ordered
+    const out = [];
+    let run = [];
+    const flush = () => { if (run.length) { const r = orderBySprings(run, movements, keys); keys = r.keys; out.push(...r.ordered); run = []; } };
+    for (const it of seg.items || []) { if (it.pause) { flush(); out.push(it); } else run.push(it); }
+    flush();
+    return { ...seg, items: out };
   });
   // Never hand back an order that changes springs more often than the one we were given.
   const count = (segs) => analyze({ flow: { ...flow, segments: segs }, movements }).springChanges;
@@ -361,7 +363,7 @@ export function draftFlow(opts) {
     if (flow.apparatus === 'mat') return flow;
     const changes = analyze({ flow, movements: opts.movements, studio: { props: opts.props || {}, timing: opts.timing } }).springChanges;
     if (!best || changes < best.changes) best = { flow, changes };
-    if (changes <= (flow.springBudget ?? 3)) break;
+    if (!(flow.springBudget > 0) || changes <= flow.springBudget) break;
   }
   return best.flow;
 }

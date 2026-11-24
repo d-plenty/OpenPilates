@@ -1,9 +1,9 @@
-import { h, icon, btn, toast, select, field, chips, debounce, confirmDialog, modal, fill } from '../ui.js';
+import { h, icon, btn, toast, select, field, chips, debounce, confirmDialog, modal, fill, undoStack } from '../ui.js';
 import { api, store, viewState } from '../store.js';
 import { go } from '../app.js';
 import { analyze, itemDuration, fmtClock, avoids } from '/shared/analysis.js';
 import { newId, tidySprings, fillPhase } from '/shared/draft.js';
-import { POSITIONS, SPINE, MUSCLES, CLASS_LEVELS, SEGMENT_ROLES, CAUTIONS, SECTIONS, labelOf, sectionOf, namesOf, variationOf, classLevel, classTypesOf, layersOf, levelsOf, levelRange, usesOf } from '/shared/vocab.js';
+import { POSITIONS, SPINE, MUSCLES, CLASS_LEVELS, SEGMENT_ROLES, CAUTIONS, SECTIONS, FOCUSES, labelOf, sectionOf, namesOf, variationOf, classLevel, classTypesOf, layersOf, levelsOf, levelRange, usesOf, timedLinesOf } from '/shared/vocab.js';
 import { checksList, statTiles, radarCard, bodyCard, intensityCard, positionsCard, focusCard, muscleListCard, clientsCard, springsCard, balanceCard, setOutCard, thumb, posLabel, muscleLabel, springDots, fmtMin, peekMovement, repsLabel } from './common.js';
 import { playView } from './play.js';
 import { sheetView } from './sheet.js';
@@ -18,7 +18,6 @@ export async function flowView(id, tab) {
   if (tab === 'sheet') return sheetView(data);
   const meta = { id: data.id, ownerName: data.ownerName, ownerId: data.ownerId, canEdit: data.canEdit, shared: data.shared };
   const flow = pickFlow(data);
-  const history = [];
   const remembered = viewState('flow:' + data.id, { activeSeg: null, lib: null, open: [] });
   let activeSeg = flow.segments.some((s) => s.id === remembered.activeSeg) ? remembered.activeSeg : flow.segments[0]?.id || null;
   let dragItemId = null;
@@ -35,27 +34,30 @@ export async function flowView(id, tab) {
   }, 700);
   const status = h('span', { class: 'tiny muted', 'aria-live': 'polite' }, meta.canEdit ? 'Saved' : `Read only · by ${meta.ownerName}`);
 
+  // Undo and redo: every change is a step, and a run of typing is one step.
+  const hist = undoStack(() => flow, (copy) => {
+    Object.keys(flow).forEach((k) => delete flow[k]);
+    Object.assign(flow, copy);
+    status.textContent = 'Saving…';
+    save();
+    drawAll();
+  });
   const change = (fn, { redraw = true } = {}) => {
     if (!meta.canEdit) return;
-    history.push(JSON.stringify(flow));
-    if (history.length > 60) history.shift();
+    hist.note();
     fn();
+    hist.note(!redraw);
     status.textContent = 'Saving…';
     save();
     if (redraw) drawAll();
     else if (tab !== 'analysis') drawLive();
   };
-  const undo = () => {
-    if (!history.length) return;
-    const prev = JSON.parse(history.pop());
-    Object.keys(flow).forEach((k) => delete flow[k]);
-    Object.assign(flow, prev);
-    status.textContent = 'Saving…';
-    save();
-    drawAll();
-  };
+  const undo = () => hist.undo();
 
   const room = () => store.roomFor(flow);
+  // the seconds this flow counts with: the studio's timing, with its class type's own on top
+  const tm = () => store.timingFor(flow);
+  const phased = () => !flow.noPhases;
   const ctx = () => store.analysisContext(flow);
   const analysis = () => analyze(ctx());
   const bookedTags = () => new Set(ctx().clients.flatMap((c) => c.tags));
@@ -65,25 +67,53 @@ export async function flowView(id, tab) {
     style: { width: '100%', fontFamily: 'var(--display)', fontSize: '28px', fontWeight: 700, height: '48px', border: '1px solid transparent', background: 'transparent', padding: '0 6px', marginLeft: '-7px' },
     oninput: (e) => change(() => { flow.title = e.target.value; }, { redraw: false }) });
 
+  const ownFocus = async () => {
+    const input = h('input', { type: 'text', maxlength: 60, value: flow.focusText || '', placeholder: 'e.g. Runners\' hips, wedding arms', 'aria-label': 'Your own focus' });
+    const ok = await modal('Your own focus for this class', h('div', { class: 'stack-sm' }, field('Focus', input), h('p', { class: 'hint' }, 'For a class that doesn\'t fit one of the studio\'s focuses. It shows on the flow and its run sheet.')),
+      { actions: [{ label: 'Cancel', value: false }, { label: 'Use it', value: true, kind: 'primary' }] });
+    if (ok && input.value.trim()) change(() => { flow.focusText = input.value.trim().slice(0, 60); }); else drawAll();
+  };
+  const togglePhases = async (on) => {
+    if (on) {
+      change(() => { delete flow.noPhases; if (flow.segments.length === 1 && flow.segments[0].name === 'Class') flow.segments[0].name = 'Main'; });
+      toast('Phases are on. Add phases and move blocks between them.');
+      return;
+    }
+    const many = flow.segments.filter((s) => s.items.length).length > 1 || flow.segments.length > 1;
+    if (many && !(await confirmDialog('Plan this flow without phases?', `Its ${flow.segments.length} phases become one list of blocks, in the same order. Phase names, minutes and songs are dropped. Undo brings them back.`, 'Use one list', 'primary'))) { drawAll(); return; }
+    change(() => {
+      const items = flow.segments.flatMap((s) => (s.bothSides ? [...s.items, ...s.items.map((i) => ({ ...structuredClone(i), id: newId() }))] : s.items));
+      flow.segments = [{ id: flow.segments[0]?.id || newId('s'), name: 'Class', role: 'build', song: '', items }];
+      flow.noPhases = true;
+      activeSeg = remembered.activeSeg = flow.segments[0].id;
+    });
+  };
+  const settingsEl = h('div');
   const settingsRow = () => {
     const types = classTypesOf(store.studio);
     const lens = [...new Set([...(store.studio.lengths || [30, 45, 50, 55, 60]), flow.lengthMin])].sort((x, y) => x - y);
     const levels = CLASS_LEVELS.some((l) => l.id === flow.level) ? CLASS_LEVELS : [...CLASS_LEVELS, classLevel(flow.level)];
     const sel = (opts, value, on, label) => select(opts, value, on, { 'aria-label': label, title: label, disabled: !meta.canEdit, style: { width: 'auto' } });
+    const limit = Number(flow.springBudget) > 0 ? Number(flow.springBudget) : 0;
     return h('div', { class: 'btn-row flow-settings', style: { marginTop: '6px' } },
       sel([...(types.some((c) => c.id === flow.classType) ? [] : [{ id: '', label: 'No class type' }]), ...types.map((c) => ({ id: c.id, label: c.name }))], flow.classType || '', (v) => change(() => {
         const c = types.find((x) => x.id === v);
         if (!c) { delete flow.classType; return; }
-        flow.classType = c.id; flow.apparatus = c.apparatus; flow.springBudget = c.apparatus === 'mat' ? 6 : c.springBudget;
+        // the class type brings what the studio set for it; the blocks and phases already planned stay
+        flow.classType = c.id; flow.apparatus = c.apparatus; flow.springBudget = c.apparatus === 'mat' ? 0 : (c.springBudget || 0);
+        if (c.target && (store.studio.targets || {})[c.target]) flow.target = c.target;
       }), 'Class type'),
       sel(levels.map((l) => ({ id: l.id, label: l.label })), classLevel(flow.level).id, (v) => change(() => { flow.level = v; }), 'Level'),
       sel(lens.map((n) => ({ id: String(n), label: `${n} min class` })), String(flow.lengthMin), (v) => change(() => { flow.lengthMin = Number(v); }), 'Class length'),
+      sel([...FOCUSES.map((f) => ({ id: f.id, label: `Focus: ${f.label}` })), ...(flow.focusText ? [{ id: '__own', label: `Focus: ${flow.focusText}` }] : []), ...(!flow.focusText && flow.goal && !FOCUSES.some((f) => f.id === flow.goal) ? [{ id: flow.goal, label: 'Focus: not set' }] : []), { id: '__type', label: flow.focusText ? 'Change our own focus…' : 'Type our own focus…' }],
+        flow.focusText ? '__own' : flow.goal || FOCUSES[0].id, (v) => { if (v === '__type') ownFocus(); else if (v !== '__own') change(() => { flow.goal = v; delete flow.focusText; }); }, 'Focus'),
       store.studio.rooms.length > 1 ? sel(store.studio.rooms.map((r) => ({ id: r.id, label: r.name })), room().id, (v) => change(() => { flow.room = v; }), 'Room') : null,
-      h('details', { class: 'more-settings' }, h('summary', null, 'More'),
+      h('details', { class: 'more-settings', open: remembered.more ? '' : null, ontoggle: (e) => { remembered.more = e.target.open; } }, h('summary', null, 'More'),
         h('div', { class: 'btn-row' },
           sel([{ id: 'reformer', label: 'Reformer' }, { id: 'mat', label: 'Mat' }, { id: 'mixed', label: 'Mixed' }], flow.apparatus, (v) => change(() => { flow.apparatus = v; }), 'Apparatus'),
           sel(Object.entries(store.studio.targets || {}).map(([k, x]) => ({ id: k, label: `Balance target: ${x.label}` })), flow.target, (v) => change(() => { flow.target = v; }), 'Balance target'),
-          flow.apparatus !== 'mat' ? sel([...new Set([0, 1, 2, 3, 4, 5, 6, 8, 10, flow.springBudget ?? 6])].sort((x, y) => x - y).map((n) => ({ id: String(n), label: `Spring changes: up to ${n}` })), String(flow.springBudget ?? 6), (v) => change(() => { flow.springBudget = Number(v); }), 'Spring-change limit') : null)));
+          flow.apparatus !== 'mat' ? sel([...new Set([0, 1, 2, 3, 4, 5, 6, 8, 10, limit])].sort((x, y) => x - y).map((n) => ({ id: String(n), label: n ? `Spring changes: up to ${n}` : 'Spring changes: no limit' })), String(limit), (v) => change(() => { flow.springBudget = Number(v); }), 'Spring-change limit') : null,
+          sel([{ id: 'on', label: 'Planned in phases' }, { id: 'off', label: 'One list, no phases' }], phased() ? 'on' : 'off', (v) => togglePhases(v === 'on'), 'Phases. Optional, but recommended: they help plan the class the way clients expect it.'))));
   };
 
   const tabs = (current) => h('div', { class: 'seg', role: 'tablist', 'aria-label': 'Flow views' },
@@ -91,7 +121,6 @@ export async function flowView(id, tab) {
       h('a', { role: 'tab', 'aria-selected': current === t ? 'true' : 'false', class: current === t ? 'on' : null, href: `#/flows/${meta.id}/${t}` }, l)));
 
   const actions = () => h('div', { class: 'btn-row no-print' },
-    meta.canEdit ? btn('', undo, { iconName: 'undo', title: 'Undo (Ctrl+Z)' }) : null,
     meta.canEdit && flow.apparatus !== 'mat' ? btn('Tidy springs', () => {
       const before = analysis().springChanges;
       change(() => { flow.segments = tidySprings(flow, store.movements); });
@@ -167,11 +196,11 @@ export async function flowView(id, tab) {
   }
   const saveAsSeries = async (seg) => {
     const nameInput = h('input', { type: 'text', value: seg.name, 'aria-label': 'Series name' });
-    const ok = await modal('Save as a series', h('div', { class: 'stack-sm' }, field('Name', nameInput), h('p', { class: 'hint' }, `Saves these ${seg.items.length} movements, in this order, so anyone in the studio can drop them into a flow in one go.`)), { actions: [{ label: 'Cancel', value: false }, { label: 'Save series', value: true, kind: 'primary' }] });
+    const ok = await modal('Save as a series', h('div', { class: 'stack-sm' }, field('Name', nameInput), h('p', { class: 'hint' }, `Saves these ${seg.items.filter((i) => !i.pause).length} movements, in this order, so anyone in the studio can drop them into a flow in one go.`)), { actions: [{ label: 'Cancel', value: false }, { label: 'Save series', value: true, kind: 'primary' }] });
     if (!ok) return;
     try {
-      const first = store.movements[seg.items[0].slug];
-      await api('POST', '/series', { name: nameInput.value, apparatus: first && first.apparatus === 'mat' ? 'mat' : 'reformer', items: seg.items.map((i) => ({ slug: i.slug, variation: i.variation, duration: i.duration, reps: i.reps })) });
+      const first = store.movements[(seg.items.find((i) => !i.pause) || {}).slug];
+      await api('POST', '/series', { name: nameInput.value, apparatus: first && first.apparatus === 'mat' ? 'mat' : 'reformer', items: seg.items.filter((i) => !i.pause).map((i) => ({ slug: i.slug, variation: i.variation, duration: i.duration, reps: i.reps })) });
       await store.loadSeries(true);
       toast('Series saved. Find it under Series in the library.');
       if (lib.show === 'series') drawLibrary();
@@ -257,9 +286,53 @@ export async function flowView(id, tab) {
     dragItemId = null;
   };
 
+  // A timed line: time in the plan that is not a movement (a water break, setting up the tower).
+  const addLine = (seg) => {
+    activeSeg = remembered.activeSeg = seg.id;
+    const mine = timedLinesOf(store.studio);
+    const put = (label, seconds, note) => { change(() => { seg.items.push({ id: newId(), pause: true, label, duration: Math.min(3600, Math.max(5, seconds)), ...(note ? { note } : {}) }); }); toast(`Added ${label}.`, { action: { label: 'Undo', run: undo } }); };
+    const name = h('input', { type: 'text', maxlength: 60, placeholder: 'e.g. Water break', 'aria-label': 'Name of the timed line' });
+    const mins = h('input', { type: 'text', value: '1:00', 'aria-label': 'Time (minutes:seconds)', style: { width: '90px' } });
+    const body = (close) => h('div', { class: 'stack-sm' },
+      h('p', { class: 'hint' }, 'Time in the plan that is not a movement. It adds to the class total and shows on the run sheet and in Play.'),
+      mine.length ? h('div', { class: 'stack-sm' }, h('div', { class: 'label' }, 'Your studio\'s'), mine.map((r) => h('button', { type: 'button', class: 'lib-row pick-row', onclick: () => { put(r.label, Number(r.seconds) || 60, r.note); close(false); } },
+        h('span', { class: 'pause-ico', 'aria-hidden': 'true' }, icon('clock', 18)),
+        h('span', { class: 'lib-main' }, h('span', { class: 'lib-name' }, r.label), r.note ? h('span', { class: 'lib-meta' }, r.note) : null),
+        h('span', { class: 'tiny muted' }, fmtClock(Number(r.seconds) || 60))))) : null,
+      h('div', { class: 'label' }, mine.length ? 'Or your own' : 'What is it?'),
+      h('div', { class: 'line-new' }, name, mins),
+      !mine.length ? h('p', { class: 'tiny muted' }, 'A studio admin can keep the usual ones in Studio → Classes → Timing, so they are one press away here.') : null);
+    modal('Add a timed line', body, { actions: [{ label: 'Cancel', value: false }, { label: 'Add', value: true, kind: 'primary' }] }).then((ok) => { if (ok && name.value.trim()) put(name.value.trim(), parseClock(mins.value, 5, 3600) || 60); });
+  };
+  const pauseRow = (seg, item) => {
+    const li = h('li', { class: ['item', 'block', 'pause-line'], draggable: meta.canEdit ? 'true' : null, 'data-id': item.id },
+      h('div', { class: 'block-row' },
+        meta.canEdit ? h('span', { class: 'grip', 'aria-hidden': 'true' }, icon('grip')) : h('span'),
+        h('div', { class: 'item-main' }, h('span', { class: 'pause-ico', 'aria-hidden': 'true' }, icon('clock', 20)), h('div', { style: { minWidth: 0, flex: 1 } },
+          h('input', { type: 'text', class: 'pause-name', value: item.label, maxlength: 60, 'aria-label': 'Name of this timed line', disabled: !meta.canEdit, oninput: (e) => change(() => { item.label = e.target.value || 'Break'; }, { redraw: false }) }),
+          h('input', { type: 'text', class: 'pause-note', value: item.note || '', maxlength: 300, placeholder: meta.canEdit ? 'Note (optional)' : '', 'aria-label': 'Note for this timed line', disabled: !meta.canEdit, oninput: (e) => change(() => { if (e.target.value.trim()) item.note = e.target.value; else delete item.note; }, { redraw: false }) }))),
+        h('span', { class: 'tiny muted block-springs' }, 'Timed line'),
+        h('div', { class: 'block-end' },
+          h('input', { type: 'text', class: 'dur', value: fmtClock(item.duration), title: 'Time for this line', 'aria-label': `Time for ${item.label} (minutes:seconds)`, disabled: !meta.canEdit,
+            onchange: (e) => { const s = parseClock(e.target.value, 5, 3600); if (s) change(() => { item.duration = s; }); else e.target.value = fmtClock(item.duration); } }),
+          meta.canEdit ? h('div', { class: 'tools' },
+            btn('', () => nudge(item.id, -1), { iconName: 'up', small: true, kind: 'ghost', title: 'Move up' }),
+            btn('', () => nudge(item.id, 1), { iconName: 'down', small: true, kind: 'ghost', title: 'Move down' }),
+            btn('', () => { change(() => { seg.items = seg.items.filter((x) => x.id !== item.id); }); toast('Removed.', { action: { label: 'Undo', run: undo } }); }, { iconName: 'close', small: true, kind: 'ghost', title: 'Remove this line' })) : null)));
+    if (meta.canEdit) {
+      li.addEventListener('dragstart', (e) => { if (['INPUT', 'TEXTAREA'].includes(e.target.tagName)) return; dragItemId = item.id; e.dataTransfer.setData('text/x-op-item', item.id); e.dataTransfer.effectAllowed = 'move'; li.classList.add('dragging'); });
+      li.addEventListener('dragend', () => li.classList.remove('dragging'));
+      li.addEventListener('dragover', (e) => { e.preventDefault(); e.stopPropagation(); li.classList.add('drop-before'); });
+      li.addEventListener('dragleave', () => li.classList.remove('drop-before'));
+      li.addEventListener('drop', (e) => onDrop(e, seg.id, item.id));
+    }
+    return li;
+  };
+
   let plan = new Map();
   const toggleBlock = (id) => { if (openBlocks.has(id)) openBlocks.delete(id); else openBlocks.add(id); remembered.open = [...openBlocks]; drawSegments(); };
   const itemRow = (seg, item) => {
+    if (item.pause) return pauseRow(seg, item);
     const mv = store.movements[item.slug];
     const tags = bookedTags();
     const all = mv ? (mv.cautions || []).filter((c) => tags.has(c.tag)) : [];
@@ -267,7 +340,7 @@ export async function flowView(id, tab) {
     const adjust = all.filter((c) => c.severity === 'modify');
     const planned = plan.get(item.id);
     const open = !!mv && meta.canEdit && openBlocks.has(item.id);
-    const sec = itemDuration(item, mv);
+    const sec = itemDuration(item, mv, tm());
     const li = h('li', { class: ['item', 'block', open && 'open'], draggable: meta.canEdit && !open ? 'true' : null, 'data-id': item.id },
       h('div', { class: 'block-row' },
         meta.canEdit ? h('span', { class: 'grip', 'aria-hidden': 'true' }, icon('grip')) : h('span'),
@@ -291,7 +364,7 @@ export async function flowView(id, tab) {
             btn('', () => { change(() => { seg.items = seg.items.filter((x) => x.id !== item.id); }); toast('Removed.', { action: { label: 'Undo', run: undo } }); }, { iconName: 'close', small: true, kind: 'ghost', title: 'Remove block' })) : null)),
       mv && meta.canEdit ? h('button', { type: 'button', class: 'block-toggle', 'aria-expanded': open ? 'true' : 'false', onclick: (e) => { e.stopPropagation(); toggleBlock(item.id); } },
         icon(open ? 'up' : 'layers', 14), open ? 'Done' : (layersOf(mv, item).length || item.finisher || (item.options || []).length || item.variation ? 'Edit block' : 'Plan block')) : null,
-      open ? blockEditor({ item, mv, room: room(), change, planned, focus }) : null);
+      open ? blockEditor({ item, mv, room: room(), change, planned, focus, timing: tm() }) : null);
     if (meta.canEdit) {
       li.addEventListener('dragstart', (e) => { dragItemId = item.id; e.dataTransfer.setData('text/x-op-item', item.id); e.dataTransfer.effectAllowed = 'move'; li.classList.add('dragging'); });
       li.addEventListener('dragend', () => li.classList.remove('dragging'));
@@ -307,7 +380,7 @@ export async function flowView(id, tab) {
     const a = segSeconds(seg);
     // Selecting a segment only moves the highlight; redrawing here would swallow the click on whatever was pressed.
     const el = h('div', { class: ['segment', activeSeg === seg.id && meta.canEdit && 'active'], 'data-seg': seg.id, onclick: () => { if (activeSeg !== seg.id) { activeSeg = remembered.activeSeg = seg.id; segWrap.querySelectorAll('.segment').forEach((x) => x.classList.toggle('active', meta.canEdit && x.dataset.seg === seg.id)); } } },
-      h('div', { class: 'seg-head' },
+      !phased() ? h('div', { class: 'seg-head seg-plain' }, h('span', { class: 'seg-name-plain' }, 'Blocks, in order'), h('span', { class: 'seg-time' }, fmtClock(a))) : h('div', { class: 'seg-head' },
         h('span', { class: 'seg-dot', style: { background: ROLE_COLOR[seg.role] } }),
         h('input', { class: 'seg-name', type: 'text', value: seg.name, 'aria-label': 'Phase name', disabled: !meta.canEdit, oninput: (e) => change(() => { seg.name = e.target.value; }, { redraw: false }) }),
         select(SEGMENT_ROLES, seg.role, (v) => change(() => { seg.role = v; }), { 'aria-label': 'What this phase is', disabled: !meta.canEdit }),
@@ -318,19 +391,20 @@ export async function flowView(id, tab) {
           btn('', () => change(() => { if (si > 0) [flow.segments[si - 1], flow.segments[si]] = [flow.segments[si], flow.segments[si - 1]]; }), { iconName: 'up', small: true, kind: 'ghost', title: 'Move phase up' }),
           btn('', () => change(() => { if (si < flow.segments.length - 1) [flow.segments[si + 1], flow.segments[si]] = [flow.segments[si], flow.segments[si + 1]]; }), { iconName: 'down', small: true, kind: 'ghost', title: 'Move phase down' }),
           btn('', (e) => { if (openPhases.has(seg.id)) openPhases.delete(seg.id); else openPhases.add(seg.id); drawSegments(); }, { iconName: 'edit', small: true, kind: 'ghost', title: 'Song, repeat on the other side, save as a series, delete' })) : null),
-      (seg.song || seg.bothSides) && !openPhases.has(seg.id) ? h('div', { class: 'seg-notes' }, seg.song ? h('span', null, icon('music', 13), ' ', seg.song) : null, seg.bothSides ? h('span', null, '↻ One side, then the other') : null) : null,
-      meta.canEdit && openPhases.has(seg.id) ? h('div', { class: 'seg-more' },
+      phased() && (seg.song || seg.bothSides) && !openPhases.has(seg.id) ? h('div', { class: 'seg-notes' }, seg.song ? h('span', null, icon('music', 13), ' ', seg.song) : null, seg.bothSides ? h('span', null, '↻ One side, then the other') : null) : null,
+      phased() && meta.canEdit && openPhases.has(seg.id) ? h('div', { class: 'seg-more' },
         h('label', { class: 'seg-song' }, icon('music', 16), h('input', { class: 'song', type: 'text', placeholder: 'Song or playlist (optional)', value: seg.song || '', 'aria-label': 'Song', oninput: (e) => change(() => { seg.song = e.target.value; }, { redraw: false }) })),
         h('label', { class: 'both-sides', title: 'Teach the whole phase on one side, then repeat it on the other. Doubles its time.' }, h('input', { type: 'checkbox', checked: !!seg.bothSides, onchange: (e) => change(() => { seg.bothSides = e.target.checked || undefined; }) }), 'Teach one side, then repeat on the other'),
         h('span', { class: 'spacer' }),
-        seg.items.length > 1 ? btn('Save as a series', () => saveAsSeries(seg), { iconName: 'copy', small: true }) : null,
+        seg.items.filter((i) => !i.pause).length > 1 ? btn('Save as a series', () => saveAsSeries(seg), { iconName: 'copy', small: true }) : null,
         btn('Delete phase', async () => { if (!seg.items.length || await confirmDialog('Delete this phase?', `"${seg.name}" and its ${seg.items.length} block${seg.items.length === 1 ? '' : 's'} will be removed.`)) change(() => { flow.segments = flow.segments.filter((s) => s.id !== seg.id); }); }, { iconName: 'trash', small: true, kind: 'ghost' })) : null,
       h('ol', { class: 'seg-items' }, seg.items.map((it) => itemRow(seg, it))),
       seg.bothSides && seg.items.length ? h('div', { class: 'seg-repeat' }, `↻ Then repeat all ${seg.items.length} on the other side`) : null,
       !seg.items.length && !meta.canEdit ? h('p', { class: 'small muted', style: { padding: '14px' } }, 'Nothing planned.') : null,
       meta.canEdit ? h('div', { class: 'add-row' },
         h('button', { type: 'button', class: 'add-block', onclick: (e) => { e.stopPropagation(); pickFor(seg); } }, icon('plus', 14), seg.items.length ? 'Add a block' : 'Add a block, or drag a movement here'),
-        h('button', { type: 'button', class: 'add-block suggest', title: 'Picks from what suits this phase, at this class level, leaving out what the flow already has', onclick: (e) => { e.stopPropagation(); suggest(seg); } }, icon('sparkle', 14), seg.items.length ? 'Suggest one' : 'Suggest blocks')) : null);
+        h('button', { type: 'button', class: 'add-block suggest', title: 'Picks from what suits this phase, at this class level, leaving out what the flow already has', onclick: (e) => { e.stopPropagation(); suggest(seg); } }, icon('sparkle', 14), seg.items.length ? 'Suggest one' : 'Suggest blocks'),
+        h('button', { type: 'button', class: 'add-block line', title: 'Time that is not a movement: a water break, a change of set-up', onclick: (e) => { e.stopPropagation(); addLine(seg); } }, icon('clock', 14), 'Timed line')) : null);
     if (meta.canEdit) {
       el.addEventListener('dragover', (e) => { e.preventDefault(); el.classList.add('drop-target'); });
       el.addEventListener('dragleave', (e) => { if (!el.contains(e.relatedTarget)) el.classList.remove('drop-target'); });
@@ -342,7 +416,7 @@ export async function flowView(id, tab) {
   const suggest = (seg) => {
     const type = classTypesOf(store.studio).find((c) => c.id === flow.classType);
     const phase = type && type.phases.find((p) => p.name === seg.name);
-    const items = fillPhase({ movements: store.movements, flow, seg, phase, props: store.studio.props || {}, clientTags: [...bookedTags()], timing: store.studio.timing, count: seg.items.length ? 1 : undefined });
+    const items = fillPhase({ movements: store.movements, flow, seg, phase, props: store.studio.props || {}, clientTags: [...bookedTags()], timing: tm(), count: seg.items.length ? 1 : undefined });
     if (!items.length) { toast('Nothing left in the library suits this phase at this level. Try "Add a block" and untick the box.'); return; }
     activeSeg = remembered.activeSeg = seg.id;
     change(() => { seg.items.push(...items); });
@@ -371,19 +445,19 @@ export async function flowView(id, tab) {
         h('span', { class: 'pick-plus', 'aria-hidden': 'true' }, icon('plus', 16)))) : h('p', { class: 'small muted' }, 'Nothing matches. Untick the box above to see the whole library.'));
     };
     draw();
-    modal(`Add to ${seg.name}`, h('div', { class: 'stack-sm' },
+    modal(phased() ? `Add to ${seg.name}` : 'Add a block', h('div', { class: 'stack-sm' },
       h('input', { type: 'search', placeholder: 'Search any name, muscle or label', 'aria-label': 'Search movements', oninput: (e) => { st.q = e.target.value.trim().toLowerCase(); draw(); } }),
       h('label', { class: 'check-row' }, h('input', { type: 'checkbox', checked: st.fit, onchange: (e) => { st.fit = e.target.checked; draw(); } }),
         h('span', null, seg.role === 'warmup' ? 'Only warm-up movements' : seg.role === 'cooldown' ? 'Only cool-down movements' : 'Only what suits this phase', h('span', { class: 'tiny muted', style: { display: 'block' } }, `${phase && (phase.sections || []).length ? phase.sections.map((x) => labelOf(SECTIONS, x)).join(', ') + ' · ' : ''}up to ${lv.label}. Searching looks through everything.`))),
       listEl), { actions: [{ label: 'Done', value: true, kind: 'primary' }] });
   };
-  const segSeconds = (seg) => seg.items.reduce((t, i) => t + itemDuration(i, store.movements[i.slug]), 0) * (seg.bothSides ? 2 : 1);
+  const segSeconds = (seg) => seg.items.reduce((t, i) => t + itemDuration(i, store.movements[i.slug], tm()), 0) * (seg.bothSides ? 2 : 1);
 
   const drawSegments = () => {
     plan = new Map(analysis().springPlan.filter((p) => p.pass === 1).map((p) => [p.itemId, p]));
     fill(segWrap, 
       ...flow.segments.map(segmentCard),
-      meta.canEdit ? h('button', { type: 'button', class: 'add-seg', onclick: () => change(() => { const s = { id: newId('s'), name: 'New phase', role: 'build', song: '', items: [] }; flow.segments.push(s); activeSeg = s.id; }) }, '+ Add a phase') : null,
+      meta.canEdit && phased() ? h('button', { type: 'button', class: 'add-seg', onclick: () => change(() => { const s = { id: newId('s'), name: 'New phase', role: 'build', song: '', items: [] }; flow.segments.push(s); activeSeg = s.id; }) }, '+ Add a phase') : null,
       bookedCard());
     if (focus.key) { const el = segWrap.querySelector(`[data-focus="${focus.key}"]`); focus.key = null; if (el) el.focus(); }
   };
@@ -441,18 +515,17 @@ export async function flowView(id, tab) {
   const analysisWrap = h('div');
   const drawAll = () => {
     titleInput.value = flow.title;
+    fill(settingsEl, settingsRow());
+    if (activeSeg && !flow.segments.some((s) => s.id === activeSeg)) activeSeg = remembered.activeSeg = flow.segments[0]?.id || null;
     if (tab === 'analysis') fill(analysisWrap, analysisBody());
     else drawBody();
   };
 
-  const onKey = (e) => {
-    if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) { e.preventDefault(); undo(); }
-  };
-  document.addEventListener('keydown', onKey);
-  const cleanup = () => { document.removeEventListener('keydown', onKey); save.flush(); };
+  if (meta.canEdit) hist.keys(true);
+  const cleanup = () => { hist.keys(false); save.flush(); };
 
-  const head = h('div', { class: 'page-head' },
-    h('div', { class: 'grow' }, h('a', { href: '#/', class: 'small no-print' }, '← Flows'), titleInput, settingsRow(), h('div', { style: { marginTop: '4px' } }, status)),
+  const head = h('div', { class: 'page-head flow-head' },
+    h('div', { class: 'grow' }, h('a', { href: '#/', class: 'small no-print' }, '← Flows'), titleInput, settingsEl, h('div', { class: 'save-state', style: { marginTop: '6px' } }, meta.canEdit ? hist.el : null, status)),
     tabs(tab), actions());
 
   if (tab === 'analysis') {
@@ -462,15 +535,15 @@ export async function flowView(id, tab) {
   drawAll();
   return { title: flow.title, cleanup, node: [head, statsEl, h('div', { class: 'cols' }, meta.canEdit ? libraryPane() : null, h('div', { class: 'col-main' }, segWrap), asideEl)] };
 
-  function parseClock(v) {
+  function parseClock(v, min = 10, max = 1800) {
     const m = String(v).trim().match(/^(\d{1,3})(?::(\d{1,2}))?$/);
     if (!m) return null;
     const sec = m[2] != null ? Number(m[1]) * 60 + Number(m[2]) : Number(m[1]) * 60;
-    return sec >= 10 && sec <= 1800 ? sec : null;
+    return sec >= min && sec <= max ? sec : null;
   }
 }
 
 function pickFlow(d) {
-  const { title, apparatus, level, lengthMin, goal, target, format, classType, springBudget, theme, room, when, notes, labels, booked, segments } = d;
-  return { title, apparatus, level, lengthMin, goal, target, format: format || 'open', ...(classType ? { classType } : {}), springBudget: springBudget ?? 6, theme: theme || '', room, when, notes, labels, booked: booked || [], segments: segments || [] };
+  const { title, apparatus, level, lengthMin, goal, focusText, noPhases, target, format, classType, springBudget, theme, room, when, notes, labels, booked, segments } = d;
+  return { title, apparatus, level, lengthMin, goal, ...(focusText ? { focusText } : {}), ...(noPhases ? { noPhases: true } : {}), target, format: format || 'open', ...(classType ? { classType } : {}), springBudget: springBudget ?? 0, theme: theme || '', room, when, notes, labels, booked: booked || [], segments: segments || [] };
 }

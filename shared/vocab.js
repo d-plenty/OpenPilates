@@ -269,7 +269,7 @@ export function springLabel(brandId, loads, overrides) {
 
 export const byId = (list) => Object.fromEntries(list.map((x) => [x.id, x]));
 // An id the lists no longer hold (a prop the studio removed) still reads as words, not as an id.
-const pretty = (id) => { const s = String(id ?? '').replace(/^[pcm]_/, '').replace(/[_-]+/g, ' ').trim(); return s ? s[0].toUpperCase() + s.slice(1) : ''; };
+const pretty = (id) => { const s = String(id ?? '').replace(/^[pcmst]_/, '').replace(/[_-]+/g, ' ').trim(); return s ? s[0].toUpperCase() + s.slice(1) : ''; };
 export const labelOf = (list, id) => (list.find((x) => x.id === id) || { label: pretty(id) }).label;
 
 // ---- studio lists. Props and client cautions start from the built-in lists; a studio can add
@@ -292,19 +292,30 @@ export function applyStudioLists(studio) {
   CAUTIONS.splice(0, CAUTIONS.length, ...studioList(BUILTIN.cautions, s.customCautions, s.removedCautions));
   MUSCLES.splice(0, MUSCLES.length, ...studioList(BUILTIN.muscles, s.customMuscles, s.removedMuscles));
   // Parts of the class keep their ids (the balance check groups by them); a studio can rename them.
-  SECTIONS.splice(0, SECTIONS.length, ...BUILTIN.sections.map((x) => ({ ...x, label: (s.sectionLabels && s.sectionLabels[x.id]) || x.label })));
-  const lv = Array.isArray(s.levels) && s.levels.length ? s.levels : LEVEL_PRESETS.three.levels;
-  CLASS_LEVELS.splice(0, CLASS_LEVELS.length, ...lv.map((x) => ({ ...x })));
+  SECTIONS.splice(0, SECTIONS.length, ...studioList(BUILTIN.sections.map((x) => ({ ...x, label: (s.sectionLabels && s.sectionLabels[x.id]) || x.label })), (s.customSections || []).map((c) => ({ group: 'core', ...c })), s.removedSections));
+  // a part the studio deleted hands its movements to the part chosen when it was deleted
+  for (const k of Object.keys(SECTION_MAP)) delete SECTION_MAP[k];
+  Object.assign(SECTION_MAP, s.sectionMap || {});
+  CLASS_LEVELS.splice(0, CLASS_LEVELS.length, ...withCoreLevels(Array.isArray(s.levels) && s.levels.length ? s.levels : DEFAULT_LEVELS).map((x) => ({ ...x })));
+  FOCUSES.splice(0, FOCUSES.length, ...(Array.isArray(s.focuses) && s.focuses.length ? s.focuses : DEFAULT_FOCUSES).map((x) => ({ muscles: [], ...x })));
   Object.assign(TIMING, DEFAULT_TIMING, s.timing || {});
 }
+export const SECTION_MAP = {};
 
-const SECTION_IDS = new Set(SECTIONS.map((x) => x.id));
+const SECTION_IDS = { has: (id) => SECTIONS.some((x) => x.id === id) };
+// Where a movement sits once deleted parts have been followed to their new home.
+const homeOf = (id) => { let x = id; for (let i = 0; i < 6 && SECTION_MAP[x]; i++) x = SECTION_MAP[x]; return SECTION_IDS.has(x) ? x : null; };
 
 // Section, categories and role fall back to a best guess when a movement doesn't state them
 // (older library files, mat work and custom movements).
 export function sectionOf(mv) {
   if (!mv) return 'core';
-  if (SECTION_IDS.has(mv.section)) return mv.section;
+  const home = homeOf(mv.section);
+  if (home) return home;
+  const guess = guessSection(mv);
+  return homeOf(guess) || (SECTIONS[0] ? SECTIONS[0].id : guess);
+}
+export function guessSection(mv) {
   const prim = mv.muscles?.primary || [];
   const purpose = mv.purpose || {};
   if ((mv.equipment || []).includes('jump_board')) return 'cardio';
@@ -397,17 +408,30 @@ export const LEVEL_PRESETS = {
   open: { label: 'Open level and Advanced', levels: [
     { id: 'open', label: 'Open level', from: 1, to: 2 }, { id: 'advanced', label: 'Advanced', from: 3, to: 3 }] }
 };
+// Every studio has Beginner, Intermediate and Advanced. The three below them are common extras a studio
+// can delete, and it can add its own. Each level covers a span of the three steps of difficulty.
+export const CORE_LEVELS = LEVEL_PRESETS.three.levels;
+export const DEFAULT_LEVELS = [...CORE_LEVELS,
+  { id: 'beg_int', label: 'Beginner/Intermediate', from: 1, to: 2 }, { id: 'int_adv', label: 'Intermediate/Advanced', from: 2, to: 3 }, { id: 'open', label: 'Open level', from: 1, to: 3 }];
+export const isCoreLevel = (id) => CORE_LEVELS.some((l) => l.id === id);
+// A list of levels with the three core ones guaranteed, first and in order. Their names can be changed, not their place.
+export function withCoreLevels(levels) {
+  const list = (levels || []).filter((l) => l && l.id);
+  return [...CORE_LEVELS.map((c) => ({ ...c, ...(list.find((l) => l.id === c.id) ? { label: list.find((l) => l.id === c.id).label || c.label } : {}) })), ...list.filter((l) => !isCoreLevel(l.id))];
+}
 // The studio's class levels. Updated in place by applyStudioLists.
-export const CLASS_LEVELS = LEVEL_PRESETS.three.levels.map((x) => ({ ...x }));
+export const CLASS_LEVELS = DEFAULT_LEVELS.map((x) => ({ ...x }));
 // A class level by id. A level the studio no longer has (an old flow) still resolves.
 export function classLevel(id) {
   const hit = CLASS_LEVELS.find((l) => l.id === id);
   if (hit) return hit;
+  const gone = DEFAULT_LEVELS.find((l) => l.id === id);
+  if (gone) return gone;
   for (const p of Object.values(LEVEL_PRESETS)) { const old = p.levels.find((l) => l.id === id); if (old) return old; }
   return CLASS_LEVELS[Math.min(CLASS_LEVELS.length - 1, Math.floor(CLASS_LEVELS.length / 2))];
 }
 // The class level a studio would start a new flow on: its middle one.
-export const defaultClassLevel = () => CLASS_LEVELS[Math.floor((CLASS_LEVELS.length - 1) / 2)].id;
+export const defaultClassLevel = () => 'intermediate';
 // What a single step of difficulty is called: the studio's name if it has a level for exactly that step.
 export const rankLabel = (rank) => (CLASS_LEVELS.find((l) => l.from === rank && l.to === rank) || LEVELS.find((l) => l.rank === rank) || { label: '' }).label;
 const LEVEL_RANK = Object.fromEntries(LEVELS.map((l) => [l.id, l.rank]));
@@ -421,21 +445,17 @@ export function levelsOf(mv) {
   const [from, to] = levelRange(mv);
   return CLASS_LEVELS.filter((l) => l.from <= to && l.to >= from).map((l) => l.id);
 }
-// The movement's level in the studio's words. If one class level holds the whole range, that
-// is its name ("Beginner/Intermediate"); otherwise the levels it spans, or "All levels".
+// The movement's level in the studio's words. Beginner, Intermediate and Advanced are always
+// among a studio's levels (it may rename them), so a movement reads as one of them, a range
+// of them, or "All levels".
 export function levelLabel(mv) {
   const [from, to] = levelRange(mv);
-  const all = CLASS_LEVELS.length > 1 && CLASS_LEVELS.every((l) => l.from <= to && l.to >= from);
-  const holding = CLASS_LEVELS.filter((l) => l.from <= from && l.to >= to);
-  if (holding.length) {
-    const span = Math.min(...holding.map((l) => l.to - l.from));
-    const tight = holding.filter((l) => l.to - l.from === span);
-    if (tight.length === 1 || !all) return tight.map((l) => l.label).join(' · ');
-  }
-  if (all) return 'All levels';
-  const over = CLASS_LEVELS.filter((l) => l.from <= to && l.to >= from);
-  if (!over.length) return LEVELS.filter((l) => l.rank >= from && l.rank <= to).map((l) => l.label).join('–');
-  return over.length === 1 ? over[0].label : `${over[0].label}–${over[over.length - 1].label}`;
+  const name = (rank) => {
+    const core = CLASS_LEVELS.find((l) => isCoreLevel(l.id) && l.from === rank && l.to === rank);
+    return core ? core.label : (LEVELS.find((l) => l.rank === rank) || {}).label || '';
+  };
+  if (from <= 1 && to >= 3) return 'All levels';
+  return from === to ? name(from) : `${name(from)}–${name(to)}`;
 }
 // ---- variations. A variation is another version of a movement: a regression (simpler),
 // a progression (harder), or just a different version (one arm instead of two).
@@ -523,6 +543,53 @@ export const DEFAULT_TIMING = { springChange: 15, positionChange: 20, boxChange:
 // The studio's current timing; applyStudioLists keeps it up to date so block times agree everywhere.
 export const TIMING = { ...DEFAULT_TIMING };
 export const timingOf = (studio) => ({ ...TIMING, ...((studio && studio.timing) || {}) });
+// The timing list as the studio sees it. The five built-in rows are counted automatically (their `id` is the
+// key the app works with); a studio can rename them, write a note, or switch one off. Rows a studio adds
+// are timed lines an instructor can drop into a flow: a water break, a set-up change, a demo.
+export const DEFAULT_TIMING_ROWS = [
+  { id: 'perLayer', label: 'Each layer added to a block', note: 'Added to a movement\'s own time for every layer built on top.', seconds: 45 },
+  { id: 'finisher', label: 'A finisher', note: 'Pulses or a hold to end a block.', seconds: 20 },
+  { id: 'springChange', label: 'A spring change', note: 'Counted every time the springs change between blocks.', seconds: 15 },
+  { id: 'positionChange', label: 'A change of position', note: 'Lying to kneeling, kneeling to standing and so on.', seconds: 20 },
+  { id: 'boxChange', label: 'Box or board on or off', note: 'Counted when the next block needs the box or jump board and the last one did not.', seconds: 45 }
+];
+export const isBuiltinTiming = (id) => id in DEFAULT_TIMING;
+export function timingRowsOf(studio) {
+  const s = studio || {};
+  if (Array.isArray(s.timingRows) && s.timingRows.length) return s.timingRows;
+  return DEFAULT_TIMING_ROWS.map((r) => ({ ...r, seconds: s.timing && s.timing[r.id] !== undefined ? s.timing[r.id] : r.seconds }));
+}
+// The numbers the app counts with: each built-in row's seconds, or nothing for a row that is switched off.
+export function timingFromRows(rows) {
+  const out = { ...DEFAULT_TIMING };
+  for (const k of Object.keys(out)) { const r = (rows || []).find((x) => x.id === k); if (r) out[k] = r.off ? 0 : Math.max(0, Number(r.seconds) || 0); }
+  return out;
+}
+export const timedLinesOf = (studio) => timingRowsOf(studio).filter((r) => !isBuiltinTiming(r.id) && !r.off);
+// Timing for one flow: the studio's, with anything its class type sets for itself on top.
+export function flowTiming(studio, flow) {
+  const ct = flow && classTypesOf(studio).find((c) => c.id === flow.classType);
+  return { ...timingOf(studio), ...((ct && ct.timing) || {}) };
+}
+
+// ---- focuses: what a class leans towards. A studio keeps its own list; an instructor can also type one for a single flow.
+// `muscles` are favoured when a class is drafted. The other fields are optional steers.
+export const DEFAULT_FOCUSES = [
+  { id: 'full_body', label: 'Full body', muscles: [] },
+  { id: 'core', label: 'Core', muscles: ['abdominals', 'obliques'] },
+  { id: 'glutes', label: 'Glutes', muscles: ['glutes', 'abductors'] },
+  { id: 'lower_body', label: 'Legs & glutes', muscles: ['glutes', 'quadriceps', 'hamstrings', 'calves', 'abductors', 'adductors'] },
+  { id: 'upper_body', label: 'Arms & shoulders', muscles: ['deltoids', 'upper_back', 'chest', 'triceps', 'biceps', 'lats'] },
+  { id: 'back_posture', label: 'Back & posture', muscles: ['upper_back', 'spinal_extensors', 'lats'] },
+  { id: 'posterior_chain', label: 'Posterior chain', muscles: ['glutes', 'hamstrings', 'spinal_extensors', 'upper_back'] },
+  { id: 'mobility', label: 'Mobility', muscles: [], purpose: ['flexibility', 'mobility'], maxIntensity: 5 },
+  { id: 'stretch', label: 'Stretch & release', muscles: [], purpose: ['flexibility'], maxIntensity: 4 },
+  { id: 'prenatal', label: 'Prenatal', muscles: ['glutes', 'upper_back'], avoid: ['pregnancy', 'pregnancy_early'], maxIntensity: 6 },
+  { id: 'rehab', label: 'Rehab-friendly', muscles: [], purpose: ['mobility', 'stability'], maxIntensity: 5, label_pref: 'rehab-friendly' }
+];
+export const FOCUSES = DEFAULT_FOCUSES.map((x) => ({ ...x }));
+// The focus of a flow: the studio's, or the words the instructor typed for this one class.
+export const focusOf = (flow) => (flow && flow.focusText) || (FOCUSES.find((x) => x.id === (flow && flow.goal)) || { label: '' }).label;
 
 // ---- where a movement belongs in a class. Teachers set this; when a movement says nothing, a careful guess is used.
 export const USES = [
@@ -553,6 +620,7 @@ export function layersOf(mv, item) {
 // Time for a block. A time the teacher typed wins; otherwise the movement's own time plus time for each layer and the finisher.
 export function blockSeconds(item, mv, timing = TIMING) {
   const d = Number(item && item.duration);
+  if (item && item.pause) return d > 0 ? d : 60; // a timed line is just its time
   if (d > 0) return d;
   const base = (mv && mv.duration) || 120;
   return base + layersOf(mv, item).length * (timing.perLayer || 0) + (item && item.finisher ? (timing.finisher || 0) : 0);

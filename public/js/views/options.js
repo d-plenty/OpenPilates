@@ -64,7 +64,7 @@ const heavier = (springs) => {
 
 // The block editor, shown inside the flow under the movement. Every control changes the flow straight away
 // through `change`; `focus` remembers which box to put the cursor back in after the flow redraws.
-export function blockEditor({ item, mv, room, change, planned, focus }) {
+export function blockEditor({ item, mv, room, change, planned, focus, timing }) {
   const reformer = mv.apparatus === 'reformer';
   const advance = mv.load?.advance || [];
   const vars = variationsOf(mv);
@@ -132,7 +132,7 @@ export function blockEditor({ item, mv, room, change, planned, focus }) {
 
   // ---- finisher, reps, time, note
   const fin = h('input', { type: 'text', value: item.finisher || '', placeholder: 'e.g. Pulses × 10', 'aria-label': 'Finisher', onchange: (e) => set(() => { item.finisher = e.target.value.trim(); drop('finisher'); }) });
-  const auto = blockSeconds({ ...item, duration: 0 }, mv);
+  const auto = blockSeconds({ ...item, duration: 0 }, mv, timing);
   const details = h('div', { class: 'be-block' },
     h('div', { class: 'be-grid' },
       field('Finisher', fin, 'How the block ends.'),

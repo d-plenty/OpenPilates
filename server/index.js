@@ -6,7 +6,7 @@ import { randomBytes } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { openDb, loadLibrary, loadSeries, libraryVersionOf, getSetting, setSetting } from './db.js';
 import { hashPassword, verifyPassword, passwordProblem, createSession, userForToken, parseCookies, loginBlocked, noteFailure, clearFailures } from './auth.js';
-import { applyStudioLists } from '../shared/vocab.js';
+import { applyStudioLists, timingRowsOf } from '../shared/vocab.js';
 import { cleanMovement, cleanFlow, cleanClient, cleanStudio, cleanSeries, defaultStudio, fillStudio, Invalid, slugify } from './validate.js';
 
 const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)));
@@ -129,7 +129,7 @@ export function createApp(opts = {}) {
     if (!/^[a-z0-9._-]{2,40}$/.test(username)) return fail(res, 400, 'Usernames use 2–40 letters, numbers, dots, dashes or underscores.');
     const p = passwordProblem(b.password); if (p) return fail(res, 400, p);
     const info = db.prepare('INSERT INTO users (username, display_name, role, pass_hash) VALUES (?, ?, ?, ?)').run(username, String(b.displayName || username).slice(0, 80), 'admin', hashPassword(b.password));
-    setSetting(db, 'studio', defaultStudio(String(b.studioName || 'My studio').slice(0, 80), b.brand, b.levelScheme));
+    setSetting(db, 'studio', defaultStudio(String(b.studioName || 'My studio').slice(0, 80), b.brand));
     const s = createSession(db, Number(info.lastInsertRowid));
     send(res, 201, { ok: true }, { 'Set-Cookie': sessionCookie(req, s.token, s.maxAge) });
   }, { auth: 'none' });
@@ -406,7 +406,7 @@ export function createApp(opts = {}) {
     if (!canSeeFlow(r, user)) return fail(res, 404, 'No such flow.');
     const data = stripClients(JSON.parse(r.data));
     // Include any custom movements the flow uses so the file works on another server.
-    const slugs = new Set(data.segments.flatMap((s) => s.items.map((i) => i.slug)));
+    const slugs = new Set(data.segments.flatMap((s) => s.items.map((i) => i.slug)).filter(Boolean));
     const custom = [...slugs].map((s) => db.prepare("SELECT * FROM movements WHERE slug = ? AND source != 'library'").get(s)).filter(Boolean).map((m) => JSON.parse(m.data));
     const file = { openpilates: 'flow', version: 1, exportedAt: new Date().toISOString(), flow: data, movements: custom };
     send(res, 200, JSON.stringify(file, null, 2), { 'Content-Type': 'application/json', 'Content-Disposition': `attachment; filename="${slugify(data.title) || 'flow'}.openpilates.json"` });
@@ -467,7 +467,7 @@ export function createApp(opts = {}) {
 
   // ---- pack: everything this studio has changed, in one file. It moves a studio's work to another
   // server and is what gets sent back to improve the next version. Client details are never part of it.
-  const PACK_STUDIO = ['levels', 'classTypes', 'lengths', 'defaultLength', 'timing', 'targets', 'customProps', 'removedProps', 'customCautions', 'removedCautions', 'customMuscles', 'removedMuscles', 'sectionLabels', 'props'];
+  const PACK_STUDIO = ['levels', 'classTypes', 'lengths', 'defaultLength', 'timing', 'targets', 'customProps', 'removedProps', 'customCautions', 'removedCautions', 'customMuscles', 'removedMuscles', 'sectionLabels', 'props', 'timingRows', 'focuses', 'customSections', 'removedSections', 'sectionMap'];
   route('GET', '/api/pack', (req, res, { url }) => {
     const s = studio();
     const pack = {
@@ -488,7 +488,10 @@ export function createApp(opts = {}) {
     const done = { settings: 0, movements: 0, series: 0, reviews: 0, flows: 0, skipped: 0 };
     if (take.studio && b.studio && typeof b.studio === 'object') {
       const cur = studio();
-      const next = cleanStudio({ ...cur, ...Object.fromEntries(PACK_STUDIO.filter((k) => b.studio[k] !== undefined).map((k) => [k, b.studio[k]])), ...(take.rooms && Array.isArray(b.studio.rooms) ? { rooms: b.studio.rooms } : {}) });
+      const merged = { ...cur, ...Object.fromEntries(PACK_STUDIO.filter((k) => b.studio[k] !== undefined).map((k) => [k, b.studio[k]])), ...(take.rooms && Array.isArray(b.studio.rooms) ? { rooms: b.studio.rooms } : {}) };
+      // a pack from before 0.6.3 has the plain timing numbers only: put them on this studio's timing list
+      if (b.studio.timing && typeof b.studio.timing === 'object' && !Array.isArray(b.studio.timingRows)) merged.timingRows = timingRowsOf(cur).map((r) => (Number.isFinite(Number(b.studio.timing[r.id])) && b.studio.timing[r.id] !== null ? { ...r, seconds: Number(b.studio.timing[r.id]), off: undefined } : r));
+      const next = cleanStudio(merged);
       setSetting(db, 'studio', next);
       applyStudioLists(next);
       done.settings = 1;

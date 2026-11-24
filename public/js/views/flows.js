@@ -2,8 +2,8 @@ import { h, icon, btn, toast, chips, field, select, empty, fmtDate, fill } from 
 import { api, store, viewState } from '../store.js';
 import { go } from '../app.js';
 import { analyze } from '/shared/analysis.js';
-import { draftFlow, GOALS, phasesFor, blankSegments } from '/shared/draft.js';
-import { CAUTIONS, CLASS_LEVELS, labelOf, classLevel, defaultClassLevel, classTypesOf } from '/shared/vocab.js';
+import { draftFlow, phasesFor, blankSegments } from '/shared/draft.js';
+import { CAUTIONS, CLASS_LEVELS, FOCUSES, focusOf, labelOf, classLevel, defaultClassLevel, classTypesOf } from '/shared/vocab.js';
 
 const ROLE_COLOR = { warmup: '#7FB8AD', build: '#4E9C8F', peak: '#0F6E62', cooldown: '#A9C7BF' };
 import { fmtMin } from './common.js';
@@ -36,6 +36,7 @@ export async function flowsView() {
           h('span', { class: 'tag tag-accent' }, f.apparatus === 'mat' ? 'Mat' : f.apparatus === 'mixed' ? 'Mixed' : 'Reformer'),
           h('span', { class: 'tag' }, classLevel(f.level).label),
           typeName(f) ? h('span', { class: 'tag' }, typeName(f)) : null,
+          f.focusText || (f.goal && f.goal !== 'full_body' && focusOf(f)) ? h('span', { class: 'tag' }, focusOf(f)) : null,
           f.shared ? h('span', { class: 'tag' }, 'Shared') : null,
           f.ownerId !== store.user.id ? h('span', { class: 'tag' }, `By ${f.ownerName}`) : null),
         h('div', { class: 't' }, f.title),
@@ -72,16 +73,19 @@ export async function flowsView() {
 export async function newFlowView() {
   const types = classTypesOf(store.studio);
   const lengths = store.studio.lengths && store.studio.lengths.length ? store.studio.lengths : [30, 45, 50, 55, 60];
-  const vs = viewState('newflow', { classType: types[0].id, goal: 'full_body', level: '', lengthMin: 0 });
-  const st = { classType: types.some((c) => c.id === vs.classType) ? vs.classType : types[0].id, goal: vs.goal, level: CLASS_LEVELS.some((l) => l.id === vs.level) ? vs.level : defaultClassLevel(), lengthMin: vs.lengthMin, adapt: true, booked: [], room: '' };
+  const vs = viewState('newflow', { classType: types[0].id, goal: 'full_body', level: '', lengthMin: 0, own: false, focusText: '' });
+  const st = { classType: types.some((c) => c.id === vs.classType) ? vs.classType : types[0].id, goal: FOCUSES.some((f) => f.id === vs.goal) ? vs.goal : FOCUSES[0].id, own: !!vs.own, focusText: vs.focusText || '', level: CLASS_LEVELS.some((l) => l.id === vs.level) ? vs.level : '', lengthMin: vs.lengthMin, adapt: true, booked: [], room: '' };
   const type = () => types.find((c) => c.id === st.classType) || types[0];
+  const phased = (c) => !c.noPhases && (c.phases || []).some((p) => p && p.minutes > 0);
+  // what the class type sets for itself is already chosen
+  if (!st.level) st.level = CLASS_LEVELS.some((l) => l.id === type().level) ? type().level : defaultClassLevel();
   if (!st.lengthMin) st.lengthMin = type().lengthMin || store.studio.defaultLength || 50;
   const clients = store.clients.filter((c) => !c.archived);
   const wrap = h('div', { class: 'stack', style: { maxWidth: '860px' } });
 
   const draw = () => {
     const ct = type();
-    Object.assign(vs, { classType: st.classType, goal: st.goal, level: st.level, lengthMin: st.lengthMin });
+    Object.assign(vs, { classType: st.classType, goal: st.goal, level: st.level, lengthMin: st.lengthMin, own: st.own, focusText: st.focusText });
     const rooms = store.studio.rooms.filter((r) => r.apparatus === ct.apparatus);
     if (!rooms.find((r) => r.id === st.room)) st.room = rooms[0]?.id || '';
     const bookedTags = new Set(st.booked.flatMap((id) => clients.find((c) => c.id === id)?.tags || []));
@@ -95,18 +99,22 @@ export async function newFlowView() {
           onclick: () => { st.classType = c.id; st.lengthMin = c.lengthMin || st.lengthMin; if (c.level && CLASS_LEVELS.some((l) => l.id === c.level)) st.level = c.level; draw(); } },
           h('span', { class: 'pick-top' }, h('span', { class: 'pick-name' }, c.name), h('span', { class: 'tag tag-accent' }, c.apparatus === 'mat' ? 'Mat' : 'Reformer')),
           c.note ? h('span', { class: 'pick-note' }, c.note) : null,
-          h('span', { class: 'mini-bar' }, c.phases.map((p) => h('span', { style: { flex: `${p.minutes} 1 0`, background: ROLE_COLOR[p.role] } })))))),
+          phased(c) ? h('span', { class: 'mini-bar' }, c.phases.map((p) => h('span', { style: { flex: `${p.minutes} 1 0`, background: ROLE_COLOR[p.role] } }))) : h('span', { class: 'tiny muted' }, 'No phases')))),
         h('p', { class: 'tiny muted' }, 'Class types, levels and lengths are yours to change in ', h('a', { href: '#/studio' }, 'Studio → Classes'), '.'),
         field('Length', chips(lens.map((n) => ({ id: n, label: `${n} min` })), st.lengthMin, (v) => { st.lengthMin = v; draw(); }, { multi: false })),
         field('Level', chips(CLASS_LEVELS.map((l) => ({ id: l.id, label: l.label })), st.level, (v) => { st.level = v; draw(); }, { multi: false }),
           lv.from === lv.to ? null : 'Offered movements span this level\'s range, so there is something for each end of the room.'),
-        field('Focus', chips(GOALS.map((g) => ({ id: g.id, label: g.label })), st.goal, (v) => { st.goal = v; draw(); }, { multi: false }), 'Only steers a draft. Full body follows the class type as it is.'),
+        field('Focus', h('div', { class: 'stack-sm' },
+          chips([...FOCUSES.map((g) => ({ id: g.id, label: g.label })), { id: '__own', label: 'Our own…', title: 'Type a focus just for this class' }], st.own ? '__own' : st.goal, (v) => { if (v === '__own') st.own = true; else { st.own = false; st.goal = v; } draw(); if (st.own) wrap.querySelector('.own-focus')?.focus(); }, { multi: false }),
+          st.own ? h('input', { type: 'text', class: 'own-focus', maxlength: 60, value: st.focusText, placeholder: 'e.g. Runners\' hips, wedding arms, back from holidays', 'aria-label': 'Your own focus for this class', style: { maxWidth: '420px' }, oninput: (e) => { st.focusText = e.target.value; } }) : null),
+          st.own ? 'Shown on the flow and its run sheet. A draft for your own focus is a balanced class: steer it by picking the blocks.' : 'Steers a draft towards those muscles. The list is your studio\'s, in Studio → Classes.'),
         rooms.length > 1 ? field('Room', select(rooms.map((r) => ({ id: r.id, label: r.name })), st.room, (v) => { st.room = v; })) : null),
       h('div', { class: 'card stack' },
-        h('div', { class: 'card-head', style: { margin: 0 } }, h('h2', null, `How ${st.lengthMin} minutes is shared out`), h('span', { class: 'tiny muted' }, ct.apparatus === 'mat' ? '' : `Up to ${ct.springBudget} spring changes`)),
-        h('div', { class: 'phase-preview' }, phases.map((p) => h('div', { class: 'pp', style: { flex: `${p.sec} 1 0` } },
+        h('div', { class: 'card-head', style: { margin: 0 } }, h('h2', null, phased(ct) ? `How ${st.lengthMin} minutes is shared out` : `${st.lengthMin} minutes, one list of blocks`), h('span', { class: 'tiny muted' }, ct.apparatus === 'mat' ? '' : ct.springBudget > 0 ? `Up to ${ct.springBudget} spring change${ct.springBudget === 1 ? '' : 's'}` : 'No limit on spring changes')),
+        phased(ct) ? h('div', { class: 'phase-preview' }, phases.map((p) => h('div', { class: 'pp', style: { flex: `${p.sec} 1 0` } },
           h('div', { class: 'pp-bar', style: { background: ROLE_COLOR[p.role] } }),
-          h('div', { class: 'pp-name' }, p.name), h('div', { class: 'tiny muted' }, `${Math.max(1, Math.round(p.sec / 60))} min`))))),
+          h('div', { class: 'pp-name' }, p.name), h('div', { class: 'tiny muted' }, `${Math.max(1, Math.round(p.sec / 60))} min`))))
+          : h('p', { class: 'small muted' }, `${ct.name} isn't planned in phases, so the flow is one list of blocks. You can switch phases on for this flow once it is open.`)),
       h('div', { class: 'card stack' },
         h('div', { class: 'card-head', style: { margin: 0 } }, h('h2', null, 'Who\'s booked'), h('span', { class: 'tiny muted' }, 'Optional')),
         clients.length ? chips(clients.map((c) => ({ id: c.id, label: c.name + (c.tags.length ? ' •' : '') })), st.booked, (v) => { st.booked = v; draw(); }) :
@@ -116,7 +124,7 @@ export async function newFlowView() {
           h('span', null, `Steer a draft away from movements flagged for: ${[...bookedTags].map((t) => labelOf(CAUTIONS, t)).join(', ')}`)) : null),
       h('div', { class: 'btn-row' },
         btn('Draft it for me', () => create(true), { kind: 'primary', iconName: 'sparkle' }),
-        btn('Start with empty phases', () => create(false)),
+        btn(phased(ct) ? 'Start with empty phases' : 'Start empty', () => create(false)),
         h('a', { class: 'btn btn-ghost', href: '#/' }, 'Cancel')),
       h('p', { class: 'tiny muted' }, 'A draft follows the class type: each phase gets its minutes and a few blocks, warm-ups and cool-downs only use movements marked for them, and the hardest work is kept for the peak. It is a starting point. Change anything.'));
   };
@@ -124,12 +132,13 @@ export async function newFlowView() {
   const create = async (draft) => {
     const ct = type();
     const bookedTags = st.adapt ? [...new Set(st.booked.flatMap((id) => clients.find((c) => c.id === id)?.tags || []))] : [];
+    const own = st.own ? st.focusText.trim() : '';
     let flow;
     if (draft) {
-      flow = draftFlow({ movements: store.movements, classType: ct, goal: st.goal, lengthMin: st.lengthMin, level: st.level, props: store.studio.props, clientTags: bookedTags, timing: store.studio.timing, targets: store.studio.targets });
+      flow = draftFlow({ movements: store.movements, classType: ct, goal: own ? FOCUSES[0].id : st.goal, focusText: own, lengthMin: st.lengthMin, level: st.level, props: store.studio.props, clientTags: bookedTags, timing: store.studio.timing, targets: store.studio.targets });
       if (!flow.segments.length) { toast('Not enough movements in the library match. Try another level or focus.', { kind: 'error' }); return; }
     } else {
-      flow = { title: `${ct.name} ${st.lengthMin} min`, apparatus: ct.apparatus, level: st.level, lengthMin: st.lengthMin, goal: st.goal, classType: ct.id, target: 'general', format: ct.apparatus === 'mat' ? 'open' : 'flow', springBudget: ct.apparatus === 'mat' ? 6 : ct.springBudget,
+      flow = { title: `${own ? own + ' · ' : ''}${ct.name} ${st.lengthMin} min`, apparatus: ct.apparatus, level: st.level, lengthMin: st.lengthMin, goal: own ? FOCUSES[0].id : st.goal, ...(own ? { focusText: own } : {}), classType: ct.id, target: store.studio.targets?.[ct.target] ? ct.target : 'general', format: ct.apparatus === 'mat' ? 'open' : 'flow', springBudget: ct.apparatus === 'mat' ? 0 : (ct.springBudget || 0), ...(phased(ct) ? {} : { noPhases: true }),
         segments: blankSegments(ct, st.lengthMin, { props: store.studio.props }) };
     }
     flow.room = st.room;

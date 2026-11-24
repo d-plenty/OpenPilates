@@ -99,7 +99,7 @@ export function statTiles(a) {
     tile(`${a.count}`, a.count === 1 ? 'Block' : 'Blocks'),
     tile(`${a.movingPct}%`, 'Time moving', a.movingPct >= 85 ? 'good' : a.movingPct < 80 ? 'warn' : ''),
     tile(`${a.positionChanges}`, 'Position changes'),
-    tile(a.hasReformer ? `${a.springChanges} / ${a.springBudget}` : '—', 'Spring changes / limit', a.hasReformer && a.springChanges > a.springBudget ? 'warn' : a.hasReformer ? 'good' : ''),
+    tile(a.hasReformer ? (a.springBudget ? `${a.springChanges} / ${a.springBudget}` : `${a.springChanges}`) : '—', a.springBudget ? 'Spring changes / limit' : 'Spring changes', a.hasReformer && a.springBudget && a.springChanges > a.springBudget ? 'warn' : a.hasReformer ? 'good' : ''),
     tile(`${a.clientChecks.length}`, 'Client checks', a.clientChecks.length ? 'warn' : ''));
 }
 const tile = (v, l, cls) => h('div', { class: ['stat', cls] }, h('b', null, v), h('span', null, l));
@@ -155,10 +155,10 @@ export function springsCard(a, room, { compact } = {}) {
     const last = blocks[blocks.length - 1];
     if (last && !p.changed) { if (last.names[last.names.length - 1] !== p.name) last.names.push(p.name); } else blocks.push({ loads: p.loads, names: [p.name] });
   }
-  const over = a.springChanges > a.springBudget;
+  const over = a.springBudget > 0 && a.springChanges > a.springBudget;
   return h('div', { class: 'card' },
     h('div', { class: 'card-head' }, h('h2', null, 'Springs'), h('div', { class: 'spacer' }),
-      h('span', { class: ['tag', over ? 'tag-warn' : 'tag-accent'] }, `${a.springChanges} change${a.springChanges === 1 ? '' : 's'} · limit ${a.springBudget}`)),
+      h('span', { class: ['tag', over ? 'tag-warn' : 'tag-accent'] }, `${a.springChanges} change${a.springChanges === 1 ? '' : 's'}${a.springBudget ? ` · limit ${a.springBudget}` : ''}`)),
     blocks.length ? h('ol', { class: 'spring-map' }, blocks.map((b, i) => h('li', null,
       h('div', { class: 'sm-head' }, springDots(b.loads, room), h('span', { class: 'tiny muted' }, i === 0 ? 'Start' : `Change ${i}`), h('span', { class: 'tiny muted' }, `${b.names.length} block${b.names.length === 1 ? '' : 's'}`)),
       compact ? null : h('div', { class: 'tiny muted' }, b.names.join(' → '))))) : h('p', { class: 'muted small' }, 'No reformer blocks yet.'),

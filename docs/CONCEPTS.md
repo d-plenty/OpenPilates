@@ -31,3 +31,16 @@ screen starts using the concept.
 | Timing | `studio.timing` applied into `TIMING` | `blockSeconds`; analysis transition costs; drafts' fit-to-length; Studio > Classes > Timing |
 | Place in the class | `movement.uses` (warmup, cooldown, peak), `usesOf` falls back to labels and effort | movement editor; drafts; block picker; explorer "By place in the class"; `cleanMovement`; library JSON |
 | Pack | `GET /api/pack`, `POST /api/pack/import` | Studio > Library & data; never includes clients or `booked`; README; guide |
+
+## Added in 0.6.3
+
+| Concept | Where it lives | Every place that must follow it |
+|---|---|---|
+| Undo / redo | `undoStack(read, write)` in `public/js/ui.js` (snapshots; typing grouped) | Studio (`hist`, every tab), flow builder (`change()` notes each step; toasts' Undo), movement editor; any new editor screen should use it and show `hist.el` beside its saved status |
+| Timed line | a flow item with `pause: true`, `label`, `duration`, `note` (no `slug`) | `cleanFlow`; `blockSeconds`; `analyze` (time only, not a block); `tidySprings` (stays in place); builder `pauseRow` / `addLine`; run sheet row; Play step; save-as-series (left out); flow export (no slug); anything that maps `items` to `slug` must skip it |
+| Timing list | `studio.timingRows` (five built-in ids + `t_…` rows; `off`), `studio.timing` derived by `timingFromRows` | Studio > Classes > Timing; `timedLinesOf` (builder's timed-line picker); class type overrides `ct.timing`; `flowTiming(studio, flow)` used by `analyze`, `store.timingFor` (builder, block editor, run sheet, Play); packs (`PACK_STUDIO`, old packs' `timing`) |
+| Core levels | `CORE_LEVELS`, `DEFAULT_LEVELS`, `withCoreLevels`, `isCoreLevel`, `studio.levelsSeeded` | `cleanStudio`, `fillStudio` (seeds once), Studio levels card (no delete on core), `levelLabel` (reads the core names), `classLevel` (a deleted level still resolves) |
+| Parts of the class (own / deleted) | `studio.customSections` (`s_…`, `group`), `removedSections`, `sectionMap`; `applyStudioLists` fills `SECTIONS` and `SECTION_MAP` | `sectionOf` / `homeOf`; Studio > Lists (delete asks where movements go; class-type phases re-pointed); `cleanStudio` (chains resolved, phase sections filtered); `cleanMovement` (`SEC` is live); movement editor select; explorer; builder filter; analysis balance by `group`; packs |
+| Focus | `studio.focuses` into `FOCUSES` (`GOALS` in draft.js is the same list); `flow.goal`, `flow.focusText` | Studio > Classes > Focuses; new-flow chips + "Our own…"; builder Focus select; `focusOf(flow)` on flows list and run sheet; drafts (`g.muscles`, steers on built-in ids) |
+| No spring limit | `springBudget` 0 on a class type or a flow | Studio class type field + head; new-flow preview; builder More select; `analyze` springs check; stat tile and springs card; `draftFlow` candidate search |
+| Phases optional | `classType.noPhases` (phases kept), `flow.noPhases` (one segment) | Studio class type toggle; `blankSegments`, `draftOnce` (`plain`); new-flow preview and button label; builder `phased()` (no phase header, no "Add a phase", More select merges or restores); analysis warm-up / cool-down checks; run sheet headings; Play label |

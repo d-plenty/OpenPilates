@@ -1,5 +1,41 @@
 # Changelog
 
+## 0.6.3
+
+### Undo and redo
+- **Two arrows beside "Saved"** step back and forward through your changes, in a flow, in Studio settings and in the movement editor. A run of typing counts as one step. Ctrl+Z and Ctrl+Shift+Z do the same when the cursor is not in a text box.
+- In Studio the arrows cover every tab, so a deleted level, timing or part of the class comes straight back.
+
+### Class types set more for you
+- Open a class type in Studio → Classes and it can now set the **level**, the **balance target** and **its own timings** (seconds for a layer, a finisher, a spring change, a change of position, the box), on top of its length. A new flow of that type starts with all of it chosen.
+- **"Spring changes, at most" can be empty or 0.** That means no limit: nothing is flagged, the limit is not shown anywhere, and drafts stop counting. The same choice is on each flow under More.
+- **Phases are optional.** Untick "Plan this class in phases" on a class type and its flows are one list of blocks; drafts still open with a warm-up and finish with a cool-down. The phases you set up are kept for when you switch it back on. Any single flow can be switched between phases and one list under More. Phases stay recommended: they help instructors plan the class the way your clients expect it.
+
+### Class levels
+- Levels are the same for every class. **Beginner, Intermediate and Advanced are always there** and cannot be deleted (you can rename them).
+- **Beginner/Intermediate, Intermediate/Advanced and Open level** sit under them as examples: keep them, delete them, put them back, or add your own.
+- A studio set up on an earlier version gets the missing ones added once. First set-up no longer asks which levels you run.
+
+### Timing list you can edit
+- Every row can be **renamed**, given a **note** for your team, and have its seconds changed. Remove the ones you don't count (a built-in row you remove counts for nothing and can be put back).
+- **Add your own rows**, such as a water break or setting up the tower. Your own rows can be dropped into any flow as a **timed line** between blocks: it adds to the class length and shows on the run sheet and in Play. You can also type a one-off timed line on a flow.
+
+### Parts of the class
+- **Add your own** parts and say whether each counts as lower body, upper body, core or stretch in the balance charts.
+- **Delete** any part. You are asked which part its movements and class phases move to, and nothing else about those movements changes. A built-in part you deleted can be put back, with its movements.
+
+### Focuses
+- Studio → Classes has a **Focuses** list: Full body, Core, Glutes, Legs & glutes, Arms & shoulders, Back & posture, Posterior chain, Mobility, Stretch & release, Prenatal and Rehab-friendly to start with. Rename, delete and add, and tick the muscles a draft should favour for each.
+- An instructor can **type their own focus** for a class, when starting a flow or later in the builder. It shows on the flow, in the flows list and on the run sheet.
+
+### Pictures
+- **Simpler heads.** The figures no longer have a face drawn on them. A hair bun at the back and a hint of a nose still show which way the figure is facing.
+
+### Also
+- The flow's title and settings now have the full width of the page, so the settings sit on one or two rows.
+- Packs carry the timing list, focuses and parts of the class, and a pack from an older version still brings its timing in.
+- Fixed: exporting a flow could fail once it held anything that was not a movement.
+
 ## 0.6.2
 
 - **Fixes the Docker image build, which 0.6.1 broke.** 0.6.1 told Docker to copy the `tools` folder into the image while `.dockerignore` still left that folder out, so the build stopped and no new image was published. Servers stayed on the last image that did build. Nothing in the app itself changes.

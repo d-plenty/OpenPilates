@@ -1,4 +1,4 @@
-import { h, icon, btn, toast, field, select, chips, confirmDialog, debounce, fill } from '../ui.js';
+import { h, icon, btn, toast, field, select, chips, confirmDialog, debounce, fill, undoStack } from '../ui.js';
 import { api, store } from '../store.js';
 import { go, render, backLink } from '../app.js';
 import { POSITIONS, SPINE, PATTERNS, PLANES, MUSCLES, EQUIPMENT, LEVELS, CAUTIONS, PURPOSES, LOAD_LEVELS, BRANDS, SECTIONS, CATEGORIES, ROLES, PREGNANCY, HEADREST, STRAPS, SEVERITIES, OPTION_KINDS, springFor, labelOf, sectionOf, categoriesOf, roleOf, levelLabel, variationsOf, USES, usesOf, levelsOf, classLevel } from '/shared/vocab.js';
@@ -178,7 +178,7 @@ export async function movementEditView(slug) {
   mv.load = mv.load || { springs: [] };
   mv.load.advance = mv.load.advance || [];
   mv.setup = mv.setup || { headrest: 'any', straps: 'none' };
-  mv.section = mv.section || sectionOf(mv);
+  mv.section = sectionOf(mv); // follows the studio's parts of the class, including one this was moved to
   mv.role = mv.role || roleOf(mv);
   mv.categories = mv.categories && mv.categories.length ? mv.categories : (existing ? categoriesOf(mv) : []);
   mv.pregnancy = mv.pregnancy || 'ok';
@@ -310,9 +310,18 @@ export async function movementEditView(slug) {
     } catch (e) { err.textContent = e.message; }
   };
 
+  // Undo and redo step through the changes made on this screen since it was opened. Nothing is kept until Save.
+  const hist = undoStack(() => mv, (copy) => { for (const k of Object.keys(mv)) delete mv[k]; Object.assign(mv, copy); draw(); changed(); });
+  const state = h('span', { class: 'tiny muted', 'aria-live': 'polite' }, 'No changes yet');
+  const changed = () => { state.textContent = hist.canUndo ? 'Changes not saved yet' : 'No changes yet'; };
+  wrap.addEventListener('input', () => { hist.note(true); state.textContent = 'Changes not saved yet'; });
+  wrap.addEventListener('change', () => { hist.note(); changed(); });
+  wrap.addEventListener('click', () => queueMicrotask(() => { hist.note(); changed(); }));
+  hist.keys(true);
   draw();
-  return { title: existing ? `Edit ${existing.name}` : 'New movement', node: [
+  return { title: existing ? `Edit ${existing.name}` : 'New movement', cleanup: () => hist.keys(false), node: [
     h('div', { class: 'page-head' }, h('div', { class: 'grow' }, h('a', { href: existing ? `#/movements/${slug}` : backLink().href, class: 'small' }, '← Back'), h('h1', null, existing ? `Edit ${existing.name}` : 'New movement'),
-      existing?.source === 'library' ? h('p', { class: 'small muted' }, 'Saving makes a studio copy. You can reset it to the library version later.') : null)),
+      existing?.source === 'library' ? h('p', { class: 'small muted' }, 'Saving makes a studio copy. You can reset it to the library version later.') : null),
+      h('div', { class: 'save-state' }, hist.el, state)),
     h('div', { style: { maxWidth: '900px' } }, wrap)] };
 }

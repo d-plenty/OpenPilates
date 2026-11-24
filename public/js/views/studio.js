@@ -1,6 +1,6 @@
-import { h, icon, btn, toast, field, select, chips, modal, confirmDialog, empty, fmtDate, fill, debounce, passwordInput } from '../ui.js';
+import { h, icon, btn, toast, field, select, chips, modal, confirmDialog, empty, fmtDate, fill, debounce, passwordInput, undoStack } from '../ui.js';
 import { api, store, viewState } from '../store.js';
-import { BRANDS, LOAD_LEVELS, CAUTIONS, BUILTIN, studioList, applyStudioLists, springFor, labelOf, DEFAULT_TARGETS, LEVEL_PRESETS, DEFAULT_CLASS_TYPES, DEFAULT_LENGTHS, DEFAULT_TIMING, SEGMENT_ROLES, SECTIONS, POSITIONS } from '/shared/vocab.js';
+import { BRANDS, LOAD_LEVELS, CAUTIONS, BUILTIN, studioList, applyStudioLists, springFor, labelOf, DEFAULT_TARGETS, DEFAULT_LEVELS, DEFAULT_CLASS_TYPES, DEFAULT_LENGTHS, DEFAULT_TIMING, DEFAULT_TIMING_ROWS, DEFAULT_FOCUSES, SEGMENT_ROLES, SECTION_GROUPS, POSITIONS, MUSCLES, isCoreLevel, withCoreLevels, isBuiltinTiming, timingRowsOf, timingFromRows, guessSection } from '/shared/vocab.js';
 
 const ROLE_COLOR = { warmup: '#7FB8AD', build: '#4E9C8F', peak: '#0F6E62', cooldown: '#A9C7BF' };
 
@@ -12,25 +12,42 @@ export async function studioView() {
   const wrap = h('div');
   const status = h('span', { class: 'tiny muted', 'aria-live': 'polite' }, admin ? 'Changes save as you make them' : 'Only admins can change studio settings');
 
-  for (const k of ['customProps', 'removedProps', 'customCautions', 'removedCautions', 'customMuscles', 'removedMuscles']) s[k] = s[k] || [];
-  s.sectionLabels = s.sectionLabels || {};
-  s.levels = s.levels && s.levels.length ? s.levels : LEVEL_PRESETS.three.levels.map((x) => ({ ...x }));
-  s.classTypes = s.classTypes && s.classTypes.length ? s.classTypes : structuredClone(DEFAULT_CLASS_TYPES);
-  s.lengths = s.lengths && s.lengths.length ? s.lengths : [...DEFAULT_LENGTHS];
-  s.defaultLength = s.defaultLength || 50;
-  s.timing = { ...DEFAULT_TIMING, ...(s.timing || {}) };
+  // Settings from before a version added them get their starting values here.
+  const prepare = () => {
+    for (const k of ['customProps', 'removedProps', 'customCautions', 'removedCautions', 'customMuscles', 'removedMuscles', 'customSections', 'removedSections']) s[k] = s[k] || [];
+    s.sectionLabels = s.sectionLabels || {};
+    s.sectionMap = s.sectionMap || {};
+    s.levels = withCoreLevels(s.levels && s.levels.length ? s.levels : DEFAULT_LEVELS).map((x) => ({ ...x }));
+    s.classTypes = s.classTypes && s.classTypes.length ? s.classTypes : structuredClone(DEFAULT_CLASS_TYPES);
+    s.lengths = s.lengths && s.lengths.length ? s.lengths : [...DEFAULT_LENGTHS];
+    s.defaultLength = s.defaultLength || 50;
+    s.timingRows = timingRowsOf(s).map((x) => ({ ...x }));
+    s.timing = timingFromRows(s.timingRows);
+    s.focuses = s.focuses && s.focuses.length ? s.focuses : structuredClone(DEFAULT_FOCUSES);
+  };
+  prepare();
 
   // Studio settings save themselves a moment after each change, like flows do.
   const save = debounce(async () => {
     try {
+      s.timing = timingFromRows(s.timingRows);
       store.studio = await api('PUT', '/studio', s);
       applyStudioLists(store.studio);
       store.state.studioName = store.studio.name;
       status.textContent = 'Saved';
     } catch (e) { status.textContent = 'Not saved'; toast(e.message, { kind: 'error' }); }
   }, 700);
-  const touch = () => { if (!admin) return; status.textContent = 'Saving…'; save(); };
-  const redo = () => { touch(); draw(); };
+  // Undo and redo step through every change made on this screen, whichever tab it was on.
+  const hist = undoStack(() => s, (copy) => {
+    for (const k of Object.keys(s)) delete s[k];
+    Object.assign(s, copy);
+    status.textContent = 'Saving…';
+    save();
+    draw();
+  });
+  const touch = (e) => { if (!admin) return; status.textContent = 'Saving…'; save(); hist.note(!!e && e.type === 'input'); };
+  const redraw = () => { touch(); draw(); };
+  const undoToast = (text) => toast(text, { action: { label: 'Undo', run: () => hist.undo() } });
   wrap.addEventListener('input', touch);
   wrap.addEventListener('change', touch);
 
@@ -53,12 +70,12 @@ export async function studioView() {
       const id = makeId(prefix, label, [...builtin, ...s[customKey]].map((x) => x.id));
       s[customKey].push({ id, label });
       if (counts) s.props[id] = 1;
-      redo();
+      redraw();
     };
     const remove = (x) => {
       if (x.custom) s[customKey] = s[customKey].filter((c) => c.id !== x.id); else s[removedKey].push(x.id);
       if (counts) delete s.props[x.id];
-      redo();
+      redraw();
     };
     return h('section', { class: 'card stack' },
       h('h2', null, title),
@@ -71,7 +88,7 @@ export async function studioView() {
         counts ? h('input', { type: 'number', min: 0, max: 200, value: s.props[e.id] || 0, disabled: dis, 'aria-label': `${e.label} quantity`, oninput: (ev) => { s.props[e.id] = Number(ev.target.value); ev.target.closest('.own-item').classList.toggle('has', s.props[e.id] > 0); } }) : null,
         admin ? btn('', () => remove(e), { iconName: 'close', small: true, kind: 'ghost', title: `Remove ${e.label}` }) : null))),
       admin ? h('div', { class: 'btn-row' }, input, btn(addLabel, add, { small: true, iconName: 'plus' })) : null,
-      gone.length ? h('div', { class: 'small muted' }, 'Removed: ', gone.map((x) => h('button', { type: 'button', class: 'chip chip-sm', disabled: dis, title: `Put ${x.label} back`, onclick: () => { s[removedKey] = s[removedKey].filter((id) => id !== x.id); redo(); } }, `+ ${x.label}`))) : null);
+      gone.length ? h('div', { class: 'small muted' }, 'Removed: ', gone.map((x) => h('button', { type: 'button', class: 'chip chip-sm', disabled: dis, title: `Put ${x.label} back`, onclick: () => { s[removedKey] = s[removedKey].filter((id) => id !== x.id); redraw(); } }, `+ ${x.label}`))) : null);
   };
 
   // ---------- rooms & springs
@@ -80,9 +97,9 @@ export async function studioView() {
     return h('div', { class: 'box stack-sm' },
       h('div', { class: 'grid-2' },
         field('Room name', h('input', { type: 'text', value: r.name, disabled: dis, oninput: (e) => { r.name = e.target.value; } })),
-        field('Used for', select([{ id: 'reformer', label: 'Reformer' }, { id: 'mat', label: 'Mat' }], r.apparatus, (v) => { r.apparatus = v; redo(); }, { disabled: dis }))),
+        field('Used for', select([{ id: 'reformer', label: 'Reformer' }, { id: 'mat', label: 'Mat' }], r.apparatus, (v) => { r.apparatus = v; redraw(); }, { disabled: dis }))),
       h('div', { class: 'grid-2' },
-        r.apparatus === 'reformer' ? field('Reformer brand', select(Object.entries(BRANDS).map(([id, b]) => ({ id, label: b.label })), r.brand, (v) => { r.brand = v; r.springs = { ...BRANDS[v].standard }; redo(); }, { disabled: dis })) : h('div'),
+        r.apparatus === 'reformer' ? field('Reformer brand', select(Object.entries(BRANDS).map(([id, b]) => ({ id, label: b.label })), r.brand, (v) => { r.brand = v; r.springs = { ...BRANDS[v].standard }; redraw(); }, { disabled: dis })) : h('div'),
         field(r.apparatus === 'reformer' ? 'Number of reformers' : 'Number of mats', h('input', { type: 'number', min: 0, max: 100, value: r.count, disabled: dis, oninput: (e) => { r.count = Number(e.target.value); } }))),
       r.apparatus === 'reformer' ? h('div', null,
         h('div', { class: 'label' }, 'Springs on each reformer'),
@@ -103,39 +120,46 @@ export async function studioView() {
               h('input', { type: 'text', placeholder: base.name, value: o.name || '', 'aria-label': `Name for ${l}`, oninput: (e) => { r.springOverrides[l] = { ...(r.springOverrides[l] || {}), name: e.target.value, short: (e.target.value[0] || '').toUpperCase(), color: r.springOverrides[l]?.color || base.color }; if (!e.target.value) delete r.springOverrides[l]; } }),
               h('input', { type: 'color', value: o.color || base.color, 'aria-label': `Colour for ${l}`, style: { height: '40px', width: '70px', padding: '2px' }, oninput: (e) => { r.springOverrides[l] = { name: r.springOverrides[l]?.name || base.name, short: r.springOverrides[l]?.short || base.short, color: e.target.value }; } }));
           }))) : null) : null,
-      admin && s.rooms.length > 1 ? h('div', null, btn('Remove room', () => { s.rooms.splice(i, 1); redo(); }, { small: true, kind: 'ghost', iconName: 'trash' })) : null);
+      admin && s.rooms.length > 1 ? h('div', null, btn('Remove room', () => { s.rooms.splice(i, 1); redraw(); }, { small: true, kind: 'ghost', iconName: 'trash' })) : null);
   };
   const roomsTab = () => [
     h('section', { class: 'card stack' },
       h('div', { class: 'card-head' }, h('h2', null, 'Studio & rooms'), h('div', { class: 'spacer' }),
-        admin ? btn('Add room', () => { s.rooms.push({ id: 'room' + Date.now().toString(36), name: 'New room', apparatus: 'reformer', brand: s.rooms[0]?.brand || 'balanced_body', count: 0, springs: { ...BRANDS[s.rooms[0]?.brand || 'balanced_body'].standard }, springOverrides: {} }); redo(); }, { small: true, iconName: 'plus' }) : null),
+        admin ? btn('Add room', () => { s.rooms.push({ id: 'room' + Date.now().toString(36), name: 'New room', apparatus: 'reformer', brand: s.rooms[0]?.brand || 'balanced_body', count: 0, springs: { ...BRANDS[s.rooms[0]?.brand || 'balanced_body'].standard }, springOverrides: {} }); redraw(); }, { small: true, iconName: 'plus' }) : null),
       field('Studio name', h('input', { type: 'text', value: s.name, disabled: dis, style: { maxWidth: '420px' }, oninput: (e) => { s.name = e.target.value; } })),
       h('div', { class: 'auto-grid' }, s.rooms.map(roomCard)))];
 
   // ---------- classes: levels, lengths, class types, timing, targets
   const SPANS = [[1, 1, 'Beginner'], [1, 2, 'Beginner + intermediate'], [2, 2, 'Intermediate'], [2, 3, 'Intermediate + advanced'], [3, 3, 'Advanced'], [1, 3, 'All of it']];
-  const scheme = () => Object.entries(LEVEL_PRESETS).find(([, p]) => JSON.stringify(p.levels.map((l) => [l.label, l.from, l.to])) === JSON.stringify(s.levels.map((l) => [l.label, l.from, l.to])))?.[0] || 'own';
-  const levelsCard = () => h('section', { class: 'card stack' },
-    h('h2', null, 'Class levels'),
-    h('p', { class: 'hint' }, 'The levels your timetable uses. Pick a set or write your own names. Each level covers a span of difficulty, and that span decides which movements a class at that level is offered.'),
-    chips([...Object.entries(LEVEL_PRESETS).map(([id, p]) => ({ id, label: p.levels.map((l) => l.label).join(' · ') })), ...(scheme() === 'own' ? [{ id: 'own', label: 'Our own' }] : [])], scheme(),
-      (v) => { if (v !== 'own' && LEVEL_PRESETS[v]) { s.levels = LEVEL_PRESETS[v].levels.map((x) => ({ ...x })); redo(); } }, { multi: false, small: true }),
-    h('div', { class: 'st-row st-head' }, h('span', null, 'Called'), h('span', null, 'Offered movements of difficulty'), h('span')),
-    h('div', { class: 'stack-sm' }, s.levels.map((l, i) => h('div', { class: 'st-row' },
-      h('input', { type: 'text', value: l.label, disabled: dis, 'aria-label': 'Level name', oninput: (e) => { l.label = e.target.value; } }),
-      select(SPANS.map(([f, t, label]) => ({ id: `${f}-${t}`, label })), `${l.from}-${l.to}`, (v) => { [l.from, l.to] = v.split('-').map(Number); redo(); }, { disabled: dis, 'aria-label': `What ${l.label} covers` }),
-      admin && s.levels.length > 1 ? btn('', () => { s.levels.splice(i, 1); redo(); }, { iconName: 'close', small: true, kind: 'ghost', title: `Remove ${l.label}` }) : h('span')))),
-    admin && s.levels.length < 8 ? h('div', null, btn('Add a level', () => { s.levels.push({ id: makeId('', 'level', s.levels.map((x) => x.id)), label: 'New level', from: 1, to: 3 }); redo(); }, { small: true, iconName: 'plus' })) : null);
+  const levelsCard = () => {
+    const missing = DEFAULT_LEVELS.filter((d) => !isCoreLevel(d.id) && !s.levels.some((l) => l.id === d.id));
+    return h('section', { class: 'card stack' },
+      h('h2', null, 'Class levels'),
+      h('p', { class: 'hint' }, 'The levels your timetable uses, the same for every class. Beginner, Intermediate and Advanced are always here, because every movement is written against them; you can rename them. The mixed levels under them are common examples: keep them, delete them, or add your own. What a level covers decides which movements a class at that level is offered.'),
+      h('div', { class: 'st-row st-head' }, h('span', null, 'Called'), h('span', null, 'Offered movements of difficulty'), h('span')),
+      h('div', { class: 'stack-sm' }, s.levels.map((l, i) => {
+        const core = isCoreLevel(l.id);
+        return h('div', { class: ['st-row', core && 'st-core'] },
+          h('input', { type: 'text', value: l.label, disabled: dis, 'aria-label': 'Level name', oninput: (e) => { l.label = e.target.value; } }),
+          core ? h('span', { class: 'small muted st-fixed' }, SPANS.find(([f, to]) => f === l.from && to === l.to)[2], ' only')
+            : select(SPANS.map(([f, to, label]) => ({ id: `${f}-${to}`, label })), `${l.from}-${l.to}`, (v) => { [l.from, l.to] = v.split('-').map(Number); redraw(); }, { disabled: dis, 'aria-label': `What ${l.label} covers` }),
+          core ? h('span', { class: 'tiny muted st-lock', title: 'Always here. You can rename it.' }, 'Always')
+            : admin ? btn('', () => { s.levels.splice(i, 1); redraw(); undoToast(`${l.label} deleted.`); }, { iconName: 'close', small: true, kind: 'ghost', title: `Delete ${l.label}` }) : h('span'));
+      })),
+      admin ? h('div', { class: 'btn-row' },
+        s.levels.length < 12 ? btn('Add a level', () => { s.levels.push({ id: makeId('', 'level', s.levels.map((x) => x.id)), label: 'New level', from: 1, to: 3 }); redraw(); }, { small: true, iconName: 'plus' }) : null,
+        missing.length ? h('span', { class: 'small muted' }, 'Deleted examples: ', missing.map((d) => h('button', { type: 'button', class: 'chip chip-sm', title: `Put ${d.label} back`, onclick: () => { s.levels.push({ ...d }); redraw(); } }, `+ ${d.label}`))) : null) : null);
+  };
 
   const lengthsCard = () => {
     const input = h('input', { type: 'number', min: 10, max: 180, placeholder: 'e.g. 40', 'aria-label': 'Class length in minutes', style: { width: '110px' }, onkeydown: (e) => { if (e.key === 'Enter') { e.preventDefault(); add(); } } });
-    const add = () => { const n = Math.round(Number(input.value)); if (n >= 10 && n <= 180 && !s.lengths.includes(n)) { s.lengths = [...s.lengths, n].sort((a, b) => a - b); redo(); } };
+    const add = () => { const n = Math.round(Number(input.value)); if (n >= 10 && n <= 180 && !s.lengths.includes(n)) { s.lengths = [...s.lengths, n].sort((a, b) => a - b); redraw(); } };
     return h('section', { class: 'card stack' },
       h('h2', null, 'Class lengths'),
       h('p', { class: 'hint' }, 'The lengths you run. Each class type has its own usual length; a new class type starts on the one marked usual here.'),
       h('div', { class: 'btn-row' }, s.lengths.map((n) => h('span', { class: ['len-chip', n === s.defaultLength && 'on'] },
-        h('button', { type: 'button', class: 'len-pick', disabled: dis, title: 'Make this the usual length', 'aria-pressed': n === s.defaultLength ? 'true' : 'false', onclick: () => { s.defaultLength = n; redo(); } }, `${n} min${n === s.defaultLength ? ' · usual' : ''}`),
-        admin && s.lengths.length > 1 ? h('button', { type: 'button', class: 'len-x', 'aria-label': `Remove ${n} minutes`, onclick: () => { s.lengths = s.lengths.filter((x) => x !== n); if (s.defaultLength === n) s.defaultLength = s.lengths[0]; redo(); } }, '×') : null))),
+        h('button', { type: 'button', class: 'len-pick', disabled: dis, title: 'Make this the usual length', 'aria-pressed': n === s.defaultLength ? 'true' : 'false', onclick: () => { s.defaultLength = n; redraw(); } }, `${n} min${n === s.defaultLength ? ' · usual' : ''}`),
+        admin && s.lengths.length > 1 ? h('button', { type: 'button', class: 'len-x', 'aria-label': `Remove ${n} minutes`, onclick: () => { s.lengths = s.lengths.filter((x) => x !== n); if (s.defaultLength === n) s.defaultLength = s.lengths[0]; redraw(); } }, '×') : null))),
       admin ? h('div', { class: 'btn-row' }, input, btn('Add a length', add, { small: true, iconName: 'plus' })) : null);
   };
 
@@ -143,17 +167,18 @@ export async function studioView() {
     h('div', { class: 'phase-top' },
       h('span', { class: 'seg-dot', style: { background: ROLE_COLOR[ph.role] } }),
       h('input', { type: 'text', value: ph.name, disabled: dis, 'aria-label': 'Phase name', oninput: (e) => { ph.name = e.target.value; } }),
-      select(SEGMENT_ROLES, ph.role, (v) => { ph.role = v; redo(); }, { disabled: dis, 'aria-label': 'What this phase is', style: { width: 'auto' } }),
+      select(SEGMENT_ROLES, ph.role, (v) => { ph.role = v; redraw(); }, { disabled: dis, 'aria-label': 'What this phase is', style: { width: 'auto' } }),
       h('label', { class: 'mins' }, h('input', { type: 'number', min: 1, max: 60, value: ph.minutes, disabled: dis, 'aria-label': `Minutes for ${ph.name}`, oninput: (e) => { ph.minutes = Math.max(1, Number(e.target.value) || 1); const t = e.target.closest('.ct-body')?.querySelector('.ct-total'); if (t) t.textContent = totalText(ct); } }), 'min'),
       admin ? h('div', { class: 'tools' },
-        btn('', () => { if (i > 0) { [ct.phases[i - 1], ct.phases[i]] = [ct.phases[i], ct.phases[i - 1]]; redo(); } }, { iconName: 'up', small: true, kind: 'ghost', title: 'Move earlier' }),
-        btn('', () => { if (i < ct.phases.length - 1) { [ct.phases[i + 1], ct.phases[i]] = [ct.phases[i], ct.phases[i + 1]]; redo(); } }, { iconName: 'down', small: true, kind: 'ghost', title: 'Move later' }),
-        btn('', () => { ct.phases.splice(i, 1); redo(); }, { iconName: 'close', small: true, kind: 'ghost', title: 'Remove phase' })) : null),
+        btn('', () => { if (i > 0) { [ct.phases[i - 1], ct.phases[i]] = [ct.phases[i], ct.phases[i - 1]]; redraw(); } }, { iconName: 'up', small: true, kind: 'ghost', title: 'Move earlier' }),
+        btn('', () => { if (i < ct.phases.length - 1) { [ct.phases[i + 1], ct.phases[i]] = [ct.phases[i], ct.phases[i + 1]]; redraw(); } }, { iconName: 'down', small: true, kind: 'ghost', title: 'Move later' }),
+        btn('', () => { ct.phases.splice(i, 1); redraw(); }, { iconName: 'close', small: true, kind: 'ghost', title: 'Remove phase' })) : null),
     h('div', { class: 'phase-line' }, h('span', { class: 'tiny muted' }, 'Drafts fill it from'),
-      chips(SECTIONS.map((x) => ({ id: x.id, label: x.label })), ph.sections || [], (v) => { ph.sections = v; touch(); }, { small: true })),
+      chips(liveSections().map((x) => ({ id: x.id, label: x.label })), ph.sections || [], (v) => { ph.sections = v; touch(); }, { small: true })),
     h('div', { class: 'phase-line' }, h('span', { class: 'tiny muted' }, 'Only in'),
       chips(POSITIONS.filter((x) => ct.apparatus !== 'mat' || true).map((x) => ({ id: x.id, label: x.label })), ph.positions || [], (v) => { if (v.length) ph.positions = v; else delete ph.positions; touch(); }, { small: true }),
       !(ph.positions || []).length ? h('span', { class: 'tiny muted' }, 'any position') : null));
+  const usesPhases = (ct) => !ct.noPhases && ct.phases.length > 0;
   const totalText = (ct) => { const t = ct.phases.reduce((a, p) => a + Number(p.minutes || 0), 0); return `Phases add up to ${t} min${t !== ct.lengthMin ? `. For a ${ct.lengthMin} min class each phase is scaled to fit.` : '.'}`; };
   const typeCard = (ct, i) => {
     const open = vs.openType === ct.id;
@@ -161,52 +186,125 @@ export async function studioView() {
       h('button', { type: 'button', class: 'ct-head', 'aria-expanded': open ? 'true' : 'false', onclick: () => { vs.openType = open ? '' : ct.id; draw(); } },
         h('span', { class: 'ct-name' }, ct.name),
         h('span', { class: 'tag tag-accent' }, ct.apparatus === 'mat' ? 'Mat' : 'Reformer'),
-        h('span', { class: 'tiny muted' }, `${ct.lengthMin} min · ${ct.phases.length} phases${ct.apparatus === 'mat' ? '' : ` · up to ${ct.springBudget} spring changes`}`),
+        h('span', { class: 'tiny muted' }, [`${ct.lengthMin} min`, usesPhases(ct) ? `${ct.phases.length} phase${ct.phases.length === 1 ? '' : 's'}` : 'no phases', ct.apparatus !== 'mat' && ct.springBudget > 0 ? `up to ${ct.springBudget} spring change${ct.springBudget === 1 ? '' : 's'}` : ''].filter(Boolean).join(' · ')),
         h('span', { class: 'spacer' }), icon(open ? 'up' : 'down', 16)),
-      h('div', { class: 'mini-bar' }, ct.phases.map((p) => h('div', { title: `${p.name} · ${p.minutes} min`, style: { flex: `${p.minutes} 1 0`, background: ROLE_COLOR[p.role] } }))),
+      usesPhases(ct) ? h('div', { class: 'mini-bar' }, ct.phases.map((p) => h('div', { title: `${p.name} · ${p.minutes} min`, style: { flex: `${p.minutes} 1 0`, background: ROLE_COLOR[p.role] } }))) : null,
       open ? h('div', { class: 'ct-body stack' },
         h('div', { class: 'grid-2' },
           field('Name', h('input', { type: 'text', value: ct.name, disabled: dis, oninput: (e) => { ct.name = e.target.value; } })),
-          field('Apparatus', select([{ id: 'reformer', label: 'Reformer' }, { id: 'mat', label: 'Mat' }], ct.apparatus, (v) => { ct.apparatus = v; redo(); }, { disabled: dis }))),
+          field('Apparatus', select([{ id: 'reformer', label: 'Reformer' }, { id: 'mat', label: 'Mat' }], ct.apparatus, (v) => { ct.apparatus = v; redraw(); }, { disabled: dis }))),
         h('div', { class: 'grid-2' },
-          field('Usual length', select(s.lengths.map((n) => ({ id: String(n), label: `${n} min` })).concat(s.lengths.includes(ct.lengthMin) ? [] : [{ id: String(ct.lengthMin), label: `${ct.lengthMin} min` }]), String(ct.lengthMin), (v) => { ct.lengthMin = Number(v); redo(); }, { disabled: dis })),
-          ct.apparatus !== 'mat' ? field('Spring changes, at most', h('input', { type: 'number', min: 0, max: 20, value: ct.springBudget, disabled: dis, oninput: (e) => { ct.springBudget = Number(e.target.value); } }), 'Flows over this are flagged, and drafts stay inside it.') : h('div')),
+          field('Usual length', select(s.lengths.map((n) => ({ id: String(n), label: `${n} min` })).concat(s.lengths.includes(ct.lengthMin) ? [] : [{ id: String(ct.lengthMin), label: `${ct.lengthMin} min` }]), String(ct.lengthMin), (v) => { ct.lengthMin = Number(v); redraw(); }, { disabled: dis })),
+          ct.apparatus !== 'mat' ? field('Spring changes, at most', h('input', { type: 'number', min: 0, max: 20, value: ct.springBudget > 0 ? ct.springBudget : '', placeholder: 'No limit', disabled: dis, oninput: (e) => { ct.springBudget = Math.max(0, Math.round(Number(e.target.value)) || 0); } }), 'Leave it empty, or type 0, for no limit: nothing is flagged and drafts stop counting. With a number, flows over it are flagged and drafts stay inside it.') : h('div')),
         field('What makes this class this class', h('input', { type: 'text', value: ct.note || '', disabled: dis, placeholder: 'A line for your team', oninput: (e) => { ct.note = e.target.value; } })),
-        h('div', null, h('div', { class: 'label' }, 'Phases, in order'),
-          h('p', { class: 'hint', style: { marginBottom: '8px' } }, 'A new flow of this type starts with these phases. Drafts give each one its minutes and fill it with a few blocks from the parts of the library you tick. Warm-up and cool-down phases only use movements marked for them.'),
-          h('div', { class: 'stack-sm' }, ct.phases.map((p, pi) => phaseRow(ct, p, pi))),
-          h('div', { class: 'btn-row', style: { marginTop: '10px' } },
-            admin ? btn('Add a phase', () => { ct.phases.push({ name: 'New phase', role: 'build', minutes: 5, sections: [] }); redo(); }, { small: true, iconName: 'plus' }) : null,
-            h('span', { class: 'tiny muted ct-total' }, totalText(ct)))),
+        h('div', { class: 'ct-own' },
+          h('div', { class: 'label' }, 'What a new flow of this class starts with'),
+          h('p', { class: 'hint', style: { marginBottom: '8px' } }, 'The more you set here, the less an instructor has to choose when they start a plan. They can still change any of it on their own flow.'),
+          h('div', { class: 'grid-2' },
+            field('Level', select([{ id: '', label: 'Instructor picks' }, ...s.levels.map((l) => ({ id: l.id, label: l.label }))], s.levels.some((l) => l.id === ct.level) ? ct.level : '', (v) => { if (v) ct.level = v; else delete ct.level; redraw(); }, { disabled: dis })),
+            field('Balance target', select([{ id: '', label: 'The studio\'s usual (General)' }, ...Object.entries(s.targets).map(([k, x]) => ({ id: k, label: x.label }))], s.targets[ct.target] ? ct.target : '', (v) => { if (v) ct.target = v; else delete ct.target; redraw(); }, { disabled: dis }), 'What "balanced" means for this class.')),
+          h('details', { class: 'ct-timing', open: ct.timing && Object.keys(ct.timing).length ? '' : null },
+            h('summary', null, 'Its own timings', ct.timing && Object.keys(ct.timing).length ? h('span', { class: 'tag tag-accent' }, `${Object.keys(ct.timing).length} set`) : h('span', { class: 'tiny muted' }, 'uses the studio\'s')),
+            h('p', { class: 'hint', style: { margin: '8px 0' } }, 'Seconds this class allows, where it differs from the studio\'s timing list. Leave a box empty to use the studio\'s.'),
+            h('div', { class: 'stack-sm' }, s.timingRows.filter((r) => isBuiltinTiming(r.id)).map((r) => h('label', { class: 'time-row' },
+              h('span', null, r.label, r.off ? h('span', { class: 'tiny muted', style: { fontWeight: 400 } }, ' · switched off for the studio') : null),
+              h('input', { type: 'number', min: 0, max: 600, step: 5, value: ct.timing && ct.timing[r.id] !== undefined ? ct.timing[r.id] : '', placeholder: String(r.off ? 0 : r.seconds), disabled: dis, 'aria-label': `${r.label} for ${ct.name}, seconds`,
+                oninput: (e) => { ct.timing = ct.timing || {}; if (e.target.value === '') delete ct.timing[r.id]; else ct.timing[r.id] = Math.max(0, Math.round(Number(e.target.value)) || 0); if (!Object.keys(ct.timing).length) delete ct.timing; } }),
+              h('span', { class: 'tiny muted' }, 'sec')))))),
+        h('div', null,
+          h('label', { class: 'check-row' }, h('input', { type: 'checkbox', checked: usesPhases(ct), disabled: dis, onchange: (e) => {
+            if (e.target.checked) { delete ct.noPhases; if (!ct.phases.length) ct.phases = [{ name: 'Warm-up', role: 'warmup', minutes: 6, sections: [] }, { name: 'Main', role: 'build', minutes: Math.max(10, ct.lengthMin - 11), sections: [] }, { name: 'Cool-down', role: 'cooldown', minutes: 5, sections: ['stretch'].filter((x) => liveSections().some((y) => y.id === x)) }]; } else ct.noPhases = true;
+            redraw();
+          } }), h('span', null, h('strong', null, 'Plan this class in phases'), h('span', { class: 'tiny muted', style: { display: 'block' } }, 'Optional, but recommended. Phases help your instructors plan the class the way your clients expect it from your studio.'))),
+          usesPhases(ct) ? [
+            h('div', { class: 'label', style: { marginTop: '10px' } }, 'Phases, in order'),
+            h('p', { class: 'hint', style: { marginBottom: '8px' } }, 'A new flow of this type starts with these phases. Drafts give each one its minutes and fill it with a few blocks from the parts of the library you tick. Warm-up and cool-down phases only use movements marked for them.'),
+            h('div', { class: 'stack-sm' }, ct.phases.map((p, pi) => phaseRow(ct, p, pi))),
+            h('div', { class: 'btn-row', style: { marginTop: '10px' } },
+              admin ? btn('Add a phase', () => { ct.phases.push({ name: 'New phase', role: 'build', minutes: 5, sections: [] }); redraw(); }, { small: true, iconName: 'plus' }) : null,
+              h('span', { class: 'tiny muted ct-total' }, totalText(ct)))]
+            : h('p', { class: 'hint', style: { marginTop: '8px' } }, `A new flow of this type is one list of blocks with no phase headings, and an instructor can still switch phases on for their own flow. Drafts still open with a warm-up and finish with a cool-down.${ct.phases.length ? ' The phases you set up are kept for when you switch this back on.' : ''}`)),
         admin ? h('div', { class: 'btn-row' },
-          btn('Duplicate', () => { const c = structuredClone(ct); c.name = `${ct.name} copy`; c.id = makeId('', c.name, s.classTypes.map((x) => x.id)); s.classTypes.splice(i + 1, 0, c); vs.openType = c.id; redo(); }, { small: true, iconName: 'copy' }),
-          s.classTypes.length > 1 ? btn('Delete this class type', async () => { if (await confirmDialog(`Delete ${ct.name}?`, 'Flows already made from it keep everything they have.')) { s.classTypes.splice(i, 1); redo(); } }, { small: true, kind: 'ghost', iconName: 'trash' }) : null) : null) : null);
+          btn('Duplicate', () => { const c = structuredClone(ct); c.name = `${ct.name} copy`; c.id = makeId('', c.name, s.classTypes.map((x) => x.id)); s.classTypes.splice(i + 1, 0, c); vs.openType = c.id; redraw(); }, { small: true, iconName: 'copy' }),
+          s.classTypes.length > 1 ? btn('Delete this class type', async () => { if (await confirmDialog(`Delete ${ct.name}?`, 'Flows already made from it keep everything they have.')) { s.classTypes.splice(i, 1); redraw(); } }, { small: true, kind: 'ghost', iconName: 'trash' }) : null) : null) : null);
   };
   const typesCard = () => h('section', { class: 'card stack' },
     h('div', { class: 'card-head' }, h('h2', null, 'Class types'), h('div', { class: 'spacer' }),
-      admin ? btn('New class type', () => { const c = { id: makeId('', 'class', s.classTypes.map((x) => x.id)), name: 'New class', apparatus: 'reformer', lengthMin: s.defaultLength, springBudget: 3, note: '', phases: [{ name: 'Warm-up', role: 'warmup', minutes: 6, sections: [] }, { name: 'Main', role: 'build', minutes: 34, sections: [] }, { name: 'Cool-down', role: 'cooldown', minutes: 5, sections: ['stretch'] }] }; s.classTypes.push(c); vs.openType = c.id; redo(); }, { small: true, iconName: 'plus' }) : null),
+      admin ? btn('New class type', () => { const c = { id: makeId('', 'class', s.classTypes.map((x) => x.id)), name: 'New class', apparatus: 'reformer', lengthMin: s.defaultLength, springBudget: 0, note: '', phases: [{ name: 'Warm-up', role: 'warmup', minutes: 6, sections: [] }, { name: 'Main', role: 'build', minutes: 34, sections: [] }, { name: 'Cool-down', role: 'cooldown', minutes: 5, sections: ['stretch'] }] }; s.classTypes.push(c); vs.openType = c.id; redraw(); }, { small: true, iconName: 'plus' }) : null),
     h('p', { class: 'hint' }, 'The classes on your timetable, each with the shape it usually takes. Set them up once: every new flow starts from one, and "Draft it for me" follows its phases.'),
     h('div', { class: 'stack-sm' }, s.classTypes.map(typeCard)),
-    admin ? h('div', null, btn('Put the built-in class types back', async () => { if (await confirmDialog('Put the built-in class types back?', 'Any built-in type you changed or deleted returns to how it shipped. Types you added stay.', 'Put them back', 'primary')) { const mine = s.classTypes.filter((c) => !DEFAULT_CLASS_TYPES.some((d) => d.id === c.id)); s.classTypes = [...structuredClone(DEFAULT_CLASS_TYPES), ...mine]; redo(); } }, { small: true, kind: 'ghost' })) : null);
+    admin ? h('div', null, btn('Put the built-in class types back', async () => { if (await confirmDialog('Put the built-in class types back?', 'Any built-in type you changed or deleted returns to how it shipped. Types you added stay.', 'Put them back', 'primary')) { const mine = s.classTypes.filter((c) => !DEFAULT_CLASS_TYPES.some((d) => d.id === c.id)); s.classTypes = [...structuredClone(DEFAULT_CLASS_TYPES), ...mine]; redraw(); } }, { small: true, kind: 'ghost' })) : null);
 
-  const TIMING_ROWS = [['perLayer', 'Each layer added to a block', 'Added to a movement\'s own time for every layer you build on top.'], ['finisher', 'A finisher', 'Pulses or a hold to end a block.'], ['springChange', 'A spring change', ''], ['positionChange', 'A change of position', 'Lying to kneeling, kneeling to standing and so on.'], ['boxChange', 'Box or board on or off', '']];
-  const timingCard = () => h('section', { class: 'card stack' },
-    h('h2', null, 'Timing'),
-    h('p', { class: 'hint' }, 'The seconds a plan allows for the things that are not the movement itself. These are why a flow\'s total is longer than its movements added up. Typing a time on a block always wins.'),
-    h('div', { class: 'stack-sm' }, TIMING_ROWS.map(([k, label, hint]) => h('label', { class: 'time-row' },
-      h('span', null, label, hint ? h('span', { class: 'tiny muted', style: { display: 'block', fontWeight: 400 } }, hint) : null),
-      h('input', { type: 'number', min: 0, max: 300, step: 5, value: s.timing[k], disabled: dis, 'aria-label': `${label}, seconds`, oninput: (e) => { s.timing[k] = Math.max(0, Number(e.target.value) || 0); } }), h('span', { class: 'tiny muted' }, 'sec')))));
+  const timingCard = () => {
+    const rows = s.timingRows.filter((r) => !r.off);
+    const gone = s.timingRows.filter((r) => r.off);
+    const name = h('input', { type: 'text', placeholder: 'e.g. Water break, set up the tower', 'aria-label': 'Name of the new timing', onkeydown: (e) => { if (e.key === 'Enter') { e.preventDefault(); add(); } } });
+    const secs = h('input', { type: 'number', min: 0, max: 3600, step: 5, value: 60, 'aria-label': 'Seconds for the new timing', style: { width: '84px' } });
+    const add = () => {
+      const label = name.value.trim();
+      if (!label) return;
+      if (s.timingRows.some((r) => r.label.toLowerCase() === label.toLowerCase())) { toast(`${label} is already in the list.`); return; }
+      s.timingRows.push({ id: makeId('t_', label, s.timingRows.map((r) => r.id)), label, note: '', seconds: Math.max(0, Math.round(Number(secs.value)) || 60) });
+      redraw();
+    };
+    return h('section', { class: 'card stack' },
+      h('h2', null, 'Timing'),
+      h('p', { class: 'hint' }, 'The time a plan allows for the things that are not the movement itself. These are why a flow\'s total is longer than its movements added up. Rename them, write a note under each for your team, change the seconds, remove the ones you don\'t count, and add your own. A class type can set its own seconds on top. Typing a time on a block always wins.'),
+      h('div', { class: 'stack-sm' }, rows.map((r) => {
+        const built = isBuiltinTiming(r.id);
+        return h('div', { class: 'time-item' },
+          h('div', { class: 'time-top' },
+            h('input', { type: 'text', value: r.label, disabled: dis, 'aria-label': 'Name', placeholder: built ? DEFAULT_TIMING_ROWS.find((d) => d.id === r.id).label : 'Name', oninput: (e) => { r.label = e.target.value; } }),
+            h('input', { type: 'number', min: 0, max: built ? 600 : 3600, step: 5, value: r.seconds, disabled: dis, 'aria-label': `${r.label}, seconds`, oninput: (e) => { r.seconds = Math.max(0, Math.round(Number(e.target.value)) || 0); } }),
+            h('span', { class: 'tiny muted' }, 'sec'),
+            admin ? btn('', () => { if (built) r.off = true; else s.timingRows = s.timingRows.filter((x) => x !== r); redraw(); undoToast(`${r.label} removed.`); }, { iconName: 'close', small: true, kind: 'ghost', title: `Remove ${r.label}` }) : null),
+          h('input', { type: 'text', class: 'time-note', value: r.note || '', disabled: dis, placeholder: 'A note for your team (optional)', 'aria-label': `Note for ${r.label}`, oninput: (e) => { r.note = e.target.value; } }),
+          h('div', { class: 'tiny muted' }, built ? 'Counted for you whenever it happens in a flow.' : 'Yours: add it to any flow as a timed line between blocks.'));
+      })),
+      admin ? h('div', { class: 'btn-row' }, name, secs, h('span', { class: 'tiny muted' }, 'sec'), btn('Add a timing', add, { small: true, iconName: 'plus' })) : null,
+      gone.length ? h('div', { class: 'small muted' }, 'Removed, so they count for nothing: ', gone.map((r) => h('button', { type: 'button', class: 'chip chip-sm', disabled: dis, title: `Put ${r.label} back`, onclick: () => { delete r.off; redraw(); } }, `+ ${r.label}`))) : null);
+  };
+
+  // ---------- focuses: what a class leans towards
+  const openFocus = { id: '' };
+  const focusesCard = () => {
+    const name = h('input', { type: 'text', placeholder: 'e.g. Runners, posture, arms & abs', 'aria-label': 'Name of the new focus', style: { maxWidth: '280px' }, onkeydown: (e) => { if (e.key === 'Enter') { e.preventDefault(); add(); } } });
+    const add = () => {
+      const label = name.value.trim();
+      if (!label) return;
+      if (s.focuses.some((f) => f.label.toLowerCase() === label.toLowerCase())) { toast(`${label} is already in the list.`); return; }
+      const f = { id: makeId('', label, s.focuses.map((x) => x.id)), label, muscles: [] };
+      s.focuses.push(f); openFocus.id = f.id;
+      redraw();
+    };
+    const missing = DEFAULT_FOCUSES.filter((d) => !s.focuses.some((f) => f.id === d.id));
+    return h('section', { class: 'card stack' },
+      h('h2', null, 'Focuses'),
+      h('p', { class: 'hint' }, 'What a class leans towards. An instructor picks one when they start a flow, or types their own for a one-off class. Drafts favour the muscles ticked for a focus; with none ticked it is a balanced class. Rename them, delete the ones you never run and add your own.'),
+      h('div', { class: 'focus-list' }, s.focuses.map((f, i) => {
+        const open = openFocus.id === f.id;
+        return h('div', { class: ['focus-item', open && 'open'] },
+          h('div', { class: 'focus-top' },
+            h('input', { type: 'text', value: f.label, disabled: dis, 'aria-label': 'Focus name', oninput: (e) => { f.label = e.target.value; } }),
+            h('button', { type: 'button', class: 'linkish small', 'aria-expanded': open ? 'true' : 'false', onclick: () => { openFocus.id = open ? '' : f.id; draw(); } }, h('span', { 'data-focus-count': f.id }, (f.muscles || []).length ? `${f.muscles.length} muscle${f.muscles.length === 1 ? '' : 's'}` : 'Balanced'), ' ', icon(open ? 'up' : 'down', 13)),
+            admin && s.focuses.length > 1 ? btn('', () => { s.focuses.splice(i, 1); redraw(); undoToast(`${f.label} deleted.`); }, { iconName: 'close', small: true, kind: 'ghost', title: `Delete ${f.label}` }) : null),
+          open ? h('div', { class: 'focus-body' }, h('div', { class: 'tiny muted' }, 'Drafts favour'),
+            chips(MUSCLES.map((m) => ({ id: m.id, label: m.label })), f.muscles || [], (v) => { if (dis) return; f.muscles = v; touch(); const b = wrap.querySelector(`[data-focus-count="${f.id}"]`); if (b) b.textContent = v.length ? `${v.length} muscle${v.length === 1 ? '' : 's'}` : 'Balanced'; }, { small: true })) : null);
+      })),
+      admin ? h('div', { class: 'btn-row' }, name, btn('Add a focus', add, { small: true, iconName: 'plus' })) : null,
+      missing.length ? h('div', { class: 'small muted' }, 'Deleted: ', missing.map((d) => h('button', { type: 'button', class: 'chip chip-sm', disabled: dis, title: `Put ${d.label} back`, onclick: () => { s.focuses.push(structuredClone(d)); redraw(); } }, `+ ${d.label}`))) : null);
+  };
 
   const targetsCard = () => h('section', { class: 'card stack' },
     h('div', { class: 'card-head' }, h('h2', null, 'Balance targets'), h('div', { class: 'spacer' }),
-      admin ? btn('New target', () => { const k = 'target' + Date.now().toString(36); s.targets[k] = { label: 'New target', flexion: 50, extension: 25, rotation: 12, 'side-bend': 13 }; redo(); }, { small: true, iconName: 'plus' }) : null),
+      admin ? btn('New target', () => { const k = 'target' + Date.now().toString(36); s.targets[k] = { label: 'New target', flexion: 50, extension: 25, rotation: 12, 'side-bend': 13 }; redraw(); }, { small: true, iconName: 'plus' }) : null),
     h('p', { class: 'hint' }, 'What "balanced" means for a class: how its spine movement should be shared out. A flow is compared against the target you pick for it.'),
     h('div', { class: 'auto-grid' }, Object.entries(s.targets).map(([k, t]) => {
       const sum = () => ['flexion', 'extension', 'rotation', 'side-bend'].reduce((a, d) => a + Number(t[d] || 0), 0);
       const sumEl = h('span', { class: ['tiny', 'sum', sum() === 100 && 'ok'] }, `Adds up to ${sum()}%`);
       return h('div', { class: 'box stack-sm' },
         h('div', { class: 'btn-row' }, h('input', { type: 'text', value: t.label, disabled: dis, 'aria-label': 'Target name', style: { maxWidth: '220px', fontWeight: 600 }, oninput: (e) => { t.label = e.target.value; } }), sumEl,
-          h('div', { class: 'spacer' }), admin && Object.keys(s.targets).length > 1 && !DEFAULT_TARGETS[k] ? btn('', () => { delete s.targets[k]; redo(); }, { iconName: 'trash', small: true, kind: 'ghost', title: 'Remove target' }) : null),
+          h('div', { class: 'spacer' }), admin && Object.keys(s.targets).length > 1 && !DEFAULT_TARGETS[k] ? btn('', () => { delete s.targets[k]; redraw(); }, { iconName: 'trash', small: true, kind: 'ghost', title: 'Remove target' }) : null),
         ['flexion', 'extension', 'rotation', 'side-bend'].map((d) => {
           const out = h('span', { style: { textAlign: 'right' } }, `${t[d]}%`);
           return h('label', { class: 'range-row' },
@@ -214,15 +312,60 @@ export async function studioView() {
             h('input', { type: 'range', min: 0, max: 80, value: t[d], disabled: dis, oninput: (e) => { t[d] = Number(e.target.value); out.textContent = `${t[d]}%`; sumEl.textContent = `Adds up to ${sum()}%`; sumEl.classList.toggle('ok', sum() === 100); } }), out);
         }));
     })));
-  const classesTab = () => [typesCard(), h('div', { class: 'auto-grid' }, levelsCard(), lengthsCard(), timingCard()), targetsCard()];
+  const classesTab = () => [typesCard(), h('div', { class: 'auto-grid' }, levelsCard(), lengthsCard()), h('div', { class: 'auto-grid' }, focusesCard(), timingCard()), targetsCard()];
 
   // ---------- lists
-  const sectionsCard = () => h('section', { class: 'card stack' },
-    h('h2', null, 'Parts of the class'),
-    h('p', { class: 'hint' }, 'How the library is grouped. Call them what your studio calls them.'),
-    h('div', { class: 'stack-sm' }, BUILTIN.sections.map((x) => h('div', { class: 'st-row st-row-2' },
-      h('input', { type: 'text', value: s.sectionLabels[x.id] || x.label, placeholder: x.label, disabled: dis, 'aria-label': `Name for ${x.label}`, oninput: (e) => { const v = e.target.value.trim(); if (v && v !== x.label) s.sectionLabels[x.id] = v; else delete s.sectionLabels[x.id]; } }),
-      s.sectionLabels[x.id] ? h('span', { class: 'tiny muted' }, `Built in as "${x.label}"`) : h('span')))));
+  // The parts of the class as they stand on this screen (the saved ones are in SECTIONS).
+  const liveSections = () => [...BUILTIN.sections.filter((x) => !s.removedSections.includes(x.id)).map((x) => ({ ...x, label: s.sectionLabels[x.id] || x.label, builtin: true })), ...s.customSections.map((x) => ({ ...x, custom: true }))];
+  const homeHere = (id) => { for (let hop = 0; hop < 8 && s.sectionMap[id]; hop++) id = s.sectionMap[id]; return id; };
+  const movementsIn = (id) => (store.movementList || []).filter((m) => homeHere(m.section || guessSection(m)) === id).length;
+  const deleteSection = async (x) => {
+    const others = liveSections().filter((y) => y.id !== x.id);
+    const n = movementsIn(x.id);
+    const phases = s.classTypes.reduce((a, c) => a + c.phases.filter((p) => (p.sections || []).includes(x.id)).length, 0);
+    let to = others[0].id;
+    const ok = await modal(`Delete ${x.label}?`, h('div', { class: 'stack-sm' },
+      h('p', { class: 'small' }, n || phases ? `${n} movement${n === 1 ? ' is' : 's are'} filed under it${phases ? `, and ${phases} class phase${phases === 1 ? ' draws' : 's draw'} from it` : ''}. Choose the part they move to. Nothing is lost: the movements keep everything else about them.` : 'Nothing is filed under it yet.'),
+      field('Move them to', select(others.map((y) => ({ id: y.id, label: y.label })), to, (v) => { to = v; }))),
+    { actions: [{ label: 'Cancel', value: false }, { label: `Delete ${x.label}`, value: true, kind: 'danger' }] });
+    if (!ok) return;
+    if (x.custom) s.customSections = s.customSections.filter((c) => c.id !== x.id); else s.removedSections.push(x.id);
+    for (const k of Object.keys(s.sectionMap)) if (s.sectionMap[k] === x.id) s.sectionMap[k] = to;
+    s.sectionMap[x.id] = to;
+    for (const c of s.classTypes) for (const p of c.phases) if ((p.sections || []).includes(x.id)) p.sections = [...new Set(p.sections.map((y) => (y === x.id ? to : y)))];
+    redraw();
+    undoToast(`${x.label} deleted. Its movements are under ${labelOf(liveSections(), to)}.`);
+  };
+  const sectionsCard = () => {
+    const list = liveSections();
+    const gone = BUILTIN.sections.filter((x) => s.removedSections.includes(x.id));
+    const name = h('input', { type: 'text', placeholder: 'e.g. Balance, tower, cardio bursts', 'aria-label': 'Name of the new part of the class', style: { maxWidth: '260px' }, onkeydown: (e) => { if (e.key === 'Enter') { e.preventDefault(); add(); } } });
+    let group = 'core';
+    const add = () => {
+      const label = name.value.trim();
+      if (!label) return;
+      if (list.some((x) => x.label.toLowerCase() === label.toLowerCase())) { toast(`${label} is already in the list.`); return; }
+      s.customSections.push({ id: makeId('s_', label, [...BUILTIN.sections, ...s.customSections].map((x) => x.id)), label, group });
+      redraw();
+    };
+    return h('section', { class: 'card stack' },
+      h('h2', null, 'Parts of the class'),
+      h('p', { class: 'hint' }, 'How the library is grouped, and what a class phase draws from. Call them what your studio calls them, add your own and delete the ones you don\'t use. A new part starts empty: open a movement and choose it under "Part of the class" to file it there.'),
+      h('div', { class: 'stack-sm' }, list.map((x) => {
+        const n = movementsIn(x.id);
+        return h('div', { class: 'st-row st-row-part' },
+          x.custom
+            ? h('input', { type: 'text', value: x.label, disabled: dis, 'aria-label': `Name for ${x.label}`, oninput: (e) => { const c = s.customSections.find((y) => y.id === x.id); if (c && e.target.value.trim()) c.label = e.target.value.trim(); } })
+            : h('input', { type: 'text', value: x.label, placeholder: BUILTIN.sections.find((y) => y.id === x.id).label, disabled: dis, 'aria-label': `Name for ${BUILTIN.sections.find((y) => y.id === x.id).label}`, oninput: (e) => { const v = e.target.value.trim(); const orig = BUILTIN.sections.find((y) => y.id === x.id).label; if (v && v !== orig) s.sectionLabels[x.id] = v; else delete s.sectionLabels[x.id]; } }),
+          x.custom
+            ? select(SECTION_GROUPS.map((g) => ({ id: g.id, label: `Counts as ${g.label.toLowerCase()}` })), x.group || 'core', (v) => { const c = s.customSections.find((y) => y.id === x.id); if (c) c.group = v; redraw(); }, { disabled: dis, 'aria-label': `What ${x.label} counts as in the balance charts` })
+            : h('span', { class: 'tiny muted' }, `Counts as ${labelOf(SECTION_GROUPS, x.group).toLowerCase()}${s.sectionLabels[x.id] ? ` · built in as "${BUILTIN.sections.find((y) => y.id === x.id).label}"` : ''}`),
+          h('span', { class: 'tiny muted' }, `${n} movement${n === 1 ? '' : 's'}`),
+          admin && list.length > 1 ? btn('', () => deleteSection(x), { iconName: 'close', small: true, kind: 'ghost', title: `Delete ${x.label}` }) : h('span'));
+      })),
+      admin ? h('div', { class: 'btn-row' }, name, select(SECTION_GROUPS.map((g) => ({ id: g.id, label: `Counts as ${g.label.toLowerCase()}` })), group, (v) => { group = v; }, { 'aria-label': 'What the new part counts as', style: { width: 'auto' } }), btn('Add a part', add, { small: true, iconName: 'plus' })) : null,
+      gone.length ? h('div', { class: 'small muted' }, 'Deleted: ', gone.map((x) => h('button', { type: 'button', class: 'chip chip-sm', disabled: dis, title: `Put ${x.label} back, with the movements that were filed under it`, onclick: () => { s.removedSections = s.removedSections.filter((id) => id !== x.id); delete s.sectionMap[x.id]; redraw(); } }, `+ ${x.label}`))) : null);
+  };
   const listsTab = () => [
     listCard({ title: 'Props & accessories', hint: 'What you have and how many. Movements that need something you have none of are left out of drafts and flagged in a flow. Add anything your studio uses; remove what it never will.',
       builtin: BUILTIN.equipment, customKey: 'customProps', removedKey: 'removedProps', prefix: 'p_', addLabel: 'Add a prop', placeholder: 'e.g. Pilates arc, toning balls', counts: true }),
@@ -255,7 +398,10 @@ export async function studioView() {
       store.reset();
       await Promise.all([store.loadStudio(true), store.loadMovements(true), store.loadSeries(true), store.loadClients(true)]);
       toast(`Brought in: ${[r.settings && 'settings', r.movements && `${r.movements} movements`, r.series && `${r.series} series`, r.reviews && `${r.reviews} review marks`, r.flows && `${r.flows} flows`].filter(Boolean).join(', ') || 'nothing'}${r.skipped ? `. ${r.skipped} skipped.` : '.'}`);
+      for (const k of Object.keys(s)) delete s[k];
       Object.assign(s, structuredClone(store.studio));
+      prepare();
+      hist.reset();
       draw();
     } catch (e) { toast(e.message, { kind: 'error' }); }
   };
@@ -297,9 +443,10 @@ export async function studioView() {
   };
   await Promise.all([store.loadMovements(), store.loadSeries()]);
   draw();
-  return { title: 'Studio', cleanup: () => save.flush(), node: [
+  if (admin) hist.keys(true);
+  return { title: 'Studio', cleanup: () => { hist.keys(false); save.flush(); }, node: [
     h('div', { class: 'page-head' }, h('div', { class: 'grow' }, h('h1', null, 'Studio'), h('p', { class: 'small muted' }, 'Set this up once. Everything else in OpenPilates follows it: spring colours, what the library offers, class shapes, levels and timing.')),
-      h('div', { class: 'btn-row' }, status)),
+      h('div', { class: 'save-state' }, admin ? hist.el : null, status)),
     h('div', { style: { marginBottom: '14px' } }, tabsEl),
     wrap] };
 }

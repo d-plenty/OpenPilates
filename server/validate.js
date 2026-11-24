@@ -1,5 +1,5 @@
 import { POSE_IDS } from '../shared/poses.js';
-import { kindOf, BUILTIN, LEVEL_PRESETS, DEFAULT_CLASS_TYPES, DEFAULT_LENGTHS, DEFAULT_TIMING } from '../shared/vocab.js';
+import { kindOf, BUILTIN, LEVEL_PRESETS, DEFAULT_CLASS_TYPES, DEFAULT_LENGTHS, DEFAULT_TIMING, DEFAULT_LEVELS, DEFAULT_FOCUSES, DEFAULT_TIMING_ROWS, withCoreLevels, isCoreLevel, isBuiltinTiming, timingFromRows, timingRowsOf } from '../shared/vocab.js';
 import { POSITIONS, SPINE, MUSCLES, EQUIPMENT, LEVELS, CAUTIONS, PATTERNS, PLANES, LOAD_LEVELS, SEGMENT_ROLES, BRANDS, DEFAULT_TARGETS, SECTIONS, CATEGORIES, ROLES, PREGNANCY, HEADREST, STRAPS, FORMATS } from '../shared/vocab.js';
 
 const ids = (list) => new Set(list.map((x) => x.id));
@@ -10,7 +10,7 @@ const CA = { has: (x) => CAUTIONS.some((e) => e.id === x) || BUILTIN.cautions.so
 const MU = { has: (x) => MUSCLES.some((e) => e.id === x) || BUILTIN.muscles.some((e) => e.id === x) };
 const POS = ids(POSITIONS), SP = ids(SPINE), LV = ids(LEVELS),
   PA = ids(PATTERNS), PL = ids(PLANES), RO = ids(SEGMENT_ROLES), LOADS = new Set(LOAD_LEVELS),
-  SEC = ids(SECTIONS), CAT = ids(CATEGORIES), ROLE = ids(ROLES), PREG = ids(PREGNANCY), HEAD = ids(HEADREST), STR = ids(STRAPS), FMT = ids(FORMATS);
+  SEC = { has: (x) => SECTIONS.some((e) => e.id === x) || BUILTIN.sections.some((e) => e.id === x) }, CAT = ids(CATEGORIES), ROLE = ids(ROLES), PREG = ids(PREGNANCY), HEAD = ids(HEADREST), STR = ids(STRAPS), FMT = ids(FORMATS);
 const lines = (v, max, len) => (Array.isArray(v) ? v : String(v ?? '').split('\n')).map((x) => str(x, len)).filter(Boolean).slice(0, max);
 const loads = (v) => (Array.isArray(v) ? v : []).filter((x) => LOADS.has(x)).slice(0, 5);
 
@@ -137,7 +137,10 @@ export function cleanFlow(input) {
     ...(Number(s.minutes) > 0 ? { minutes: Math.round(num(s.minutes, 1, 120, 5)) } : {}),
     song: str(s.song, 160),
     notes: str(s.notes, 1000),
-    items: (Array.isArray(s.items) ? s.items : []).slice(0, 60).map((i) => ({
+    items: (Array.isArray(s.items) ? s.items : []).slice(0, 60).map((i) => (i && i.pause ? {
+      // a timed line that is not a movement: a water break, a set-up change, a demo
+      id: str(i.id, 40) || Math.random().toString(36).slice(2), pause: true, label: str(i.label, 60) || 'Break', duration: Math.round(num(i.duration, 5, 3600, 60)), ...(str(i.note, 300) ? { note: str(i.note, 300) } : {})
+    } : {
       id: str(i.id, 40) || Math.random().toString(36).slice(2),
       slug: slugify(i.slug),
       ...(i.duration ? { duration: Math.round(num(i.duration, 10, 1800, 120)) } : {}),
@@ -148,7 +151,7 @@ export function cleanFlow(input) {
       ...(str(i.finisher, 160) ? { finisher: str(i.finisher, 160) } : {}),
       ...(i.note ? { note: str(i.note, 500) } : {}),
       ...(i.load && Array.isArray(i.load.springs) ? { load: { springs: i.load.springs.filter((x) => LOADS.has(x)).slice(0, 5) } } : {})
-    })).filter((i) => i.slug)
+    })).filter((i) => i.slug || i.pause)
   }));
   return {
     title,
@@ -158,6 +161,8 @@ export function cleanFlow(input) {
     ...(/^[a-z0-9_-]{1,40}$/.test(String(f.classType || '')) ? { classType: f.classType } : {}),
     lengthMin: Math.round(num(f.lengthMin, 10, 180, 50)),
     goal: str(f.goal, 40),
+    ...(str(f.focusText, 60) ? { focusText: str(f.focusText, 60) } : {}),
+    ...(f.noPhases ? { noPhases: true } : {}),
     format: FMT.has(f.format) ? f.format : 'open',
     springBudget: Math.round(num(f.springBudget, 0, 20, (FORMATS.find((x) => x.id === f.format) || FORMATS[2]).springBudget)),
     theme: str(f.theme, 80),
@@ -223,7 +228,7 @@ export function cleanStudio(input) {
     for (const x of (Array.isArray(list) ? list : []).slice(0, 60)) {
       const label = str(x && x.label, 40);
       if (!label) continue;
-      let id = /^[pcm]_[a-z0-9_]{1,40}$/.test(String(x.id || '')) ? x.id : prefix + (slugify(label).replace(/-/g, '_') || 'item');
+      let id = /^[pcms]_[a-z0-9_]{1,40}$/.test(String(x.id || '')) ? x.id : prefix + (slugify(label).replace(/-/g, '_') || 'item');
       for (let i = 2; taken.has(id); i++) id = `${prefix}${slugify(label).replace(/-/g, '_')}_${i}`;
       taken.add(id); out.push({ id, label });
     }
@@ -248,12 +253,55 @@ export function cleanStudio(input) {
     const from = Math.round(num(l.from, 1, 3, 1)); const to = Math.max(from, Math.round(num(l.to, 1, 3, from)));
     return { id, label, from, to };
   }).filter(Boolean);
-  if (!levels.length) levels = LEVEL_PRESETS.three.levels.map((x) => ({ ...x }));
+  // Beginner, Intermediate and Advanced are always there, first; the rest are the studio's to keep, delete or add
+  levels = withCoreLevels(levels.length ? levels : DEFAULT_LEVELS).map((l) => (isCoreLevel(l.id) ? { ...l, ...DEFAULT_LEVELS.find((d) => d.id === l.id), label: l.label } : l)).slice(0, 12);
   const lengths = [...new Set((Array.isArray(s.lengths) ? s.lengths : DEFAULT_LENGTHS).map((n) => Math.round(Number(n))).filter((n) => n >= 10 && n <= 180))].sort((a, b) => a - b).slice(0, 12);
   if (!lengths.length) lengths.push(...DEFAULT_LENGTHS);
   const defaultLength = lengths.includes(Math.round(Number(s.defaultLength))) ? Math.round(Number(s.defaultLength)) : (lengths.includes(50) ? 50 : lengths[Math.floor(lengths.length / 2)]);
-  const timing = {};
-  for (const [k, d] of Object.entries(DEFAULT_TIMING)) timing[k] = Math.round(num(s.timing && s.timing[k], 0, 300, d));
+  // The timing list: the five built-in rows (renamed, noted or switched off, never lost) and the studio's own timed lines.
+  const seenTr = new Set();
+  const askedRows = timingRowsOf(s);
+  const timingRows = [...DEFAULT_TIMING_ROWS.map((d) => {
+    const r = askedRows.find((x) => x && x.id === d.id) || {};
+    seenTr.add(d.id);
+    return { id: d.id, label: str(r.label, 60) || d.label, note: str(r.note === undefined ? d.note : r.note, 200), seconds: Math.round(num(r.seconds, 0, 600, d.seconds)), ...(r.off ? { off: true } : {}) };
+  }), ...askedRows.filter((r) => r && !isBuiltinTiming(r.id)).slice(0, 30).map((r) => {
+    const label = str(r.label, 60);
+    if (!label) return null;
+    let id = /^t_[a-z0-9_]{1,40}$/.test(String(r.id || '')) ? r.id : `t_${slugify(label).replace(/-/g, '_') || 'line'}`;
+    for (let i = 2; seenTr.has(id); i++) id = `${id.replace(/_\d+$/, '')}_${i}`;
+    seenTr.add(id);
+    return { id, label, note: str(r.note, 200), seconds: Math.round(num(r.seconds, 0, 3600, 60)) };
+  }).filter(Boolean)];
+  const timing = timingFromRows(timingRows);
+  // parts of the class: the studio's own, and built-in ones it deleted (each with the part its movements moved to)
+  const customSections = own(s.customSections, 's_', new Set(BUILTIN.sections.map((e) => e.id))).map((x, i) => ({ ...x, group: ['lower', 'upper', 'core', 'stretch'].includes(((s.customSections || []).filter((y) => str(y && y.label, 40))[i] || {}).group) ? s.customSections.filter((y) => str(y && y.label, 40))[i].group : 'core' }));
+  const sectionIds = [...BUILTIN.sections.map((e) => e.id), ...customSections.map((e) => e.id)];
+  let removedSections = (Array.isArray(s.removedSections) ? s.removedSections : []).filter((x) => BUILTIN.sections.some((e) => e.id === x));
+  if (removedSections.length >= sectionIds.length) removedSections = removedSections.slice(0, sectionIds.length - 1);
+  const liveSections = sectionIds.filter((x) => !removedSections.includes(x));
+  const sectionMap = {};
+  // a part moved to a part that was itself deleted later follows on to where that one went
+  const askedMap = s.sectionMap && typeof s.sectionMap === 'object' ? s.sectionMap : {};
+  for (const k of Object.keys(askedMap).slice(0, 60)) {
+    if (!/^[a-z0-9_]{1,44}$/.test(k) || liveSections.includes(k)) continue;
+    let v = askedMap[k];
+    for (let hop = 0; hop < 8 && !liveSections.includes(v) && askedMap[v]; hop++) v = askedMap[v];
+    if (liveSections.includes(v)) sectionMap[k] = v;
+  }
+  // focuses: what a class leans towards
+  const seenFo = new Set();
+  let focuses = (Array.isArray(s.focuses) ? s.focuses : DEFAULT_FOCUSES).slice(0, 40).map((x) => {
+    const label = str(x && x.label, 40);
+    if (!label) return null;
+    let id = /^[a-z0-9_]{1,40}$/.test(String(x.id || '')) ? x.id : slugify(label).replace(/-/g, '_') || 'focus';
+    for (let i = 2; seenFo.has(id); i++) id = `${id.replace(/_\d+$/, '')}_${i}`;
+    seenFo.add(id);
+    const d = DEFAULT_FOCUSES.find((f) => f.id === id) || {};
+    return { id, label, muscles: pick(x.muscles, MU, 12), ...(pick(x.purpose, { has: (p) => ['strength', 'stability', 'flexibility', 'mobility'].includes(p) }, 4).length ? { purpose: pick(x.purpose, { has: (p) => ['strength', 'stability', 'flexibility', 'mobility'].includes(p) }, 4) } : {}),
+      ...(Number(x.maxIntensity) > 0 ? { maxIntensity: Math.round(num(x.maxIntensity, 1, 10, 10)) } : {}), ...(d.avoid ? { avoid: d.avoid } : {}), ...(d.label_pref ? { label_pref: d.label_pref } : {}) };
+  }).filter(Boolean);
+  if (!focuses.length) focuses = structuredClone(DEFAULT_FOCUSES);
   const seenCt = new Set();
   let classTypes = (Array.isArray(s.classTypes) ? s.classTypes : DEFAULT_CLASS_TYPES).slice(0, 30).map((c) => {
     const name = str(c && c.name, 60);
@@ -265,11 +313,15 @@ export function cleanStudio(input) {
       name: str(p && p.name, 60) || 'Phase',
       role: RO.has(p.role) ? p.role : 'build',
       minutes: Math.round(num(p.minutes, 1, 60, 5)),
-      sections: pick(p.sections, SEC, 8),
+      sections: [...new Set(pick(p.sections, { has: (x) => sectionIds.includes(x) }, 12).map((x) => sectionMap[x] || x))].filter((x) => liveSections.includes(x)),
       ...(pick(p.positions, POS, 9).length ? { positions: pick(p.positions, POS, 9) } : {})
     }));
-    return { id, name, apparatus: c.apparatus === 'mat' ? 'mat' : 'reformer', lengthMin: Math.round(num(c.lengthMin, 10, 180, 50)), springBudget: Math.round(num(c.springBudget, 0, 20, 3)),
-      ...(levels.some((l) => l.id === c.level) ? { level: c.level } : {}), note: str(c.note, 200), phases };
+    return { id, name, apparatus: c.apparatus === 'mat' ? 'mat' : 'reformer', lengthMin: Math.round(num(c.lengthMin, 10, 180, 50)), springBudget: Math.round(num(c.springBudget, 0, 20, 0)),
+      ...(levels.some((l) => l.id === c.level) ? { level: c.level } : {}), note: str(c.note, 200), phases, ...(c.noPhases ? { noPhases: true } : {}),
+      // what this class sets for itself, on top of the studio's: its own timings and the balance target new flows start on
+      ...(c.timing && typeof c.timing === 'object' && Object.keys(DEFAULT_TIMING).some((k) => c.timing[k] !== undefined && c.timing[k] !== '' && c.timing[k] !== null)
+        ? { timing: Object.fromEntries(Object.keys(DEFAULT_TIMING).filter((k) => c.timing[k] !== undefined && c.timing[k] !== '' && c.timing[k] !== null).map((k) => [k, Math.round(num(c.timing[k], 0, 600, DEFAULT_TIMING[k]))])) } : {}),
+      ...(c.target && Object.keys(s.targets || DEFAULT_TARGETS).map((k) => slugify(k)).includes(slugify(c.target)) ? { target: slugify(c.target) } : {}) };
   }).filter(Boolean);
   if (!classTypes.length) classTypes = structuredClone(DEFAULT_CLASS_TYPES);
   const props = {};
@@ -284,26 +336,33 @@ export function cleanStudio(input) {
     rooms: rooms.length ? rooms : defaultStudio().rooms,
     props,
     customProps, removedProps, customCautions, removedCautions,
-    customMuscles, removedMuscles, sectionLabels,
-    levels, classTypes, lengths, defaultLength, timing,
+    customMuscles, removedMuscles, sectionLabels, customSections, removedSections, sectionMap,
+    levels, levelsSeeded: true, classTypes, lengths, defaultLength, timing, timingRows, focuses,
     targets: Object.keys(targets).length ? targets : structuredClone(DEFAULT_TARGETS)
   };
 }
 
 // Settings added in later versions get their defaults here, so a studio set up on an older version keeps working.
 export function fillStudio(s) {
-  return {
+  const out = {
     customProps: [], removedProps: [], customCautions: [], removedCautions: [], customMuscles: [], removedMuscles: [], sectionLabels: {},
-    levels: LEVEL_PRESETS.three.levels.map((x) => ({ ...x })), classTypes: structuredClone(DEFAULT_CLASS_TYPES),
-    lengths: [...DEFAULT_LENGTHS], defaultLength: 50, timing: { ...DEFAULT_TIMING },
+    levels: DEFAULT_LEVELS.map((x) => ({ ...x })), classTypes: structuredClone(DEFAULT_CLASS_TYPES),
+    lengths: [...DEFAULT_LENGTHS], defaultLength: 50, timing: { ...DEFAULT_TIMING }, customSections: [], removedSections: [], sectionMap: {}, focuses: structuredClone(DEFAULT_FOCUSES),
     ...(s || {})
   };
+  // A studio from before 0.6.3 gets the three core levels and the example levels once; after that the examples are its own to delete.
+  if (!out.levelsSeeded) {
+    const have = withCoreLevels(out.levels);
+    out.levels = [...have, ...DEFAULT_LEVELS.filter((d) => !have.some((l) => l.id === d.id || (l.from === d.from && l.to === d.to))).map((x) => ({ ...x }))];
+    out.levelsSeeded = true;
+  }
+  out.timingRows = timingRowsOf(out);
+  return out;
 }
 
-export function defaultStudio(name = 'My studio', brand = 'balanced_body', levelScheme = 'three') {
+export function defaultStudio(name = 'My studio', brand = 'balanced_body') {
   const b = BRANDS[brand] ? brand : 'balanced_body';
   return fillStudio({
-    levels: (LEVEL_PRESETS[levelScheme] || LEVEL_PRESETS.three).levels.map((x) => ({ ...x })),
     name,
     rooms: [
       { id: 'room1', name: 'Reformer room', apparatus: 'reformer', brand: b, count: 8, springs: { ...BRANDS[b].standard }, springOverrides: {} },

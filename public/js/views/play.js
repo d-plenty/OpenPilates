@@ -10,10 +10,13 @@ import { itemExtras } from './options.js';
 export function playView(flow) {
   const room = store.roomFor(flow);
   const steps = [];
+  const tm = store.timingFor(flow);
   const planOf = new Map(analyze(store.analysisContext(flow)).springPlan.map((p) => [`${p.itemId}:${p.pass}`, p]));
   flow.segments.forEach((seg, si) => (seg.bothSides ? [1, 2] : [1]).forEach((pass) => seg.items.forEach((item) => {
+    // a timed line plays as a step of its own: a name, a note and a clock
+    if (item.pause) { steps.push({ seg, si, item, pause: true, mv: { name: item.label, cautions: [], equipment: [] }, pass, dur: itemDuration(item, null, tm) }); return; }
     const mv = store.movements[item.slug];
-    if (mv) steps.push({ seg, si, item, mv, pass, dur: itemDuration(item, mv), plan: planOf.get(`${item.id}:${pass}`) });
+    if (mv) steps.push({ seg, si, item, mv, pass, dur: itemDuration(item, mv, tm), plan: planOf.get(`${item.id}:${pass}`) });
   })));
   const total = steps.reduce((a, s) => a + s.dur, 0);
   const clients = store.analysisContext(flow).clients;
@@ -60,7 +63,7 @@ export function playView(flow) {
   const drawClock = () => {
     if (!clockEl || !steps.length) return;
     const st = steps[idx];
-    fill(clockEl, donut(1 - left / st.dur, { label: st.seg.name, big: fmtClock(left), sub: repsLabel(st.item.reps || st.mv.reps || '') }));
+    fill(clockEl, donut(1 - left / st.dur, { label: flow.noPhases ? '' : st.seg.name, big: fmtClock(left), sub: st.pause ? 'Timed line' : repsLabel(st.item.reps || st.mv.reps || '') }));
   };
 
   const draw = () => {
@@ -96,23 +99,23 @@ export function playView(flow) {
             h('div', { class: 'now' }, 'NOW', st.seg.role === 'peak' ? ' · PEAK' : '', st.seg.bothSides ? (st.pass === 2 ? ' · SECOND SIDE' : ' · FIRST SIDE') : '', st.plan && st.plan.changed ? ' · SPRINGS CHANGED' : ''),
             h('h1', null, st.mv.name, variationOf(st.mv, st.item) ? h('span', { class: 'play-var' }, st.item.variation) : null),
             h('div', { class: 'muted', style: { marginTop: '6px', display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' } },
-              st.mv.apparatus === 'reformer' ? springDots(loadsOf(st), room) : h('span', null, 'Mat'),
-              h('span', null, posLabel(st.mv.position)),
+              st.pause ? h('span', null, 'Not a movement: time set aside in the plan') : st.mv.apparatus === 'reformer' ? springDots(loadsOf(st), room) : h('span', null, 'Mat'),
+              st.pause ? null : h('span', null, posLabel(st.mv.position)),
               st.item.reps || st.mv.reps ? h('span', null, repsLabel(st.item.reps || st.mv.reps)) : null,
               setupBits.length ? h('span', null, setupBits.join(' · ')) : null,
               null)),
-          itemExtras(st.item, st.mv, room, { dark: true }) ? h('div', { class: 'panel' }, h('div', { class: 'tiny muted' }, 'The plan for this block'), itemExtras(st.item, st.mv, room, { dark: true })) : null,
+          !st.pause && itemExtras(st.item, st.mv, room, { dark: true }) ? h('div', { class: 'panel' }, h('div', { class: 'tiny muted' }, 'The plan for this block'), itemExtras(st.item, st.mv, room, { dark: true })) : null,
           st.item.note || st.mv.myNote ? h('div', { class: 'panel' }, h('div', { class: 'tiny muted' }, 'Your notes'), st.item.note ? h('div', null, st.item.note) : null, st.mv.myNote ? h('div', { style: { whiteSpace: 'pre-wrap' } }, st.mv.myNote) : null) : null,
           ...alerts.map(({ c, ca }) => h('div', { class: 'panel alert' }, h('b', null, `${c.name}${c.spot ? ' · ' + c.spot : ''}: ${labelOf(CAUTIONS, ca.tag)}`), h('div', { class: 'small' }, ca.note))),
-          h('button', { type: 'button', class: 'play-more', 'aria-expanded': more ? 'true' : 'false', onclick: () => { more = !more; draw(); } }, more ? 'Hide picture, set-up and cues' : 'Picture, set-up and cues'),
-          more ? h('div', { class: 'panel' },
+          st.pause ? null : h('button', { type: 'button', class: 'play-more', 'aria-expanded': more ? 'true' : 'false', onclick: () => { more = !more; draw(); } }, more ? 'Hide picture, set-up and cues' : 'Picture, set-up and cues'),
+          more && !st.pause ? h('div', { class: 'panel' },
             h('div', { class: 'play-fig' }, thumb(st.mv, { width: 230 })),
             st.mv.steps?.length ? [h('div', { class: 'tiny muted', style: { marginTop: '8px' } }, 'Set-up'), h('ol', { class: 'small' }, st.mv.steps.map((s) => h('li', null, s)))] : null,
             st.mv.cues ? [h('div', { class: 'tiny muted' }, 'Cues'), h('ul', { class: 'small' }, st.mv.cues.split('\n').filter(Boolean).map((c) => h('li', null, c)))] : null) : null,
           next.length ? h('div', { class: 'upnext' }, next.map((s, i) => h('div', null,
             h('span', { class: 'muted', style: { width: '44px' } }, i === 0 ? 'Next' : ''),
             h('span', { style: { flex: 1, fontWeight: 600 } }, s.mv.name, variationOf(s.mv, s.item) ? h('span', { class: 'muted', style: { fontWeight: 400 } }, ` · ${s.item.variation}`) : null, i === 0 && nextAlerts.length ? h('span', { style: { color: '#F2A979' } }, ` · check ${[...new Set(nextAlerts.map((x) => x.c.name))].join(', ')}`) : null),
-            s.mv.apparatus === 'reformer' ? springDots(loadsOf(s), room) : h('span', { class: 'muted' }, 'Mat'),
+            s.pause ? h('span', { class: 'muted' }, fmtClock(s.dur)) : s.mv.apparatus === 'reformer' ? springDots(loadsOf(s), room) : h('span', { class: 'muted' }, 'Mat'),
             i === 0 && nextChange ? h('span', { style: { color: '#E8C547', fontWeight: 700, fontSize: '12px', flexBasis: '100%', paddingLeft: '54px' } }, 'SPRING CHANGE NEXT') : null))) : h('div', { class: 'panel' }, 'Last block.'))),
       h('div', { class: 'controls' },
         h('button', { onclick: () => goTo(idx - 1), 'aria-label': 'Previous block' }, icon('back', 24)),

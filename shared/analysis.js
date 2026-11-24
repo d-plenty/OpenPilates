@@ -3,7 +3,7 @@
 // body-position changes, time moving vs setting up, and muscle balance. On top of that it checks
 // the things a reformer class is usually planned around: how often the springs change, whether
 // every part of the body gets a turn, and whether stabilising work is balanced with movement.
-import { MUSCLES, SPINE_DIRECTIONS, DEFAULT_TARGETS, PURPOSES, LEVELS, CAUTIONS, SECTION_GROUPS, CATEGORIES, EQUIPMENT, labelOf, byId, sectionOf, sectionGroupOf, categoriesOf, roleOf, sameSetting, variationOf, itemName, kindOf, classLevel, timingOf, blockSeconds } from './vocab.js';
+import { MUSCLES, SPINE_DIRECTIONS, DEFAULT_TARGETS, PURPOSES, LEVELS, CAUTIONS, SECTION_GROUPS, CATEGORIES, EQUIPMENT, labelOf, byId, sectionOf, sectionGroupOf, categoriesOf, roleOf, sameSetting, variationOf, itemName, kindOf, classLevel, flowTiming, blockSeconds, usesOf } from './vocab.js';
 
 const MUSCLE = byId(MUSCLES);
 const LEVEL_RANK = Object.fromEntries(LEVELS.map((l) => [l.id, l.rank]));
@@ -53,10 +53,10 @@ export function analyze({ flow, movements, studio = {}, clients = [] }) {
   const owned = studio.props || {};
   const flowLevel = classLevel(flow.level).to;
   // seconds allowed for changes come from the studio's timing settings
-  const tm = timingOf(studio);
+  const tm = flowTiming(studio, flow);
   const TRANSITION_COST = { spring: tm.springChange, position: tm.positionChange, box: tm.boxChange, apparatus: 60 };
 
-  const rows = flatten(flow);
+  const rows = flatten(flow).filter((r) => !r.item.pause);
   let t = 0;
   let movingSec = 0;
   let springChanges = 0;
@@ -91,11 +91,14 @@ export function analyze({ flow, movements, studio = {}, clients = [] }) {
   const kit = new Map();
   const strapsUsed = new Set();
   let firstLoad = null;
+  let pauseSec = 0;
 
   for (const seg of flow.segments || []) {
     const segStart = t;
     const passes = seg.bothSides ? [1, 2] : [1];
     for (const pass of passes) for (const item of seg.items || []) {
+      // a timed line (water break, set-up change) only adds its time
+      if (item.pause) { t += Number(item.duration) || 0; pauseSec += Number(item.duration) || 0; continue; }
       const mv = mvOf(item.slug);
       if (!mv) { if (pass === 1) unknown.push(item.slug); continue; }
       const dur = itemDuration(item, mv, tm);
@@ -197,7 +200,8 @@ export function analyze({ flow, movements, studio = {}, clients = [] }) {
   const roleTotal = roleSec.stability + roleSec.mobility || 1;
   const roles = { stability: Math.round((roleSec.stability / roleTotal) * 100), mobility: Math.round((roleSec.mobility / roleTotal) * 100) };
   const categories = CATEGORIES.map((c) => ({ id: c.id, label: c.label, count: categoryCount[c.id] }));
-  const springBudget = Number.isFinite(Number(flow.springBudget)) && flow.springBudget !== null && flow.springBudget !== undefined ? Number(flow.springBudget) : 6;
+  // A spring-change limit of 0, or none, means the studio is not counting: nothing is flagged.
+  const springBudget = Number(flow.springBudget) > 0 ? Number(flow.springBudget) : 0;
 
   const spineTotal = SPINE_DIRECTIONS.reduce((a, d) => a + spineSec[d], 0);
   const spine = Object.fromEntries(SPINE_DIRECTIONS.map((d) => [d, spineTotal ? Math.round((spineSec[d] / spineTotal) * 100) : 0]));
@@ -228,9 +232,15 @@ export function analyze({ flow, movements, studio = {}, clients = [] }) {
   if (count === 0) {
     add('info', 'empty', 'Add some blocks', 'Add a block to a phase to see the analysis.');
   } else {
-    if (!segRoles.has("warmup")) add('warn', 'warmup', 'No warm-up', 'Mark a phase as Warm-up and start with lower-effort movements.');
+    if (flow.noPhases) {
+      // no phases to go by: look at what the class opens and closes with
+      const list = (flow.segments || []).flatMap((s) => s.items || []).map((i) => mvOf(i.slug)).filter(Boolean);
+      const first = list[0]; const last = list[list.length - 1];
+      if (first && usesOf(first).includes('warmup')) add('ok', 'warmup', 'Opens with a warm-up', first.name); else add('warn', 'warmup', 'No warm-up', 'Start with a movement marked as a warm-up.');
+      if (last && usesOf(last).includes('cooldown')) add('ok', 'cooldown', 'Ends with a cool-down', last.name); else add('warn', 'cooldown', 'No cool-down', 'Finish with a movement marked as a cool-down.');
+    } else if (!segRoles.has("warmup")) add('warn', 'warmup', 'No warm-up', 'Mark a phase as Warm-up and start with lower-effort movements.');
     else add('ok', 'warmup', 'Warm-up in place', `${fmtMin(segSec(segInfo, 'warmup'))} to start.`);
-    if (!segRoles.has("cooldown")) add('warn', 'cooldown', 'No cool-down', 'Finish with a stretch phase marked Cool-down.');
+    if (flow.noPhases) { /* handled above */ } else if (!segRoles.has("cooldown")) add('warn', 'cooldown', 'No cool-down', 'Finish with a stretch phase marked Cool-down.');
     else add('ok', 'cooldown', 'Cool-down in place', `${fmtMin(segSec(segInfo, 'cooldown'))} to finish.`);
 
     const missingDirs = SPINE_DIRECTIONS.filter((d) => spine[d] === 0);
@@ -245,7 +255,8 @@ export function analyze({ flow, movements, studio = {}, clients = [] }) {
 
     // ---- reformer class design
     if (hasReformer) {
-      if (springChanges > springBudget) add('warn', 'springs', `${springChanges} spring changes (aiming for ${springBudget} or fewer)`, `Changes come before: ${springStops.map((s) => s.before).join(', ')}. Group movements that share a setting, or use a movement's "to advance" spring to stay put. Settings one extra-light spring apart aren't counted.`);
+      if (!springBudget) add('ok', 'springs', springChanges === 0 ? 'One spring setting all class' : `${springChanges} spring change${springChanges === 1 ? '' : 's'}`, 'No limit set for this class.');
+      else if (springChanges > springBudget) add('warn', 'springs', `${springChanges} spring changes (aiming for ${springBudget} or fewer)`, `Changes come before: ${springStops.map((s) => s.before).join(', ')}. Group movements that share a setting, or use a movement's "to advance" spring to stay put. Settings one extra-light spring apart aren't counted.`);
       else add('ok', 'springs', springChanges === 0 ? 'One spring setting all class' : `${springChanges} spring change${springChanges === 1 ? '' : 's'}`, `Within the limit of ${springBudget}.`);
     }
     if (count >= 6) {
@@ -330,7 +341,7 @@ export function analyze({ flow, movements, studio = {}, clients = [] }) {
   checks.sort((a, b) => order[a.level] - order[b.level]);
 
   return {
-    count, segments: segInfo, totalSec, movingSec, transitionSec,
+    count, segments: segInfo, totalSec, movingSec, transitionSec, pauseSec,
     movingPct: totalSec ? Math.round((movingSec / totalSec) * 100) : 0,
     springChanges, boxChanges, positionChanges, apparatusChanges,
     timeline, positionMinutes, spine, target: { key: targetKey, ...target },

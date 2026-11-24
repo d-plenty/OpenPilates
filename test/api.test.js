@@ -264,21 +264,21 @@ test('a studio can take a movement or series out of its library and put it back;
 // ---- 0.5: studio set-up, blocks, packs
 test('studio settings: class levels, class types, lengths, timing, own muscles and names for the parts of a class', async () => {
   const s = (await call('admin', 'GET', '/studio')).data;
-  assert.equal(s.levels.length, 3);
+  assert.deepEqual(s.levels.map((l) => l.id), ['beginner', 'intermediate', 'advanced', 'beg_int', 'int_adv', 'open']);
   assert.ok(s.classTypes.length >= 4 && s.lengths.includes(50) && s.timing.perLayer > 0);
   const next = { ...s,
     levels: [{ label: 'Foundations', from: 1, to: 1 }, { label: 'Open', from: 1, to: 3 }, { label: '' }],
     lengths: [45, 60, 5, 'x', 60], defaultLength: 60,
-    timing: { ...s.timing, perLayer: 30, springChange: 9999 },
+    timingRows: s.timingRows.map((r) => (r.id === 'perLayer' ? { ...r, seconds: 30 } : r.id === 'springChange' ? { ...r, seconds: 9999 } : r)),
     customMuscles: [{ label: 'Pelvic floor' }], sectionLabels: { core: 'Abs', nope: 'x' },
     classTypes: [...s.classTypes, { name: 'Express', apparatus: 'reformer', lengthMin: 30, springBudget: 2, phases: [{ name: 'Go', role: 'nonsense', minutes: 30, sections: ['core', 'zzz'] }] }] };
   const out = (await call('admin', 'PUT', '/studio', next)).data;
-  assert.deepEqual(out.levels.map((l) => l.label), ['Foundations', 'Open']);
+  assert.deepEqual(out.levels.map((l) => l.label), ['Beginner', 'Intermediate', 'Advanced', 'Foundations', 'Open']);
   assert.ok(out.levels.every((l) => /^[a-z0-9_]+$/.test(l.id)));
   assert.deepEqual(out.lengths, [45, 60]);
   assert.equal(out.defaultLength, 60);
   assert.equal(out.timing.perLayer, 30);
-  assert.equal(out.timing.springChange, 300);
+  assert.equal(out.timing.springChange, 600);
   assert.equal(out.customMuscles[0].id, 'm_pelvic_floor');
   assert.deepEqual(out.sectionLabels, { core: 'Abs' });
   const express = out.classTypes.find((c) => c.name === 'Express');
@@ -288,10 +288,64 @@ test('studio settings: class levels, class types, lengths, timing, own muscles a
   const mv = (await call('admin', 'POST', '/movements', { name: 'Pelvic floor lifts', apparatus: 'mat', position: 'supine', muscles: { primary: ['m_pelvic_floor', 'made_up'] }, uses: ['warmup', 'nonsense'] })).data;
   assert.deepEqual(mv.muscles.primary, ['m_pelvic_floor']);
   assert.deepEqual(mv.uses, ['warmup']);
-  const f = (await call('admin', 'POST', '/flows', { title: 'Levels', level: out.levels[0].id, classType: express.id, segments: [] })).data;
-  assert.equal(f.level, out.levels[0].id);
+  const f = (await call('admin', 'POST', '/flows', { title: 'Levels', level: out.levels[3].id, classType: express.id, segments: [] })).data;
+  assert.equal(f.level, out.levels[3].id);
   assert.equal(f.classType, express.id);
   await call('admin', 'PUT', '/studio', s);
+});
+
+test('0.6.3 studio settings: locked core levels, timing rows, parts of the class, focuses, what a class type sets for itself', async () => {
+  const s = (await call('admin', 'GET', '/studio')).data;
+  assert.equal(s.timingRows.length, 5);
+  assert.ok(s.focuses.length >= 10 && s.focuses.some((f) => f.id === 'full_body'));
+  const next = { ...s,
+    // the core three cannot be deleted, only renamed; the examples can go
+    levels: [{ id: 'intermediate', label: 'Middle', from: 1, to: 3 }, { id: 'open', label: 'Open level', from: 1, to: 3 }],
+    // built-in rows can be renamed, noted and switched off but never lost; the studio's own rows are added
+    timingRows: [{ id: 'finisher', label: 'Burner', note: 'Pulses at the end', seconds: 25 }, { id: 'boxChange', label: 'Box', seconds: 30, off: true },
+      { label: 'Water break', note: 'Everyone off the carriage', seconds: 90 }, { label: '' }],
+    customSections: [{ label: 'Power', group: 'lower' }, { label: 'Balance', group: 'zzz' }], removedSections: ['single_arm', 'nope'], sectionMap: { single_arm: 'chest_arms', gone: 'nowhere', core: 'single_arm' },
+    focuses: [{ id: 'full_body', label: 'Whole body', muscles: [] }, { label: 'Runners', muscles: ['glutes', 'made_up', 'hamstrings'] }],
+    classTypes: [{ ...s.classTypes[0], springBudget: '', timing: { perLayer: 20, springChange: '', nonsense: 5 }, target: 'prenatal', phases: [] },
+      { ...s.classTypes[1], phases: [{ name: 'Arms', role: 'build', minutes: 10, sections: ['single_arm', 'lower', 'chest_arms'] }] }] };
+  const out = (await call('admin', 'PUT', '/studio', next)).data;
+  assert.deepEqual(out.levels.map((l) => [l.id, l.label, l.from, l.to]), [['beginner', 'Beginner', 1, 1], ['intermediate', 'Middle', 2, 2], ['advanced', 'Advanced', 3, 3], ['open', 'Open level', 1, 3]]);
+  assert.deepEqual(out.timingRows.map((r) => r.id), ['perLayer', 'finisher', 'springChange', 'positionChange', 'boxChange', 't_water_break']);
+  assert.equal(out.timingRows[1].label, 'Burner');
+  assert.equal(out.timingRows[1].note, 'Pulses at the end');
+  assert.equal(out.timing.finisher, 25);
+  assert.equal(out.timing.boxChange, 0); // switched off counts for nothing
+  assert.equal(out.timingRows[5].seconds, 90);
+  assert.deepEqual(out.customSections, [{ id: 's_power', label: 'Power', group: 'lower' }, { id: 's_balance', label: 'Balance', group: 'core' }]);
+  assert.deepEqual(out.removedSections, ['single_arm']);
+  assert.deepEqual(out.sectionMap, { single_arm: 'chest_arms' });
+  assert.deepEqual(out.focuses.map((f) => [f.id, f.label]), [['full_body', 'Whole body'], ['runners', 'Runners']]);
+  assert.deepEqual(out.focuses[1].muscles, ['glutes', 'hamstrings']);
+  assert.equal(out.classTypes[0].springBudget, 0); // blank means no limit
+  assert.deepEqual(out.classTypes[0].timing, { perLayer: 20 });
+  assert.equal(out.classTypes[0].target, 'prenatal');
+  assert.deepEqual(out.classTypes[0].phases, []);
+  assert.deepEqual(out.classTypes[1].phases[0].sections, ['chest_arms', 'lower']); // the deleted part's phases follow it to its new home
+  // a movement can sit in the studio's own part; one filed under the deleted part shows under the part it moved to
+  const mv = (await call('admin', 'POST', '/movements', { name: 'Power squats', apparatus: 'reformer', position: 'supine', section: 's_power', muscles: { primary: ['quadriceps'] } })).data;
+  assert.equal(mv.section, 's_power');
+  // a flow keeps a typed focus, the no-phases switch and timed lines; junk lines are dropped
+  const f = (await call('admin', 'POST', '/flows', { title: 'Own focus', focusText: '  Runners\' hips ', noPhases: true, springBudget: 0, segments: [{ name: 'Class', items: [
+    { slug: 'footwork-series' }, { pause: true, label: 'Water break', duration: 90, note: 'Towels' }, { pause: true }, { nothing: true }] }] })).data;
+  assert.equal(f.focusText, 'Runners\' hips');
+  assert.equal(f.noPhases, true);
+  assert.equal(f.springBudget, 0);
+  assert.deepEqual(f.segments[0].items.map((i) => (i.pause ? [i.label, i.duration, i.note] : i.slug)), ['footwork-series', ['Water break', 90, 'Towels'], ['Break', 60, undefined]]);
+  // a flow with a timed line still exports, and comes back in with the line in place
+  const ex = await fetch(base + `/api/flows/${f.id}/export`, { headers: { Cookie: jar.admin } });
+  assert.equal(ex.status, 200);
+  const file = await ex.json();
+  const again = (await call('admin', 'POST', '/flows/import', file)).data;
+  assert.equal(again.segments[0].items[1].label, 'Water break');
+  assert.equal(again.noPhases, true);
+  await call('admin', 'DELETE', '/movements/' + mv.slug);
+  await call('admin', 'PUT', '/studio', s);
+  assert.equal((await call('admin', 'GET', '/studio')).data.levels.length, 6);
 });
 
 test('blocks keep free-text layers, a finisher and the phase minutes', async () => {
@@ -319,6 +373,7 @@ test('a pack carries the studio\'s changes to another set-up, and never clients'
   assert.ok(pack.reviews.some((r) => r.slug === 'footwork-series' && r.status === 'ok'));
   assert.ok(pack.flows.some((f) => f.title === 'Pack flow'));
   assert.ok(pack.studio.classTypes.length && pack.studio.levels.length);
+  assert.ok(pack.studio.timingRows.length >= 5 && pack.studio.focuses.length && Array.isArray(pack.studio.customSections));
   const none = await (await fetch(base + '/api/pack?flows=0', { headers: { Cookie: jar.admin } })).json();
   assert.equal(none.flows, undefined);
 
@@ -328,6 +383,9 @@ test('a pack carries the studio\'s changes to another set-up, and never clients'
   assert.equal((await call('admin', 'GET', '/movements/bridging-reformer')).data.name, 'Bridging');
   assert.equal((await call('admin', 'POST', '/pack/import', { openpilates: 'flow' })).status, 400);
   pack.studio.levels = [{ id: 'all', label: 'Everyone', from: 1, to: 3 }];
+  // an older pack has plain timing numbers and no timing list; a newer one brings its focuses
+  delete pack.studio.timingRows; pack.studio.timing = { ...pack.studio.timing, perLayer: 33 };
+  pack.studio.focuses = [{ label: 'Pack focus', muscles: ['glutes'] }];
   pack.movements.push({ name: 'Brand new from the pack', apparatus: 'mat', position: 'seated', muscles: { primary: ['abdominals'] } }, { nonsense: true });
   const done = (await call('admin', 'POST', '/pack/import', { ...pack, take: { flows: true } })).data;
   assert.ok(done.movements >= 2 && done.reviews >= 1 && done.flows >= 1 && done.settings === 1 && done.skipped >= 1, JSON.stringify(done));
@@ -336,10 +394,13 @@ test('a pack carries the studio\'s changes to another set-up, and never clients'
   assert.equal(back.source, 'studio');
   assert.equal((await call('admin', 'GET', '/movements/brand-new-from-the-pack')).data.source, 'custom');
   assert.equal((await call('admin', 'GET', '/movements/footwork-series')).data.check.status, 'ok');
-  assert.deepEqual((await call('admin', 'GET', '/studio')).data.levels.map((l) => l.label), ['Everyone']);
+  assert.deepEqual((await call('admin', 'GET', '/studio')).data.levels.map((l) => l.label), ['Beginner', 'Intermediate', 'Advanced', 'Everyone']);
+  const after = (await call('admin', 'GET', '/studio')).data;
+  assert.equal(after.timing.perLayer, 33);
+  assert.deepEqual(after.focuses.map((f) => f.label), ['Pack focus']);
   await call('admin', 'DELETE', '/movements/bridging-reformer');
   const st = (await call('admin', 'GET', '/studio')).data;
-  await call('admin', 'PUT', '/studio', { ...st, levels: [] });
+  await call('admin', 'PUT', '/studio', { ...st, levels: [], focuses: [], timingRows: [] });
 });
 
 test('a series can be edited; editing a library series makes it the studio\'s', async () => {

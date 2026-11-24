@@ -45,3 +45,16 @@ Screens: /home/claude/audit/look5.py (server 8498, DATA_DIR /tmp/oplook, sarah /
 ## 0.6.0 (go given 24 Nov 04:56)
 Done: Running and Calf Raises redrawn; every movement that shared a picture has its own frames (poses.js, the `V(...)` block); middle frame and foot direction in the solver; 15 movements added with references; light and dark mode (public/js/theme.js, variables at the top of app.css). 53 tests, library check, 22/22 click-through (audit5.py). Contact sheets: /home/claude/audit/msheet.py.
 Not done: no further new movements beyond what a reference names; Sarah's content review still outstanding.
+
+## 0.6.3 (go given 24 Nov 17:39) — built
+All nine requests from 17:10 and 17:38 are in:
+1. Undo/redo beside "Saved": `undoStack` in public/js/ui.js, used by studio.js, flow.js, movement.js.
+2. Class type editor: level, balance target, own timings (`ct.timing`), spring limit blank/0 = none, phases optional (`ct.noPhases`, phases kept).
+3. Levels: core three locked (`isCoreLevel`, `withCoreLevels`), examples deletable, seeded once for older studios (`studio.levelsSeeded`).
+4. Timing list: `studio.timingRows` (built-ins rename/note/off; custom rows `t_…`); `studio.timing` is derived from it. Custom rows are offered as timed lines in a flow (`item.pause`).
+5. Parts of the class: `customSections`, `removedSections`, `sectionMap` (where a deleted part's movements went). `sectionOf` follows the map.
+6. Focuses: `studio.focuses` (vocab `FOCUSES`), `flow.focusText` for an instructor's own.
+7. Heads redrawn in figure.js (no face).
+8. Flows: `springBudget` 0 = no limit; `flow.noPhases` = one list.
+Checks: 59 tests, library check, 25/25 click-through (audit5.py, about 4.5 minutes now).
+Still outstanding from Declan/Sarah: Sarah's content review and a pack export.

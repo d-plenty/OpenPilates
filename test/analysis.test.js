@@ -161,7 +161,7 @@ test('level ranges read naturally', () => {
   assert.equal(levelLabel({ level: 'beginner', levelTo: 'intermediate' }), 'Beginner–Intermediate');
   assert.equal(levelLabel({ level: 'beginner', levelTo: 'advanced' }), 'All levels');
   assert.equal(levelLabel({ level: 'advanced', levelTo: 'beginner' }), 'Advanced');
-  assert.deepEqual(levelsOf({ level: 'intermediate', levelTo: 'advanced' }), ['intermediate', 'advanced']);
+  assert.deepEqual(levelsOf({ level: 'intermediate', levelTo: 'advanced' }), ['intermediate', 'advanced', 'beg_int', 'int_adv', 'open']);
   assert.equal(levelLabel(movements['kneeling-arm-circles-front']), 'Beginner–Intermediate');
 });
 
@@ -274,19 +274,25 @@ test('drafts never use retired movements and open footwork with Footwork', () =>
 });
 
 // ---- 0.5: class levels, blocks and drafts built on class types
-import { applyStudioLists, classLevel, LEVEL_PRESETS, usesOf, blockSeconds, layersOf, DEFAULT_CLASS_TYPES } from '../shared/vocab.js';
+import { applyStudioLists, classLevel, CLASS_LEVELS, LEVEL_PRESETS, usesOf, blockSeconds, layersOf, DEFAULT_CLASS_TYPES } from '../shared/vocab.js';
 import { phasesFor, blankSegments } from '../shared/draft.js';
 
-test('class levels follow the studio: names and what each level is offered', () => {
+test('class levels: the core three are always there, extras follow the studio', () => {
   const mv = { level: 'beginner', levelTo: 'intermediate' };
-  applyStudioLists({ levels: LEVEL_PRESETS.two.levels });
-  assert.equal(levelLabel(mv), 'Beginner/Intermediate');
-  assert.deepEqual(levelsOf({ level: 'intermediate', levelTo: 'intermediate' }), ['beg_int', 'int_adv']);
+  applyStudioLists({});
+  assert.deepEqual(CLASS_LEVELS.map((l) => l.id), ['beginner', 'intermediate', 'advanced', 'beg_int', 'int_adv', 'open']);
   assert.equal(classLevel('int_adv').to, 3);
-  // a flow saved under another scheme still resolves
-  assert.equal(classLevel('advanced').label, 'Advanced');
-  applyStudioLists({ levels: [{ id: 'l1', label: 'Foundations', from: 1, to: 1 }, { id: 'l2', label: 'Dynamic', from: 2, to: 3 }] });
-  assert.equal(levelLabel(mv), 'All levels'); // offered to both of this studio's levels
+  // a studio that only keeps its own extra still has the core three, first
+  applyStudioLists({ levels: [{ id: 'l1', label: 'Dynamic', from: 2, to: 3 }] });
+  assert.deepEqual(CLASS_LEVELS.map((l) => l.label), ['Beginner', 'Intermediate', 'Advanced', 'Dynamic']);
+  assert.deepEqual(levelsOf({ level: 'intermediate', levelTo: 'intermediate' }), ['intermediate', 'l1']);
+  // the core three can be renamed, and movements follow the new names
+  applyStudioLists({ levels: [{ id: 'beginner', label: 'Foundations', from: 1, to: 1 }] });
+  assert.equal(classLevel('beginner').label, 'Foundations');
+  assert.equal(levelLabel(mv), 'Foundations–Intermediate');
+  assert.equal(CLASS_LEVELS.length, 3);
+  // a flow saved under a level that has since been deleted still resolves
+  assert.ok(classLevel('open').label);
   applyStudioLists({});
   assert.equal(levelLabel(mv), 'Beginner–Intermediate');
 });
@@ -374,4 +380,76 @@ test('everything the Dockerfile copies exists and is not left out by .dockerigno
     assert.ok(!ignored.includes(top) && !ignored.includes(src), `Dockerfile copies ${src}, but .dockerignore leaves it out of the build`);
     if (/\.md$/.test(src)) assert.equal(src, 'README.md');
   }
+});
+
+import { flowTiming, timedLinesOf, timingRowsOf, timingFromRows, focusOf, sectionOf as partOf } from '../shared/vocab.js';
+
+test('0.6.3: no spring limit means nothing is flagged, and a timed line only adds its time', () => {
+  const f = draftFlow({ movements, classType: 'reformer_flow', level: 'intermediate', lengthMin: 50, props, seed: 3 });
+  const base = analyze({ flow: f, movements, studio: { props } });
+  const free = analyze({ flow: { ...f, springBudget: 0 }, movements, studio: { props } });
+  assert.equal(free.springBudget, 0);
+  assert.equal(free.checks.find((c) => c.id === 'springs').level, 'ok');
+  assert.equal(free.springChanges, base.springChanges);
+  const tight = analyze({ flow: { ...f, springBudget: 1 }, movements, studio: { props } });
+  if (tight.springChanges > 1) assert.notEqual(tight.checks.find((c) => c.id === 'springs').level, 'ok');
+  // a timed line
+  const withLine = structuredClone(f);
+  withLine.segments[2].items.splice(1, 0, { id: 'p1', pause: true, label: 'Water break', duration: 90 });
+  const a = analyze({ flow: withLine, movements, studio: { props } });
+  assert.equal(a.totalSec, base.totalSec + 90);
+  assert.equal(a.pauseSec, 90);
+  assert.equal(a.count, base.count);
+  assert.equal(a.springChanges, base.springChanges);
+  assert.equal(blockSeconds({ pause: true, duration: 90 }, null), 90);
+  // tidying springs leaves the line where it was put
+  const tidy = tidySprings(withLine, movements);
+  assert.equal(tidy[2].items[1].id, 'p1');
+  assert.deepEqual(tidy[2].items.map((i) => i.id).sort(), withLine.segments[2].items.map((i) => i.id).sort());
+});
+
+test('0.6.3: a class type without phases drafts one list that still opens with a warm-up and lands on its length', () => {
+  const plain = { id: 'express', name: 'Express', apparatus: 'reformer', lengthMin: 40, springBudget: 0, noPhases: true, target: 'prenatal', timing: { perLayer: 10 },
+    phases: [{ name: 'Kept for later', role: 'build', minutes: 40, sections: ['core'] }] };
+  for (const seed of [1, 2, 3]) {
+    const f = draftFlow({ movements, classType: plain, classTypes: [plain], level: 'intermediate', lengthMin: 40, props, seed, focusText: 'Runners' });
+    assert.equal(f.noPhases, true);
+    assert.equal(f.segments.length, 1);
+    assert.equal(f.springBudget, 0);
+    assert.equal(f.target, 'prenatal');
+    assert.equal(f.focusText, 'Runners');
+    assert.ok(f.title.startsWith('Runners'));
+    assert.equal(focusOf(f), 'Runners');
+    const a = analyze({ flow: f, movements, studio: { props, classTypes: [plain] } });
+    assert.ok(Math.abs(a.totalSec / 60 - 40) <= 2, `seed ${seed}: runs ${(a.totalSec / 60).toFixed(1)} min`);
+    assert.ok(usesOf(movements[f.segments[0].items[0].slug]).includes('warmup'), 'opens with a warm-up');
+    assert.ok(!a.checks.some((c) => c.id === 'warmup' && c.level !== 'ok'), JSON.stringify(a.checks.filter((c) => c.level !== 'ok').map((c) => c.id)));
+  }
+  assert.equal(blankSegments(plain, 40).length, 1);
+  assert.equal(blankSegments({ ...plain, noPhases: false }, 40)[0].name, 'Kept for later');
+});
+
+test('0.6.3: timing rows, a class type\'s own timing, and parts of the class that were deleted or added', () => {
+  const studio = { timingRows: [{ id: 'perLayer', label: 'Layer', seconds: 40 }, { id: 'finisher', label: 'Burner', seconds: 25, off: true }, { id: 't_water', label: 'Water', seconds: 90 }, { id: 't_off', label: 'Off', seconds: 30, off: true }],
+    classTypes: [{ id: 'fit', name: 'Fit', apparatus: 'reformer', phases: [], timing: { perLayer: 10 } }] };
+  const tm = timingFromRows(timingRowsOf(studio));
+  assert.equal(tm.perLayer, 40);
+  assert.equal(tm.finisher, 0);
+  assert.equal(tm.springChange, 15); // a row the studio never touched keeps its usual seconds
+  assert.deepEqual(timedLinesOf(studio).map((r) => r.id), ['t_water']);
+  assert.equal(flowTiming({ ...studio, timing: tm }, { classType: 'fit' }).perLayer, 10);
+  assert.equal(flowTiming({ ...studio, timing: tm }, { classType: 'other' }).perLayer, 40);
+  const mv = movements['bridging-reformer'];
+  const item = { slug: mv.slug, layers: [{ text: 'a' }, { text: 'b' }] };
+  assert.equal(blockSeconds(item, mv, flowTiming({ ...studio, timing: tm }, { classType: 'fit' })), mv.duration + 20);
+  // an old studio that only has the plain timing numbers still gets its rows
+  assert.equal(timingRowsOf({ timing: { perLayer: 33 } }).find((r) => r.id === 'perLayer').seconds, 33);
+  // parts of the class
+  const home = partOf(mv);
+  applyStudioLists({ removedSections: [home], sectionMap: { [home]: 'stretch' }, customSections: [{ id: 's_power', label: 'Power', group: 'lower' }] });
+  assert.equal(partOf(mv), 'stretch');
+  assert.equal(partOf({ ...mv, section: 's_power' }), 's_power');
+  assert.equal(partOf({ ...mv, section: 's_gone' }) !== 's_gone', true);
+  applyStudioLists({});
+  assert.equal(partOf(mv), home);
 });

@@ -39,9 +39,9 @@ const dir = (a, b) => { const dx = b[0] - a[0]; const dy = b[1] - a[1]; const d 
 const turn = (v, s) => [-v[1] * s, v[0] * s];
 const add = (p, v, k) => [p[0] + v[0] * k, p[1] + v[1] * k];
 
-// The figure is drawn so you can tell which way it faces: a nose and a hair bun on the head,
-// feet that point the way the toes point, and hands. Seen from the front (side-lying, side-on
-// standing and kneeling) the head has two eyes instead and the trunk is drawn wider.
+// The figure is drawn so you can tell which way it faces: a hair bun at the back of the head and a
+// hint of a nose, feet that point the way the toes point, and hands. Seen from the front (side-lying,
+// side-on standing and kneeling) the bun sits on top of the head and the trunk is drawn wider.
 function body(j, color, far, opacity) {
   const g = [];
   const spine = dir(j.sh, j.head); // neck direction
@@ -58,25 +58,17 @@ function body(j, color, far, opacity) {
   if (j.leg2) { limb(j.hip, j.leg2.knee, j.leg2.foot, 8.4, 6.8, far); foot(j.leg2, far, 4.6); }
   if (j.arm2) { limb(j.sh, j.arm2.elbow, j.arm2.hand, 5.8, 5, far); g.push(s('circle', { cx: j.arm2.hand[0].toFixed(1), cy: j.arm2.hand[1].toFixed(1), r: 2.9, fill: far })); }
   g.push(s('path', { d: `M ${P(j.hip)} Q ${P(j.mid)} ${P(j.sh)}`, fill: 'none', stroke: color, 'stroke-width': j.cam ? 15 : 12, 'stroke-linecap': 'round' }));
-  // head: dark hair at the back, a light face at the front, so the facing direction reads at any size
+  // head: one plain shape, like a sign figure. A bun at the back of the head and a hint of a nose at the
+  // front show which way it faces; seen from the front the bun sits on top. No face is drawn.
   const hc = j.head;
   const dot = (pt, r, fill) => g.push(s('circle', { cx: pt[0].toFixed(1), cy: pt[1].toFixed(1), r, fill }));
   if (j.cam) {
-    dot(add(hc, spine, 6.6), 3.6, color);
-    dot(hc, 7.6, color);
-    if (!opacity) {
-      dot(add(hc, spine, -0.8), 5.4, C.skin);
-      const across = turn(spine, 1);
-      for (const k of [-2.3, 2.3]) dot(add(add(hc, across, k), spine, 0.2), 1.05, '#1B2A25');
-    }
-  } else {
-    dot(add(add(hc, front, -6.4), spine, 2.4), 3.8, color);
+    dot(add(hc, spine, 7), 3.3, color);
     dot(hc, 7.4, color);
-    dot(add(add(hc, front, 7.6), spine, -0.8), 2.2, opacity ? color : C.skin);
-    if (!opacity) {
-      dot(add(add(hc, front, 2.9), spine, -0.6), 4.9, C.skin);
-      dot(add(add(hc, front, 4.4), spine, 0.9), 0.95, '#1B2A25');
-    }
+  } else {
+    dot(add(add(hc, front, -6.2), spine, 2.6), 3.5, color);
+    dot(hc, 7.2, color);
+    dot(add(add(hc, front, 6.6), spine, -1), 1.7, color);
   }
   if (j.leg) { limb(j.hip, j.leg.knee, j.leg.foot, 9, 7.2, color); foot(j.leg, color, 5); }
   if (j.arm) { limb(j.sh, j.arm.elbow, j.arm.hand, 6.2, 5.4, color); g.push(s('circle', { cx: j.arm.hand[0].toFixed(1), cy: j.arm.hand[1].toFixed(1), r: 3.1, fill: color })); }

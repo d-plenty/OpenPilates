@@ -1,5 +1,5 @@
 // API client and shared caches.
-import { applyStudioLists } from '/shared/vocab.js';
+import { applyStudioLists, flowTiming } from '/shared/vocab.js';
 export class ApiError extends Error {
   constructor(status, message) { super(message); this.status = status; }
 }
@@ -75,11 +75,13 @@ export const store = {
     const rooms = (this.studio && this.studio.rooms) || [];
     return rooms.find((r) => r.id === flow?.room) || rooms.find((r) => r.apparatus === (flow?.apparatus === 'mat' ? 'mat' : 'reformer')) || rooms[0] || { brand: 'balanced_body', springOverrides: {} };
   },
+  // The seconds a flow counts with: the studio's timing, with its class type's own on top.
+  timingFor(flow) { return flowTiming(this.studio, flow); },
   analysisContext(flow) {
     const clients = (flow.booked || []).map((b) => {
       const c = (this.clients || []).find((x) => x.id === b.clientId);
       return c ? { id: c.id, name: c.name, tags: c.tags, spot: b.spot } : null;
     }).filter(Boolean);
-    return { flow, movements: this.movements || {}, studio: { props: this.studio?.props || {}, targets: this.studio?.targets, timing: this.studio?.timing }, clients };
+    return { flow, movements: this.movements || {}, studio: { props: this.studio?.props || {}, targets: this.studio?.targets, timing: this.studio?.timing, classTypes: this.studio?.classTypes }, clients };
   }
 };

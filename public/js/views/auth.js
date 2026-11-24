@@ -1,6 +1,6 @@
 import { h, field, select, passwordInput } from '../ui.js';
 import { api, store } from '../store.js';
-import { BRANDS, LEVEL_PRESETS } from '/shared/vocab.js';
+import { BRANDS } from '/shared/vocab.js';
 
 function authShell(...children) {
   return h('div', { class: 'auth-wrap' }, h('div', { class: 'auth' },
@@ -11,7 +11,6 @@ export async function setupView(done) {
   const err = h('p', { class: 'error', role: 'alert' });
   const studio = h('input', { type: 'text', value: 'My studio', autocomplete: 'organization' });
   let brand = 'balanced_body';
-  let levelScheme = 'three';
   const display = h('input', { type: 'text', autocomplete: 'name', placeholder: 'e.g. Sarah Blake' });
   const user = h('input', { type: 'text', autocomplete: 'username', placeholder: 'e.g. sarah', autocapitalize: 'none' });
   const passBox = passwordInput({ autocomplete: 'new-password' }); const pass = passBox.input;
@@ -21,7 +20,7 @@ export async function setupView(done) {
     err.textContent = '';
     if (pass.value !== pass2.value) { err.textContent = 'The passwords don\'t match.'; return; }
     try {
-      await api('POST', '/setup', { studioName: studio.value, brand, levelScheme, displayName: display.value || user.value, username: user.value, password: pass.value });
+      await api('POST', '/setup', { studioName: studio.value, brand, displayName: display.value || user.value, username: user.value, password: pass.value });
       store.state = null;
       done();
     } catch (x) { err.textContent = x.message; }
@@ -32,7 +31,6 @@ export async function setupView(done) {
     h('form', { class: 'stack', onsubmit: submit },
       field('Studio name', studio),
       field('Reformer brand', select(Object.entries(BRANDS).map(([id, b]) => ({ id, label: b.label })), brand, (v) => { brand = v; }), 'Used to show spring colours. You can change this later.'),
-      field('Class levels you run', select(Object.entries(LEVEL_PRESETS).map(([id, p]) => ({ id, label: p.levels.map((l) => l.label).join(' · ') })), levelScheme, (v) => { levelScheme = v; }), 'Rename them or write your own under Studio afterwards.'),
       field('Your name', display),
       field('Username', user),
       field('Password', passBox, 'At least 10 characters. A few random words works well.'),

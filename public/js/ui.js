@@ -69,6 +69,8 @@ const ICONS = {
   share: 'M12 15V4M8 8l4-4 4 4M5 13v7h14v-7',
   print: 'M6 9V4h12v5M6 17H4v-6h16v6h-2M7 14h10v6H7z',
   undo: 'M9 14L4 9l5-5M4 9h10a6 6 0 0 1 0 12h-3',
+  redo: 'M15 14l5-5-5-5M20 9H10a6 6 0 0 0 0 12h3',
+  clock: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3 2',
   help: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7M12 17v.5',
   layers: 'M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5',
   sheet: 'M6 3h9l4 4v14H6zM14 3v5h5M9 12h7M9 16h7',
@@ -179,4 +181,45 @@ export function passwordInput(attrs = {}) {
   const wrap = h('div', { class: 'pw' }, input, eye);
   wrap.input = input;
   return wrap;
+}
+
+// Undo and redo for an editor. `read` returns the thing being edited; `write(copy)` puts an earlier copy back
+// (and redraws and saves). Call note() after any change: it keeps a step only if something really changed.
+// Typing is grouped into one step: note(true) waits for a pause before keeping it.
+// `el` is the pair of buttons to show beside the "Saved" status.
+export function undoStack(read, write, { max = 80 } = {}) {
+  let past = [];
+  let future = [];
+  let last = JSON.stringify(read());
+  let timer = null;
+  const undoBtn = btn('', () => api.undo(), { iconName: 'undo', small: true, kind: 'ghost', title: 'Undo (Ctrl+Z)' });
+  const redoBtn = btn('', () => api.redo(), { iconName: 'redo', small: true, kind: 'ghost', title: 'Redo (Ctrl+Shift+Z)' });
+  const refresh = () => { undoBtn.disabled = !past.length; redoBtn.disabled = !future.length; };
+  const keep = () => {
+    clearTimeout(timer); timer = null;
+    const now = JSON.stringify(read());
+    if (now === last) return;
+    past.push(last);
+    if (past.length > max) past.shift();
+    future = [];
+    last = now;
+    refresh();
+  };
+  const onKey = (e) => {
+    if (!(e.ctrlKey || e.metaKey) || ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName)) return;
+    const k = e.key.toLowerCase();
+    if (k === 'z' && !e.shiftKey) { e.preventDefault(); api.undo(); } else if ((k === 'z' && e.shiftKey) || k === 'y') { e.preventDefault(); api.redo(); }
+  };
+  const api = {
+    el: h('span', { class: 'undo-redo no-print', role: 'group', 'aria-label': 'Undo and redo' }, undoBtn, redoBtn),
+    note(typing) { if (typing) { clearTimeout(timer); timer = setTimeout(keep, 800); } else keep(); },
+    undo() { keep(); if (!past.length) return false; future.push(last); last = past.pop(); refresh(); write(JSON.parse(last)); return true; },
+    redo() { keep(); if (!future.length) return false; past.push(last); last = future.pop(); refresh(); write(JSON.parse(last)); return true; },
+    // start again from what is there now, for instance after data was replaced from the server
+    reset() { clearTimeout(timer); timer = null; past = []; future = []; last = JSON.stringify(read()); refresh(); },
+    keys(on) { document[on ? 'addEventListener' : 'removeEventListener']('keydown', onKey); },
+    get canUndo() { return past.length > 0; }
+  };
+  refresh();
+  return api;
 }
