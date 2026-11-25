@@ -28,7 +28,7 @@ export function createApp(opts = {}) {
   const loaded = loadLibrary(db, cfg.libraryDir);
   const seriesDir = cfg.seriesDir || join(cfg.libraryDir, '..', 'series');
   loadSeries(db, seriesDir);
-  if (!cfg.quiet) console.log(`OpenPilates ${VERSION}: ${loaded} library movements loaded, data in ${cfg.dataDir}`);
+  if (!cfg.quiet) console.log(`OpenPilates Server ${VERSION}: ${loaded} library movements loaded, data in ${cfg.dataDir}`);
 
   // Optional first admin from environment (handy for scripted installs).
   const userCount = () => db.prepare('SELECT COUNT(*) n FROM users').get().n;
@@ -603,7 +603,7 @@ export function createApp(opts = {}) {
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const app = createApp();
   const server = createServer(app.handler);
-  server.listen(config.port, config.host, () => console.log(`OpenPilates listening on http://${config.host}:${config.port}`));
+  server.listen(config.port, config.host, () => console.log(`OpenPilates Server listening on http://${config.host}:${config.port}`));
   const stop = () => { server.close(); app.close(); process.exit(0); };
   process.on('SIGTERM', stop);
   process.on('SIGINT', stop);

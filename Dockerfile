@@ -1,4 +1,4 @@
-# OpenPilates — one small image, no npm dependencies at runtime.
+# OpenPilates Server — one small image, no npm dependencies at runtime.
 FROM node:22-alpine
 
 ENV NODE_ENV=production \

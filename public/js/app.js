@@ -73,7 +73,7 @@ function shell(active, content) {
   return [
     h('header', { class: 'topbar no-print' },
       h('a', { class: 'brand', href: '#/' },
-        h('img', { src: '/icon.svg', width: 28, height: 28, alt: '' }), 'OpenPilates'),
+        h('img', { src: '/icon.svg', width: 28, height: 28, alt: '' }), 'OpenPilates', h('span', { class: 'brand-tag' }, 'Server')),
       h('nav', { class: 'nav', 'aria-label': 'Main' },
         nav.map(([p, l]) => h('a', { href: '#' + p, class: active === p ? 'on' : null, 'aria-current': active === p ? 'page' : null }, l)),
         store.isAdmin ? h('a', { href: '#/team', class: active === '/team' ? 'on' : null, 'aria-current': active === '/team' ? 'page' : null }, 'Team') : null,
@@ -116,8 +116,8 @@ export async function render() {
       if (result.fullscreen) return mount(result.node, result.cleanup);
       const active = path === '/' || path.startsWith('/flows') ? '/' : path.startsWith('/explore') || path.startsWith('/movements') ? '/explore' : '/' + path.split('/')[1];
       mount(shell(active, result.node || result), result.cleanup);
-      if (result.title) document.title = `${result.title} · OpenPilates`;
-      else document.title = 'OpenPilates';
+      if (result.title) document.title = `${result.title} · OpenPilates Server`;
+      else document.title = 'OpenPilates Server';
     } catch (e) {
       console.error(e);
       mount(shell('', h('div', { class: 'empty' }, h('h3', null, 'Something went wrong'), h('p', null, e.message), h('a', { class: 'btn', href: '#/' }, 'Back to flows'))));

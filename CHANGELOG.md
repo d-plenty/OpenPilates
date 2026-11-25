@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.4
+
+- **This is now OpenPilates Server.** The name on the sign-in page, the header, the browser tab and the start-up log says so. The repository is `d-plenty/OpenPilates-server`.
+- **On pause.** Work has moved to the OpenPilates app for iPhone and iPad, which keeps everything on the device. This server still works as it is and will come back as the sync server for the apps.
+- Nothing else changes: the Docker image is still `ghcr.io/d-plenty/openpilates`, and flow and pack files are the same, so the app can read them.
+
 ## 0.6.3
 
 ### Undo and redo

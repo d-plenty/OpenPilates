@@ -1,4 +1,4 @@
-# OpenPilates — docker compose / Dockge stack
+# OpenPilates Server — docker compose / Dockge stack
 services:
   openpilates:
     image: ghcr.io/d-plenty/openpilates:latest

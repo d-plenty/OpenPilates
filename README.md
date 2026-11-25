@@ -1,8 +1,12 @@
-# OpenPilates
+# OpenPilates Server
 
-**Free, self-hosted class planning for mat and reformer Pilates instructors.**
+**The self-hosted, studio side of OpenPilates: class planning for mat and reformer Pilates instructors, run on your own server with Docker.**
 
-OpenPilates lets you build a class from a library of movements and shows you what the class actually does: which muscles it works, how the spine moves, how much time goes on spring and position changes, and whether it builds to a peak and winds down. It also checks every movement against the clients booked in. It runs on your own server with Docker. There's no subscription, and client details stay with you.
+> **On pause.** Work has moved to the [OpenPilates app](https://github.com/d-plenty/OpenPilates-app) for iPhone and iPad, which keeps everything on the device and needs no server. This project still works as it is (0.6.4) and stays available, but it won't get new features for now. It will come back as the server a studio can run to sync the apps between its instructors. Classes and studio packs exported from here can be brought into the app.
+>
+> This repository used to be called `OpenPilates`. The Docker image name has not changed (`ghcr.io/d-plenty/openpilates`), so existing installs keep updating.
+
+OpenPilates Server lets you build a class from a library of movements and shows you what the class actually does: which muscles it works, how the spine moves, how much time goes on spring and position changes, and whether it builds to a peak and winds down. It also checks every movement against the clients booked in. There's no subscription, and client details stay with you.
 
 > Version 0.6 — early release. The starter movement library is a draft and needs review by a qualified Pilates instructor before you teach from it (see [Movement library](#movement-library)).
 

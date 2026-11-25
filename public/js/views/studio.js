@@ -569,7 +569,7 @@ export async function accountView() {
         h('div', null, btn('Save name', async () => { try { await api('PUT', '/me', { displayName: name.value }); store.state = null; toast('Saved.'); location.reload(); } catch (e) { toast(e.message, { kind: 'error' }); } }, { kind: 'primary' }))),
       h('div', { class: 'card stack' }, h('h2', null, 'Password'), field('New password', nextBox, 'At least 10 characters. Press the eye to check what you typed. Your current password is not needed, and other devices signed in as you are signed out.'),
         h('div', null, btn('Change password', async () => { try { await api('PUT', '/me', { newPassword: next.value }); next.value = ''; toast('Password changed.'); } catch (e) { toast(e.message, { kind: 'error' }); } }, { kind: 'primary' })))),
-    h('p', { class: 'tiny muted', style: { marginTop: '18px' } }, 'OpenPilates is free software (GPL-3.0). ', h('a', { href: 'https://github.com/d-plenty/OpenPilates', target: '_blank', rel: 'noopener' }, 'Source code and help on GitHub'), '.')] };
+    h('p', { class: 'tiny muted', style: { marginTop: '18px' } }, 'OpenPilates Server is free software (GPL-3.0). ', h('a', { href: 'https://github.com/d-plenty/OpenPilates-server', target: '_blank', rel: 'noopener' }, 'Source code and help on GitHub'), '.')] };
 }
 
 function suggestPassword() {

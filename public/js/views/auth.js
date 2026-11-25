@@ -4,7 +4,7 @@ import { BRANDS } from '/shared/vocab.js';
 
 function authShell(...children) {
   return h('div', { class: 'auth-wrap' }, h('div', { class: 'auth' },
-    h('div', { class: 'brand' }, h('img', { src: '/icon.svg', width: 34, height: 34, alt: '' }), 'OpenPilates'), ...children));
+    h('div', { class: 'brand' }, h('img', { src: '/icon.svg', width: 34, height: 34, alt: '' }), 'OpenPilates', h('span', { class: 'brand-tag' }, 'Server')), ...children));
 }
 
 export async function setupView(done) {

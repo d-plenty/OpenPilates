@@ -710,3 +710,4 @@ pre.code { margin: 0; background: var(--panel); color: var(--accent-line); borde
   .st-row.st-core { grid-template-columns: minmax(0, 1fr) auto; }
   .st-core .st-fixed { display: none; }
 }
+.brand-tag { font: 600 11px var(--font); letter-spacing: .04em; text-transform: uppercase; padding: 2px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent-dark); }
